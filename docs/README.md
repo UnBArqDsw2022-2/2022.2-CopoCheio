@@ -14,12 +14,12 @@ Demais diretrizes sobre a organização da wiki constam no Moodle Aprender 3.
 # Nome do Projeto
 
 **Código da Disciplina**: FGA0208<br>
-**Número do Grupo**: XX<br>
+**Número do Grupo**: 01<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 19/0094257  |  Paulo Henrique de Oliveira Rezende |
 | xx/xxxxxx  |  xxxx xxxx xxxxx |
 
 ## Sobre 
