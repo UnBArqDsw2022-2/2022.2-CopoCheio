@@ -7,11 +7,11 @@
   - [1. Desenho de Software (Base)](/Base/1.Base.md)
     - [1.1. Módulo Projeto Não Orientado a Abordagens Específicas](/Base/1.1.AbordagemNaoEspecifica.md)
       - [1.1.1 Especificação de Causa e Efeito](/Base/1.1.1.DiagramaCausaEfeito.md)
+      - [1.1.4 Estimativas de Custo](/Base/1.1.4.EstimativaCusto.md)
     - [1.2. Módulo Processos/Metodologias/Abordagens](/Base/1.2.ProcessosMetodologiasAbordagens.md)
     - [1.3. Iniciativas Extras - Base](/Base/1.3.IniciativasExtras.md)
     - [1.4. Participações - Base](/Base/1.4.ParticipacoesBase.md)
     - [Lexico](/Base/Lexico.md)
-    - [Estimativa de Custo](/Base/EstimativaCusto.md)
 
 - **Modelagem**
   - [2. Desenho de Software (Modelagem)](/Modelagem/2.Modelagem.md)
