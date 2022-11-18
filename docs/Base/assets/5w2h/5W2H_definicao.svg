@@ -5,9 +5,9 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   viewBox="0 0 1122.6667 793.33331"
-   height="793.33331"
-   width="1122.6667"
+   viewBox="0 0 1057.3333 604"
+   height="604"
+   width="1057.3333"
    xml:space="preserve"
    id="svg2"
    version="1.1"><metadata
@@ -18,32 +18,32 @@
        id="clipPath20"
        clipPathUnits="userSpaceOnUse"><path
          id="path18"
-         d="M -2,-2 H 888 V 384 H -2 Z" /></clipPath><clipPath
+         d="M -2,-2 H 888 V 428 H -2 Z" /></clipPath><clipPath
        id="clipPath84"
        clipPathUnits="userSpaceOnUse"><path
          id="path82"
-         d="M -2,-2 H 888 V 384 H -2 Z" /></clipPath><clipPath
+         d="M -2,-2 H 888 V 428 H -2 Z" /></clipPath><clipPath
        id="clipPath90"
        clipPathUnits="userSpaceOnUse"><path
          id="path88"
-         d="M 1,88 H 99 V 381 H 1 Z" /></clipPath><clipPath
+         d="M 1,88 H 99 V 425 H 1 Z" /></clipPath><clipPath
        id="clipPath128"
        clipPathUnits="userSpaceOnUse"><path
          id="path126"
-         d="M -2,-2 H 888 V 384 H -2 Z" /></clipPath><clipPath
+         d="M -2,-2 H 888 V 428 H -2 Z" /></clipPath><clipPath
        id="clipPath134"
        clipPathUnits="userSpaceOnUse"><path
          id="path132"
-         d="M 102,88 H 230 V 381 H 102 Z" /></clipPath><clipPath
+         d="M 102,88 H 230 V 425 H 102 Z" /></clipPath><clipPath
        id="clipPath184"
        clipPathUnits="userSpaceOnUse"><path
          id="path182"
-         d="M -2,-2 H 888 V 384 H -2 Z" /></clipPath></defs><g
-     transform="matrix(1.3333333,0,0,-1.3333333,0,793.33333)"
+         d="M -2,-2 H 888 V 428 H -2 Z" /></clipPath></defs><g
+     transform="matrix(1.3333333,0,0,-1.3333333,0,604)"
      id="g10"><g
-       transform="matrix(1,0,0,-1,0,595)"
+       transform="matrix(1,0,0,-1,0,453)"
        id="g12"><g
-         transform="matrix(0.75,0,0,0.75,88.750002,54)"
+         transform="matrix(0.75,0,0,0.75,64.249998,54)"
          id="g14"><g
            clip-path="url(#clipPath20)"
            id="g16"><path
@@ -58,14 +58,14 @@
              d="M -1,57 H 887 V 87 H -1 Z" /><path
              id="path28"
              style="fill:#93c47d;fill-opacity:1;fill-rule:nonzero;stroke:none"
-             d="M -1,86 H 887 V 383 H -1 Z" /><g
+             d="M -1,86 H 887 V 427 H -1 Z" /><g
              id="g30"><path
                id="path32"
                style="fill:#000000;fill-opacity:0.14901961;fill-rule:nonzero;stroke:none"
-               d="m -1,0 v 0 h -1 v -1 h 1 z m 0,-1 v 0 -1 h 1 v 1 z m 0,30 v 0 h -1 v -1 h 1 z m 0,29 v 0 h -1 v -1 h 1 z m 0,29 v 0 h -1 v -1 h 1 z m 0,296 v 0 h -1 v -1 h 1 z M 100,-1 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z M 364,382 v 0 h 128 v 1 H 364 Z M 624,-1 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z M -1,384 v 0 -1 h 1 v 1 z m 101,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z M 888,0 v 0 h -1 v -1 h 1 z m 0,29 v 0 h -1 v -1 h 1 z m 0,29 v 0 h -1 v -1 h 1 z m 0,29 v 0 h -1 v -1 h 1 z m 0,296 v 0 h -1 v -1 h 1 z" /></g><path
+               d="m -1,0 v 0 h -1 v -1 h 1 z m 0,-1 v 0 -1 h 1 v 1 z m 0,30 v 0 h -1 v -1 h 1 z m 0,29 v 0 h -1 v -1 h 1 z m 0,29 v 0 h -1 v -1 h 1 z m 0,340 v 0 h -1 v -1 h 1 z M 100,-1 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z M 364,426 v 0 h 128 v 1 H 364 Z M 624,-1 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z M -1,428 v 0 -1 h 1 v 1 z m 101,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z m 131,0 v 0 -1 h 1 v 1 z M 888,0 v 0 h -1 v -1 h 1 z m 0,29 v 0 h -1 v -1 h 1 z m 0,29 v 0 h -1 v -1 h 1 z m 0,29 v 0 h -1 v -1 h 1 z m 0,340 v 0 h -1 v -1 h 1 z" /></g><path
              id="path34"
              style="fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             d="M -0.5,-2 V 384 M 100.5,56 V 384 M 231.5,56 V 384 M -2,382.5 H 364 M 362.5,56 V 384 M 493.5,56 V 384 M 624.5,27 V 384 M 755.5,56 V 384 M -2,-0.5 h 890 m -890,29 h 890 m -890,29 h 890 m -890,29 h 890 m -396,296 H 888 M 886.5,-2 v 386" /><text
+             d="M -0.5,-2 V 428 M 100.5,56 V 428 M 231.5,56 V 428 M -2,426.5 H 364 M 362.5,56 V 428 M 493.5,56 V 428 M 624.5,27 V 428 M 755.5,56 V 428 M -2,-0.5 h 890 m -890,29 h 890 m -890,29 h 890 m -890,29 h 890 m -396,340 H 888 M 886.5,-2 v 430" /><text
              id="text38"
              style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
              transform="translate(372,19.453125)"><tspan
@@ -137,7 +137,7 @@
                x="0 12.230399 21.785398 30.503199 39.894398 45.809399 55.400799 59.513996 67.194397 76.749397 83.665398 89.525795 98.243591">Quanto custa?</tspan></text>
 </g></g><g
          id="g76"><g
-           transform="matrix(0.75,0,0,0.75,88.75,54)"
+           transform="matrix(0.75,0,0,0.75,64.25,54)"
            id="g78"><g
              clip-path="url(#clipPath84)"
              id="g80"><g
@@ -193,7 +193,7 @@
                    x="0 8.7177992 12.885599 20.420399 30.011799 39.603199 43.770996 47.938797 55.473598 65.064995 72.181198">alcoólicos.</tspan></text>
 </g></g></g></g><g
          id="g120"><g
-           transform="matrix(0.75,0,0,0.75,88.75,54)"
+           transform="matrix(0.75,0,0,0.75,64.25,54)"
            id="g122"><g
              clip-path="url(#clipPath128)"
              id="g124"><g
@@ -270,7 +270,7 @@
                    x="0 7.4073997 16.998798 21.166599 30.757998 39.311996 43.479797 52.197598">xologia.</tspan></text>
 </g></g></g></g><g
          id="g176"><g
-           transform="matrix(0.75,0,0,0.75,88.75,54)"
+           transform="matrix(0.75,0,0,0.75,64.25,54)"
            id="g178"><g
              clip-path="url(#clipPath184)"
              id="g180"><text
@@ -377,91 +377,91 @@
                transform="translate(630,108.65466)"><tspan
                  id="tspan242"
                  y="0"
-                 x="0 10.519599 14.632799 24.187799 32.905598 39.239197 45.317997 49.485798 55.819397 59.932598 69.487595 78.205399">A partir da </tspan></text>
+                 x="0 11.6662 17.744999 21.912798 26.080599 30.248398 37.146198 45.863998 55.418999 64.973999 74.565399 78.678596 88.233597 97.278992">Utilizando de </tspan></text>
 <text
                id="text248"
                style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
                transform="translate(630,130.8562)"><tspan
                  id="tspan246"
                  y="0"
-                 x="0 9.5549994 15.6338 19.8016 23.969398 28.137199 35.035 43.752796 51.287598 60.005398 69.596794 73.709999 83.264992 92.310394">utilização de </tspan></text>
+                 x="0 9.5549994 24.078598 32.796398 36.909599 43.825596 49.685997 58.403797 66.084198 74.346992">uma stack </tspan></text>
 <text
                id="text252"
                style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
                transform="translate(630,153.05774)"><tspan
                  id="tspan250"
                  y="0"
-                 x="0 9.5549994 24.078598 32.796398 36.909599 47.429199 56.820396 61.388596 65.501793 75.056793 84.611794 94.166794 98.334595 102.5024 110.03719 118.755">uma API publica </tspan></text>
+                 x="0 9.5549994 18.272799 25.388998 34.434399 43.152199 52.707195 61.424995 65.538193 74.583595 89.107193 93.220398 102.01099 110.36479">baseada em TS </tspan></text>
 <text
                id="text256"
                style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
                transform="translate(630,175.25928)"><tspan
                  id="tspan254"
                  y="0"
-                 x="0 9.5549994 19.109999 28.155399 32.268597 37.455597 47.046997 53.380596 62.935596 71.980995 79.515793 88.233597 92.346794 101.0646 108.18079">que forneça as </tspan></text>
+                 x="0 9.5549994 18.272799 24.242399 32.960197 37.073399 45.791199">para a </tspan></text>
 <text
                id="text260"
                style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
                transform="translate(630,197.46082)"><tspan
                  id="tspan258"
                  y="0"
-                 x="0 6.0969996 15.142399 22.8228 31.868198 36.035999 41.896397 50.614197 57.730396 61.843597 71.398598 80.443993">receitas de </tspan></text>
+                 x="0 7.5347996 17.1262 26.681198 33.597198 39.675999 46.009598 55.564598 63.099396 71.8172 81.408592 85.521797 95.076797 104.12219">construção de </tspan></text>
 <text
                id="text264"
                style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
                transform="translate(630,219.66235)"><tspan
                  id="tspan262"
                  y="0"
-                 x="0 9.5549994 18.600399 28.155399 32.323196 41.878197 50.595997 57.712196 62.243996 66.357193 73.473396 82.518799 92.073792 101.62879 111.22019">bebidas, sendo </tspan></text>
+                 x="0 9.5549994 24.078598 32.796398 36.909599 45.627396 55.182396 59.350197 63.517998 71.052795 79.770599 87.305397 96.023193 105.61459">uma aplicação </tspan></text>
 <text
                id="text268"
                style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
                transform="translate(630,241.86389)"><tspan
                  id="tspan266"
                  y="0"
-                 x="0 4.1677999 13.558999 19.455799 28.501198 37.055199 43.024799 51.742596 61.297596 70.015396 74.128593 82.846397 86.959595 96.514595 111.03819">integrada a um </tspan></text>
+                 x="0 8.3537998 14.396199 23.987598 33.378799 38.911598 44.480797 53.362396 62.917397 72.472397 76.585594 85.630997">Front-End e </tspan></text>
 <text
                id="text272"
                style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
                transform="translate(630,264.06543)"><tspan
                  id="tspan270"
                  y="0"
-                 x="0 9.5549994 18.272799 25.953199 33.633598 42.678997 52.233997 61.788998 65.902199 75.457199 85.012192 94.057594">backend que </tspan></text>
+                 x="0 9.5549994 24.078598 32.796398 36.909599 45.627396 55.182396 59.350197 63.517998 71.052795 79.770599 87.305397 96.023193 105.61459">uma aplicação </tspan></text>
 <text
                id="text276"
                style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
                transform="translate(630,286.26697)"><tspan
                  id="tspan274"
                  y="0"
-                 x="0 6.0787997 12.048399 20.602398 26.462799 35.180599 41.150196 49.867996 53.981197 62.698997 69.815193">tratará as </tspan></text>
+                 x="0 9.8825998 18.600399 26.280798 33.870197 39.4394 48.484798 58.039795 67.594795 71.707993 81.262993 90.817993 99.863396">Back-end que </tspan></text>
 <text
                id="text280"
                style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
                transform="translate(630,308.4685)"><tspan
                  id="tspan278"
                  y="0"
-                 x="0 6.0969996 15.142399 24.697399 34.252399 38.420197 45.536396 49.704197 57.238998 66.830399 75.875793 82.991997 87.105194 96.150597">requisições e </tspan></text>
+                 x="0 8.5539999 14.450799 23.496199 33.051197 42.606197 51.323997 65.847595 69.960793 79.552193">atendam o </tspan></text>
 <text
                id="text284"
                style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
                transform="translate(630,330.67004)"><tspan
                  id="tspan282"
                  y="0"
-                 x="0 9.5549994 24.078598 28.191799 33.742798 39.785198 49.376598 58.767796 64.846596 68.959793 78.005196 87.560196 97.115196">um front end </tspan></text>
+                 x="0 14.5236 24.114998 33.669998 42.715397 46.883198 56.474598 60.587795 70.142799 79.188194">modelo de </tspan></text>
 <text
                id="text288"
                style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
                transform="translate(630,352.87158)"><tspan
                  id="tspan286"
                  y="0"
-                 x="0 9.5549994 19.109999 28.155399 32.268597 41.040997 48.921597 53.089397 62.644398 66.812195 72.781799 81.499596 85.612793 95.204193">que exibirá o </tspan></text>
+                 x="0 9.5549994 18.600399 27.045198 36.636597 44.316998 48.484798 58.076199">negócio </tspan></text>
 <text
                id="text292"
                style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
                transform="translate(630,375.07312)"><tspan
                  id="tspan290"
                  y="0"
-                 x="0 7.5347996 17.1262 26.517399 32.4142 41.459599 51.014599 60.569595 70.160995">conteúdo.</tspan></text>
+                 x="0 9.5549994 18.4548 24.005798 28.173599 37.7286 41.896397 51.451397 61.042797">definido.</tspan></text>
 <text
                id="text296"
                style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -531,5 +531,40 @@
                transform="translate(761,308.4685)"><tspan
                  id="tspan330"
                  y="0"
-                 x="0 9.5549994 13.722799 22.276798 28.137199 36.763996 41.950996 51.542397 57.875996 72.399597 81.117393">plataforma.</tspan></text>
+                 x="0 9.5549994 13.722799 22.276798 28.137199 36.763996 41.950996 51.542397 57.875996 72.399597 81.117393 85.703796 89.816994 101.86539">plataforma. O </tspan></text>
+<text
+               id="text336"
+               style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="translate(761,330.67004)"><tspan
+                 id="tspan334"
+                 y="0"
+                 x="0 7.9533997 16.6712 20.838999 30.430399 36.763996 40.877197 55.400799 64.992195 74.547195 83.501595 89.361992 98.079796 104.41339 108.58119 118.17259">valor monétario </tspan></text>
+<text
+               id="text340"
+               style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="translate(761,352.87158)"><tspan
+                 id="tspan338"
+                 y="0"
+                 x="0 8.5539999 14.632799 20.729799 29.775198 33.942997 42.660797 52.215797 61.807198 65.920395 74.638199 84.229599">atrelado ao </tspan></text>
+<text
+               id="text344"
+               style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="translate(761,375.07312)"><tspan
+                 id="tspan342"
+                 y="0"
+                 x="0 6.0787997 12.048399 20.766199 30.321198 39.038998 43.206799 52.761799 62.353195 66.4664 76.021393 85.612793 92.728996">trabalho dos </tspan></text>
+<text
+               id="text348"
+               style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="translate(761,397.27466)"><tspan
+                 id="tspan346"
+                 y="0"
+                 x="0 9.5549994 18.527599 26.662998 33.779198 37.892399 45.008598 54.053997 60.023598 68.741394 72.854599 82.409592 91.454994 95.568192 105.43259 114.64179">devs será de R$ </tspan></text>
+<text
+               id="text352"
+               style="font-variant:normal;font-weight:normal;font-size:18.19999886px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="translate(761,419.4762)"><tspan
+                 id="tspan350"
+                 y="0"
+                 x="0 9.2091999 18.4184 23.004799 32.213997 41.423199 50.632397 55.164196 64.373398 73.582596">53.784,00.</tspan></text>
 </g></g></g></g></g></svg>
