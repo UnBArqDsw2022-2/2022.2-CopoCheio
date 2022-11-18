@@ -11,7 +11,7 @@ Demais diretrizes sobre a organização da wiki constam no Moodle Aprender 3.
  
  (Apague esses comentários)
 
-# Nome do Projeto
+# Copo Cheio
 
 **Código da Disciplina**: FGA0208<br>
 **Número do Grupo**: 01<br>
@@ -33,8 +33,7 @@ Demais diretrizes sobre a organização da wiki constam no Moodle Aprender 3.
 |  19/0037806  |  Samuel Furtado Ávila  |
 
 ## Sobre 
-Descreva o seu projeto em linhas gerais.
-Use referências, links, que permitam conhecer um pouco mais sobre o projeto.
+Site de receitas de drinks, misturas de bebidas.
 
 ## Screenshots Primeira Entrega <<FOCO: DSW(Base)>>
 Adicione 2 ou mais screenshots do projeto em termos de artefatos da Primeira Entrega.

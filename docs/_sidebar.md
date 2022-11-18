@@ -15,6 +15,8 @@
       - [1.1.6 Lexico](/Base/1.1.6.Lexico.md)
       - [1.1.7. Rich Picture](/Base/1.1.7.RichPicture.md)
     - [1.2. Módulo Processos/Metodologias/Abordagens](/Base/1.2.ProcessosMetodologiasAbordagens.md)
+      - [1.2.1. Metodologias](/Base/1.2.1.Metodologias.md)
+      - [1.2.2. BPMN](/Base/1.2.2.BPMN.md)
     - [1.3. Iniciativas Extras - Base](/Base/1.3.IniciativasExtras.md)
     - [1.4. Participações - Base](/Base/1.4.ParticipacoesBase.md)
     - [Lexico](/Base/Lexico.md)
