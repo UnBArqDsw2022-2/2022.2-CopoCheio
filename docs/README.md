@@ -20,6 +20,7 @@ Demais diretrizes sobre a organização da wiki constam no Moodle Aprender 3.
 |Matrícula | Aluno |
 | -- | -- |
 | 19/0094257  |  Paulo Henrique de Oliveira Rezende |
+| 19/0109963  |  João Victor Teixeira Batista |
 | xx/xxxxxx  |  xxxx xxxx xxxxx |
 
 ## Sobre 
