@@ -14,6 +14,8 @@
     - [1.2. Módulo Processos/Metodologias/Abordagens](/Base/1.2.ProcessosMetodologiasAbordagens.md)
     - [1.3. Iniciativas Extras - Base](/Base/1.3.IniciativasExtras.md)
     - [1.4. Participações - Base](/Base/1.4.ParticipacoesBase.md)
+    - [1.5. Design Sprint](/Base/1.5.DesignSprint.md)
+    - [Lexico](/Base/Lexico.md)
 
 - **Modelagem**
   - [2. Desenho de Software (Modelagem)](/Modelagem/2.Modelagem.md)
