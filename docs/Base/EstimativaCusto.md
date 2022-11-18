@@ -1,0 +1,445 @@
+# Estimativas de Custo e Tempo de Software
+
+Segundo Fenton e Pfleeger (1997), uma estimativa é uma avaliação de probabilidade. Uma estimativa só é útil se for razoavelmente precisa. Não se espera que uma estimativa seja exata, mas que seja precisa o suficiente para que se tenha segurança de fazer julgamentos e tomar decisões, considerando os limites do intervalo de confiança. 
+
+Com base nisso, fazer Estimativa de Custo é interessante por dar estimativas consistentes e precisas de custo de software e alocação recursos, ajudando então na mitigação de riscos que envolvem o desenvolvimento de software.
+
+## MODELO DE CUSTO CONSTRUTIVO (CONSTRUCTIVE COST MODEL - COCOMO)
+Neste projeto usaremos o modelo COCOMO de estimativa de custo e tempo de desenvolvimento de software criado por Barry Boehm, pois nesse método de estimativa consegue ser completo e preciso. 
+
+Esse modelo é dividido em três implementações, sendo elas:
+
+* Básico: Estima o esforço e o custo de desenvolvimento com base no tamanho em linhas o programa;
+* Intermediário: Estima o esforço e o custo de desenvolvimento com base no tamanho em linhas como no Básico e também com base em um conjunto de direcionadores de custos(custo, avaliação subjetiva do produto, hardware, pessoal e atributos de projeto); e
+* Detalhado: Além das características da implementação do Intermediário, inclui a avaliação de impacto de direcionadores de custo em cada etapa do desenvolvimento.
+
+O modelo COCOMO pode ser aplicado em três classes de projetos:
+* Orgânico: Projetos simples e pequenos com conjunto de requisitos pouco rígidos e com equipes pequenas e experientes;
+* Semidestacado: Projetos intermediários com requisitos rígidos e com níveis mistos de experiência na equipe; e
+ * Embutido: Projetos com um conjunto rígido de restrições operacionais, tanto de hardware, quanto de software.
+
+
+Pelo detalhamento da estimativa de custo esperada, vamos usar o modelo Intermediário por ser um meio termo de complexidade entre os três modelos, não sendo muito complexo ou muito básico. O nosso projeto entre as classes de projeto do COCOMO se enquadraria no Semidestacado.
+
+## Modelo COCOMO Intermediário
+No modelo intermediário do **COCOMO**, é ampliado o modelo Básico adicionando um conjunto de atributos direcionadores de custo que são agrupados em quatro categorias:
+
+1. Atributo do produto:
+    * confiabilidade exigida do software;
+    * tamanho do banco de dados; e
+    * complexidade do produto.
+
+2. Atributos do hardware: 
+    * restrições de tempo de execução;
+    * restrições de memória;
+    * volatilidade do ambiente de máquina virtual; e
+    * tempo de turnaround (tempo para completar o ciclo) exigido.
+
+3. Atributos de pessoal: 
+    * capacidade do analista;
+    * experiência em aplicações;
+    * capacidade do programador;
+    * experiência em máquina virtual;
+    * experiência com a linguagem de programação.
+    * Atributos de projeto:
+    * uso de práticas modernas de programação;
+    * uso de ferramentas de software; e
+    * cronograma exigido de desenvolvimento.
+
+E com base nesses atributos, cada um deve ser classificado em uma escala que varia de "muito baixo" a "extremamente elevado", o peso dessa classificação pode ser vista na tabela abaixo. Com base na classificação desses atributos é determinado o Multiplicador de Esforço onde o produto do resultado pode ser chamado de Fator de Ajustamento de Esforço (PRESSMAN, 1995).
+
+<table>
+    <thead>
+        <tr>
+            <th>Direcionadores de Custo</th>
+            <th>Muito Baixo</th>
+            <th>Baixo</th>
+            <th>Normal</th>
+            <th>Elevado</th>
+            <th>Muito Elevado</th>
+            <th>Extremamente Elevado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td align="center" colspan=7>ATRIBUTOS DO PRODUTO</td>
+        </tr>
+        <tr>
+            <td>Confiabilidade exigida do software</td>
+            <td>0.75</td>
+            <td>0.88</td>
+            <td>1.00</td>
+            <td>1.15</td>
+            <td>1.40</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Tamanho do banco de dados</td>
+            <td>-</td>
+            <td>0.94</td>
+            <td>1.00</td>
+            <td>1.08</td>
+            <td>1.16</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Complexidade do produto</td>
+            <td>0.70</td>
+            <td>0.85</td>
+            <td>1.00</td>
+            <td>1.15</td>
+            <td>1.30</td>
+            <td>1.65</td>
+        </tr>
+        <tr>
+            <td bgcolor="#9ea0a3" align="center" colspan=7>ATRIBUTOS DO HARDWARE</td>
+        </tr>
+        <tr>
+            <td>Restrições ao tempo de execução</td>
+            <td>-</td>
+            <td>-</td>
+            <td>1.00</td>
+            <td>1.11</td>
+            <td>1.30</td>
+            <td>1.66</td>
+        </tr>
+        <tr>
+            <td>Restrições de memória</td>
+            <td>-</td>
+            <td>-</td>
+            <td>1.00</td>
+            <td>1.06</td>
+            <td>1.21</td>
+            <td>1.56</td>
+        </tr>
+        <tr>
+            <td>Volatilidade do ambiente de máquina</td>
+            <td>-</td>
+            <td>0.87</td>
+            <td>1.00</td>
+            <td>1.15</td>
+            <td>1.30</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Tempo de turnaround (tempo para completar o ciclo) exigido</td>
+            <td>-</td>
+            <td>0.87</td>
+            <td>1.00</td>
+            <td>1.07</td>
+            <td>1.15</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td align="center" colspan=7>ATRIBUTOS DE PESSOAL</td>
+        </tr>
+        <tr>
+            <td>Capacidade do analista</td>
+            <td>1.46</td>
+            <td>1.19</td>
+            <td>1.00</td>
+            <td>0.86</td>
+            <td>0.71</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Experiência em aplicações</td>
+            <td>1.29</td>
+            <td>1.13</td>
+            <td>1.00</td>
+            <td>0.91</td>
+            <td>0.82</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Capacidade do programador</td>
+            <td>1.42</td>
+            <td>1.17</td>
+            <td>1.00</td>
+            <td>0.86</td>
+            <td>0.70</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Experiência em Máquina Virtual</td>
+            <td>1.21</td>
+            <td>1.10</td>
+            <td>1.00</td>
+            <td>0.90</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Experiência com a linguagem de programação</td>
+            <td>1.14</td>
+            <td>1.07</td>
+            <td>1.00</td>
+            <td>0.95</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td align="center" colspan=7>ATRIBUTO DE PROJETO</td>
+        </tr>
+        <tr>
+            <td>Uso de práticas modernas de programação</td>
+            <td>1.24</td>
+            <td>1.10</td>
+            <td>1.00</td>
+            <td>0.91</td>
+            <td>0.82</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Uso de ferramentas de software</td>
+            <td>1.24</td>
+            <td>1.10</td>
+            <td>1.00</td>
+            <td>0.91</td>
+            <td>0.83</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Cronograma exigido de desenvolvimento</td>
+            <td>1.23</td>
+            <td>1.08</td>
+            <td>1.00</td>
+            <td>1.04</td>
+            <td>1.10</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td colspan=7>Fonte: Boehm (1981)</td>
+        </tr>
+    </tbody>
+</table>
+
+Boehm (1981) apresenta as seguintes equações para modelo intermediário:
+  
+    E = a x (S ^ b) x fae
+    T = c * E ^ d
+
+onde:
+
+* **E:** esforço aplicado (em pessoas-mês)
+* **S:** número estimado de linhas de código (em milhares)
+* **a:** coeficiente fornecido pela tabela <y>
+* **b:** expoente fornecido pela <y>
+* **fae:** Fator de Ajustamento do Esforço (multiplicação * dos Multiplicadores de Esforço da tabela x
+* **T:** tempo de desenvolvimento
+* **c:** coeficiente fornecido pela tabela <z>
+* **d:** expoente fornecido pela tabela <z>
+
+De acordo com Boehm (1981), os valores do coeficiente "a" e do expoente "b" do modelo COCOMO Intermediário são apresentados na tabela abaixo:
+
+Projeto de Sofware | a | b
+:---: | :----: | :---: 
+Ôrganico | 3,20 | 1,05
+Semidestacado | 3,00 | 1,12
+Embutido | 2,80 | 1,20
+Fonte: Boehm (1981)
+
+O coeficiente "c" e o expoente "d" tem seu valores segundo Boehm(1981) apresentados na tabela abaixo:
+		
+Projeto de Sofware | a | b | c | d
+:---: | :----: | :---: | :---: | :---:
+Ôrganico | 3,20 | 1,05 | 2,50 | 0,38
+Semidestacado | 3,00 | 1,12 | 2,50 | 0,35
+Embutido | 2,80 | 1,20 | 2,50 | 0,32
+Fonte: Boehm (1981)
+
+## Resultado
+
+Com base numa discussão interna fazendo análise dos requisitos iniciais do projeto, foi estimado o total de **6000 linhas de código** que vai ser usado para fazer a estimativa de tempo de desenvolvimento.
+
+### Estimativa de Custo
+Utilizando a fórmula de cálculo de esforço: E = **a * (S ^ b) * fae**
+* a = 3,00
+* b = 1,12
+* S = 6000 / 1000 = 6
+* fae = 0,46
+    
+        E = 3 * (6ˆ1,12) * 0,46
+        E = 10,27 pessoas/mês
+
+Valor da variável fae (Fator de Ajustamento do Esforço) fei feito com base na multiplicação dos valores marcados na tabela baixo.
+
+<table>
+    <thead>
+        <tr>
+            <th>Direcionadores de Custo</th>
+            <th>Muito Baixo</th>
+            <th>Baixo</th>
+            <th>Normal</th>
+            <th>Elevado</th>
+            <th>Muito Elevado</th>
+            <th>Extremamente Elevado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td align="center" colspan=7>ATRIBUTOS DO PRODUTO</td>
+        </tr>
+        <tr>
+            <td>Confiabilidade exigida do software</td>
+            <td>0.75</td>
+            <td>0.88</td>
+            <td bgcolor="#9ea0a3">1.00</td>
+            <td>1.15</td>
+            <td>1.40</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Tamanho do banco de dados</td>
+            <td>-</td>
+            <td bgcolor="#9ea0a3">0.94</td>
+            <td>1.00</td>
+            <td>1.08</td>
+            <td>1.16</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Complexidade do produto</td>
+            <td>0.70</td>
+            <td>0.85</td>
+            <td bgcolor="#9ea0a3">1.00</td>
+            <td>1.15</td>
+            <td>1.30</td>
+            <td>1.65</td>
+        </tr>
+        <tr>
+            <td align="center" colspan=7>ATRIBUTOS DO HARDWARE</td>
+        </tr>
+        <tr>
+            <td>Restrições ao tempo de execução</td>
+            <td>-</td>
+            <td>-</td>
+            <td bgcolor="#9ea0a3">1.00</td>
+            <td>1.11</td>
+            <td>1.30</td>
+            <td>1.66</td>
+        </tr>
+        <tr>
+            <td>Restrições de memória</td>
+            <td>-</td>
+            <td>-</td>
+            <td bgcolor="#9ea0a3">1.00</td>
+            <td>1.06</td>
+            <td>1.21</td>
+            <td>1.56</td>
+        </tr>
+        <tr>
+            <td>Volatilidade do ambiente de máquina</td>
+            <td>-</td>
+            <td bgcolor="#9ea0a3">0.87</td>
+            <td>1.00</td>
+            <td>1.15</td>
+            <td>1.30</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Tempo de turnaround (tempo para completar o ciclo) exigido</td>
+            <td>-</td>
+            <td bgcolor="#9ea0a3">0.87</td>
+            <td>1.00</td>
+            <td>1.07</td>
+            <td>1.15</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td align="center" colspan=7>ATRIBUTOS DE PESSOAL</td>
+        </tr>
+        <tr>
+            <td>Capacidade do analista</td>
+            <td>1.46</td>
+            <td>1.19</td>
+            <td bgcolor="#9ea0a3">1.00</td>
+            <td>0.86</td>
+            <td>0.71</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Experiência em aplicações</td>
+            <td>1.29</td>
+            <td>1.13</td>
+            <td>1.00</td>
+            <td bgcolor="#9ea0a3">0.91</td>
+            <td>0.82</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Capacidade do programador</td>
+            <td>1.42</td>
+            <td>1.17</td>
+            <td bgcolor="#9ea0a3">1.00</td>
+            <td>0.86</td>
+            <td>0.70</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Experiência em Máquina Virtual</td>
+            <td>1.21</td>
+            <td>1.10</td>
+            <td bgcolor="#9ea0a3">1.00</td>
+            <td>0.90</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Experiência com a linguagem de programação</td>
+            <td>1.14</td>
+            <td>1.07</td>
+            <td>1.00</td>
+            <td bgcolor="#9ea0a3">0.95</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td align="center" colspan=7>ATRIBUTO DE PROJETO</td>
+        </tr>
+        <tr>
+            <td>Uso de práticas modernas de programação</td>
+            <td>1.24</td>
+            <td>1.10</td>
+            <td>1.00</td>
+            <td>0.91</td>
+            <td bgcolor="#9ea0a3">0.82</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Uso de ferramentas de software</td>
+            <td>1.24</td>
+            <td>1.10</td>
+            <td>1.00</td>
+            <td>0.91</td>
+            <td bgcolor="#9ea0a3">0.83</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Cronograma exigido de desenvolvimento</td>
+            <td>1.23</td>
+            <td>1.08</td>
+            <td>1.00</td>
+            <td>1.04</td>
+            <td bgcolor="#9ea0a3">1.10</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td colspan=7>Fonte: Boehm (1981)</td>
+        </tr>
+    </tbody>
+</table>
+
+### Estimativa de Tempo
+Utilizando a fórmula de cálculo de tempo de desenvolvimento: **T = c * E ^ d**
+* c = 2,50
+* E = 10,27
+* d = 0,35
+
+        T = 2,5 * (10,27 ^ 0,35)
+        T = 5,67 meses
+
+## Referências
+* Meller, Maristela Corrêa. Modelos Para Estimar Custos De Software: Estudo Comparativo Com Softwares De Pequeno Porte. 2002. Disponível em: https://repositorio.ufsc.br/xmlui/handle/123456789/82351
+* Método COCOMO. Wikipedia, 2022. Disponível em: https://pt.wikipedia.org/wiki/M%C3%A9todo_COCOMO. Acesso em: 17, nov. de 2022
+* Estimativas de Custo. A Monitoria, 2022. Disponível em: https://2019-2-arquitetura-desenho.github.io/wiki/dinamica_seminario_I/estimativas_de_custo/. Acesso em: 17, nov. de 2022
