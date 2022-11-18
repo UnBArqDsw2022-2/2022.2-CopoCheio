@@ -19,8 +19,18 @@ Demais diretrizes sobre a organização da wiki constam no Moodle Aprender 3.
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| 19/0094257  |  Paulo Henrique de Oliveira Rezende |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+|  19/0094257  |  Paulo Henrique de Oliveira Rezende |
+|  19/0109963  |  João Victor Teixeira Batista |
+|  19/0028122  |  Gabriel Sabanai Trindade  |
+|  19/0010495  |  Arthur Alves de Matos  |
+|  20/2017700  |  Lucas Soares Barros  |
+|  18/0062026  |  Alan Marques Sousa  |
+|  19/0032430  |  Leonardo de Souza Takehana  |
+|  17/0114929  |  Thiago França Vale Oliveira  |
+|  18/0016563  |  Filipe Santana Machado  |
+|  19/0011611  |  Ciro Costa de Araújo  |
+|  19/0010606  |  Artur de Sousa Vieira  |
+|  19/0037806  |  Samuel Furtado Ávila  |
 
 ## Sobre 
 Descreva o seu projeto em linhas gerais.
@@ -39,7 +49,7 @@ Adicione 2 ou mais screenshots do projeto em termos de artefatos da Terceira Ent
 Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
 
 ## Descritivo dos Principais Aspectos Técnicos 
-**Principal(is) Metodologia(s) Adotada(s)**: xxxxxx<br>
+**Principal(is) Metodologia(s) Adotada(s)**: <br>OpenUp(Processos e roles) + XP(Cerimonias)</br>
 **Principais Linguagens Utilizadas e/ou Pretendidas**: xxxxxx<br>
 **Principais Tecnologias Utilizadas e/ou Pretendidas**: xxxxxx<br>
 **Principal(is) Estilo(s) Arquitetural(is) Adotado(s)**: xxxxxx<br>
