@@ -49,7 +49,7 @@ Adicione 2 ou mais screenshots do projeto em termos de artefatos da Terceira Ent
 Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
 
 ## Descritivo dos Principais Aspectos Técnicos 
-**Principal(is) Metodologia(s) Adotada(s)**: xxxxxx<br>
+**Principal(is) Metodologia(s) Adotada(s)**: <br>OpenUp(Processos e roles) + XP(Cerimonias)</br>
 **Principais Linguagens Utilizadas e/ou Pretendidas**: xxxxxx<br>
 **Principais Tecnologias Utilizadas e/ou Pretendidas**: xxxxxx<br>
 **Principal(is) Estilo(s) Arquitetural(is) Adotado(s)**: xxxxxx<br>
