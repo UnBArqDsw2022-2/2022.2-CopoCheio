@@ -2,15 +2,6 @@
 Esse repositório é para ser utilizado pelos grupos como um template inicial, da home page do Projeto.
 As seções do Template NÃO DEVEM SER OMITIDAS, sendo TODAS RELEVANTES.
 Demais diretrizes sobre a organização da wiki constam no Moodle Aprender 3.
-
-**!! Atenção: Renomeie o seu repositório para (Ano.Semestre)_(Grupo)_(NomeDoProjeto)*. !!** 
-
-**!! *Não coloque os nomes dos alunos no título do repositório*. !!**
-
-**!! *Exemplo de título correto: 2022.1_G1_ProjetoPandora*. !!** 
- 
- (Apague esses comentários)
-
 # Copo Cheio
 
 **Código da Disciplina**: FGA0208<br>
@@ -19,18 +10,18 @@ Demais diretrizes sobre a organização da wiki constam no Moodle Aprender 3.
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-|  19/0094257  |  Paulo Henrique de Oliveira Rezende |
-|  19/0109963  |  João Victor Teixeira Batista |
-|  19/0028122  |  Gabriel Sabanai Trindade  |
-|  19/0010495  |  Arthur Alves de Matos  |
-|  20/2017700  |  Lucas Soares Barros  |
 |  18/0062026  |  Alan Marques Sousa  |
-|  19/0032430  |  Leonardo de Souza Takehana  |
-|  17/0114929  |  Thiago França Vale Oliveira  |
-|  18/0016563  |  Filipe Santana Machado  |
-|  19/0011611  |  Ciro Costa de Araújo  |
+|  19/0010495  |  Arthur Alves de Matos  |
 |  19/0010606  |  Artur de Sousa Vieira  |
+|  19/0011611  |  Ciro Costa de Araújo  |
+|  18/0016563  |  Filipe Santana Machado  |
+|  19/0028122  |  Gabriel Sabanai Trindade  |
+|  19/0109963  |  João Victor Teixeira Batista |
+|  19/0032430  |  Leonardo de Souza Takehana  |
+|  20/2017700  |  Lucas Soares Barros  |
+|  19/0094257  |  Paulo Henrique de Oliveira Rezende |
 |  19/0037806  |  Samuel Furtado Ávila  |
+|  17/0114929  |  Thiago França Vale Oliveira  |
 
 ## Sobre 
 Site de receitas de drinks, misturas de bebidas.
@@ -49,9 +40,9 @@ Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcioname
 
 ## Descritivo dos Principais Aspectos Técnicos 
 **Principal(is) Metodologia(s) Adotada(s)**: <br>OpenUp(Processos e roles) + XP(Cerimonias)</br>
-**Principais Linguagens Utilizadas e/ou Pretendidas**: xxxxxx<br>
-**Principais Tecnologias Utilizadas e/ou Pretendidas**: xxxxxx<br>
-**Principal(is) Estilo(s) Arquitetural(is) Adotado(s)**: xxxxxx<br>
+**Principais Linguagens Utilizadas e/ou Pretendidas**: JavaScript<br>
+**Principais Tecnologias Utilizadas e/ou Pretendidas**: ReactJS + Node.js + Express  <br>
+**Principal(is) Estilo(s) Arquitetural(is) Adotado(s)**: Client-server<br>
 
 ## O Projeto está rodando?
 ( ) SIM
