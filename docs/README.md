@@ -2,15 +2,6 @@
 Esse repositório é para ser utilizado pelos grupos como um template inicial, da home page do Projeto.
 As seções do Template NÃO DEVEM SER OMITIDAS, sendo TODAS RELEVANTES.
 Demais diretrizes sobre a organização da wiki constam no Moodle Aprender 3.
-
-**!! Atenção: Renomeie o seu repositório para (Ano.Semestre)_(Grupo)_(NomeDoProjeto)*. !!** 
-
-**!! *Não coloque os nomes dos alunos no título do repositório*. !!**
-
-**!! *Exemplo de título correto: 2022.1_G1_ProjetoPandora*. !!** 
- 
- (Apague esses comentários)
-
 # Copo Cheio
 
 **Código da Disciplina**: FGA0208<br>
@@ -49,9 +40,9 @@ Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcioname
 
 ## Descritivo dos Principais Aspectos Técnicos 
 **Principal(is) Metodologia(s) Adotada(s)**: <br>OpenUp(Processos e roles) + XP(Cerimonias)</br>
-**Principais Linguagens Utilizadas e/ou Pretendidas**: xxxxxx<br>
-**Principais Tecnologias Utilizadas e/ou Pretendidas**: xxxxxx<br>
-**Principal(is) Estilo(s) Arquitetural(is) Adotado(s)**: xxxxxx<br>
+**Principais Linguagens Utilizadas e/ou Pretendidas**: JavaScript<br>
+**Principais Tecnologias Utilizadas e/ou Pretendidas**: ReactJS + Node.js + Express  <br>
+**Principal(is) Estilo(s) Arquitetural(is) Adotado(s)**: Client-server<br>
 
 ## O Projeto está rodando?
 ( ) SIM
