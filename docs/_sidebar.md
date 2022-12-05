@@ -19,12 +19,13 @@
       - [1.2.2. BPMN](/Base/1.2.2.BPMN.md)
     - [1.3. Iniciativas Extras - Base](/Base/1.3.IniciativasExtras.md)
     - [1.4. Participações - Base](/Base/1.4.ParticipacoesBase.md)
-    - [Lexico](/Base/Lexico.md)
 
 - **Modelagem**
   - [2. Desenho de Software (Modelagem)](/Modelagem/2.Modelagem.md)
     - [2.1. Módulo Projeto Orientado a Abordagens Tradicionais](/Modelagem/2.1.ModelagemTradicional.md)
       - [2.1.1. Notação UML – Diagramas Estáticos](/Modelagem/2.1.1.UMLEstaticos.md)
+        - [2.1.1.3 Diagramas de Pacotes](/Modelagem/2.1.1.3.DiagramaDePacotes.md)
+        - [2.1.1.4 Diagramas de Implementação](/Modelagem/2.1.1.4.DiagramaDeImplementacao.md)
       - [2.1.2. Notação UML – Diagramas Dinâmicos](/Modelagem/2.1.2.UMLDinamicos.md)
       - [2.1.3. Modelagem Ágil](/Modelagem/2.1.3.Agil.md)
     - [2.2. Iniciativas Extras - Modelagem](/Modelagem/2.2.IniciativasExtras.md)
