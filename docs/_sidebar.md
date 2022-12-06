@@ -28,6 +28,7 @@
         - [2.1.1.3 Diagramas de Pacotes](/Modelagem/2.1.1.3.DiagramaDePacotes.md)
         - [2.1.1.4 Diagramas de Implementação](/Modelagem/2.1.1.4.DiagramaDeImplementacao.md)
         - [2.1.1.5 Diagramas de Componentes](/Modelagem/2.1.1.5.DiagramaDeComponentes.md)
+        - [2.1.1.6 Diagramas de Atividades](/Modelagem/2.1.1.6.DiagramaDeAtividades.md)
       - [2.1.2. Notação UML – Diagramas Dinâmicos](/Modelagem/2.1.2.UMLDinamicos.md)
         - [2.1.2.1 Diagrama de Estados](/Modelagem/2.1.2.1.DiagramaDeEstados.md) 
         - [2.1.2.2 Diagrama de Comunicação](/Modelagem/2.1.2.2.DiagramaDeComunicacao.md)
