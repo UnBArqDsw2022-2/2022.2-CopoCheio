@@ -26,6 +26,7 @@
       - [2.1.1. Notação UML – Diagramas Estáticos](/Modelagem/2.1.1.UMLEstaticos.md)
         - [2.1.1.3 Diagramas de Pacotes](/Modelagem/2.1.1.3.DiagramaDePacotes.md)
         - [2.1.1.4 Diagramas de Implementação](/Modelagem/2.1.1.4.DiagramaDeImplementacao.md)
+        - [2.1.1.5 Diagramas de Componentes](/Modelagem/2.1.1.5.DiagramaDeComponentes.md)
       - [2.1.2. Notação UML – Diagramas Dinâmicos](/Modelagem/2.1.2.UMLDinamicos.md)
       - [2.1.3. Modelagem Ágil](/Modelagem/2.1.3.Agil.md)
     - [2.2. Iniciativas Extras - Modelagem](/Modelagem/2.2.IniciativasExtras.md)
