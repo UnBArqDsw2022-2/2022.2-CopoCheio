@@ -1,0 +1,42 @@
+version: '3'
+services:
+  frontEnd:
+    image: "node:18"
+    working_dir: /front-end
+    volumes:
+      - ./front-end:/front-end
+    container_name: front_end_copocheio
+    ports:
+      - "3000:3000"
+    command: bash -c "echo 'Installing npm' && npm install && npm start"
+  
+  api:
+    image: "node:18"
+    container_name: back_end_copocheio
+    environment:
+       POSTGRES_USER: ${POSTGRES_USER:-postgres}
+       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    working_dir: /back-end
+    volumes:
+      - ./back-end:/back-end
+    ports:
+      - "3001:3001"
+    command: bash -c "echo 'Installing npm' && npm install && npm run dev"
+
+  postgres:
+     image: postgres
+     container_name: postgres_container
+     environment:
+       POSTGRES_USER: ${POSTGRES_USER:-postgres}
+       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+     volumes:
+        - postgres:/data/postgres
+     ports:
+       - "5432:5432"
+     restart: unless-stopped
+
+volumes:
+      postgres:
+
+
+    
