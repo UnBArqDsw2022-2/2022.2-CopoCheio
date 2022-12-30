@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Country {
+  id      String  @id @default(uuid())
+  name    String  @unique
+  Drink   Drink?  @relation(fields: [drinkId], references: [id])
+  drinkId String?
+}
+
+model Category {
+  id      String  @id @default(uuid())
+  name    String  @unique
+  Drink   Drink?  @relation(fields: [drinkId], references: [id])
+  drinkId String?
+}
+
+model Role {
+  id   String @id @default(uuid())
+  name String @unique
+  User User[]
+}
+
+model User {
+  id           String        @id @default(uuid())
+  email        String        @unique
+  nameComplete String
+  password     String
+  birthDate    DateTime
+  createdDate  DateTime      @default(now())
+  active       Boolean
+  role         Role          @relation(fields: [roleId], references: [id])
+  Drink        Drink[]
+  roleId       String
+  Favorite     Favorite[]
+  Denuciation  Denuciation[]
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model Drink {
+  id          String        @id @default(uuid())
+  name        String
+  time        Decimal
+  preparation String
+  ingredients String[]
+  createdDate DateTime      @default(now())
+  likes       Int           @default(0)
+  isAlcoholic Boolean
+  isVerfied   Boolean
+  difficulty  Difficulty
+  country     Country[]
+  category    Category[]
+  createdBy   User          @relation(fields: [userId], references: [id])
+  userId      String
+  Favorite    Favorite[]
+  Denuciation Denuciation[]
+}
+
+model Favorite {
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String
+  drink   Drink  @relation(fields: [drinkId], references: [id])
+  drinkId String
+
+  @@id([userId, drinkId])
+}
+
+model Denuciation {
+  id           String  @id @default(uuid())
+  title        String
+  comment      String
+  isView       Boolean
+  isViewByUser User    @relation(fields: [userId], references: [id])
+  userId       String
+  drink        Drink   @relation(fields: [drinkId], references: [id])
+  drinkId      String
+}

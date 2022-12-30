@@ -14,14 +14,13 @@ services:
     image: "node:18"
     container_name: back_end_copocheio
     environment:
-       POSTGRES_USER: ${POSTGRES_USER:-postgres}
-       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      DATABASE_URL: ${DATABASE_URL:}
     working_dir: /back-end
     volumes:
       - ./back-end:/back-end
     ports:
       - "3001:3001"
-    command: bash -c "echo 'Installing npm' && npm install && npm run dev"
+    command: bash -c "echo 'Installing npm' && npm install && npx prisma migrate deploy && npm run dev"
 
   postgres:
      image: postgres
