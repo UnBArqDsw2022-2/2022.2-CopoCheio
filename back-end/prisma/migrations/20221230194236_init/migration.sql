@@ -1,4 +1,4 @@
-``-- CreateEnum
+-- CreateEnum
 CREATE TYPE "Difficulty" AS ENUM ('EASY', 'MEDIUM', 'HARD');
 
 -- CreateTable
