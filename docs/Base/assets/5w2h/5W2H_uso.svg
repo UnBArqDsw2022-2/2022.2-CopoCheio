@@ -5,9 +5,9 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   viewBox="0 0 1122.6667 793.33331"
-   height="793.33331"
-   width="1122.6667"
+   viewBox="0 0 1057.3333 566.66669"
+   height="566.66669"
+   width="1057.3333"
    xml:space="preserve"
    id="svg2"
    version="1.1"><metadata
@@ -19,11 +19,11 @@
        clipPathUnits="userSpaceOnUse"><path
          id="path18"
          d="M -2,-2 H 888 V 388 H -2 Z" /></clipPath></defs><g
-     transform="matrix(1.3333333,0,0,-1.3333333,0,793.33333)"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,566.66667)"
      id="g10"><g
-       transform="matrix(1,0,0,-1,0,595)"
+       transform="matrix(1,0,0,-1,0,425)"
        id="g12"><g
-         transform="matrix(0.75,0,0,0.75,88.750002,54)"
+         transform="matrix(0.75,0,0,0.75,64.249998,54)"
          id="g14"><g
            clip-path="url(#clipPath20)"
            id="g16"><path
