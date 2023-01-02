@@ -14,7 +14,7 @@ services:
     image: "node:18"
     container_name: back_end_copocheio
     environment:
-      DATABASE_URL: ${DATABASE_URL:}
+      DATABASE_URL: ${DATABASE_URL}
     working_dir: /back-end
     volumes:
       - ./back-end:/back-end
