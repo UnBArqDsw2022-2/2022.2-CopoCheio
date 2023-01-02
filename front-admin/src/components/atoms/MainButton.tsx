@@ -1,15 +1,18 @@
 import styled, { css } from 'styled-components';
+import Text from '../atoms/Text';
 
 interface MainButtonInterface {
     type?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background';
     width?: string;
     height?: string;
     border_radius?: string;
-    children: string;
     onClick: VoidFunction;
+    iconLeft?: string;
+    iconRight?: string;
+    children: string
 }
 
-interface GenericButtonInterface extends MainButtonInterface {
+interface GenericButtonInterface extends Omit<MainButtonInterface, "children"|"iconLeft"|"iconRight"> {
     typeDefinition: string
 }
 
@@ -55,8 +58,16 @@ const GenericButton = styled.button<GenericButtonInterface>`
     }}
 `
 
-const MainButton = ({ type, children, width, height, border_radius, onClick }: MainButtonInterface) => {
-
+const MainButton = ({
+    type,
+    width,
+    height,
+    border_radius,
+    onClick,
+    iconLeft,
+    iconRight,
+    children,
+}: MainButtonInterface) => {
     return (
         <GenericButton
             onClick={onClick}
@@ -65,7 +76,13 @@ const MainButton = ({ type, children, width, height, border_radius, onClick }: M
             height={height}
             border_radius={border_radius}
         >
-            {children}
+            {
+                iconLeft && 'Narutin '
+            }
+            <Text>NARUTO</Text>
+            {
+                iconRight && ' Sasuke'
+            }
         </GenericButton>
     )
 }

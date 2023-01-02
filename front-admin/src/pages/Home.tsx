@@ -1,5 +1,12 @@
+import MainButton from "../components/atoms/MainButton";
+
 const Home = () => (
-    <div>Hello World!</div>
+    <MainButton
+        type="primary"
+        onClick={() => console.log()}
+    >
+        Cala a boca
+    </MainButton>
 );
 
 export default Home;
