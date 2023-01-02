@@ -17,5 +17,4 @@ route.get('/', (req: Request, res: Response) => {
 
 app.use(route)
 
-
-app.listen(3001, () => 'server running on port 3001')
+app.listen(process.env.PORT ?? 3000, () => `server running on port ${process.env.PORT ?? 3000}`)
