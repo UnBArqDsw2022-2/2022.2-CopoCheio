@@ -1,0 +1,19 @@
+name: Telegram Notify PR
+on:
+  pull_request:
+    branches:
+     - main
+
+jobs:
+  notify:
+    name: notify
+    runs-on: ubuntu-latest
+    steps:
+      - name: send telegram message on new pr
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            New PR: ${{ github.event.pull_request.title }}
+            See changes: https://github.com/UnBArqDsw2022-2/2022.2-CopoCheio/pull/${{ github.event.pull_request.number }}
