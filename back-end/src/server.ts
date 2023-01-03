@@ -1,9 +1,11 @@
-import * as dotenv from 'dotenv'
-dotenv.config()
-
-import express from 'express'
-
 import { Router, Request, Response } from 'express';
+import * as dotenv from 'dotenv';
+import express from 'express';
+
+import UserRoutes from './Users/users.controller';
+import RolesRoutes from './Roles/roles.controller';
+
+dotenv.config()
 
 const app = express();
 
@@ -14,6 +16,9 @@ app.use(express.json())
 route.get('/', (req: Request, res: Response) => {
   res.json({ message: 'hello world with Typescript' })
 })
+
+app.use('/roles', RolesRoutes);
+app.use('/user', UserRoutes);
 
 app.use(route)
 
