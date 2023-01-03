@@ -1,9 +1,9 @@
-import { PrismaClient } from '@prisma/client';
 import { Router, Request, Response } from 'express';
+
+import prisma from '../prismaConection';
 import { Roles } from './roles.model';
 
 const router = Router();
-const prisma = new PrismaClient()
 const roles = new Roles(prisma.role)
 
 router.get('/',async (req: Request,res: Response)=>{

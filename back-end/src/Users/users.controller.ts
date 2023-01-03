@@ -1,10 +1,9 @@
-import { PrismaClient } from '@prisma/client';
 import { Router, Request, Response } from 'express';
 
+import prisma from '../prismaConection';
 import { Users } from './users.model';
 
 const router = Router();
-const prisma = new PrismaClient()
 const users = new Users(prisma.user)
 
 router.get('/',async (req: Request,res: Response)=>{
