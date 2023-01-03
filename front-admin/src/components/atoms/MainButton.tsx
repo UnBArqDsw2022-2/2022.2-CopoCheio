@@ -12,7 +12,7 @@ interface MainButtonInterface {
     children: string
 }
 
-interface GenericButtonInterface extends Omit<MainButtonInterface, "children"|"iconLeft"|"iconRight"> {
+interface GenericButtonInterface extends Omit<MainButtonInterface, "children" | "iconLeft" | "iconRight"> {
     typeDefinition: string
 }
 
@@ -79,7 +79,7 @@ const MainButton = ({
             {
                 iconLeft && 'Narutin '
             }
-            <Text>NARUTO</Text>
+            <Text>{children}</Text>
             {
                 iconRight && ' Sasuke'
             }
