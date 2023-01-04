@@ -1,6 +1,8 @@
 import { PrismaClient, User } from '@prisma/client';
+import bcrypt from 'bcrypt';
 
 import { Roles } from '../Roles/roles.model';
+import authConfig from '../Config/auth';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -33,7 +35,7 @@ export class Users {
         })
     }
 
-    async findByEmail(userEmail: string): Promise<UpdateUserDto|null>{
+    async findByEmail(userEmail: string, showPassord: boolean = false): Promise<UpdateUserDto|null>{
         return this.prismaUser.findUnique({
             where:{
                 email:userEmail
@@ -42,7 +44,8 @@ export class Users {
                 nameComplete:true,
                 email:true,
                 birthDate:true,
-                id:true
+                id:true,
+                password: showPassord
             }
         })
     }
@@ -59,7 +62,7 @@ export class Users {
 
         const user = this.prismaUser.create({ 
             data:{
-                password,
+                password: await bcrypt.hash(password, authConfig.salt!),
                 active: true,
                 nameComplete,
                 email,
@@ -86,16 +89,16 @@ export class Users {
                     }
                 }
             })
-            
+        
             if (anotherUser) {
                 //throw error
             }
         }
 
-        let data = {}
+        let data = userData;
 
         if (userData.password) {
-            // hash and stuff
+            data.password = await bcrypt.hash(userData.password, authConfig.salt!);
         }
 
         const updatedUser = this.prismaUser.update({

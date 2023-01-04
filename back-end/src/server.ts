@@ -8,6 +8,7 @@ import { HttpExceptionHandler } from './HttpExceptions/httpExceptions';
 // Routes
 import UserRoutes from './Users/users.controller';
 import RolesRoutes from './Roles/roles.controller';
+import SessionRoutes from './Controllers/session.controller';
 
 dotenv.config()
 
@@ -23,6 +24,7 @@ route.get('/', (req: Request, res: Response) => {
 
 app.use('/roles', RolesRoutes);
 app.use('/user', UserRoutes);
+app.use('/session', SessionRoutes)
 
 app.use(route)
 app.use(HttpExceptionHandler)
