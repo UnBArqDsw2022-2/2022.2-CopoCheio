@@ -2,33 +2,50 @@ version: '3'
 services:
   frontEnd:
     image: "node:18"
+    container_name: front_end_copocheio
+    environment:
+       PORT: ${FRONT_PORT:-3001}
+       URl_API: ${URl_API:-http://localhost:3000}
     working_dir: /front-end
     volumes:
       - ./front-end:/front-end
-    container_name: front_end_copocheio
     ports:
-      - "3000:3000"
+      - "${FRONT_PORT:-3001}:${FRONT_PORT:-3001}"
     command: bash -c "echo 'Installing npm' && npm install && npm start"
   
+  frontAdmin:
+    image: "node:18"
+    container_name: front_admin_copocheio
+    environment:
+       PORT: ${ADMIN_PORT:-3002}
+       URl_API: ${URl_API:-http://api:3000}
+    working_dir: /front-admin
+    volumes:
+      - ./front-admin:/front-admin
+    ports:
+      - "${ADMIN_PORT:-3002}:${ADMIN_PORT:-3002}"
+    command: bash -c "echo 'Installing npm' && npm install && npm start"
+
   api:
     image: "node:18"
     container_name: back_end_copocheio
     environment:
-       POSTGRES_USER: ${POSTGRES_USER:-postgres}
-       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      DB_URL: ${DB_URL:-postgresql://postgres:changeme@postgres:5432/postgres}
+      PORT: ${API_PORT:-3000}
     working_dir: /back-end
     volumes:
       - ./back-end:/back-end
     ports:
-      - "3001:3001"
-    command: bash -c "echo 'Installing npm' && npm install && npm run dev"
+      - "${API_PORT:-3000}:${API_PORT:-3000}"
+    command: bash -c "echo 'Installing npm' && npm install && npx prisma migrate dev && npm run dev"
 
   postgres:
      image: postgres
      container_name: postgres_container
      environment:
-       POSTGRES_USER: ${POSTGRES_USER:-postgres}
-       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+       POSTGRES_USER: ${DB_USER:-postgres}
+       POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
+       POSTGRES_DB: ${DB_NAME:-postgres}
      volumes:
         - postgres:/data/postgres
      ports:
