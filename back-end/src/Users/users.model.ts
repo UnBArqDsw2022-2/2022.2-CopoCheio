@@ -1,8 +1,9 @@
-import { PrismaClient, User } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { BadRequestException } from '../HttpExceptions/httpExceptions';
 import moment from "moment";
 
 import { Roles } from '../Roles/roles.model';
+import prisma from '../prismaConection';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -61,9 +62,10 @@ export class Users {
             throw new BadRequestException('Email already registered')
         }
 
-        const roles = await Roles.getAll()
-        if (roles.length === 0) {
-            throw new BadRequestException("Can't create user no roles available")
+        const roles = new Roles(prisma.role)
+        const allRoles = await roles.all()
+        if (allRoles.length === 0) {
+            throw new BadRequestException("Can't create user, no roles available")
         }  
 
         const user = this.prismaUser.create({ 
@@ -75,7 +77,7 @@ export class Users {
                 birthDate: moment(birthDate).format(),
                 role:{
                     connect:{
-                        id: roles[0].id
+                        id: allRoles[0].id
                     }
                 }
             },
