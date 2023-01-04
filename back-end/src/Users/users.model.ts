@@ -1,4 +1,6 @@
 import { PrismaClient, User } from '@prisma/client';
+import { BadRequestException } from '../HttpExceptions/httpExceptions';
+import moment from "moment";
 
 import { Roles } from '../Roles/roles.model';
 
@@ -51,11 +53,18 @@ export class Users {
         const {password, name: nameComplete, email, birthDate} = userData;
 
         const alreadyExists = await this.findByEmail(email);
-        if (alreadyExists && alreadyExists.active === false) {
+        if (alreadyExists){
+            if(alreadyExists.active === false) {
             const updated = this.update({...alreadyExists, active:true}, alreadyExists.id!);
             return updated;
+            }
+            throw new BadRequestException('Email already registered')
         }
+
         const roles = await Roles.getAll()
+        if (roles.length === 0) {
+            throw new BadRequestException("Can't create user no roles available")
+        }  
 
         const user = this.prismaUser.create({ 
             data:{
@@ -63,8 +72,12 @@ export class Users {
                 active: true,
                 nameComplete,
                 email,
-                birthDate,
-                roleId: roles[0].id
+                birthDate: moment(birthDate).format(),
+                role:{
+                    connect:{
+                        id: roles[0].id
+                    }
+                }
             },
             select:{
                 nameComplete:true,
@@ -88,11 +101,11 @@ export class Users {
             })
             
             if (anotherUser) {
-                //throw error
+                throw new BadRequestException('Email already in use')
             }
         }
 
-        let data = {}
+        let data = userData
 
         if (userData.password) {
             // hash and stuff
