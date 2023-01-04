@@ -2,6 +2,24 @@ name: Build test
 on: [ push, pull_request ]
 
 jobs:
+  build-front-admin:
+    name: Build front-admin
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18.x
+
+    - name: Npm Install
+      working-directory: ./front-admin
+      run: npm install
+
+    - name: Building
+      working-directory: ./front-admin
+      run: npm run build
   build-front-end:
     name: Build front-end
     runs-on: ubuntu-latest
