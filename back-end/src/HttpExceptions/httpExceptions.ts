@@ -12,6 +12,15 @@ export const HttpExceptionHandler = (
         res.status(status).send({error:error.message})
   }
 
+export const PathNotFoundExceptionHandler = (
+    req: Request,
+    res: Response,
+    next: NextFunction
+    ) => {        
+    res.header("Content-Type", 'application/json')
+    res.status(404).send({error:'Invalid path'})
+}
+
 export class HttpException extends Error{
     statusCode: number
 
