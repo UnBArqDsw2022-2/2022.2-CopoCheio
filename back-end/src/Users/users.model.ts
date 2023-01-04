@@ -51,7 +51,7 @@ export class Users {
     }
 
     async create(userData: CreateUserDto): Promise<UpdateUserDto>{
-        const {password, name: nameComplete, email, birthDate} = userData;
+        const {password, name: nameComplete, email, birthDate, isAdmin} = userData;
 
         const alreadyExists = await this.findByEmail(email);
         if (alreadyExists){
@@ -68,6 +68,8 @@ export class Users {
             throw new BadRequestException("Can't create user, no roles available")
         }  
 
+        const role = allRoles.find(i => (isAdmin ? 'Admin' : 'Customer') === i.name)
+
         const user = this.prismaUser.create({ 
             data:{
                 password,
@@ -77,7 +79,7 @@ export class Users {
                 birthDate: moment(birthDate).format(),
                 role:{
                     connect:{
-                        id: allRoles[0].id
+                        id: role!.id
                     }
                 }
             },

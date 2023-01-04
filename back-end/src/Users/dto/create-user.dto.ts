@@ -7,4 +7,5 @@ export class CreateUserDto {
 
     birthDate: Date;
 
+    isAdmin?: boolean;
 }
