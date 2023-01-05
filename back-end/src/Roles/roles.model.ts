@@ -22,9 +22,4 @@ export class Roles {
             }
         })
     }
-
-    static getAll(): Promise<Role[]> {
-        const prisma = new PrismaClient()
-        return prisma.role.findMany()
-    }
 }

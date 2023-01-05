@@ -4,7 +4,7 @@ import express from 'express';
 import cors from 'cors';
 
 //Middleware
-import { HttpExceptionHandler } from './HttpExceptions/httpExceptions';
+import { HttpExceptionHandler, PathNotFoundExceptionHandler } from './HttpExceptions/httpExceptions';
 
 // Routes
 import UserRoutes from './Users/users.controller';
@@ -30,5 +30,6 @@ app.use('/user', UserRoutes);
 
 app.use(route)
 app.use(HttpExceptionHandler)
+app.use(PathNotFoundExceptionHandler)
 
 app.listen(process.env.PORT ?? 3000, () => `server running on port ${process.env.PORT ?? 3000}`)

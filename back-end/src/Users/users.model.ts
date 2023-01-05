@@ -1,8 +1,12 @@
-import { PrismaClient, User } from '@prisma/client';
+
 import bcrypt from 'bcrypt';
+import authConfig from '../Config/auth';
+import { PrismaClient } from '@prisma/client';
+import { BadRequestException } from '../HttpExceptions/httpExceptions';
+import moment from "moment";
 
 import { Roles } from '../Roles/roles.model';
-import authConfig from '../Config/auth';
+import prisma from '../prismaConection';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -51,14 +55,24 @@ export class Users {
     }
 
     async create(userData: CreateUserDto): Promise<UpdateUserDto>{
-        const {password, name: nameComplete, email, birthDate} = userData;
+        const {password, name: nameComplete, email, birthDate, isAdmin} = userData;
 
         const alreadyExists = await this.findByEmail(email);
-        if (alreadyExists && alreadyExists.active === false) {
+        if (alreadyExists){
+            if(alreadyExists.active === false) {
             const updated = this.update({...alreadyExists, active:true}, alreadyExists.id!);
             return updated;
+            }
+            throw new BadRequestException('Email already registered')
         }
-        const roles = await Roles.getAll()
+
+        const roles = new Roles(prisma.role)
+        const allRoles = await roles.all()
+        if (allRoles.length === 0) {
+            throw new BadRequestException("Can't create user, no roles available")
+        }  
+
+        const role = allRoles.find(i => (isAdmin ? 'Admin' : 'Customer') === i.name)
 
         const user = this.prismaUser.create({ 
             data:{
@@ -66,8 +80,12 @@ export class Users {
                 active: true,
                 nameComplete,
                 email,
-                birthDate,
-                roleId: roles[0].id
+                birthDate: moment(birthDate).format(),
+                role:{
+                    connect:{
+                        id: role!.id
+                    }
+                }
             },
             select:{
                 nameComplete:true,
@@ -91,7 +109,7 @@ export class Users {
             })
         
             if (anotherUser) {
-                //throw error
+                throw new BadRequestException('Email already in use')
             }
         }
 
