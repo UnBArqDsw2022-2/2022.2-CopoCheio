@@ -12,11 +12,11 @@ interface LoginContainerInterface {
     width?: string;
     height?: string;
     border_radius?: string;
-    children?: string;
+    title?: string;
     fontSize?: string;
 }
 
-interface GenericContainerInterface extends Omit<LoginContainerInterface, "children"> {
+interface GenericContainerInterface extends Omit<LoginContainerInterface, "title"> {
 }
 
 const GenericContainer = styled.div<GenericContainerInterface>`
@@ -39,7 +39,7 @@ const LoginContainer = ({
     width,
     height,
     border_radius,
-    children,
+    title,
     fontSize,
 
 }: LoginContainerInterface) => {
@@ -50,7 +50,7 @@ const LoginContainer = ({
             height={height}
             border_radius={border_radius}
         >
-            <Text size={fontSize}>{children}</Text>
+            <Text size={fontSize}>{title}</Text>
             <MainButton onClick={() => { }} children='Acessar Conta'></MainButton>
         </GenericContainer>
     )

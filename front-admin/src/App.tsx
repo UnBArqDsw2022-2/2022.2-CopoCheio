@@ -11,7 +11,7 @@ function App() {
       <ThemeProvider theme={colors}>
         <GlobalStyle />
         <RouterProvider router={Router} />
-        <LoginContainer height='45rem' width='40rem'> Acesse sua conta </LoginContainer>
+        <LoginContainer height='45rem' width='40rem' title='Acesse sua conta' />
       </ThemeProvider>
     </>
   );
