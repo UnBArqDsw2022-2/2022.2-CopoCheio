@@ -116,7 +116,7 @@ export class Users {
         let data = userData;
 
         if (userData.password) {
-            data.password = await bcrypt.hash(userData.password, authConfig.salt!);
+            data.password = await bcrypt.hash(userData.password, await bcrypt.genSalt());
         }
 
         const updatedUser = this.prismaUser.update({
