@@ -17,7 +17,7 @@ const HeaderContainer = styled.section`
 `
 
 const Header = () => (
-  <HeaderContainer>
+  <HeaderContainer data-testid="header test">
     <MainButton
       onClick={() => { }}
       fontSize="20px"
