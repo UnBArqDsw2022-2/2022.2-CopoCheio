@@ -4,7 +4,6 @@ import MainButton from "../atoms/MainButton";
 import { colors } from "../../styles/colors";
 import Icon from "../atoms/Icon/Icon";
 
-
 const HeaderContainer = styled.section`
   display: flex;
   justify-content: space-between;

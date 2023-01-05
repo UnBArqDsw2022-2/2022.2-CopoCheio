@@ -4,6 +4,8 @@ import HomePageCard from "../molecules/HomePageCard";
 
 const display = `
     display: grid;
+    background: transparent;
+    top: 14%;
     grid-row-gap: 56px;
     grid-column-gap: 72px;
     grid-template-columns: 1fr 1fr;

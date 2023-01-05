@@ -1,13 +1,9 @@
-import HomePageMenu from "../components/organisms/HomePageMenu";
-import Header from "../components/organisms/Header";
+import HomePageTemplate from "../components/templates/HomePageTemplate";
 
 const TestPlayground = () => {
 
   return (
-    <div>
-      <Header />
-      <HomePageMenu />
-    </div>
+    <HomePageTemplate />
   )
 };
 

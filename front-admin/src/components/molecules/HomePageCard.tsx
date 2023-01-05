@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { useState } from "react";
 import GenericContainer from "../atoms/GenericContainer";
 import UndrawImage from "./UndrawImage";
 import ColoredBar from "../atoms/ColoredBar";
@@ -17,6 +17,7 @@ interface HomePageCardInterface {
 
 const hover = `
   flex-direction: row;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14);
   justify-content: space-between;
   :hover {
     cursor: pointer;
@@ -28,6 +29,38 @@ const hover = `
     }
     svg#svg_element {
       color: ${colors.primary}
+    }
+  }
+
+  @media (max-width: 1200px) {
+    width: 400px;
+    height: 160px;
+
+    div#svg_container {
+      transform: scale(0.8);
+    }
+
+    :hover {
+      div#svg_container {
+        transform: scale(0.9) rotate(-10deg);
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    width: 260px;
+    height: 120px;
+
+    div#svg_container {
+      transform: scale(0.6);
+    }
+    span#home_page_text {
+      font-size: 14px
+    }
+    :hover {
+      div#svg_container {
+        transform: scale(0.68) rotate(-10deg);
+      }
     }
   }
 `;
@@ -61,7 +94,7 @@ const HomePageCard = ({ label, onClick }: HomePageCardInterface) => {
       <UndrawImage imageElement={svgElement} />
       <GenericContainer border_radius="0 8px 8px 0" style={{ alignItems: 'flex-start', padding: '0 16px', gap: '2px' }} width="61%" height="100%">
         <ColoredBar id="bar_element" />
-        <Text size="18px" color={colors.black}>{label}</Text>
+        <Text id="home_page_text" size="18px" color={colors.black}>{label}</Text>
       </GenericContainer>
     </GenericContainer>
   )

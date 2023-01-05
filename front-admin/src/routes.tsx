@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import TestPlayground from "./pages/Test";
+import HomePage from "./pages/HomePage";
 
 const Router = createBrowserRouter([{
     path: '/',
-    element: <TestPlayground />
+    element: <HomePage />
 }, {
     path: '/userlist',
     element: <div>Hello World</div>

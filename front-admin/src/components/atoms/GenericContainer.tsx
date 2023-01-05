@@ -16,6 +16,7 @@ const GenericContainer = styled.section<GenericContainerInterface>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all ease 400ms;
   background-color: ${({ color, theme }) => color || theme.alternative_white};
   width: ${({ width }) => width || 'fit-content'};
   height: ${({ height }) => height};
