@@ -24,22 +24,29 @@ Para rodar a aplicação é necessário instalar os pacotes de dependencia dentr
 $ cd front-admin
 ```
 
-Depois rode:
+Caso não tenha feito o build:
 
 ```
-$ npm install
+$ docker-compose up --build
 ```
 
-Em seguida rode o comando do docker:
+Caso já tenha feito o build, basta rodar:
 
 ```
-$ docker-compose up -D frontAdmin
+$ docker-compose up frontAdmin
 ```
 
 ## Orientações:
+
+Se você não quiser rodar todos os processos no docker basta colocar os nomes na frente do comando. Ex.
+```
+$ docker-compose up -d frontEnd frontAdmin
+```
+Esse comando só roda os dois front-end.
+Nomes: api || frontEnd || frontAdmin || postgres
 
 Como é utilizado a metodologia do Atomic design na aplicação, é recomendavel ler a documentação do mesmo.
 
 *Link: https://atomicdesign.bradfrost.com/chapter-2/*
 
-Levando isso em consideração, devemos sempre seguir o padrão do projeto e arquitetar a construção dos componentes com base nessa metodologia. Assim, diversos padrões já foram adicionados tais quais variaveis globals de estilo, presente na pasta *styles*.
+Levando isso em consideração, devemos sempre seguir o padrão do projeto e arquiteturar a construção dos componentes com base nessa metodologia. Assim, diversos padrões já foram adicionados tais quais variaveis globals de estilo, presente na pasta *styles*.
