@@ -2,3 +2,6 @@
 .env*
 !.env.example
 !.example.env
+.editorconfig
+.vscode*
+settings/
