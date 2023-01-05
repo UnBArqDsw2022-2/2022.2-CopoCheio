@@ -5,3 +5,4 @@
 .editorconfig
 .vscode*
 settings/
+*/package-lock.json
