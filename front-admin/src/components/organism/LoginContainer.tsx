@@ -1,35 +1,30 @@
 import styled, { css } from 'styled-components';
 import MainButton from '../atoms/MainButton';
 import Text from '../atoms/Text';
-
-// function LoginContainer(props: any) {
-//     return <div style={{
-//         backgroundColor: "#FEFEFE", position: 'absolute', justifyContent: "center", alignItems: "center", left: '50%', top: '50%', padding: '50px', transform: 'translate(-50%, -50%)',
-//     }}> Teste {props.children} </div>
-// }
+import StringInput from '../atoms/StringInput';
 
 interface LoginContainerInterface {
     width?: string;
     height?: string;
-    border_radius?: string;
+    borderRadius?: string;
     title?: string;
-    fontSize?: string;
+    fontSizeTitle?: string;
+    subtitle?: string;
+    fontSizeSubtitle?: string;
 }
 
-interface GenericContainerInterface extends Omit<LoginContainerInterface, "title"> {
-}
-
-const GenericContainer = styled.div<GenericContainerInterface>`
+const GenericContainer = styled.div<LoginContainerInterface>`
     display: flex;
+    padding: 56px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     background-color: ${({ theme }) => theme.alternative_white};
     width: ${({ width }) => width || 'fit-content'};
     height: ${({ height }) => height};
-    border-radius: ${({ border_radius }) => border_radius || '8px'};
+    border-radius: ${({ borderRadius }) => borderRadius || '8px'};
 `
-
 // position: absolute;
 // left: 50%;
 // top: 50%;
@@ -38,20 +33,23 @@ const GenericContainer = styled.div<GenericContainerInterface>`
 const LoginContainer = ({
     width,
     height,
-    border_radius,
+    borderRadius,
     title,
-    fontSize,
-
+    fontSizeTitle,
+    subtitle,
+    fontSizeSubtitle,
 }: LoginContainerInterface) => {
     return (
         <GenericContainer
             data-testid='main button'
             width={width}
             height={height}
-            border_radius={border_radius}
+            borderRadius={borderRadius}
         >
-            <Text size={fontSize}>{title}</Text>
-            <MainButton onClick={() => { }} children='Acessar Conta'></MainButton>
+            <Text size={fontSizeTitle} margin-bottom="40px">{title}</Text>
+            <MainButton width='100%' onClick={() => { }} children='Acessa Conta'></MainButton>
+            <StringInput width='100%' type='submit' value='email'></StringInput>
+            <Text size={fontSizeSubtitle}>{subtitle}</Text>
         </GenericContainer>
     )
 }

@@ -11,28 +11,11 @@ function App() {
       <ThemeProvider theme={colors}>
         <GlobalStyle />
         <RouterProvider router={Router} />
-        <LoginContainer height='45rem' width='40rem' title='Acesse sua conta' />
+        <LoginContainer height='45rem' width='40rem' title='Acesse sua conta' fontSizeTitle='24px' subtitle='Para ter acesso a nossa plataforma de controle, entre
+                em contato com um dos nossos desenvolvedores.' fontSizeSubtitle='14px'/>
       </ThemeProvider>
     </>
   );
 }
-
-// class Welcome1 extends React.Component {
-//   props: any;
-
-//   render() {
-//     return <ul>
-//       <h1>Hello, {this.props.children}</h1>
-//       <h1>Hello, {this.props.name}</h1>
-//     </ul>
-//   }
-// }
-
-// function Welcome2(props: any) {
-//   return <ul>
-//     <h1>Hello, {props.children}</h1>
-//     <h1>Hello, {props.name}</h1>
-//   </ul>;
-// }
 
 export default App;
