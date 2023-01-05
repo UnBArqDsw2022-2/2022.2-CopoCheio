@@ -5,7 +5,7 @@ const router = Router();
 
 router.post('/login', async (req: Request, res: Response) => {
     const token = await SessionService.login(req.body);
-    res.status(200).send(token);
+    res.status(200).send({token});
 });
 
 export default router;

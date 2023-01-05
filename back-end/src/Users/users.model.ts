@@ -1,9 +1,9 @@
 
-import bcrypt from 'bcrypt';
 import authConfig from '../Config/auth';
-import { PrismaClient } from '@prisma/client';
 import { BadRequestException } from '../HttpExceptions/httpExceptions';
 import moment from "moment";
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 
 import { Roles } from '../Roles/roles.model';
 import prisma from '../prismaConection';
@@ -76,7 +76,7 @@ export class Users {
 
         const user = this.prismaUser.create({ 
             data:{
-                password: await bcrypt.hash(password, authConfig.salt!),
+                password: await bcrypt.hash(password, await bcrypt.genSalt()),
                 active: true,
                 nameComplete,
                 email,

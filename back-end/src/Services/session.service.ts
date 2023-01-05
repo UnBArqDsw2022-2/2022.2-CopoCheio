@@ -1,6 +1,6 @@
 import prisma from '../prismaConection';
 import { is } from 'superstruct';
-import bcrypt from  'bcrypt';
+import bcrypt from  'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import { BadRequestException } from '../HttpExceptions/httpExceptions';
@@ -28,8 +28,8 @@ export default class SessionService {
             throw new BadRequestException("Email or Password does not match");
         }
 
-        return jwt.sign(user.id!, authConfig.secret!, {
-            expiresIn: authConfig.expiresIn!
+        return jwt.sign({id: user.id!}, authConfig.secret!, {
+            expiresIn: authConfig.expiresIn
         });
     }
     

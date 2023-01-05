@@ -32,6 +32,8 @@ services:
     environment:
       DB_URL: ${DB_URL:-postgresql://postgres:changeme@postgres:5432/postgres}
       PORT: ${API_PORT:-3000}
+      JWT_SECRET: ${JWT_SECRET:-example}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
     working_dir: /back-end
     volumes:
       - ./back-end:/back-end
