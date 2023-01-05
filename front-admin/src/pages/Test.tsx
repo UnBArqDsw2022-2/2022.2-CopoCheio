@@ -1,4 +1,4 @@
-import HomePageCard from "../components/molecules/HomePageCard";
+import HomePageMenu from "../components/organisms/HomePageMenu";
 import Header from "../components/organisms/Header";
 
 const TestPlayground = () => {
@@ -6,8 +6,7 @@ const TestPlayground = () => {
   return (
     <div>
       <Header />
-      <div>dsadsa</div>
-      <HomePageCard onClick={() => {}} label="Bebidas Recomendadas"/>
+      <HomePageMenu />
     </div>
   )
 };

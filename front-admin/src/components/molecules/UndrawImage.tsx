@@ -4,7 +4,7 @@ import { colors } from "../../styles/colors";
 import GenericContainer from "../atoms/GenericContainer";
 
 interface UndrawImageInterface {
-  imageElement: ReactElement;
+  imageElement: ReactElement | undefined;
 }
 
 const SvgContainer = styled.div`
@@ -13,7 +13,7 @@ const SvgContainer = styled.div`
   transition: all ease 400ms;
 `
 
-const UndrawImage = ({ imageElement} : UndrawImageInterface) => (
+const UndrawImage = ({ imageElement }: UndrawImageInterface) => (
   <GenericContainer
     width="39%"
     height="100%"

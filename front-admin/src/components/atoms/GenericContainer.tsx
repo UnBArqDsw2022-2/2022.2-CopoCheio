@@ -7,6 +7,7 @@ interface GenericContainerInterface {
   border_radius?: string;
   fontSize?: string;
   color?: string;
+  display?: string;
 }
 
 const GenericContainer = styled.section<GenericContainerInterface>`

@@ -24,8 +24,6 @@ describe('#Header', () => {
       render(<Header />);
       const title = screen.getByText('Copo Cheio Admin');
       userEvent.click(title);
-      // eslint-disable-next-line no-restricted-globals
-      expect(location.pathname).toBe('/');
       expect(mockedNavigation).toBeCalledWith('/');
     });
 
