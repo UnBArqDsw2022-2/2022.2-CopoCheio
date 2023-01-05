@@ -11,29 +11,29 @@ import authConfig from '../Config/auth';
 const users = new Users(prisma.user);
 
 export default class SessionService {
+    
+    static async login(login: LoginDtoType): Promise<string> {
+        if (!is(login, LoginDto)) {
+            throw new BadRequestException("Email or Password not Found");
+        }
 
-  static async login(login: LoginDtoType): Promise<string> {
-    if (!is(login, LoginDto)) {
-      throw new BadRequestException("");
+        const user = await users.findByEmail(login.email, true);
+
+        if (!user) {
+            throw new BadRequestException("User not Found");
+        }
+
+        const isSame = await SessionService.checkPassword(login.password, user.password!);
+        if (!isSame) {
+            throw new BadRequestException("Email or Password does not match");
+        }
+
+        return jwt.sign(user.id!, authConfig.secret!, {
+            expiresIn: authConfig.expiresIn!
+        });
     }
-
-    const user = await users.findByEmail(login.email, true);
-
-    if (!user) {
-      throw new BadRequestException("");
+    
+    private static async checkPassword(password:string, passwordHash: string) : Promise<boolean> {
+        return bcrypt.compare(password, passwordHash)
     }
-
-    const isSame = await SessionService.checkPassword(login.password, user.password!);
-    if (!isSame) {
-      throw new BadRequestException("Email or Password does not match");
-    }
-
-    return jwt.sign(user.id!, authConfig.secret!, {
-      expiresIn: authConfig.expiresIn!
-    });
-  }
-  
-  private static async checkPassword(password:string, passwordHash: string) : Promise<boolean> {
-    return bcrypt.compare(password, passwordHash)
-  }
 }
