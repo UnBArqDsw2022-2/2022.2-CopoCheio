@@ -24,16 +24,16 @@ Para rodar a aplicação é necessário instalar os pacotes de dependencia dentr
 $ cd front-admin
 ```
 
-Depois rode:
+Caso não tenha feito o build:
 
 ```
-$ npm install
+$ docker-compose up --build
 ```
 
-Em seguida rode o comando do docker:
+Caso já tenha feito o build, basta rodar:
 
 ```
-$ docker-compose up -D frontAdmin
+$ docker-compose up frontAdmin
 ```
 
 ## Orientações:
