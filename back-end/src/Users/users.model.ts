@@ -1,6 +1,9 @@
-import { PrismaClient } from '@prisma/client';
+
+import authConfig from '../Config/auth';
 import { BadRequestException } from '../HttpExceptions/httpExceptions';
 import moment from "moment";
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 
 import { Roles } from '../Roles/roles.model';
 import prisma from '../prismaConection';
@@ -36,7 +39,7 @@ export class Users {
         })
     }
 
-    async findByEmail(userEmail: string): Promise<UpdateUserDto|null>{
+    async findByEmail(userEmail: string, showPassord: boolean = false): Promise<UpdateUserDto|null>{
         return this.prismaUser.findUnique({
             where:{
                 email:userEmail
@@ -45,7 +48,8 @@ export class Users {
                 nameComplete:true,
                 email:true,
                 birthDate:true,
-                id:true
+                id:true,
+                password: showPassord
             }
         })
     }
@@ -72,7 +76,7 @@ export class Users {
 
         const user = this.prismaUser.create({ 
             data:{
-                password,
+                password: await bcrypt.hash(password, await bcrypt.genSalt()),
                 active: true,
                 nameComplete,
                 email,
@@ -103,16 +107,16 @@ export class Users {
                     }
                 }
             })
-            
+        
             if (anotherUser) {
                 throw new BadRequestException('Email already in use')
             }
         }
 
-        let data = userData
+        let data = userData;
 
         if (userData.password) {
-            // hash and stuff
+            data.password = await bcrypt.hash(userData.password, await bcrypt.genSalt());
         }
 
         const updatedUser = this.prismaUser.update({
