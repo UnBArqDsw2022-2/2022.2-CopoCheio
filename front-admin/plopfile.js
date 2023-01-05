@@ -26,33 +26,33 @@ module.exports = (plop) => {
       if (data.componentType === 'Atom') {
         actions.push({
           type: 'addMany',
-          destination: 'src/components/atoms/{{pascalCase name}}',
-          templateFiles: 'plop-templates/*.hbs'
-        })
+          destination: 'src/components/atoms/',
+          templateFiles: 'plop-templates/*.tsx.hbs'
+        });
       } else if (data.componentType === 'Molecule') {
         actions.push({
           type: 'addMany',
-          destination: 'src/components/molecules/{{pascalCase name}}',
-          templateFiles: 'plop-templates/*.hbs'
-        })
+          destination: 'src/components/molecules/',
+          templateFiles: 'plop-templates/*.tsx.hbs'
+        });
       } else if (data.componentType === 'Organism') {
         actions.push({
           type: 'addMany',
-          destination: 'src/components/organisms/{{pascalCase name}}',
-          templateFiles: 'plop-templates/*.hbs'
-        })
+          destination: 'src/components/organisms/',
+          templateFiles: 'plop-templates/*.tsx.hbs'
+        });
       } else if (data.componentType === 'Template') {
         actions.push({
           type: 'addMany',
-          destination: 'src/components/templates/{{pascalCase name}}',
-          templateFiles: 'plop-templates/*.hbs'
-        })
+          destination: 'src/components/templates/',
+          templateFiles: 'plop-templates/*.tsx.hbs'
+        });
       } else if (data.componentType === 'Page') {
         actions.push({
           type: 'addMany',
-          destination: 'src/components/pages/{{pascalCase name}}',
-          templateFiles: 'plop-templates/*.hbs'
-        })
+          destination: 'src/components/pages/',
+          templateFiles: 'plop-templates/*.tsx.hbs'
+        });
       } 
 
       return actions
