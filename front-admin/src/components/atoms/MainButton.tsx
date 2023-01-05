@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Text from '../atoms/Text';
+import Text from './Text';
 import Icon from './Icon/Icon';
 import { IconsTypes } from './Icon/IconTypes';
 
@@ -37,28 +37,28 @@ const GenericButton = styled.button<GenericButtonInterface>`
         switch (typeDefinition) {
             case 'primary':
                 return css`
-                    background-color: ${({theme}) => theme.primary};
-                    color: ${({theme}) => theme.alternative_white};
+                    background-color: ${({ theme }) => theme.primary};
+                    color: ${({ theme }) => theme.alternative_white};
                 `
             case 'confirm':
                 return css`
-                    background-color: ${({theme}) => theme.success};
-                    color: ${({theme}) => theme.black};
+                    background-color: ${({ theme }) => theme.success};
+                    color: ${({ theme }) => theme.black};
                 `
             case 'decline':
                 return css`
-                    background-color: ${({theme}) => theme.denied};
-                    color: ${({theme}) => theme.alternative_white};
+                    background-color: ${({ theme }) => theme.denied};
+                    color: ${({ theme }) => theme.alternative_white};
                 `
             case 'cancel':
                 return css`
                     background-color: rgba(153, 153, 153, 0.3);
-                    color: ${({theme}) => theme.black};
+                    color: ${({ theme }) => theme.black};
                 `
             case 'no-background':
                 return css`
                     background-color: transparent;
-                    color: ${({theme}) => theme.black};
+                    color: ${({ theme }) => theme.black};
                     box-shadow: none;
                 `
         }
