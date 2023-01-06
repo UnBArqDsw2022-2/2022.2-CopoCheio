@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# Bem vindo ao front-admin
+ 
+ Esse é o projeto front-end admin criado para os usuários admins que vão moderar a plataforma copo cheio. Nele é utilizado as tecnologias React TS, React-testing-library e Node para seu desenvolvimento. Além disso, utilizamos a metodologia do Atomic Design para estruturar nosso padrão de projeto e nossa estrutura de pasta.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Testando
 
-## Available Scripts
+Para testar a aplicação rode o comando 
 
-In the project directory, you can run:
+```
+npm test
+```
 
-### `npm start`
+Caso queira rodar um arquivo especifico rode o comando:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+npm test __nome_do_arquivo__
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Rodando a aplicação
 
-### `npm test`
+Para rodar a aplicação é necessário instalar os pacotes de dependencia dentro da pasta front-admin, dessa forma rode o comando:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+$ cd front-admin
+```
 
-### `npm run build`
+Caso não tenha feito o build:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+$ docker-compose up --build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Caso já tenha feito o build, basta rodar:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+$ docker-compose up frontAdmin
+```
 
-### `npm run eject`
+## Orientações:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Se você não quiser rodar todos os processos no docker basta colocar os nomes na frente do comando. Ex.
+```
+$ docker-compose up -d frontEnd frontAdmin
+```
+Esse comando só roda os dois front-end.
+Nomes: api || frontEnd || frontAdmin || postgres
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Como é utilizado a metodologia do Atomic design na aplicação, é recomendavel ler a documentação do mesmo.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+*Link: https://atomicdesign.bradfrost.com/chapter-2/*
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Levando isso em consideração, devemos sempre seguir o padrão do projeto e arquiteturar a construção dos componentes com base nessa metodologia. Assim, diversos padrões já foram adicionados tais quais variaveis globals de estilo, presente na pasta *styles*.
