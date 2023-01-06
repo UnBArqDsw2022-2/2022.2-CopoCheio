@@ -46,7 +46,7 @@ const StringInput = ({
 }: StringInputInterface) => {
     return (
         <GenericInputField>
-            <Text color='grey' size='1em' margin="0px 0px 5px 0px">{placeholder}</Text>
+            <Text color='grey' size='1em'>{placeholder}</Text>
             <GenericStringInput
                 data-testid='email-input'
                 type={type || 'text'}
