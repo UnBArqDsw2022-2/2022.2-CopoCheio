@@ -34,10 +34,10 @@ const LoginContainer = () => {
             <StringInput width='100%' height='56px' type='password' placeholder='Senha' />
             <MainButton width='100%'
                 onClick={() => {
-                    for (let index = 1; index < 6; index++) {
-                        userService.endPoint = `contest-type/${index}`;
-                        userService.getUserData();
-                    }
+                    // for (let index = 1; index < 6; index++) {
+                    //     userService.endPoint = `contest-type/${index}`;
+                    //     userService.getUserData();
+                    // }
                 }}
                 children='Acessar Conta' height='56px' margin-bottom='40px' fontSize='22px'></MainButton>
             <Text size='1rem' color={colors.black} margin-top='40px' fontWeight='400' margin="40px 0px 0px 0px">
