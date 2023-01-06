@@ -1,16 +1,20 @@
 import styled, { css } from 'styled-components';
-import React from 'react';
+import React,{ ReactNode } from 'react';
+import {colors} from '../../styles/colors';
 
 
 interface CardContainerInterface {
     width?: string;
     height?: string;
     borderRadius?: string;
+    hover?:boolean;
     borderColor?: string;
+    containerType?: string;
     backgroundImage?: string;
-    children: React.ReactNode;
+    children:ReactNode;
+    onMouseEnter?: VoidFunction;
+    onMouseLeave?: VoidFunction;
 }
-
 
 interface GenericCardContainerInterface extends Omit<CardContainerInterface, "children"> {
     typeDefinition: string
@@ -18,26 +22,41 @@ interface GenericCardContainerInterface extends Omit<CardContainerInterface, "ch
 
 const GenericCardContainer = styled.div<GenericCardContainerInterface>`
     display: flex;
-    width: ${({ width }) => width || 'fit-content'};
+    flex-direction:column;
     padding: 0px;
     border-radius: ${({ borderRadius }) => borderRadius || '16px'};
     outline: none;
     border: none;
-    ${({ height,borderColor,backgroundImage, typeDefinition }) => {
+    ${({ height,width,borderColor,backgroundImage, typeDefinition }) => {
         switch (typeDefinition){
             case 'background':
                     return css`
                         height: ${height};
+                        width: ${width};
                         background-color:  ${borderColor};
                         box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14);
                     `
-            case 'main':
+            case 'image':
                     return css`
                         margin:0px;
                         height: calc(${height} - 5.2px);
+                        width: ${width};
                         background-image: url(${backgroundImage});
                         background-size: cover;
                     `
+            case 'main':
+                return css`
+                    height: calc(${height} - 29.2px);
+                    width: calc(${width} - 24px);
+                    padding:12px;
+                `
+            case 'hover':
+                return css`
+                    height: calc(${height} - 29.2px);
+                    width: calc(${width} - 24px);
+                    background: ${colors.black}E6;
+                    padding:12px;
+                `
         }
     }};
 `
@@ -48,7 +67,10 @@ const CardContainer = ({
     borderRadius,
     borderColor,
     backgroundImage,
+    hover,
     children,
+    onMouseEnter,
+    onMouseLeave,
 }: CardContainerInterface) => {
     return (
         <GenericCardContainer
@@ -58,16 +80,26 @@ const CardContainer = ({
             height={height}
             borderRadius={borderRadius}
             borderColor={borderColor}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
         >
 
             <GenericCardContainer
-                typeDefinition={'main'}
+                typeDefinition={'image'}
                 width={width}
                 height={height}
                 borderRadius={borderRadius}
                 backgroundImage={backgroundImage}
             >
-                {children}
+                <GenericCardContainer
+                    typeDefinition={hover ? 'hover' : 'main'}
+                    width={width}
+                    height={height}
+                    borderRadius={borderRadius}
+                    backgroundImage={backgroundImage}
+                >
+                    {children}
+                </GenericCardContainer>
             </GenericCardContainer>
         </GenericCardContainer>
     )

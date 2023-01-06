@@ -3,11 +3,11 @@ import Icon from './Icon/Icon';
 import { IconsTypes } from './Icon/IconTypes';
 
 interface IconButtonInterface {
-    type?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background';
+    type?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background' | 'default';
     width?: string;
     height?: string;
     border_radius?: string;
-    onClick: VoidFunction;
+    onClick?: VoidFunction;
     icon?: IconsTypes;
     fontSize?: string;
     iconColor?: string;
@@ -40,7 +40,7 @@ const GenericIconButton = styled.button<GenericIconButtonInterface>`
                 `
             case 'default':
                 return css`
-                    background-color: rgba(254, 254, 254, 1);
+                    background-color: ${({theme}) => theme.alternative_white};
                     color: ${({theme}) => theme.black};
                 `
             case 'confirm':
@@ -81,7 +81,7 @@ const IconButton = ({
     return (
         <GenericIconButton
             data-testid='icon button'
-            onClick={onClick}
+            onClick={(onClick)&&(()=>{onClick()})}
             typeDefinition={type || 'default'}
             width={width}
             height={height}

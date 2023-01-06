@@ -4,11 +4,12 @@ interface TextInterface {
   color?: string;
   size?: string;
   shadow?: string;
+  fontWeight?: string;
 }
 
 const Text = styled.span<TextInterface>`
   font-size: ${({size}) => size || '18px'};
-  font-weight: bold;
+  font-weight: ${({fontWeight})=> fontWeight || 'bold'};
   color: ${({color}) => color};
   ${({shadow})=>{
     if(shadow)
