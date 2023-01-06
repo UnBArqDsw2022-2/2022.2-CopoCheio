@@ -5,7 +5,7 @@ export const pallete =  {
   success: '#8CE563',
   denied: '#FF5F5F',
   black: '#4a4a4a',
-  white: '#f9f9f9',
+  white: '#f6f6f6',
   alternative_white: '#fefefe',
   grey: '#999'
 };
