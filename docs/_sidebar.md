@@ -42,7 +42,13 @@
   - [3. Desenho de Software (Padrões de Projeto)](/PadroesDeProjeto/3.PadroesDeProjeto.md)
     - [3.1. Módulo Padrões de Projeto GRASPs](/PadroesDeProjeto/3.1.GRASPs.md)
     - [3.2. Módulo Padrões de Projeto GoFs](/PadroesDeProjeto/3.2.GoFs.md)
-      - [3.2.1 Singleton](/PadroesDeProjeto/3.2.1.Singleton.md)
+      - 3.2.1 GoFs Criacionais
+        - [3.2.1.1 Singleton](/PadroesDeProjeto/3.2.1.Singleton.md)
+      - 3.2.2 GoFs Estruturais
+        - [3.2.2.1 Proxy](/PadroesDeProjeto/3.2.2.1.Proxy.md)
+      - 3.2.3 GoFs Arquiteturais
+        - [3.2.3.1 Mock Object](/PadroesDeProjeto/3.2.3.1.MockObject.md)
+        - [3.2.3.2 Interceptor](/PadroesDeProjeto/3.2.3.2.Interceptor.md)
     - [3.3. Modelagem Ágil](/PadroesDeProjeto/3.3.PadroesExtra.md)
     - [3.4. Iniciativas Extras - Padrões de Projeto](/PadroesDeProjeto/3.4.IniciativasExtras.md)
     - [3.5. Participações - Padrões de Projeto](/PadroesDeProjeto/3.5.ParticipacoesPadroes.md)
