@@ -5,27 +5,30 @@ import { IconsTypes } from './Icon/IconTypes';
 
 
 interface LinkTagInterface {
+    href?: string;
     text?: string;
-    href?: string;    
     colorText?: string;
 }
 
-const GenericLinkTag = styled.text<LinkTagInterface>`
-    
+const GenericLinkTag = styled.a<LinkTagInterface>`
+    color: ${({ theme }) => theme.primary};
+    cursor: pointer;
+    text-decoration: none;
 `
 
 const LinkTag = ({
     text,
-    href,    
+    href,
     colorText,
 }: LinkTagInterface) => {
     return (
         <GenericLinkTag
             data-testid='link-tag'
+            text={text}
             href={href}
-            colorText={colorText} 
+            target="_blank"
+            color={colorText}
         >
-            <Text></Text>
             {text}
         </GenericLinkTag>
     )
