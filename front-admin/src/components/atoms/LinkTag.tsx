@@ -1,13 +1,8 @@
-import styled, { css } from 'styled-components';
-import Text from './Text';
-import Icon from './Icon/Icon';
-import { IconsTypes } from './Icon/IconTypes';
-
+import styled from 'styled-components';
 
 interface LinkTagInterface {
     href?: string;
     text?: string;
-    colorText?: string;
 }
 
 const GenericLinkTag = styled.a<LinkTagInterface>`
@@ -19,7 +14,6 @@ const GenericLinkTag = styled.a<LinkTagInterface>`
 const LinkTag = ({
     text,
     href,
-    colorText,
 }: LinkTagInterface) => {
     return (
         <GenericLinkTag
@@ -27,7 +21,6 @@ const LinkTag = ({
             text={text}
             href={href}
             target="_blank"
-            color={colorText}
         >
             {text}
         </GenericLinkTag>

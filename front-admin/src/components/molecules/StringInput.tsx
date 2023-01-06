@@ -1,11 +1,11 @@
-import styled, { css } from 'styled-components';
-import Text from './Text';
+import styled from 'styled-components';
+import Text from '../atoms/Text';
 
 interface StringInputInterface {
     type?: "text" | "email" | "password";
     width?: string;
     height?: string;
-    border_radius?: string;
+    borderRadius?: string;
     fontSize?: string;
     placeholder?: string;
 }
@@ -17,7 +17,7 @@ interface GenericStringInputInterface extends Omit<StringInputInterface, "placeh
 const GenericStringInput = styled.input<GenericStringInputInterface>`
     width: ${({ width }) => width || '100%'};
     height: ${({ height }) => height || '40px'};
-    border-radius: ${({ border_radius }) => border_radius || '4px'};
+    border-radius: ${({ borderRadius }) => borderRadius || '4px'};
     border: 1px solid #ced4da;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
@@ -40,20 +40,19 @@ const StringInput = ({
     type,
     width,
     height,
-    border_radius,
+    borderRadius,
+    placeholder,
     fontSize,
-    placeholder: placeholder,
 }: StringInputInterface) => {
     return (
         <GenericInputField>
-            <Text color='grey' size='0.8em'>{placeholder}</Text>
+            <Text color='grey' size='1em' margin="0px 0px 5px 0px">{placeholder}</Text>
             <GenericStringInput
                 data-testid='email-input'
                 type={type || 'text'}
-                placeholder={placeholder}
                 width={width}
                 height={height}
-                border_radius={border_radius}
+                borderRadius={borderRadius}
             >
             </GenericStringInput>
         </GenericInputField>

@@ -14,12 +14,7 @@ const LoginPageContainer = styled.section`
 const LoginPageTemplate = () => {
     return (
         <LoginPageContainer>
-            <LoginContainer
-                fontSizeTitle="1.5rem"
-                title="Acesse sua conta"
-                subtitle="Para ter acesso a nossa plataforma de controle, entre em contato com um dos nossos desenvolvedores."
-                fontSizeSubtitle="1rem"
-            />
+            <LoginContainer />
         </LoginPageContainer>
     );
 };
