@@ -39,7 +39,7 @@ services:
       - ./back-end:/back-end
     ports:
       - "${API_PORT:-3000}:${API_PORT:-3000}"
-    command: bash -c "echo 'Installing npm' && npm install && npx prisma migrate dev && npm run dev"
+    command: bash -c "echo 'Installing npm' && npm install && npm run dev"
 
   postgres:
      image: postgres
