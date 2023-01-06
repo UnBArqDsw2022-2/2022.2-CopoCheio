@@ -7,7 +7,6 @@ export const HttpExceptionHandler = (
         next: NextFunction
         ) => {
         const status = error.statusCode || 400
-        console.log('Aqui?');
         
         res.header("Content-Type", 'application/json')
         res.status(status).send({error:error.message})
