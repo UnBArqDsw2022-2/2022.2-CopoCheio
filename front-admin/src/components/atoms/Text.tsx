@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import styled,{css} from "styled-components";
+import styled from "styled-components";
 
 interface StyledTextInterface {
   color?: string;
