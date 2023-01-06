@@ -1,4 +1,4 @@
-import LoginContainer from "../organism/LoginContainer";
+import LoginContainer from "../organisms/LoginContainer";
 import styled from "styled-components";
 
 const LoginPageContainer = styled.section`
