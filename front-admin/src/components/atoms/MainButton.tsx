@@ -1,21 +1,20 @@
 import styled, { css } from 'styled-components';
 import Text from './Text';
-import Icon from './Icon/Icon';
-import { IconsTypes } from './Icon/IconTypes';
+import { ReactElement } from 'react';
 
 interface MainButtonInterface {
     type?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background';
     width?: string;
     height?: string;
-    border_radius?: string;
+    borderRadius?: string;
     onClick: VoidFunction;
-    iconLeft?: IconsTypes;
-    iconRight?: IconsTypes;
+    leftElement?: ReactElement;
+    rightElement?: ReactElement;
     children: string;
     fontSize?: string;
 }
 
-interface GenericButtonInterface extends Omit<MainButtonInterface, "children" | "iconLeft" | "iconRight"> {
+interface GenericButtonInterface extends Omit<MainButtonInterface, "children" | "leftElement" | "rightElement"> {
     typeDefinition: string
 }
 
@@ -27,7 +26,7 @@ const GenericButton = styled.button<GenericButtonInterface>`
     width: ${({ width }) => width || 'fit-content'};
     height: ${({ height }) => height};
     padding: 8px 16px;
-    border-radius: ${({ border_radius }) => border_radius || '8px'};
+    border-radius: ${({ borderRadius }) => borderRadius || '8px'};
     outline: none;
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.14);
     border: none;
@@ -60,6 +59,7 @@ const GenericButton = styled.button<GenericButtonInterface>`
                     background-color: transparent;
                     color: ${({ theme }) => theme.black};
                     box-shadow: none;
+                    padding: 0;
                 `
         }
     }}
@@ -69,10 +69,10 @@ const MainButton = ({
     type,
     width,
     height,
-    border_radius,
+    borderRadius,
     onClick,
-    iconLeft,
-    iconRight,
+    leftElement,
+    rightElement,
     children,
     fontSize,
 }: MainButtonInterface) => {
@@ -83,11 +83,11 @@ const MainButton = ({
             typeDefinition={type || 'primary'}
             width={width}
             height={height}
-            border_radius={border_radius}
+            borderRadius={borderRadius}
         >
-            {iconLeft && <Icon marginRight='4px' size={fontSize} icon={iconLeft} />}
+            {leftElement}
             <Text size={fontSize}>{children}</Text>
-            {iconRight && <Icon marginLeft='4px' size={fontSize} icon={iconRight} />}
+            {rightElement}
         </GenericButton>
     )
 }

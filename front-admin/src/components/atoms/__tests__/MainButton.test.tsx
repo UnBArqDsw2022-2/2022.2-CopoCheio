@@ -25,20 +25,34 @@ describe("#MainButton", () => {
     });
     test("button renders right icon when passing correct props", () => {
         render(
-            <MainButton onClick={() => { }} iconRight="block">Sasuke</MainButton>
+            <MainButton
+                onClick={() => { }}
+                rightElement={
+                    <div data-testid="right element test" />
+                }
+            >
+                Sasuke
+            </MainButton>
         )
 
-        const mainButtonIcon = screen.getByText('block');
-        expect(mainButtonIcon).toBeVisible();
+        const rightElement = screen.getByTestId('right element test');
+        expect(rightElement).toBeVisible();
     });
 
     test("button renders left icon when passing correct props", () => {
         render(
-            <MainButton onClick={() => { }} iconLeft="block">Sasuke</MainButton>
+            <MainButton
+                onClick={() => { }}
+                leftElement={
+                    <div data-testid="left element test"/>
+                }
+            >
+                Sasuke
+            </MainButton>
         )
 
-        const mainButtonIcon = screen.getByText('block');
-        expect(mainButtonIcon).toBeVisible();
+        const leftElement = screen.getByTestId('left element test');
+        expect(leftElement).toBeVisible();
     });
 
     describe('buttons types', () => {
