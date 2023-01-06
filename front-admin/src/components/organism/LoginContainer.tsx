@@ -5,7 +5,7 @@ import Text from '../atoms/Text';
 import StringInput from '../molecules/StringInput';
 import LinkTag from '../atoms/LinkTag';
 import ImageLogo from '../atoms/ImageLogo';
-import userService from "../../services/UserService";
+// import userService from "../../services/UserService";
 
 const GenericLoginContainer = styled.div`
     display: flex;
