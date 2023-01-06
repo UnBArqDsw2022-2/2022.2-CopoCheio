@@ -14,6 +14,8 @@ import { UpdateUserDto } from '../Dto/update-user.dto';
 export class Users {
     constructor(private readonly prismaUser: PrismaClient['user']) {}
 
+    validator = require('validator');
+
     async all(): Promise<UpdateUserDto[]> {
         return this.prismaUser.findMany({
             select:{
@@ -70,8 +72,27 @@ export class Users {
         const allRoles = await roles.all()
         if (allRoles.length === 0) {
             throw new BadRequestException("Can't create user, no roles available")
-        }  
+        }
+        
+        if(userData.name.length < 4){
+            throw new BadRequestException("Full name must longer than 4 characters")
+        }
 
+        if(userData.password.length < 6){
+            throw new BadRequestException("Password must be longer than 6 characters")
+        }
+
+        if(!this.validator.isEmail(userData.email)){
+            throw new BadRequestException("Email is not valid")
+        }
+
+        const currentDateMoment = moment()
+        const birthDateMoment = moment(userData.birthDate)
+        const dateDiff = currentDateMoment.diff(birthDateMoment, 'years')
+        if(dateDiff < 18 || dateDiff > 100){
+            throw new BadRequestException('User must be between 18 and 100 years old')
+        }
+        
         const role = allRoles.find(i => (isAdmin ? 'Admin' : 'Customer') === i.name)
 
         const user = this.prismaUser.create({ 
@@ -98,6 +119,10 @@ export class Users {
     }
 
     async update(userData: UpdateUserDto, userId: string) {
+        console.log(userData)
+        if(userData == null || this.validator.isEmpty(userData)){
+            throw new BadRequestException('User is Empty')
+        }
         if (userData.email) {
             const anotherUser  = await this.prismaUser.findFirst({
                 where:{
@@ -113,6 +138,27 @@ export class Users {
             }
         }
 
+        if(userData.name && userData.name.length < 4){
+            throw new BadRequestException("Full name must longer than 4 characters")
+        }
+
+        if(userData.password && userData.password.length < 6){
+            throw new BadRequestException("Password must be longer than 6 characters")
+        }
+
+        if(userData.email && !this.validator.isEmail(userData.email)){
+            throw new BadRequestException("Email is not valid")
+        }
+
+        if(userData.birthDate){
+            const currentDateMoment = moment()
+            const birthDateMoment = moment(userData.birthDate)
+            const dateDiff = currentDateMoment.diff(birthDateMoment, 'years')
+            if(dateDiff < 18 || dateDiff > 100){
+                throw new BadRequestException('User must be between 18 and 100 years old')
+            }
+        }
+
         let data = userData;
 
         if (userData.password) {
@@ -123,6 +169,15 @@ export class Users {
             data,
             where:{
                 id: userId
+            },
+            select:{
+                id: true,
+                email: true,
+                nameComplete: true,
+                birthDate: true,
+                createdDate: true,
+                active: true,
+                roleId: true
             }
         })
 
