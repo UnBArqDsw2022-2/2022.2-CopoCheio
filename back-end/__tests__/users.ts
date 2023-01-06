@@ -1,7 +1,7 @@
 import moment from 'moment'
 
 import { Users } from '../src/Users/users.model'
-import { Roles } from '../src/Roles/roles.model'
+import { Roles } from '../src/Models/roles.model'
 
 import { prismaMock } from '../prisma/singleton'
 import { BadRequestException } from '../src/HttpExceptions/httpExceptions'

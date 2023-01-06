@@ -8,8 +8,8 @@ import { HttpExceptionHandler } from './HttpExceptions/httpExceptions';
 import { retryConnectionHandler } from './dbExceptions/dbExceptionsHandler';
 import { failSafeHandler } from './Middlewares/failSafeHandler';
 // Routes
-import UserRoutes from './Users/users.controller';
-import RolesRoutes from './Roles/roles.controller';
+import UserRoutes from './Controllers/users.controller';
+import RolesRoutes from './Controllers/roles.controller';
 import SessionRoutes from './Controllers/session.controller';
 
 dotenv.config()

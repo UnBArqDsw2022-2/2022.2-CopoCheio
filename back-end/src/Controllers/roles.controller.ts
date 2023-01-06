@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 
 import prisma from '../prismaConection';
-import { Roles } from './roles.model';
+import { Roles } from '../Models/roles.model';
 
 const router = Router();
 const roles = new Roles(prisma.role)

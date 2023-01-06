@@ -1,7 +1,7 @@
 import { PrismaClient, Role } from '@prisma/client';
 
-import { CreateRoleDto } from './dto/create-role.dto';
-import { UpdateRoleDto } from './dto/update-role.dto';
+import { CreateRoleDto } from '../Dto/create-role.dto';
+import { UpdateRoleDto } from '../Dto/update-role.dto';
 
 export class Roles {
     constructor(private readonly prismaRole: PrismaClient['role']) {}

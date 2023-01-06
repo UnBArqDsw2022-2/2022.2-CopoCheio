@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 
 import prisma from '../prismaConection';
-import { Users } from './users.model';
+import { Users } from '../Models/users.model';
 
 import { JwtAuthMiddleware } from '../Middlewares/auth';
 

@@ -5,11 +5,11 @@ import moment from "moment";
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
-import { Roles } from '../Roles/roles.model';
+import { Roles } from './roles.model';
 import prisma from '../prismaConection';
 
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from '../Dto/create-user.dto';
+import { UpdateUserDto } from '../Dto/update-user.dto';
 
 export class Users {
     constructor(private readonly prismaUser: PrismaClient['user']) {}

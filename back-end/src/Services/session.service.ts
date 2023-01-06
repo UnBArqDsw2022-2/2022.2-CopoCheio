@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 
 import { BadRequestException } from '../HttpExceptions/httpExceptions';
 import { LoginDto, LoginDtoType } from '../Dto/login.dto';
-import { Users } from '../Users/users.model';
+import { Users } from '../Models/users.model';
 import authConfig from '../Config/auth';
 
 const users = new Users(prisma.user);

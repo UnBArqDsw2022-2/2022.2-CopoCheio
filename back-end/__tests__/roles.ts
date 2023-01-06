@@ -1,4 +1,4 @@
-import { Roles } from '../src/Roles/roles.model'
+import { Roles } from '../src/Models/roles.model'
 import { prismaMock } from '../prisma/singleton'
 
 const getAllMock = jest.spyOn(Roles.prototype, 'all')
