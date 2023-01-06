@@ -5,6 +5,7 @@ interface StyledTextInterface {
   weight?: 'regular' | 'semibold' | 'bold';
   color?: string;
   size?: string;
+  shadow?: string;
   leftElement?: ReactElement;
   rightElement?: ReactElement;
   margin?: string;
@@ -12,10 +13,11 @@ interface StyledTextInterface {
 }
 
 const Text = styled.span<StyledTextInterface>`
-  font-size: ${({ size }) => size || '18px'};
-  margin: ${({ margin }) => margin};
-  font-weight: ${({ weight }) => weight === 'semibold' ? '600' : weight};
-  color: ${({ color }) => color};
+Zfont-size: ${({ size }) => size || '18px'};
+font-weight: ${({ weight }) => weight === 'semibold' ? '600' : weight};
+color: ${({ color }) => color};
+margin: ${({ margin }) => margin};
+text-shadow: ${({ shadow }) => shadow};
 `
 
 export default Text;

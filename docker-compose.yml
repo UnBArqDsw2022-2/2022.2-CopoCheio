@@ -32,12 +32,14 @@ services:
     environment:
       DB_URL: ${DB_URL:-postgresql://postgres:changeme@postgres:5432/postgres}
       PORT: ${API_PORT:-3000}
+      JWT_SECRET: ${JWT_SECRET:-example}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
     working_dir: /back-end
     volumes:
       - ./back-end:/back-end
     ports:
       - "${API_PORT:-3000}:${API_PORT:-3000}"
-    command: bash -c "echo 'Installing npm' && npm install && npx prisma migrate dev && npm run dev"
+    command: bash -c "echo 'Installing npm' && npm install && npm run dev"
 
   postgres:
      image: postgres
@@ -47,7 +49,7 @@ services:
        POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
        POSTGRES_DB: ${DB_NAME:-postgres}
      volumes:
-        - postgres:/data/postgres
+        - postgres:/var/lib/postgresql/data
      ports:
        - "5432:5432"
      restart: unless-stopped

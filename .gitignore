@@ -2,3 +2,7 @@
 .env*
 !.env.example
 !.example.env
+.editorconfig
+.vscode*
+settings/
+*/package-lock.json
