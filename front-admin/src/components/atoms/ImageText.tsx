@@ -36,7 +36,7 @@ const ImageText = ({
             {imageLeft && (
                 <Image src={imageLeft} height={imageSize} width={imageSize} borderRadius={imageSize} marginRight='4px'/>
             )}
-            <Text fontWeight='400' color={fontColor} size={fontSize}>{children}</Text>
+            <Text weight='regular' color={fontColor} size={fontSize}>{children}</Text>
             {imageRight && (
                 <Image src={imageRight} height={imageSize} width={imageSize} borderRadius={imageSize} marginLeft='4px' />
             )}

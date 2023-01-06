@@ -34,7 +34,7 @@ const AttributesList = ({
                 iconSize='18px'
                 fontColor={colors.alternative_white}
                 fontSize='16px'
-                fontWeight='400'
+                weight='regular'
             >
                 {time}
             </IconText>
@@ -44,7 +44,7 @@ const AttributesList = ({
                 iconSize='18px'
                 fontColor={colors.alternative_white}
                 fontSize='16px'
-                fontWeight='400'
+                weight='regular'
             >
                 {difficulty}
             </IconText>
@@ -54,7 +54,7 @@ const AttributesList = ({
                 iconSize='18px'
                 fontColor={colors.alternative_white}
                 fontSize='16px'
-                fontWeight='400'
+                weight='regular'
             >
                 {location}
             </IconText>
@@ -64,7 +64,7 @@ const AttributesList = ({
                 iconSize='18px'
                 fontColor={colors.alternative_white}
                 fontSize='16px'
-                fontWeight='400'
+                weight='regular'
             >
                 {categories}
             </IconText>

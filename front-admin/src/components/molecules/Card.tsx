@@ -111,7 +111,7 @@ const Card = ({
                 <>
                 <CardTextContainer>
                     <Text 
-                        fontWeight='400'
+                        weight='regular'
                         size='12px'
                         color={colors.alternative_white}
                         style={{
@@ -119,8 +119,8 @@ const Card = ({
                         }}
                     >
                         {(userBlock)
-                        ?(<>Esse usuário se encontra <br/><Text fontWeight='600' size='12px' color={colors.denied}> restringido</Text></>)
-                        :(<>Esse usuário recomendou<Text fontWeight='600' size='12px' color={colors.primary}> {userIndicationQuantity} receitas </Text>de bebida no total.</>)}
+                        ?(<>Esse usuário se encontra <br/><Text weight='semibold' size='12px' color={colors.denied}> restringido</Text></>)
+                        :(<>Esse usuário recomendou<Text weight='semibold' size='12px' color={colors.primary}> {userIndicationQuantity} receitas </Text>de bebida no total.</>)}
                     </Text>
                 </CardTextContainer>
                 <CardButtonsContainer>

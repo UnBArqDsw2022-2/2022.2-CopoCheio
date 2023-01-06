@@ -1,15 +1,18 @@
-import styled, { css } from "styled-components";
+import { ReactElement } from "react";
+import styled,{css} from "styled-components";
 
-interface TextInterface {
+interface StyledTextInterface {
   color?: string;
   size?: string;
-  shadow?: string;
-  fontWeight?: string;
+  shadow?: string;  
+  weight?: 'regular' | 'semibold' | 'bold';
+  leftElement?: ReactElement;
+  rightElement?: ReactElement;
 }
 
-const Text = styled.span<TextInterface>`
+const Text = styled.span<StyledTextInterface>`
   font-size: ${({size}) => size || '18px'};
-  font-weight: ${({fontWeight})=> fontWeight || 'bold'};
+  font-weight: ${({ weight }) => weight === 'semibold' ? '600' : weight};
   color: ${({color}) => color};
   ${({shadow})=>{
     if(shadow)

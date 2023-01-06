@@ -23,7 +23,7 @@ const CardTitle = ({
         <CardTitleContainer>
             <Text 
                 size='16px' 
-                fontWeight='600' 
+                weight='semibold' 
                 shadow='0px 4px 4px rgba(0, 0, 0, 0.25)' 
                 color={colors.alternative_white}>
                     {children}
@@ -32,7 +32,7 @@ const CardTitle = ({
                 <Text 
                     onClick={()=>onClick()}
                     size='10px' 
-                    fontWeight='400' 
+                    weight='regular' 
                     color={colors.success} 
                     style={{
                         textDecoration:'underline',

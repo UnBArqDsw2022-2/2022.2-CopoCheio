@@ -13,7 +13,7 @@ interface IconTextInterface {
     fontSize?: string;
     iconColor?: string;
     fontColor?: string;
-    fontWeight?: string;
+    weight?: string;
 }
 
 const IconTextContainer = styled.span`
@@ -33,7 +33,7 @@ const IconText = ({
     iconSize,
     iconColor,
     fontColor,
-    fontWeight,
+    weight,
 }: IconTextInterface) => {
     return (
         <IconTextContainer
@@ -42,7 +42,7 @@ const IconText = ({
             {iconLeft && (
                 <Icon  size={iconSize} icon={iconLeft} color={iconColor} marginRight="4px"/>
             )}
-            <Text fontWeight={fontWeight} color={fontColor} size={fontSize}>{children}</Text>
+            <Text weight={weight} color={fontColor} size={fontSize}>{children}</Text>
             {iconRight && (
                 <Icon  size={iconSize} icon={iconRight} color={iconColor} marginLeft="4px"/>
             )}
