@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-import { Users } from '../src/Users/users.model'
+import { Users } from '../src/Models/users.model'
 import { Roles } from '../src/Models/roles.model'
 
 import { prismaMock } from '../prisma/singleton'
