@@ -4,8 +4,9 @@ import express from 'express';
 import cors from 'cors';
 
 //Middleware
-import { HttpExceptionHandler, PathNotFoundExceptionHandler } from './HttpExceptions/httpExceptions';
-
+import { HttpExceptionHandler } from './HttpExceptions/httpExceptions';
+import { retryConnectionHandler } from './dbExceptions/dbExceptionsHandler';
+import { failSafeHandler } from './Middlewares/failSafeHandler';
 // Routes
 import UserRoutes from './Users/users.controller';
 import RolesRoutes from './Roles/roles.controller';
@@ -21,7 +22,7 @@ app.use(cors());
 app.use(express.json());
 
 route.get('/', (req: Request, res: Response) => {  
-  res.json({ message: 'hello world with Typescript' })
+  res.json({ message: 'hello world with Typescript' })  
 })
 
 app.use('/session', SessionRoutes);
@@ -30,6 +31,7 @@ app.use('/user', UserRoutes);
 
 app.use(route)
 app.use(HttpExceptionHandler)
-app.use(PathNotFoundExceptionHandler)
+app.use(retryConnectionHandler)
+app.use(failSafeHandler)
 
 app.listen(process.env.PORT ?? 3000, () => `server running on port ${process.env.PORT ?? 3000}`)
