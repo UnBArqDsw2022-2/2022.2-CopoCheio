@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
-import Text from '../atoms/Text';
-import Icon from './Icon/Icon';
-import { IconsTypes } from './Icon/IconTypes';
+import Text from './Text';
+import { ReactElement } from 'react';
 
 interface MainButtonInterface {
     type?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background';
@@ -9,13 +8,13 @@ interface MainButtonInterface {
     height?: string;
     border_radius?: string;
     onClick: VoidFunction;
-    iconLeft?: IconsTypes;
-    iconRight?: IconsTypes;
+    leftElement?: ReactElement;
+    rightElement?: ReactElement;
     children: string;
     fontSize?: string;
 }
 
-interface GenericButtonInterface extends Omit<MainButtonInterface, "children" | "iconLeft" | "iconRight"> {
+interface GenericButtonInterface extends Omit<MainButtonInterface, "children" | "leftElement" | "rightElement"> {
     typeDefinition: string
 }
 
@@ -60,6 +59,7 @@ const GenericButton = styled.button<GenericButtonInterface>`
                     background-color: transparent;
                     color: ${({theme}) => theme.black};
                     box-shadow: none;
+                    padding: 0;
                 `
         }
     }}
@@ -71,8 +71,8 @@ const MainButton = ({
     height,
     border_radius,
     onClick,
-    iconLeft,
-    iconRight,
+    leftElement,
+    rightElement,
     children,
     fontSize,
 }: MainButtonInterface) => {
@@ -85,9 +85,9 @@ const MainButton = ({
             height={height}
             border_radius={border_radius}
         >
-            {iconLeft && <Icon marginRight='4px' size={fontSize} icon={iconLeft} />}
+            {leftElement}
             <Text size={fontSize}>{children}</Text>
-            {iconRight && <Icon marginLeft='4px' size={fontSize} icon={iconRight} />}
+            {rightElement}
         </GenericButton>
     )
 }
