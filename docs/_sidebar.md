@@ -47,13 +47,9 @@
     - [3.2. Módulo Padrões de Projeto GoFs](/PadroesDeProjeto/3.2.GoFs.md)
       - [3.2.1 GoFs Criacionais](/PadroesDeProjeto/3.2.1.GoFsCriacionais.md)
       - [3.2.2 GoFs Estruturais](/PadroesDeProjeto/3.2.2.GoFsEstruturais.md)
-        - [3.2.2.1 Proxy](/PadroesDeProjeto/3.2.2.1.Proxy.md)
       - [3.2.3 GoFs Comportamentais](/PadroesDeProjeto/3.2.3.GoFsComportamentais.md)
-        - [3.2.3.1 Mock Object](/PadroesDeProjeto/3.2.3.1.MockObject.md)
-        - [3.2.3.2 Interceptor](/PadroesDeProjeto/3.2.3.2.Interceptor.md)
-    - [3.3. Modelagem Ágil](/PadroesDeProjeto/3.3.PadroesExtra.md)
+      - [3.2.4 GoFs Arquiteturais](/PadroesDeProjeto/3.2.4.GoFsArquiteturais.md)
     - [3.3. Padrões Extras](/PadroesDeProjeto/3.3.PadroesExtra.md)
-    - [3.4. Iniciativas Extras - Padrões de Projeto](/PadroesDeProjeto/3.4.IniciativasExtras.md)
     - [3.5. Participações - Padrões de Projeto](/PadroesDeProjeto/3.5.ParticipacoesPadroes.md)
 
 - **Arquitetura de Software & Reutilização**
