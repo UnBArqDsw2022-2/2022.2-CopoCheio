@@ -13,7 +13,7 @@ interface IconTextInterface {
     fontSize?: string;
     iconColor?: string;
     fontColor?: string;
-    weight?: string;
+    weight?: 'regular' | 'semibold' | 'bold';
 }
 
 const IconTextContainer = styled.span`
