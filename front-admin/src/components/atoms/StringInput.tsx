@@ -1,47 +1,39 @@
 import styled, { css } from 'styled-components';
 import Text from './Text';
-import Icon from './Icon/Icon';
-import { IconsTypes } from './Icon/IconTypes';
 
 interface StringInputInterface {
-    type?: "text" | "submit" | "password";
+    type?: "text" | "email" | "password";
     width?: string;
     height?: string;
     border_radius?: string;
     fontSize?: string;
-    value?: string;
+    placeholder?: string;
 }
 
-interface GenericStringInputInterface extends Omit<StringInputInterface, "value" | "type"> {
-    type?: string,
+interface GenericStringInputInterface extends Omit<StringInputInterface, "placeholder"> {
+    type: "text" | "email" | "password",
 }
 
 const GenericStringInput = styled.input<GenericStringInputInterface>`
-    background: #00aec9;
-    color: #fff;
-    cursor: pointer;
-    margin-bottom: 0;
-    text-transform: uppercase;
-    width: 100%;
-    border-radius: 5px;
-    height: 35px;
-    border-color: transparent;
-    box-shadow: 0px;
-    outline: none;
-    transition: 0.15s;
-    text-align: center;
-    &:active {
-    background-color: #f1ac15;
-    }
+    width: ${({ width }) => width || '100%'};
+    height: ${({ height }) => height || '40px'};
+    border-radius: ${({ border_radius }) => border_radius || '4px'};
+    border: 1px solid #ced4da;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+`
 
-    ${({ type }) => {
-        switch (type) {
-            case 'submit':
-                return css`
-                    background-color: #000;
-                `
-        }
-    }}
+const GenericInputField = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+    align-items: flex-start;
 `
 
 const StringInput = ({
@@ -50,18 +42,21 @@ const StringInput = ({
     height,
     border_radius,
     fontSize,
-    value,
+    placeholder: placeholder,
 }: StringInputInterface) => {
     return (
-        <GenericStringInput
-            data-testid='email-input'
-            type={type || 'submit'}
-            value={value}
-            width={width}
-            height={height}
-            border_radius={border_radius}
-        >
-        </GenericStringInput>
+        <GenericInputField>
+            <Text color='grey' size='0.8em'>{placeholder}</Text>
+            <GenericStringInput
+                data-testid='email-input'
+                type={type || 'text'}
+                placeholder={placeholder}
+                width={width}
+                height={height}
+                border_radius={border_radius}
+            >
+            </GenericStringInput>
+        </GenericInputField>
     )
 }
 
