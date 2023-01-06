@@ -2,6 +2,10 @@ import styled, { css } from 'styled-components';
 import MainButton from '../atoms/MainButton';
 import Text from '../atoms/Text';
 import StringInput from '../atoms/StringInput';
+import LinkTag from '../atoms/LinkTag';
+import { colors } from '../../styles/colors';
+import React from 'react';
+// import toastGlass from '../../assets/toastGlass.png';
 
 interface LoginContainerInterface {
     width?: string;
@@ -11,7 +15,16 @@ interface LoginContainerInterface {
     fontSizeTitle?: string;
     subtitle?: string;
     fontSizeSubtitle?: string;
+    textLinked?: string;
+    href?: string;
 }
+
+
+// const Globe = () => {
+//     return (
+//         <img src={''} alt="Logo" />
+//     )
+// }
 
 const GenericContainer = styled.div<LoginContainerInterface>`
     display: flex;
@@ -25,11 +38,6 @@ const GenericContainer = styled.div<LoginContainerInterface>`
     height: ${({ height }) => height};
     border-radius: ${({ borderRadius }) => borderRadius || '8px'};
 `
-// position: absolute;
-// left: 50%;
-// top: 50%;
-// transform: translate(-50%, -50%);
-
 const LoginContainer = ({
     width,
     height,
@@ -38,18 +46,26 @@ const LoginContainer = ({
     fontSizeTitle,
     subtitle,
     fontSizeSubtitle,
+    textLinked,
+    href,
 }: LoginContainerInterface) => {
     return (
         <GenericContainer
-            data-testid='main button'
+            data-testid='login-container'
             width={width}
             height={height}
             borderRadius={borderRadius}
         >
-            <Text size={fontSizeTitle} margin-bottom="40px">{title}</Text>
-            <MainButton width='100%' onClick={() => { }} children='Acessa Conta'></MainButton>
-            <StringInput width='100%' type='submit' value='email'></StringInput>
-            <Text size={fontSizeSubtitle}>{subtitle}</Text>
+            {/* <Globe /> */}
+            <Text size={fontSizeTitle} margin="0px 0px 40px 0px">{title}</Text>
+
+            <MainButton width='100%' height='55px' onClick={() => { }} children='Acessa Conta'></MainButton>
+
+            <Text size={fontSizeSubtitle} color={colors.black} margin='40px 18% 0px 18%' fontWeight='400'>
+                {subtitle}
+                <LinkTag href={href} text={textLinked} />
+            </Text>
+
         </GenericContainer>
     )
 }
