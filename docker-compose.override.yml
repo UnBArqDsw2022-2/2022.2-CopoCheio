@@ -1,0 +1,5 @@
+services:
+  api:
+    depends_on:
+      - postgres
+    command: bash -c "echo 'Installing npm' && npm install && npx prisma migrate dev && npx prisma db seed && npm run dev"
