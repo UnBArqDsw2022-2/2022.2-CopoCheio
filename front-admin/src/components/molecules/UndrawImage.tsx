@@ -19,7 +19,7 @@ const UndrawImage = ({ imageElement }: UndrawImageInterface) => (
     height="100%"
     color={colors.white}
   >
-    <SvgContainer id="svg_container">
+    <SvgContainer data-testid="svg_container_test" id="svg_container">
       {imageElement}
     </SvgContainer>
   </GenericContainer>
