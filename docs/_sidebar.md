@@ -45,6 +45,7 @@
       - [3.1.2 Polimorfismo](/PadroesDeProjeto/3.1.2.Polymorphism.md)
       - [3.1.3 Controller](/PadroesDeProjeto/3.1.3.Controller.md)
     - [3.2. Módulo Padrões de Projeto GoFs](/PadroesDeProjeto/3.2.GoFs.md)
+    - [3.2. Módulo Padrões de Projeto GoFs](/PadroesDeProjeto/3.2.GoFs.md)
       - [3.2.1 GoFs Criacionais](/PadroesDeProjeto/3.2.1.GoFsCriacionais.md)
       - [3.2.2 GoFs Estruturais](/PadroesDeProjeto/3.2.2.GoFsEstruturais.md)
       - [3.2.3 GoFs Comportamentais](/PadroesDeProjeto/3.2.3.GoFsComportamentais.md)
