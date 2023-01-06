@@ -14,12 +14,7 @@ const Text = styled.span<StyledTextInterface>`
   font-size: ${({size}) => size || '18px'};
   font-weight: ${({ weight }) => weight === 'semibold' ? '600' : weight};
   color: ${({color}) => color};
-  ${({shadow})=>{
-    if(shadow)
-      return css`
-        text-shadow: ${shadow}
-      `
-  }}
+  text-shadow: ${({shadow}) => shadow}
 `
 
 export default Text;
