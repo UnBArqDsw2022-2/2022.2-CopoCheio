@@ -48,8 +48,8 @@
       - [3.2.1 GoFs Criacionais](/PadroesDeProjeto/3.2.1.GoFsCriacionais.md)
       - [3.2.2 GoFs Estruturais](/PadroesDeProjeto/3.2.2.GoFsEstruturais.md)
       - [3.2.3 GoFs Comportamentais](/PadroesDeProjeto/3.2.3.GoFsComportamentais.md)
-      - [3.2.4 GoFs Arquiteturais](/PadroesDeProjeto/3.2.4.GoFsArquiteturais.md)
-    - [3.3. Padrões Extras](/PadroesDeProjeto/3.3.PadroesExtra.md)
+    - [3.3 Padrões Arquiteturais](/PadroesDeProjeto/3.3.PadroesArquiteturais.md)
+    - [3.4. Padrões Extras](/PadroesDeProjeto/3.4.PadroesExtra.md)
     - [3.5. Participações - Padrões de Projeto](/PadroesDeProjeto/3.5.ParticipacoesPadroes.md)
 
 - **Arquitetura de Software & Reutilização**
