@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import Icon from './Icon/Icon';
-import { IconsTypes } from './Icon/IconTypes';
+import Icon from '../atoms/Icon/Icon';
+import { IconsTypes } from '../atoms/Icon/IconTypes';
 
 interface IconButtonInterface {
     type?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background' | 'default';

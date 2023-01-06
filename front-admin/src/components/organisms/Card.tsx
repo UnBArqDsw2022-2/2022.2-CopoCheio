@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { colors } from '../../styles/colors';
-import AttributesList from '../atoms/AttributesList';
-import CardContainer from '../atoms/CardContainer';
-import CardTitle from '../atoms/CardTitle';
-import IconButton from '../atoms/IconButtons';
+import AttributesList from '../molecules/AttributesList';
+import CardContainer from '../molecules/CardContainer';
+import CardTitle from '../molecules/CardTitle';
+import IconButton from '../molecules/IconButtons';
 import ImageText from '../atoms/ImageText';
 import Text from '../atoms/Text';
 
