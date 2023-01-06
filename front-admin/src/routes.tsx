@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
 
 const Router = createBrowserRouter([{
-    path: '/',
-    // element: adicionar componente aqui!
+    path: '/', element: <LoginPage />
 }])
 
 export default Router;
