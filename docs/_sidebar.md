@@ -37,13 +37,12 @@
         - [2.1.3.1 Backlog do Produto](/Modelagem/2.1.3.1.BacklogDoProduto.md)
     - [2.2. Iniciativas Extras - Modelagem](/Modelagem/2.2.IniciativasExtras.md)
     - [2.3. Participações - Modelagem](/Modelagem/2.3.ParticipacoesModelagem.md)
-
+    
 - **Padrões de Projeto**
   - [3. Desenho de Software (Padrões de Projeto)](/PadroesDeProjeto/3.PadroesDeProjeto.md)
     - [3.1. Módulo Padrões de Projeto GRASPs](/PadroesDeProjeto/3.1.GRASPs.md)
-      - [3.1.1. Information Expert](/PadroesDeProjeto/3.1.1.InformationExpert.md)
-      - [3.1.2 Polimorfismo](/PadroesDeProjeto/3.1.1.Polymorphism.md)
-    - [3.2. Módulo Padrões de Projeto GoFs](/PadroesDeProjeto/3.2.GoFs.md)
+      - [3.1.1 Information Expert](/PadroesDeProjeto/3.1.1.InformationExpert.md)
+      - [3.1.2 Polimorfismo](/PadroesDeProjeto/3.1.2.Polymorphism.md)
     - [3.2. Módulo Padrões de Projeto GoFs](/PadroesDeProjeto/3.2.GoFs.md)
       - [3.2.1 GoFs Criacionais](/PadroesDeProjeto/3.2.1.GoFsCriacionais.md)
       - [3.2.2 GoFs Estruturais](/PadroesDeProjeto/3.2.2.GoFsEstruturais.md)
