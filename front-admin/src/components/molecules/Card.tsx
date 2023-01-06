@@ -26,6 +26,7 @@ interface CardInterface {
     drinkDifficulty?:string;
     drinkLocation?:string;
     drinkCategories?:string;
+    userProfile?:string;
 }
 
 const CardTextContainer = styled.span`
@@ -54,6 +55,13 @@ const CardListContainer = styled.span`
   margin-bottom:16px;
 `
 
+const UserProfileContainer = styled.span`
+  display: flex;
+  margin:auto;
+  margin-left:0px;
+  margin-bottom:18px;
+`
+
 
 
 const Card = ({
@@ -73,6 +81,7 @@ const Card = ({
     drinkDifficulty,
     drinkLocation,
     drinkCategories,
+    userProfile,
 }: CardInterface) => {
 
     const [hover,setHover] = useState(false);
@@ -163,8 +172,10 @@ const Card = ({
                 </CardListContainer>
             )}
 
-            {(cardType=='drink')&&(
-                <ImageText>{userName}</ImageText>
+            {(cardType=='drink' && !hover)&&(
+                <UserProfileContainer>
+                    <ImageText imageSize="20px" fontSize='10px' fontColor={colors.alternative_white}  imageLeft={userProfile}>{userName}</ImageText>
+                </UserProfileContainer>
             )}
         </CardContainer>
     )
