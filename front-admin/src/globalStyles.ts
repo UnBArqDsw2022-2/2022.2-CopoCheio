@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
- 
+
 const GlobalStyle = createGlobalStyle`
   * {
     font-family: 'Playfair Display', serif;
@@ -9,8 +9,8 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background-color: ${({theme}) => theme.white};
+    background-color: ${({ theme }) => theme.white};
   }
 `;
- 
+
 export default GlobalStyle;

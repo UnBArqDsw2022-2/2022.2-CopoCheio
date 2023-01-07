@@ -6,7 +6,7 @@ interface MainButtonInterface {
     type?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background';
     width?: string;
     height?: string;
-    border_radius?: string;
+    borderRadius?: string;
     onClick: VoidFunction;
     leftElement?: ReactElement;
     rightElement?: ReactElement;
@@ -26,7 +26,7 @@ const GenericButton = styled.button<GenericButtonInterface>`
     width: ${({ width }) => width || 'fit-content'};
     height: ${({ height }) => height};
     padding: 8px 16px;
-    border-radius: ${({ border_radius }) => border_radius || '8px'};
+    border-radius: ${({ borderRadius }) => borderRadius || '8px'};
     outline: none;
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.14);
     border: none;
@@ -36,28 +36,28 @@ const GenericButton = styled.button<GenericButtonInterface>`
         switch (typeDefinition) {
             case 'primary':
                 return css`
-                    background-color: ${({theme}) => theme.primary};
-                    color: ${({theme}) => theme.alternative_white};
+                    background-color: ${({ theme }) => theme.primary};
+                    color: ${({ theme }) => theme.alternative_white};
                 `
             case 'confirm':
                 return css`
-                    background-color: ${({theme}) => theme.success};
-                    color: ${({theme}) => theme.black};
+                    background-color: ${({ theme }) => theme.success};
+                    color: ${({ theme }) => theme.black};
                 `
             case 'decline':
                 return css`
-                    background-color: ${({theme}) => theme.denied};
-                    color: ${({theme}) => theme.alternative_white};
+                    background-color: ${({ theme }) => theme.denied};
+                    color: ${({ theme }) => theme.alternative_white};
                 `
             case 'cancel':
                 return css`
                     background-color: rgba(153, 153, 153, 0.3);
-                    color: ${({theme}) => theme.black};
+                    color: ${({ theme }) => theme.black};
                 `
             case 'no-background':
                 return css`
                     background-color: transparent;
-                    color: ${({theme}) => theme.black};
+                    color: ${({ theme }) => theme.black};
                     box-shadow: none;
                     padding: 0;
                 `
@@ -69,7 +69,7 @@ const MainButton = ({
     type,
     width,
     height,
-    border_radius,
+    borderRadius,
     onClick,
     leftElement,
     rightElement,
@@ -83,7 +83,7 @@ const MainButton = ({
             typeDefinition={type || 'primary'}
             width={width}
             height={height}
-            border_radius={border_radius}
+            borderRadius={borderRadius}
         >
             {leftElement}
             <Text size={fontSize}>{children}</Text>
