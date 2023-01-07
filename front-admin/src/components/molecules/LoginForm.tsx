@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import MainButton from '../atoms/MainButton';
-import Text from '../atoms/Text';
 import StringInput from '../molecules/StringInput';
-import LinkTag from '../atoms/LinkTag';
-import ImageLogo from '../atoms/ImageLogo';
-import { colors } from '../../styles/colors';
 
 const GenericLoginForm = styled.form`
     display: flex;
