@@ -1,12 +1,10 @@
 import { colors } from '../../styles/colors';
 import styled from 'styled-components';
-import MainButton from '../atoms/MainButton';
 import Text from '../atoms/Text';
-import StringInput from '../molecules/StringInput';
 import LinkTag from '../atoms/LinkTag';
 import ImageLogo from '../atoms/ImageLogo';
 import LoginForm from '../molecules/LoginForm';
-// import userService from "../../services/UserService";
+
 
 const GenericLoginContainer = styled.div`
     display: flex;
