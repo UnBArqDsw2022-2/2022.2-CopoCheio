@@ -1,0 +1,36 @@
+name: Build test front-admin
+on:
+  pull_request:
+    branches:
+     - main
+    paths:
+      - 'front-admin/**'
+    paths-ignore:
+      - 'docs/**'
+  push:
+    branches:
+     - main
+    paths:
+      - 'front-admin/**'
+    paths-ignore:
+      - 'docs/**'
+
+jobs:
+  test-front-admin:
+    name: run tests front-admin
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18.x
+
+    - name: Npm Install
+      working-directory: ./front-admin
+      run: npm install
+
+    - name: Testing
+      working-directory: ./front-admin
+      run: npm run test
