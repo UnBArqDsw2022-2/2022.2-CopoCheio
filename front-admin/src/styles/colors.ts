@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-anonymous-default-export
-export const pallete =  {
+export const pallete = {
   primary: '#FEA444',
   alternative: '#8257E5',
   success: '#8CE563',
@@ -7,7 +7,7 @@ export const pallete =  {
   black: '#4a4a4a',
   white: '#f6f6f6',
   alternative_white: '#fefefe',
-  grey: '#999'
+  grey: '#999',
 };
 
 export const colors = {

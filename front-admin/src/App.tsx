@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 import { RouterProvider } from 'react-router-dom';
-import {colors} from './styles/colors';
+import { colors } from './styles/colors';
 import GlobalStyle from './globalStyles';
 import Router from './routes';
 
