@@ -1,10 +1,9 @@
 
-import authConfig from '../Config/auth';
-import { BadRequestException } from '../HttpExceptions/httpExceptions';
 import moment from "moment";
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
+import { BadRequestException } from '../Middlewares/httpExceptions';
 import { Roles } from './roles.model';
 import prisma from '../prismaConection';
 
@@ -119,10 +118,6 @@ export class Users {
     }
 
     async update(userData: UpdateUserDto, userId: string) {
-        console.log(userData)
-        if(userData == null || this.validator.isEmpty(userData)){
-            throw new BadRequestException('User is Empty')
-        }
         if (userData.email) {
             const anotherUser  = await this.prismaUser.findFirst({
                 where:{

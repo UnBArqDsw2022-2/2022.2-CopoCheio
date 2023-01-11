@@ -4,7 +4,7 @@ import { Users } from '../src/Models/users.model'
 import { Roles } from '../src/Models/roles.model'
 
 import { prismaMock } from '../prisma/singleton'
-import { BadRequestException } from '../src/HttpExceptions/httpExceptions'
+import { BadRequestException } from '../src/Middlewares/httpExceptions'
 
 const getAllRolesMock = jest.spyOn(Roles.prototype, 'all')
 const getAllMock = jest.spyOn(Users.prototype, 'all')
