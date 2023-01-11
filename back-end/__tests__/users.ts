@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs';
 import moment from 'moment'
 
 import { Users } from '../src/Models/users.model'
@@ -12,6 +13,8 @@ const createMock = jest.spyOn(Users.prototype, 'create')
 const findByEmailMock = jest.spyOn(Users.prototype, 'findByEmail')
 const findByIdMock = jest.spyOn(Users.prototype, 'findById')
 const updateMock = jest.spyOn(Users.prototype, 'update')
+const saltMock = jest.spyOn(bcrypt, 'genSalt').mockImplementation((rounds,callback)=>'salt')
+const hashMock = jest.spyOn(bcrypt, 'hash').mockImplementation((s,salt,callback=undefined)=>'123456salt')
 
 test('should find user by id', async () => {
     const userMockData = {
@@ -24,7 +27,7 @@ test('should find user by id', async () => {
         roleId: "9c0b623a-aca6-4caa-8d8e-bee8af4fa1ab",
         active: true
     }
-  
+    
     prismaMock.user.findUnique.mockResolvedValue(userMockData)
     const user = new Users(prismaMock.user)
 
@@ -124,7 +127,7 @@ test('should update a users name and password ', async () => {
         id: "9c0b623a-aca6-4caa-8d8e-bee8af4fa1ab",
         email: "joao@fkmail.com",
         nameComplete: "Joao2",
-        password: '12',
+        password: hashMock as unknown as string,
         birthDate: moment("2023-01-04T03:21:09.000Z").toDate(),
         createdDate: moment("2023-01-04T03:21:09.000Z").toDate(),
         roleId: "9c0b623a-aca6-4caa-8d8e-bee8af4fa1ab",
@@ -133,8 +136,7 @@ test('should update a users name and password ', async () => {
 
     prismaMock.user.update.mockResolvedValue(userMock)
     const user = new Users(prismaMock.user)
-
-    await expect(user.update({name:"Joao2", password:'12'},userMock.id)).resolves.toEqual(userMock)
+    await expect(user.update({name:"Joao2", password:'123456'},userMock.id)).resolves.toEqual(userMock)
     expect(updateMock).toHaveBeenCalled();
 
 })
