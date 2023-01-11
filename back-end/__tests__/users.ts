@@ -7,7 +7,18 @@ import { Roles } from '../src/Models/roles.model'
 import { prismaMock } from '../prisma/singleton'
 import { BadRequestException } from '../src/Middlewares/httpExceptions'
 
-const getAllRolesMock = jest.spyOn(Roles.prototype, 'all')
+const roleMockData = [
+    {
+        id: "9c0b623a-aca6-4caa-8d8e-bee8af4fa1ab",
+        name: 'Admin',
+    },
+    {
+        id: "6fad9cf1-ed9b-4de3-bf0d-aca4b7a751ee",
+        name: 'Customer',
+    },
+]
+
+const getAllRolesMock = jest.spyOn(Roles.prototype, 'all').mockResolvedValue(roleMockData)
 const getAllMock = jest.spyOn(Users.prototype, 'all')
 const createMock = jest.spyOn(Users.prototype, 'create')
 const findByEmailMock = jest.spyOn(Users.prototype, 'findByEmail')
@@ -103,24 +114,33 @@ test('should find all users', async () => {
 })
 
 
-// test('should create new user ', async () => {
-//   const userMockData = {
-//     id: "9c0b623a-aca6-4caa-8d8e-bee8af4fa1ab",
-//     email: "joao@fkmail.com",
-//     nameComplete: "Joao",
-//     birthDate: "2023-01-04T03:21:09.000Z"
-//   }
+test('should create new user ', async () => {
+    const createData = {
+        email: "joao@fkmail.com",
+        name: "Joao2",
+        password: "123456",
+        birthDate: moment("2001-01-04T03:21:09.000Z").toDate(),
 
-//   prismaMock.user.create.mockResolvedValue(userMockData)
-//   const dataToCreate = {password:'123',...userMockData}
-//   await expect(createUser(user)).resolves.toEqual({
-//     id: 1,
-//     name: 'Rich',
-//     email: 'hello@prisma.io',
-//     acceptTermsAndConditions: true,
-//   })
-//   expect(createMock).toHaveBeenCalled();
-// })
+    }    
+
+    const createdUserMock = {
+        id: "9c0b623a-aca6-4caa-8d8e-bee8af4fa1ab",
+        email: "joao@fkmail.com",
+        nameComplete: "Joao2",
+        password: hashMock as unknown as string,
+        birthDate: moment("2001-01-04T03:21:09.000Z").toDate(),
+        createdDate: moment("2001-01-04T03:21:09.000Z").toDate(),
+        roleId: "9c0b623a-aca6-4caa-8d8e-bee8af4fa1ab",
+        active: true
+    }
+
+    prismaMock.user.create.mockResolvedValue(createdUserMock)
+    const user = new Users(prismaMock.user)
+    await expect(user.create(createData)).resolves.toEqual(createdUserMock)
+    expect(createMock).toHaveBeenCalled();
+    expect(saltMock).toHaveBeenCalled();
+    expect(hashMock).toHaveBeenCalled();
+})
 
 test('should update a users name and password ', async () => {
     const userMock = {
@@ -138,6 +158,8 @@ test('should update a users name and password ', async () => {
     const user = new Users(prismaMock.user)
     await expect(user.update({name:"Joao2", password:'123456'},userMock.id)).resolves.toEqual(userMock)
     expect(updateMock).toHaveBeenCalled();
+    expect(saltMock).toHaveBeenCalled();
+    expect(hashMock).toHaveBeenCalled();
 
 })
 
