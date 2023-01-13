@@ -30,7 +30,7 @@ const LoginContainer = () => {
             <ImageLogo path='/images/toast-glass.png' />
             <Text size='1.8rem'>Acesse sua conta</Text>
             <LoginForm />
-            <Text size='1rem' color={colors.black} fontWeight='400'>
+            <Text size='1rem' color={colors.black} weight='regular'>
                 Para ter acesso a nossa plataforma de controle, entre em contato com um dos
                 <LinkTag href='https://unbarqdsw2022-2.github.io/2022.2-CopoCheio/#/'
                     text=' nossos desenvolvedores.' />

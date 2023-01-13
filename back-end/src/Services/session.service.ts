@@ -1,6 +1,6 @@
 import prisma from '../prismaConection';
 import { is } from 'superstruct';
-import bcrypt from  'bcryptjs';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import { BadRequestException } from '../HttpExceptions/httpExceptions';
@@ -11,11 +11,11 @@ import authConfig from '../Config/auth';
 const users = new Users(prisma.user);
 
 export default class SessionService {
-    
+
     static async login(login: LoginDtoType): Promise<string> {
-        if (!is(login, LoginDto)) {
-            throw new BadRequestException("Email or Password not Found");
-        }
+        // if (!is(login, LoginDto)) {
+        //     throw new BadRequestException("Email or Password not Found");
+        // }
 
         const user = await users.findByEmail(login.email, true);
 
@@ -28,12 +28,12 @@ export default class SessionService {
             throw new BadRequestException("Email or Password does not match");
         }
 
-        return jwt.sign({id: user.id!}, authConfig.secret!, {
+        return jwt.sign({ id: user.id! }, authConfig.secret!, {
             expiresIn: authConfig.expiresIn
         });
     }
-    
-    private static async checkPassword(password:string, passwordHash: string) : Promise<boolean> {
+
+    private static async checkPassword(password: string, passwordHash: string): Promise<boolean> {
         return bcrypt.compare(password, passwordHash)
     }
 }

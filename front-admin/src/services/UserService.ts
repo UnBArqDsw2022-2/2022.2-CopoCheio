@@ -1,6 +1,7 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import ApiRequest from "./ApiRequestService";
 import User from "../models/UserModel";
+
 
 class UserService extends ApiRequest {
   private static intance: UserService;
@@ -13,9 +14,12 @@ class UserService extends ApiRequest {
   }
 
 
-  getUserData = async () => {
+  getUserData = async (user: User) => {
+    const userId = user.id;
+    const url = this.createUrl(`/user/${userId}`);
+
     try {
-      const response = await axios.get(`${this.createUrl()}`);
+      const response = await axios.get(url);
       const user = User.factoryUser(response.data);
       console.log(user.name);
     }
@@ -24,13 +28,25 @@ class UserService extends ApiRequest {
     }
   }
 
-  postUserData = async (user: User) => {
+  loginUser = async (email: string, password: string) => {
+    const url = this.createUrl('session/login');
+
+    const body = {
+      "email": email,
+      "password": password
+    };
+
     try {
-      const response = await axios.post(`${this.createUrl()}`, user.toJson());
-      console.log(response.data);
+      const response = await axios.post(url, body);
+      const token = response.data['token'];
+      localStorage.setItem('userToken', token)
+      return response.status;
     }
+
     catch (error) {
-      console.log(error);
+      const err = error as AxiosError;
+      const message = err.response?.data as any;
+      throw message["error"];
     }
   }
 
