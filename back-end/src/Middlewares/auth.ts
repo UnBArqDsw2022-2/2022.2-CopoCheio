@@ -10,8 +10,8 @@ export const JwtAuthMiddleware = async(req: Request, res: Response, next: NextFu
         return res.status(401).json({ error: 'Token not provided' });
     }
 
-    const [, token] = authHeader.split(' ');
-
+    const [token] = authHeader.split(' ');
+    
     try {
         const decoded = jwt.verify(token, authConfig.secret!) as any;
         req.id = decoded.id;

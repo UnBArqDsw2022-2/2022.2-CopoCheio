@@ -14,17 +14,25 @@ class UserService extends ApiRequest {
   }
 
 
-  getUserData = async (user: User) => {
-    const userId = user.id;
-    const url = this.createUrl(`/user/${userId}`);
+  getUserData = async (id: string) => {
+    const url = this.createUrl(`user/${id}`);
+    const userToken = localStorage.getItem('userToken');
+    const headers = {
+      "authorization": userToken
+    };
 
     try {
-      const response = await axios.get(url);
+      const response = await axios.get(url,{
+        headers: headers
+      });
+
       const user = User.factoryUser(response.data);
-      console.log(user.name);
-    }
-    catch (error) {
-      console.log(error);
+      
+      return user;
+    } catch (error) {
+      const err = error as AxiosError;
+      const message = err.response?.data as any;
+      throw message["error"];
     }
   }
 
@@ -39,8 +47,8 @@ class UserService extends ApiRequest {
     try {
       const response = await axios.post(url, body);
       const token = response.data['token'];
+      const id = response
       localStorage.setItem('userToken', token)
-      return response.status;
     }
 
     catch (error) {

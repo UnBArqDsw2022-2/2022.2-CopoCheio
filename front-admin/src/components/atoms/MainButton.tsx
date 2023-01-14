@@ -84,6 +84,7 @@ const MainButton = ({
             width={width}
             height={height}
             borderRadius={borderRadius}
+            
         >
             {leftElement}
             <Text size={fontSize}>{children}</Text>

@@ -21,7 +21,7 @@ class User {
 
         user.age = momentNow.diff(birthDateMomento, 'years');
         user.id = dict['id'];
-        user.name = dict['name'];
+        user.name = dict['nameComplete'];
         user.email = dict['email'];
         user.active = dict['active'];
         user.birthDate = dict['birthDate'];

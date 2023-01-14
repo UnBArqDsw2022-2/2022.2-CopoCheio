@@ -28,7 +28,7 @@ const LoginContainer = () => {
             data-testid='login-container'
         >
             <ImageLogo path='/images/toast-glass.png' />
-            <Text size='1.8rem'>Acesse sua conta</Text>
+            <Text color={colors.black} size='1.8rem'>Acesse sua conta</Text>
             <LoginForm />
             <Text size='1rem' color={colors.black} weight='regular'>
                 Para ter acesso a nossa plataforma de controle, entre em contato com um dos

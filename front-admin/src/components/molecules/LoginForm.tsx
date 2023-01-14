@@ -5,6 +5,7 @@ import userService from "../../services/UserService";
 import Text from '../atoms/Text';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import RegexValidations from "../../utils/regexValidations";
 
 const GenericLoginForm = styled.form`
     display: flex;
@@ -27,16 +28,17 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     const callLoginUser = () => {
-        userService.loginUser(email, password)
-            .then((status) => {
-                if (status === 200) {
+        const emailIsValid = RegexValidations.validateEmail(email);
+        const passwordIsValid = RegexValidations.validatePassword(password);
+        if (emailIsValid && passwordIsValid)
+            userService.loginUser(email, password)
+                .then(() => {
                     navigate("/home");
                 }
-            }
-            ).catch((error) => {
-                setResponseError(error)
-            })
-    }
+                ).catch((error) => {
+                    setResponseError(error);
+                })
+    };
 
     return (
         <GenericLoginForm
@@ -44,13 +46,13 @@ const LoginForm = () => {
         >
 
             <Text color="red">{responseError}</Text>
-            <StringInput width='100%' height='56px' type='email' placeholder='E-mail' onChange={(event) => { setEmail(event.target.value) }} />
-            <StringInput width='100%' height='56px' type='password' placeholder='Senha' onChange={(event) => { setPassword(event.target.value) }} />
-            <MainButton width='100%'
+            <StringInput width='100%' height='56px' type='email' placeholder='E-mail' onChange={(event) => setEmail(event.target.value)} />
+            <StringInput width='100%' height='56px' type='password' placeholder='Senha' onChange={(event) => setPassword(event.target.value)} />
+            <MainButton
+                width='100%'
                 onClick={(event) => {
                     event.preventDefault();
-                    if (email && password)
-                        callLoginUser();
+                    callLoginUser();
                 }}
                 children='Acessar Conta'
                 height='56px'
