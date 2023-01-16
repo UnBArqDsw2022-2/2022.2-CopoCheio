@@ -4,6 +4,8 @@ import { colors } from './styles/colors';
 import GlobalStyle from './globalStyles';
 import Router from './routes';
 
+
+
 function App() {
   return (
     <>

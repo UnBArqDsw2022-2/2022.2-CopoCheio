@@ -20,7 +20,7 @@ class UserService extends ApiRequest {
     return this._user;
   }
 
-  public set setUser(user: User | undefined) {
+  public set user(user: User | undefined) {
     if (!user)
       this._user = new User();
     else
@@ -29,25 +29,21 @@ class UserService extends ApiRequest {
 
 
   getUserData = async () => {
-
-    const userId = localStorage.getItem('userId')
+    const userId = sessionStorage.getItem('userId');
     const url = this.createUrl(`user/${userId}`);
-    const userToken = localStorage.getItem('userToken');
+    const userToken = sessionStorage.getItem('userToken');
     const headers = {
       "authorization": userToken
     };
 
     try {
-      this.setUser = undefined;
+      this.user = undefined;
       const response = await axios.get(url, {
         headers: headers
       });
-
       const user = User.factoryUser(response.data);
-      this.setUser = user;
-
+      this.user = user;
       return user;
-
     } catch (error) {
       const err = error as AxiosError;
       const message = err.response?.data as any;
@@ -65,10 +61,12 @@ class UserService extends ApiRequest {
 
     try {
       const response = await axios.post(url, body);
+
       const token = response.data['token'];
       const userId = response.data['id'];
-      localStorage.setItem('userToken', token);
-      localStorage.setItem('userId', userId);
+
+      sessionStorage.setItem('userToken', token);
+      sessionStorage.setItem('userId', userId);
     }
 
     catch (error) {

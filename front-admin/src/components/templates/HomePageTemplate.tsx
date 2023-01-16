@@ -16,9 +16,13 @@ const HomePageContainer = styled.section`
 const HomePageTemplate = () => {
   const navigate = useNavigate();
   const isSigned = async () => {
-    if (!userService.user) {
-      const user = await userService.getUserData();
-      if (user.id == null) navigate('/');
+    if (!userService?.user) {
+      try {
+        const user = await userService.getUserData();
+        if (!user?.id) navigate('/login');
+      } catch (error) {
+        navigate('/login');
+      }
     }
   };
 

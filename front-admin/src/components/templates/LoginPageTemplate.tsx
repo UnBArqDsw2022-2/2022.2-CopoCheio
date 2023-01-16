@@ -17,9 +17,13 @@ const LoginPageContainer = styled.section`
 const LoginPageTemplate = () => {
     const navigate = useNavigate();
     const isSigned = async () => {
-        if (!userService.user) {
-            const user = await userService.getUserData();
-            if (user.id != null) navigate('/home');
+        if (!userService?.user) {
+            try {
+                const user = await userService.getUserData();
+                if (user?.id) navigate('/home');
+            } catch (error) {
+                navigate('/login')
+            }
         }
     };
 

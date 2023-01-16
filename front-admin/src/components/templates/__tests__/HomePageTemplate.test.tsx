@@ -1,9 +1,9 @@
-import {screen, render} from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import HomePageTemplate from '../HomePageTemplate';
 
 jest.mock('react-router-dom');
 
-describe('#HomePageTemplate', () => { 
+describe('#HomePageTemplate', () => {
   test('render component correctly', () => {
     render(<HomePageTemplate />);
     const headerTitle = screen.getByText('Copo Cheio Admin');
