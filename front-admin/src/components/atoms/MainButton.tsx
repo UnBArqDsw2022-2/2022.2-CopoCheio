@@ -11,7 +11,7 @@ interface MainButtonInterface {
     onClick: React.MouseEventHandler<HTMLButtonElement> | VoidFunction;
     leftElement?: ReactElement;
     rightElement?: ReactElement;
-    children: string;
+    children?: string;
     fontSize?: string;
 }
 

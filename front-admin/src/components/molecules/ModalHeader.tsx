@@ -5,7 +5,7 @@ import Image from "../atoms/Image";
 import Icon from "../atoms/Icon/Icon";
 
 interface ModalHeaderInterface {
-    title: string;
+    title?: string;
     userImage?: string;
     userName?: string;
 }

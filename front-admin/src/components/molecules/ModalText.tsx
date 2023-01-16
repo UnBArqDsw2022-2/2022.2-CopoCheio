@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { colors } from "../../styles/colors";
 
 interface ModalTextInterface {
-    title: string;
-    text: string;
+    title?: string;
+    text?: string;
 }
 
 const ModalTextContainer = styled.div`
