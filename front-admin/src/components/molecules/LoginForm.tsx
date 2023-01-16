@@ -18,8 +18,6 @@ const GenericLoginForm = styled.form`
     width: clamp(270px, 95%, 700px);
 `
 
-
-
 const LoginForm = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");

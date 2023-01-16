@@ -16,14 +16,14 @@ const HomePageContainer = styled.section`
 const HomePageTemplate = () => {
   const navigate = useNavigate();
   const isSigned = async () => {
-    const token = localStorage.getItem('userToken');
-    !token &&  navigate('/'); 
-        userService.getUserData('92005001-a657-4444-8379-3daeed5e784f').catch(() => navigate('/'));
+    if (!userService.user) {
+      const user = await userService.getUserData();
+      if (user.id == null) navigate('/');
+    }
   };
 
   useEffect(() => {
-        console.log('chamou req home');
-        isSigned();
+    isSigned();
   }, []);
 
   return (

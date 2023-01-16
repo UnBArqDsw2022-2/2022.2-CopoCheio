@@ -16,16 +16,14 @@ const LoginPageContainer = styled.section`
 
 const LoginPageTemplate = () => {
     const navigate = useNavigate();
-    const isSigned = () => {
-        const token = localStorage.getItem('userToken');
-        token &&  navigate('/Home');
-        userService.getUserData('92005001-a657-4444-8379-3daeed5e784f').then((response) => {
-            response && navigate('/Home');
-        }).catch(() => navigate('/'));
-    }
-  
+    const isSigned = async () => {
+        if (!userService.user) {
+            const user = await userService.getUserData();
+            if (user.id != null) navigate('/home');
+        }
+    };
+
     useEffect(() => {
-        console.log('chamou req login');
         isSigned();
     }, []);
 
