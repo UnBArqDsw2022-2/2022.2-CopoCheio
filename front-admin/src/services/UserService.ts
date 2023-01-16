@@ -4,7 +4,7 @@ import User from "../models/UserModel";
 
 
 class UserService extends ApiRequest {
-  user?: User;
+  private _user?: User;
 
   private static intance: UserService;
 
@@ -16,9 +16,19 @@ class UserService extends ApiRequest {
     return UserService.intance;
   }
 
+  public get user() {
+    return this._user;
+  }
+
+  public set setUser(user: User | undefined) {
+    if (!user)
+      this._user = new User();
+    else
+      this._user = user;
+  }
+
 
   getUserData = async () => {
-    this.user = new User();
 
     const userId = localStorage.getItem('userId')
     const url = this.createUrl(`user/${userId}`);
@@ -28,12 +38,14 @@ class UserService extends ApiRequest {
     };
 
     try {
+      this.setUser = undefined;
       const response = await axios.get(url, {
         headers: headers
       });
 
       const user = User.factoryUser(response.data);
-      this.user = user;
+      this.setUser = user;
+
       return user;
 
     } catch (error) {
