@@ -6,8 +6,8 @@ const router = Router();
 router.post('/login', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const body = req.body;
-        const token = await SessionService.login(body);
-        res.status(200).send({ token });
+        const userSession = await SessionService.login(body);
+        res.status(200).send(userSession);
     } catch (error) {
         next(error)
     }

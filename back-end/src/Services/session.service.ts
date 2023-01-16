@@ -12,7 +12,7 @@ const users = new Users(prisma.user);
 
 export default class SessionService {
 
-    static async login(login: LoginDtoType): Promise<string> {
+    static async login(login: LoginDtoType): Promise<Object> {
         // if (!is(login, LoginDto)) {
         //     throw new BadRequestException("Email or Password not Found");
         // }
@@ -28,9 +28,14 @@ export default class SessionService {
             throw new BadRequestException("Email or Password does not match");
         }
 
-        return jwt.sign({ id: user.id! }, authConfig.secret!, {
+        const tokenUser = jwt.sign({ id: user.id! }, authConfig.secret!, {
             expiresIn: authConfig.expiresIn
         });
+
+        return {
+            token: tokenUser,
+            id: user.id,
+        }
     }
 
     private static async checkPassword(password: string, passwordHash: string): Promise<boolean> {
