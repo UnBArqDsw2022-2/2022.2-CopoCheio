@@ -67,7 +67,7 @@ class UserService extends ApiRequest {
 
     catch (error) {
       const err = error as any;
-      throw err["data"]["error"];
+      throw err["response"]["data"]["error"];
     }
   }
 

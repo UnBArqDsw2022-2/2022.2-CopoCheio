@@ -22,30 +22,33 @@ const LoginForm = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [responseError, setResponseError] = useState<string>("");
+    const [emailError, setEmailError] = useState<string>("");
+    const [passwordError, setPasswordError] = useState<string>("");
 
     const navigate = useNavigate();
 
     const callLoginUser = () => {
-        const emailIsValid = RegexValidations.validateEmail(email);
-        const passwordIsValid = RegexValidations.validatePassword(password);
-        if (emailIsValid && passwordIsValid)
+        const emailValidate = RegexValidations.validateEmail(email);
+        const passwordValidate = RegexValidations.validatePassword(password);
+
+        setEmailError(emailValidate || '');
+        setPasswordError(passwordValidate || '');
+
+
+        if (emailValidate == null && passwordValidate == null) {
             userService.loginUser(email, password)
-                .then(() => {
-                    navigate("/home");
-                }
-                ).catch((error) => {
-                    setResponseError(error);
-                })
+                .then(() => navigate("/home"))
+                .catch((error) => setResponseError(error))
+        }
     };
 
     return (
         <GenericLoginForm
             data-testid='login-form'
         >
-
             <Text color="red">{responseError}</Text>
-            <StringInput width='100%' height='56px' type='email' placeholder='E-mail' onChange={(event) => setEmail(event.target.value)} />
-            <StringInput width='100%' height='56px' type='password' placeholder='Senha' onChange={(event) => setPassword(event.target.value)} />
+            <StringInput width='100%' height='56px' type='email' placeholder='E-mail' inputError={emailError} onChange={(event) => setEmail(event.target.value)} />
+            <StringInput width='100%' height='56px' type='password' placeholder='Senha' inputError={passwordError} onChange={(event) => setPassword(event.target.value)} />
             <MainButton
                 width='100%'
                 onClick={(event) => {

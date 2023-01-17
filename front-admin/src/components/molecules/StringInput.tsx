@@ -9,7 +9,8 @@ interface StringInputInterface {
     fontSize?: string;
     placeholder?: string;
     onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
-    value?: string
+    value?: string;
+    inputError?: string
 }
 
 interface GenericStringInputInterface extends Omit<StringInputInterface, "placeholder"> {
@@ -47,6 +48,7 @@ const StringInput = ({
     onChange,
     value,
     fontSize,
+    inputError,
 }: StringInputInterface) => {
     return (
         <GenericInputField>
@@ -62,6 +64,7 @@ const StringInput = ({
                 fontSize={fontSize}
             >
             </GenericStringInput>
+            <Text color='red' size='0.8em'>{inputError}</Text>
         </GenericInputField >
     )
 }
