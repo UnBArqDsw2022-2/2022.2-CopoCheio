@@ -2,8 +2,8 @@ import { colors } from '../../styles/colors';
 import styled from 'styled-components';
 import Text from '../atoms/Text';
 import LinkTag from '../atoms/LinkTag';
-import ImageLogo from '../atoms/ImageLogo';
 import LoginForm from '../molecules/LoginForm';
+import Image from '../atoms/Image';
 
 
 const GenericLoginContainer = styled.div`
@@ -27,7 +27,7 @@ const LoginContainer = () => {
         <GenericLoginContainer
             data-testid='login-container'
         >
-            <ImageLogo path='/images/toast-glass.png' />
+            <Image src="/images/toast-glass.png" />
             <Text color={colors.black} size='1.8rem'>Acesse sua conta</Text>
             <LoginForm />
             <Text size='1rem' color={colors.black} weight='regular'>

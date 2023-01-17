@@ -44,7 +44,7 @@ class UserService extends ApiRequest {
       return user;
     } catch (error) {
       const err = error as any;
-      throw err["data"]["message"];
+      throw err["data"]["error"];
     }
   }
 
@@ -67,7 +67,7 @@ class UserService extends ApiRequest {
 
     catch (error) {
       const err = error as any;
-      throw err["data"]["message"];
+      throw err["data"]["error"];
     }
   }
 
