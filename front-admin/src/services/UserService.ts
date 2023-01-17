@@ -29,38 +29,34 @@ class UserService extends ApiRequest {
 
 
   getUserData = async () => {
-    const userId = sessionStorage.getItem('userId');
-    const url = this.createUrl(`user/${userId}`);
-    const userToken = sessionStorage.getItem('userToken');
-    const headers = {
-      "authorization": userToken
-    };
+    this.user = undefined;
 
     try {
-      this.user = undefined;
-      const response = await axios.get(url, {
-        headers: headers
-      });
+      const userId = sessionStorage.getItem('userId');
+      const userToken = sessionStorage.getItem('userToken');
+
+      const headers = { "authorization": userToken };
+      const response = await this.getRequest({ endPoint: `user/${userId}`, headers: headers });
+
       const user = User.factoryUser(response.data);
+
       this.user = user;
       return user;
     } catch (error) {
-      const err = error as AxiosError;
-      const message = err.response?.data as any;
-      throw message["error"];
+      const err = error as any;
+      throw err["data"]["message"];
     }
   }
 
   loginUser = async (email: string, password: string) => {
-    const url = this.createUrl('session/login');
-
-    const body = {
-      "email": email,
-      "password": password
-    };
 
     try {
-      const response = await axios.post(url, body);
+      const body = {
+        "email": email,
+        "password": password
+      };
+
+      const response = await this.postRequest({ endPoint: 'session/login', body: body })
 
       const token = response.data['token'];
       const userId = response.data['id'];
@@ -70,9 +66,8 @@ class UserService extends ApiRequest {
     }
 
     catch (error) {
-      const err = error as AxiosError;
-      const message = err.response?.data as any;
-      throw message["error"];
+      const err = error as any;
+      throw err["data"]["message"];
     }
   }
 
