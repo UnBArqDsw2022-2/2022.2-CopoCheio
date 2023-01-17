@@ -24,7 +24,12 @@ class ApiRequestService {
         } catch (error) {
             const err = error as AxiosError;
             const response = err.response as any;
-            throw response;
+
+            if (response) {
+                throw response;
+            } else {
+                throw new AxiosError("Não foi possível conectar-se ao servidor!");
+            }
         }
     }
 
