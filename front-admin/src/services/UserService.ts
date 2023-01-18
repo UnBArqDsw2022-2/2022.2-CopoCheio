@@ -1,4 +1,3 @@
-import axios, { AxiosError } from "axios";
 import ApiRequest from "./ApiRequestService";
 import User from "../models/UserModel";
 
@@ -27,16 +26,18 @@ class UserService extends ApiRequest {
       this._user = user;
   }
 
+  private _setUserToken = (token: string, userId: string) => {
+    sessionStorage.setItem('userToken', token);
+    sessionStorage.setItem('userId', userId);
+  }
 
   getUserData = async () => {
     this.user = undefined;
 
     try {
       const userId = sessionStorage.getItem('userId');
-      const userToken = sessionStorage.getItem('userToken');
 
-      const headers = { "authorization": userToken };
-      const response = await this.getRequest({ endPoint: `user/${userId}`, headers: headers });
+      const response = await this.getRequest({ endPoint: `user/${userId}` });
 
       const user = User.factoryUser(response.data);
 
@@ -61,11 +62,8 @@ class UserService extends ApiRequest {
       const token = response.data['token'];
       const userId = response.data['id'];
 
-      sessionStorage.setItem('userToken', token);
-      sessionStorage.setItem('userId', userId);
-    }
-
-    catch (error) {
+      this._setUserToken(token, userId);
+    } catch (error) {
       const err = error as any;
       throw err["response"]["data"]["error"];
     }

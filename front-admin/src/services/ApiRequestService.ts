@@ -1,7 +1,10 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosError } from "axios";
 
 const BASEURL = 'http://localhost';
 const PORT = '3000';
+
+const userToken = sessionStorage.getItem('userToken');
+const headers = { "authorization": userToken };
 
 class ApiRequestService {
 
@@ -16,7 +19,7 @@ class ApiRequestService {
         return url;
     }
 
-    async getRequest({ endPoint, params, headers }: { endPoint: string, params?: string, headers?: any }) {
+    async getRequest({ endPoint, params }: { endPoint: string, params?: string }) {
         try {
             const url = this.createUrl(endPoint, params);
             const response = await axios.get(url, { headers: headers });
@@ -26,14 +29,14 @@ class ApiRequestService {
             const response = err.response as any;
 
             if (response) {
-                throw response;
+                return response;
             } else {
                 throw new AxiosError("Não foi possível conectar-se ao servidor!");
             }
         }
     }
 
-    async postRequest({ endPoint, params, headers, body }: { endPoint: string, params?: string, headers?: any, body?: any }) {
+    async postRequest({ endPoint, params, body }: { endPoint: string, params?: string, body?: any }) {
         try {
             const url = this.createUrl(endPoint, params);
             const response = axios.post(url, body, { headers: headers });
@@ -43,14 +46,14 @@ class ApiRequestService {
             const response = err.response as any;
 
             if (response) {
-                throw response;
+                return response;
             } else {
                 throw new AxiosError("Não foi possível conectar-se ao servidor!");
             }
         }
     }
 
-    async putRequest({ endPoint, params, headers, body }: { endPoint: string, params?: string, headers?: any, body?: any }) {
+    async putRequest({ endPoint, params, body }: { endPoint: string, params?: string, body?: any }) {
         try {
             const url = this.createUrl(endPoint, params);
             const response = axios.put(url, body, { headers: headers });
@@ -67,7 +70,7 @@ class ApiRequestService {
         }
     }
 
-    async deleteRequest({ endPoint, params, headers }: { endPoint: string, params?: string, headers?: any }) {
+    async deleteRequest({ endPoint, params }: { endPoint: string, params?: string }) {
         try {
             const url = this.createUrl(endPoint, params);
             const response = axios.delete(url, { headers: headers });
