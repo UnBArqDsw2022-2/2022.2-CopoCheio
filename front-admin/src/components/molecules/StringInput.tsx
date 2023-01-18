@@ -64,7 +64,7 @@ const StringInput = ({
                 fontSize={fontSize}
             >
             </GenericStringInput>
-            <Text color='red' size='0.8em'>{inputError}</Text>
+            <Text color='red' size='14px' margin='4px 0px'>{inputError}</Text>
         </GenericInputField >
     )
 }

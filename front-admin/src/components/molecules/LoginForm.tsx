@@ -24,6 +24,8 @@ const LoginForm = () => {
     const [responseError, setResponseError] = useState<string>("");
     const [emailError, setEmailError] = useState<string>("");
     const [passwordError, setPasswordError] = useState<string>("");
+    const [stateButton, setStateButton] = useState<"primary" | "loading" | "confirm" | "decline" | "cancel" | "no-background" | undefined>();
+
 
     const navigate = useNavigate();
 
@@ -35,10 +37,17 @@ const LoginForm = () => {
         setPasswordError(passwordValidate || '');
 
 
-        if (emailValidate == null && passwordValidate == null) {
-            userService.loginUser(email, password)
-                .then(() => navigate("/home"))
-                .catch((error) => setResponseError(error))
+        if (!emailValidate && !passwordValidate) {
+            setStateButton('loading');
+            userService.loginUser(email.trim(), password)
+                .then(() => {
+                    setStateButton('primary');
+                    navigate("/home");
+                })
+                .catch((error) => {
+                    setStateButton('primary');
+                    setResponseError(error)
+                })
         }
     };
 
@@ -51,10 +60,11 @@ const LoginForm = () => {
             <StringInput width='100%' height='56px' type='password' placeholder='Senha' inputError={passwordError} onChange={(event) => setPassword(event.target.value)} />
             <MainButton
                 width='100%'
-                onClick={(event) => {
-                    event.preventDefault();
+                onClick={(e) => {
+                    e.preventDefault();
                     callLoginUser();
                 }}
+                type={stateButton}
                 children='Acessar Conta'
                 height='56px'
                 fontSize='22px'

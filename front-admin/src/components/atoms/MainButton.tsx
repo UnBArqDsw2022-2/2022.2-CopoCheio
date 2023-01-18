@@ -1,13 +1,14 @@
 import styled, { css } from 'styled-components';
 import Text from './Text';
 import { ReactElement } from 'react';
+import SpinnerLoading from './SpinnerLoading';
 
 interface MainButtonInterface {
-    type?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background';
+    type?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background' | 'loading';
     width?: string;
     height?: string;
     borderRadius?: string;
-    onClick: React.MouseEventHandler<HTMLButtonElement>;
+    onClick: React.MouseEventHandler<HTMLButtonElement> | VoidFunction;
     leftElement?: ReactElement;
     rightElement?: ReactElement;
     children: string;
@@ -61,6 +62,11 @@ const GenericButton = styled.button<GenericButtonInterface>`
                     box-shadow: none;
                     padding: 0;
                 `
+            case 'loading':
+                return css`
+                    color: ${({ theme }) => theme.loading};
+                    cursor: default;
+                `
         }
     }}
 `
@@ -79,15 +85,15 @@ const MainButton = ({
     return (
         <GenericButton
             data-testid='main button'
-            onClick={onClick}
+            onClick={type === 'loading' ? (e) => { e.preventDefault(); } : onClick}
             typeDefinition={type || 'primary'}
             width={width}
             height={height}
             borderRadius={borderRadius}
-            
+
         >
             {leftElement}
-            <Text size={fontSize}>{children}</Text>
+            {type === 'loading' ? <SpinnerLoading /> : <Text size={fontSize}>{children}</Text>}
             {rightElement}
         </GenericButton>
     )

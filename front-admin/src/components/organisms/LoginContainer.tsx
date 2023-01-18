@@ -20,6 +20,15 @@ const GenericLoginContainer = styled.div`
     width: clamp(300px, 40vw, 775px);
     padding: 3.5vw;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14);
+
+    @media (max-width: 900px) {
+        width: 80%;
+    }
+
+    @media (max-height: 790px) {
+        height: 95%;
+    }
+    
 `
 
 const LoginContainer = () => {
