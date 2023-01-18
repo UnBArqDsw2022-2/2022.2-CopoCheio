@@ -16,7 +16,6 @@ const HomePageContainer = styled.section`
 const HomePageTemplate = () => {
   const navigate = useNavigate();
 
-
   useEffect(() => {
     async function isSigned() {
       try {

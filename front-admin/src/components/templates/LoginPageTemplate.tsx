@@ -17,7 +17,6 @@ const LoginPageContainer = styled.section`
 const LoginPageTemplate = () => {
     const navigate = useNavigate();
 
-
     useEffect(() => {
         async function isSigned() {
             try {
