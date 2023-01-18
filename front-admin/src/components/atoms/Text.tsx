@@ -1,4 +1,3 @@
-import { ReactElement } from "react";
 import styled from "styled-components";
 
 interface StyledTextInterface {

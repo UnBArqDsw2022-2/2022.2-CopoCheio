@@ -16,7 +16,7 @@ const LoginPageContainer = styled.section`
 
 const LoginPageTemplate = () => {
     const navigate = useNavigate();
-    const isSigned = async () => {
+    const isSigned = () => {
         userService.getUserData()
             .then((user) => { if (user?.id) navigate('/home'); })
             .catch(() => navigate('/login'));
