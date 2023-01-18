@@ -16,15 +16,18 @@ const LoginPageContainer = styled.section`
 
 const LoginPageTemplate = () => {
     const navigate = useNavigate();
-    const isSigned = () => {
-        userService.getUserData()
-            .then((user) => { if (user?.id) navigate('/home'); })
-            .catch(() => navigate('/login'));
+    const isSigned = async () => {
+        try {
+            const user = await userService.getUserData();
+            if (user?.id) navigate('/home');
+        } catch (error) {
+            navigate('/login');
+        }
     }
 
     useEffect(() => {
         isSigned();
-    }, []);
+    }, [isSigned]);
 
     return (
         <LoginPageContainer>
