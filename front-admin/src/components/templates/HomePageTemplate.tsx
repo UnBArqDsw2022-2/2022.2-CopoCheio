@@ -15,18 +15,20 @@ const HomePageContainer = styled.section`
 
 const HomePageTemplate = () => {
   const navigate = useNavigate();
-  const isSigned = async () => {
-    try {
-      const user = await userService.getUserData();
-      if (!user?.id) navigate('/login');
-    } catch (error) {
-      navigate('/login');
-    }
-  };
+
 
   useEffect(() => {
+    async function isSigned() {
+      try {
+        const user = await userService.getUserData();
+        if (!user?.id) navigate('/login');
+      } catch (error) {
+        navigate('/login');
+      }
+    };
+
     isSigned();
-  }, [isSigned]);
+  }, []);
 
   return (
     <HomePageContainer>
