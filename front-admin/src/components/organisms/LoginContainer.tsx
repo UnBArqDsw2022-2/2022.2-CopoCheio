@@ -16,19 +16,11 @@ const GenericLoginContainer = styled.div`
     text-align: center;
     background-color: ${({ theme }) => theme.alternative_white};
     border-radius: 8px;
-    height: 80vh;
+    height: 700px;
     width: clamp(300px, 40vw, 775px);
     padding: 3.5vw;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14);
-
-    @media (max-width: 900px) {
-        width: 80%;
-    }
-
-    @media (max-height: 790px) {
-        height: 95%;
-    }
-    
+    max-width: 540px;
 `
 
 const LoginContainer = () => {

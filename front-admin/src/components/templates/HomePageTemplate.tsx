@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -16,16 +17,16 @@ const HomePageContainer = styled.section`
 const HomePageTemplate = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function isSigned() {
-      try {
-        const user = await userService.getUserData();
-        if (!user?.id) navigate('/login');
-      } catch (error) {
-        navigate('/login');
-      }
-    };
+  async function isSigned() {
+    try {
+      const user = await userService.getUserData();
+      if (!user?.id) navigate('/login');
+    } catch (error) {
+      navigate('/login');
+    }
+  };
 
+  useEffect(() => {
     isSigned();
   }, []);
 
