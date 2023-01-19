@@ -8,6 +8,7 @@ export const pallete = {
   white: '#f6f6f6',
   alternative_white: '#fefefe',
   grey: '#999',
+  loading: '#E1D7C6',
 };
 
 export const colors = {

@@ -1,6 +1,7 @@
 import moment from "moment";
 
 class User {
+    id?: string;
     active?: boolean;
     birthDate?: Date;
     name?: string;
@@ -19,7 +20,8 @@ class User {
         const birthDateMomento = moment(user.birthDate);
 
         user.age = momentNow.diff(birthDateMomento, 'years');
-        user.name = dict['name'];
+        user.id = dict['id'];
+        user.name = dict['nameComplete'];
         user.email = dict['email'];
         user.active = dict['active'];
         user.birthDate = dict['birthDate'];

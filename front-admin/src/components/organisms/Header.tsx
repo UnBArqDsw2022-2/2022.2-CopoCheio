@@ -30,7 +30,7 @@ const Header = () => {
         rightElement={<Icon marginLeft='8px' color={colors.black} size="18px" icon='logout' />}
         fontSize="16px"
         type="no-background"
-        onClick={() => sessionStorage.clear()}
+        onClick={() => { sessionStorage.clear(); navigate('/login'); }}
       >
         Sair
       </MainButton>

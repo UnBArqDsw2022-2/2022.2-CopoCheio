@@ -1,11 +1,17 @@
-import { Router, Request, Response } from 'express';
-import SessionService  from '../Services/session.service';
+import { Router, Request, Response, NextFunction } from 'express';
+import SessionService from '../Services/session.service';
 
 const router = Router();
 
-router.post('/login', async (req: Request, res: Response) => {
-    const token = await SessionService.login(req.body);
-    res.status(200).send({token});
+router.post('/login', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const body = req.body;
+        const userSession = await SessionService.login(body);
+        res.status(200).send(userSession);
+    } catch (error) {
+        next(error)
+    }
+
 });
 
 export default router;
