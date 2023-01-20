@@ -9,7 +9,9 @@ interface TextInputInterface {
     width?: string;
     height?: string;
     placeHolder?: string;
-    value: string;
+    value?: string;
+    onChange?: VoidFunction;
+    textSize: string;
 }
 
 const TextInputContainer = styled.div<Pick<TextInputInterface, 'width' | 'height'>>`
@@ -25,7 +27,9 @@ const TextInput = ({
     width,
     height,
     placeHolder,
-    value
+    value,
+    onChange,
+    textSize
 }: TextInputInterface) => (
     <TextInputContainer width={width} height={height}>
         <Text
@@ -34,7 +38,7 @@ const TextInput = ({
             color={colors.grey}>
             {title}
         </Text>
-        <GenericTextArea value={value} placeHolder={placeHolder} />
+        <GenericTextArea type='text-area' value={value} onChange={onChange} placeHolder={placeHolder} fontSize={textSize} />
     </TextInputContainer>
 );
 

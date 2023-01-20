@@ -5,12 +5,8 @@ import { colors } from "../../styles/colors";
 
 interface DrinksModalFooterInterface {
     type: 'confirm' | 'create';
-    leftButtonType?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background';
-    rightButtonType?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background';
     leftButtonClick?: VoidFunction;
     rightButtonClick?: VoidFunction;
-    leftButtonText?: string;
-    rightButtonText?: string;
     adtionalButtonClick?: VoidFunction;
 }
 
@@ -39,11 +35,7 @@ const FooterSmallBox = styled.div`
 
 const DrinksModalFooter = ({
     type,
-    leftButtonType,
-    leftButtonText,
     leftButtonClick,
-    rightButtonType,
-    rightButtonText,
     rightButtonClick,
     adtionalButtonClick
 }: DrinksModalFooterInterface) => {
@@ -54,18 +46,18 @@ const DrinksModalFooter = ({
                     <FooterSmallBox />
                     <FooterBigBox>
                         <MainButton
-                            type={leftButtonType}
+                            type='cancel'
                             width='45%'
                             onClick={leftButtonClick}
-                            children={leftButtonText}
+                            children={'Cancelar'}
                             height='50%'
                             fontSize='14px'
                         />
                         <MainButton
-                            type={rightButtonType}
+                            type='confirm'
                             width='45%'
                             onClick={rightButtonClick}
-                            children={rightButtonText}
+                            children={'Confirmar'}
                             height='50%'
                             fontSize='14px'
                         />
@@ -77,7 +69,28 @@ const DrinksModalFooter = ({
             )
         case 'create':
             return (
-                <></>
+                <FooterContainer>
+                    <FooterSmallBox />
+                    <FooterBigBox>
+                        <MainButton
+                            type='decline'
+                            width='45%'
+                            onClick={leftButtonClick}
+                            children={'Recusar bebida'}
+                            height='50%'
+                            fontSize='14px'
+                        />
+                        <MainButton
+                            type='confirm'
+                            width='45%'
+                            onClick={rightButtonClick}
+                            children={'Adicionar bebida'}
+                            height='50%'
+                            fontSize='14px'
+                        />
+                    </FooterBigBox>
+                    <FooterSmallBox />
+                </FooterContainer>
             )
     }
 }

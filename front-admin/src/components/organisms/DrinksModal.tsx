@@ -40,11 +40,7 @@ const DrinksModal = ({
     dificulty,
     base,
     country,
-    leftButtonType,
-    leftButtonText,
     leftButtonClick,
-    rightButtonType,
-    rightButtonText,
     rightButtonClick,
     adtionalButtonClick
 }: DrinksModalInterface) => (
@@ -72,11 +68,7 @@ const DrinksModal = ({
         }
         modalFooter={<DrinksModalFooter
             type={type}
-            leftButtonType={leftButtonType}
-            leftButtonText={leftButtonText}
             leftButtonClick={leftButtonClick}
-            rightButtonType={rightButtonType}
-            rightButtonText={rightButtonText}
             rightButtonClick={rightButtonClick}
             adtionalButtonClick={adtionalButtonClick}
         />}

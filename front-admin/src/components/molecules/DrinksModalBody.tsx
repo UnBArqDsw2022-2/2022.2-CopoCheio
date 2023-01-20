@@ -4,16 +4,20 @@ import DrinksModalTitle from "./DrinksModalTitle";
 import { colors } from "../../styles/colors";
 import Image from "../atoms/Image";
 import IconText from "../atoms/IconText";
+import Icon from "../atoms/Icon/Icon";
 import TextInput from "../atoms/TextInput";
-import StringInput from "./StringInput";
+import GenericTextArea from "../atoms/GenericTextArea";
 
 interface DrinksModalBodyInterface {
     type: 'confirm' | 'create';
     title?: string;
+    titleOnChange?: VoidFunction;
     userName?: string;
     userImage?: string;
     ingredients?: string;
+    ingredientsOnChange?: VoidFunction;
     guide?: string;
+    guideOnChange?: VoidFunction;
     image?: string;
     time?: number;
     dificulty?: string;
@@ -55,6 +59,8 @@ const BlankImage = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
+  color: ${colors.white};
+  flex-flow: column;
 `;
 
 const IconRow = styled.div`
@@ -84,7 +90,10 @@ const DrinksModalBody = ({
     time,
     dificulty,
     base,
-    country
+    country,
+    ingredientsOnChange,
+    guideOnChange,
+    titleOnChange
 }: DrinksModalBodyInterface) => {
     switch (type) {
         case 'confirm':
@@ -96,7 +105,11 @@ const DrinksModalBody = ({
                         <ModalText title='Modo de preparo' text={guide} />
                     </TextSide>
                     <CardSide>
-                        {image ? <Image src={userImage} height={'40%'} width={'100%'} borderRadius={'8px'} marginRight='4px' /> : <BlankImage>No image</BlankImage>}
+                        {image ? <Image src={userImage} height={'40%'} width={'100%'} borderRadius={'8px'} marginRight='4px' /> :
+                            <BlankImage>
+                                <Icon size='50px' icon='sports_bar' color={colors.white} />
+                                No image
+                            </BlankImage>}
                         <IconRow>
                             <LeftIcon>
                                 <IconText iconColor={colors.primary} iconLeft='schedule' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={`${time} min`} />
@@ -120,12 +133,16 @@ const DrinksModalBody = ({
             return (
                 <BodyContainer>
                     <TextSide>
-                        <TextInput value='' width='100%' height='25%' title='Nome do Drink' size='16px' />
-                        <TextInput value='' width='100%' height='35%' title='Ingredientes' size='16px' />
-                        <TextInput value='' width='100%' height='40%' title='Modo de preparo' size='16px' />
+                        <GenericTextArea type='input' value={title} onChange={titleOnChange} fontSize='16px' weight='bold' />
+                        <TextInput value={ingredients} onChange={ingredientsOnChange} width='100%' height='40%' title='Ingredientes' size='16px' textSize='12px' />
+                        <TextInput value={guide} onChange={guideOnChange} width='100%' height='60%' title='Modo de preparo' size='16px' textSize='12px' />
                     </TextSide>
                     <CardSide>
-
+                        {image ? <Image src={userImage} height={'40%'} width={'100%'} borderRadius={'8px'} marginRight='4px' /> :
+                            <BlankImage>
+                                <Icon size='50px' icon='sports_bar' color={colors.white} />
+                                No image
+                            </BlankImage>}
                     </CardSide>
                 </BodyContainer>
             )
