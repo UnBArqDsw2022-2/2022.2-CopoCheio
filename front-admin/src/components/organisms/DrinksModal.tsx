@@ -1,7 +1,7 @@
 import { GenericModal } from "../molecules/GenericModal";
 import CloseButton from "../atoms/CloseButton";
-import ModalBody from "../molecules/ModalBody";
-import ModalFooter from "../molecules/ModalFooter";
+import DrinksModalBody from "../molecules/DrinksModalBody";
+import DrinksModalFooter from "../molecules/DrinksModalFooter";
 
 interface DrinksModalInterface {
     isShown: boolean;
@@ -51,8 +51,13 @@ const DrinksModal = ({
     <GenericModal
         isShown={isShown}
         hide={toggle}
+        width='56.2vw'
+        height='65vh'
+        headerHeight='5%'
+        bodyHeight='80%'
+        footerHeight='15%'
         modalHeader={<CloseButton onClick={toggle} />}
-        modalBody={<ModalBody
+        modalBody={<DrinksModalBody
             type={type}
             title={title}
             userImage={userImage}
@@ -65,7 +70,7 @@ const DrinksModal = ({
             dificulty={dificulty}
             country={country} />
         }
-        modalFooter={<ModalFooter
+        modalFooter={<DrinksModalFooter
             type={type}
             leftButtonType={leftButtonType}
             leftButtonText={leftButtonText}

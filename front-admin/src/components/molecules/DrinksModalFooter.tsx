@@ -3,7 +3,7 @@ import IconText from "../atoms/IconText";
 import MainButton from "../atoms/MainButton";
 import { colors } from "../../styles/colors";
 
-interface ModalFooterInterface {
+interface DrinksModalFooterInterface {
     type: 'confirm' | 'create';
     leftButtonType?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background';
     rightButtonType?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background';
@@ -37,7 +37,7 @@ const FooterSmallBox = styled.div`
   align-items: center;
 `;
 
-const ModalFooter = ({
+const DrinksModalFooter = ({
     type,
     leftButtonType,
     leftButtonText,
@@ -46,7 +46,7 @@ const ModalFooter = ({
     rightButtonText,
     rightButtonClick,
     adtionalButtonClick
-}: ModalFooterInterface) => {
+}: DrinksModalFooterInterface) => {
     switch (type) {
         case 'confirm':
             return (
@@ -82,4 +82,4 @@ const ModalFooter = ({
     }
 }
 
-export default ModalFooter;
+export default DrinksModalFooter;

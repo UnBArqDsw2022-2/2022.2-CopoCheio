@@ -1,19 +1,29 @@
+import { useState } from "react";
 import { useModal } from "../components/molecules/GenericModal";
 import DrinksModal from "../components/organisms/DrinksModal";
 
 const DrinkPage = () => {
     const { isShown, toggle } = useModal();
+    const [type, setType] = useState<'confirm' | 'create'>('confirm');
 
     const print = () => {
         console.log('funcona');
     }
+
     return (
         <div>
-            <button onClick={toggle}>Open modal</button>
+            <button onClick={() => {
+                setType('confirm');
+                toggle();
+            }}>Confirm Modal</button>
+            <button onClick={() => {
+                setType('create');
+                toggle();
+            }}>Create Modal</button>
             <DrinksModal
                 isShown={isShown}
                 toggle={toggle}
-                type='confirm'
+                type={type}
                 title='Caipirinha de Limão'
                 userName='Sasuke Uchiha'
                 ingredients='1 dose de cachaça, 3 colheres de açucar, 5ml de sangue de virgem, açucar, tempero e tudo que há de bom, essas são as ferramentas necessárias para sei lá mano.'

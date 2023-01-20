@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import ModalText from "./ModalText";
-import ModalHeader from "./ModalHeader";
+import DrinksModalTitle from "./DrinksModalTitle";
 import { colors } from "../../styles/colors";
 import Image from "../atoms/Image";
 import IconText from "../atoms/IconText";
+import TextInput from "../atoms/TextInput";
+import StringInput from "./StringInput";
 
-interface ModalBodyInterface {
+interface DrinksModalBodyInterface {
     type: 'confirm' | 'create';
     title?: string;
     userName?: string;
@@ -71,7 +73,7 @@ const RightIcon = styled.div`
     width: 70%;
 `;
 
-const ModalBody = ({
+const DrinksModalBody = ({
     type,
     title,
     userName,
@@ -83,13 +85,13 @@ const ModalBody = ({
     dificulty,
     base,
     country
-}: ModalBodyInterface) => {
+}: DrinksModalBodyInterface) => {
     switch (type) {
         case 'confirm':
             return (
                 <BodyContainer>
                     <TextSide>
-                        <ModalHeader title={title} userName={userName} userImage={userImage} />
+                        <DrinksModalTitle title={title} userName={userName} userImage={userImage} />
                         <ModalText title='Ingredientes' text={ingredients} />
                         <ModalText title='Modo de preparo' text={guide} />
                     </TextSide>
@@ -117,10 +119,17 @@ const ModalBody = ({
         case 'create':
             return (
                 <BodyContainer>
+                    <TextSide>
+                        <TextInput value='' width='100%' height='25%' title='Nome do Drink' size='16px' />
+                        <TextInput value='' width='100%' height='35%' title='Ingredientes' size='16px' />
+                        <TextInput value='' width='100%' height='40%' title='Modo de preparo' size='16px' />
+                    </TextSide>
+                    <CardSide>
 
+                    </CardSide>
                 </BodyContainer>
             )
     }
 }
 
-export default ModalBody;
+export default DrinksModalBody;

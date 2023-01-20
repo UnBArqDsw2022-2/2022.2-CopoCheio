@@ -7,8 +7,13 @@ interface GenericModalInterface {
   isShown: boolean;
   hide: () => void;
   modalBody?: JSX.Element;
+  bodyHeight?: string;
   modalFooter?: JSX.Element;
+  footerHeight?: string;
   modalHeader?: JSX.Element;
+  headerHeight?: string;
+  height?: string;
+  width?: string;
 }
 
 const Wrapper = styled.div`
@@ -31,28 +36,28 @@ const Backdrop = styled.div`
   z-index: 500;
 `;
 
-const Container = styled.div`
+const Container = styled.div<Pick<GenericModalInterface, 'height' | 'width'>>`
   z-index: 100;
   background: ${colors.white};
   position: relative;
   margin: auto;
-  height: 65vh;
-  width: 56.2vw;
+  height: ${props => props.height || 'auto'};
+  width: ${props => props.width || 'auto'};
   border-radius: 8px;
   padding: 2%;
 `;
 
-const Header = styled.div`
+const Header = styled.div<Pick<GenericModalInterface, 'headerHeight'>>`
   border-radius: 8px 8px 0 0;
   display: flex;
   width: 100%;
-  height: 5%;
+  height: ${props => props.headerHeight || 'auto'};
   flex-flow: column;
 `;
 
-const Body = styled.div`
+const Body = styled.div<Pick<GenericModalInterface, 'bodyHeight'>>`
   display: flex;
-  height: 80%;
+  height: ${props => props.bodyHeight || 'auto'};
   width: 100%;
   padding: 1%;
   overflow: hidden;
@@ -60,10 +65,10 @@ const Body = styled.div`
   flex-wrap: wrap;
 `;
 
-const Footer = styled.div`
+const Footer = styled.div<Pick<GenericModalInterface, 'footerHeight'>>`
   display: flex;
   width: 100%;
-  height: 15%;
+  height: ${props => props.footerHeight || 'auto'};
   align-items: center;
 `;
 
@@ -73,19 +78,24 @@ export const GenericModal: FunctionComponent<GenericModalInterface> = ({
   modalBody,
   modalFooter,
   modalHeader,
+  height,
+  width,
+  headerHeight,
+  bodyHeight,
+  footerHeight
 }) => {
   const modal = (
     <React.Fragment>
       <Backdrop onClick={hide} />
       <Wrapper>
-        <Container>
-          <Header>
+        <Container height={height} width={width}>
+          <Header headerHeight={headerHeight}>
             {modalHeader}
           </Header>
-          <Body>
+          <Body bodyHeight={bodyHeight}>
             {modalBody}
           </Body>
-          <Footer>
+          <Footer footerHeight={footerHeight}>
             {modalFooter}
           </Footer>
         </Container>
