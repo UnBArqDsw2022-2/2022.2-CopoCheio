@@ -8,7 +8,7 @@ interface MainButtonInterface {
     width?: string;
     height?: string;
     borderRadius?: string;
-    onClick: React.MouseEventHandler<HTMLButtonElement> | VoidFunction;
+    onClick?: React.MouseEventHandler<HTMLButtonElement> | VoidFunction;
     leftElement?: ReactElement;
     rightElement?: ReactElement;
     children?: string;
