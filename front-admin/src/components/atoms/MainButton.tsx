@@ -1,21 +1,21 @@
 import styled, { css } from 'styled-components';
-import Text from '../atoms/Text';
-import Icon from './Icon/Icon';
-import { IconsTypes } from './Icon/IconTypes';
+import Text from './Text';
+import { ReactElement } from 'react';
+import SpinnerLoading from './SpinnerLoading';
 
 interface MainButtonInterface {
-    type?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background';
+    type?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background' | 'loading';
     width?: string;
     height?: string;
-    border_radius?: string;
-    onClick: VoidFunction;
-    iconLeft?: IconsTypes;
-    iconRight?: IconsTypes;
+    borderRadius?: string;
+    onClick: React.MouseEventHandler<HTMLButtonElement> | VoidFunction;
+    leftElement?: ReactElement;
+    rightElement?: ReactElement;
     children: string;
     fontSize?: string;
 }
 
-interface GenericButtonInterface extends Omit<MainButtonInterface, "children" | "iconLeft" | "iconRight"> {
+interface GenericButtonInterface extends Omit<MainButtonInterface, "children" | "leftElement" | "rightElement"> {
     typeDefinition: string
 }
 
@@ -27,7 +27,7 @@ const GenericButton = styled.button<GenericButtonInterface>`
     width: ${({ width }) => width || 'fit-content'};
     height: ${({ height }) => height};
     padding: 8px 16px;
-    border-radius: ${({ border_radius }) => border_radius || '8px'};
+    border-radius: ${({ borderRadius }) => borderRadius || '8px'};
     outline: none;
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.14);
     border: none;
@@ -37,29 +37,35 @@ const GenericButton = styled.button<GenericButtonInterface>`
         switch (typeDefinition) {
             case 'primary':
                 return css`
-                    background-color: ${({theme}) => theme.primary};
-                    color: ${({theme}) => theme.alternative_white};
+                    background-color: ${({ theme }) => theme.primary};
+                    color: ${({ theme }) => theme.alternative_white};
                 `
             case 'confirm':
                 return css`
-                    background-color: ${({theme}) => theme.success};
-                    color: ${({theme}) => theme.black};
+                    background-color: ${({ theme }) => theme.success};
+                    color: ${({ theme }) => theme.black};
                 `
             case 'decline':
                 return css`
-                    background-color: ${({theme}) => theme.denied};
-                    color: ${({theme}) => theme.alternative_white};
+                    background-color: ${({ theme }) => theme.denied};
+                    color: ${({ theme }) => theme.alternative_white};
                 `
             case 'cancel':
                 return css`
                     background-color: rgba(153, 153, 153, 0.3);
-                    color: ${({theme}) => theme.black};
+                    color: ${({ theme }) => theme.black};
                 `
             case 'no-background':
                 return css`
                     background-color: transparent;
-                    color: ${({theme}) => theme.black};
+                    color: ${({ theme }) => theme.black};
                     box-shadow: none;
+                    padding: 0;
+                `
+            case 'loading':
+                return css`
+                    color: ${({ theme }) => theme.loading};
+                    cursor: default;
                 `
         }
     }}
@@ -69,25 +75,26 @@ const MainButton = ({
     type,
     width,
     height,
-    border_radius,
+    borderRadius,
     onClick,
-    iconLeft,
-    iconRight,
+    leftElement,
+    rightElement,
     children,
     fontSize,
 }: MainButtonInterface) => {
     return (
         <GenericButton
             data-testid='main button'
-            onClick={onClick}
+            onClick={type === 'loading' ? (e) => { e.preventDefault(); } : onClick}
             typeDefinition={type || 'primary'}
             width={width}
             height={height}
-            border_radius={border_radius}
+            borderRadius={borderRadius}
+
         >
-            {iconLeft && <Icon marginRight='4px' size={fontSize} icon={iconLeft} />}
-            <Text size={fontSize}>{children}</Text>
-            {iconRight && <Icon marginLeft='4px' size={fontSize} icon={iconRight} />}
+            {leftElement}
+            {type === 'loading' ? <SpinnerLoading /> : <Text size={fontSize}>{children}</Text>}
+            {rightElement}
         </GenericButton>
     )
 }
