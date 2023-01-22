@@ -1,50 +1,50 @@
 import { NextFunction, Request, Response } from "express"
 
 export const HttpExceptionHandler = (
-        error: HttpException,
-        req: Request,
-        res: Response,
-        next: NextFunction
-        ) => {
-        const status = error.statusCode || 400
-        
-        res.header("Content-Type", 'application/json')
-        res.status(status).send({error:error.message})
-  }
+    error: HttpException,
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const status = error.statusCode || 400
 
-export class HttpException extends Error{
+    res.header("Content-Type", 'application/json')
+    res.status(status).send({ error: error.message })
+}
+
+export class HttpException extends Error {
     statusCode: number
 
     constructor(statusCode: number, message: string) {
-      super(message)
-  
-      Object.setPrototypeOf(this, new.target.prototype)
-      this.name = Error.name
-      this.statusCode = statusCode
-      Error.captureStackTrace(this)
+        super(message)
+
+        Object.setPrototypeOf(this, new.target.prototype)
+        this.name = Error.name
+        this.statusCode = statusCode
+        Error.captureStackTrace(this)
     }
 }
 
 export class BadRequestException extends HttpException {
     constructor(message: string) {
-        super(400,message)
+        super(400, message)
     }
 }
 
 export class UnauthorizedRequestException extends HttpException {
     constructor(message: string) {
-        super(401,message)
+        super(401, message)
     }
 }
 
 export class ForbiddenRequestException extends HttpException {
     constructor(message: string) {
-        super(403,message)
+        super(403, message)
     }
 }
 
 export class NotFoundRequestException extends HttpException {
     constructor(message: string) {
-        super(404,message)
+        super(404, message)
     }
 }

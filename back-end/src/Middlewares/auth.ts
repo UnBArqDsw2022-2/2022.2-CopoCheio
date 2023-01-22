@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 
 import authConfig from '../Config/auth';
 
-export const JwtAuthMiddleware = async(req: Request, res: Response, next: NextFunction) => {
+export const JwtAuthMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
@@ -11,12 +11,12 @@ export const JwtAuthMiddleware = async(req: Request, res: Response, next: NextFu
     }
 
     const [token] = authHeader.split(' ');
-    
+
     try {
         const decoded = jwt.verify(token, authConfig.secret!) as any;
         req.id = decoded.id;
         return next();
-    } catch(err) {
+    } catch (err) {
         return res.status(403).json({ error: 'Token invalid' });
     }
 }

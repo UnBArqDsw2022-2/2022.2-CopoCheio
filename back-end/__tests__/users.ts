@@ -24,7 +24,7 @@ test('should find user by id', async () => {
         roleId: "9c0b623a-aca6-4caa-8d8e-bee8af4fa1ab",
         active: true
     }
-  
+
     prismaMock.user.findUnique.mockResolvedValue(userMockData)
     const user = new Users(prismaMock.user)
 
@@ -52,7 +52,7 @@ test('should find user by email', async () => {
         roleId: "9c0b623a-aca6-4caa-8d8e-bee8af4fa1ab",
         active: true
     }
-  
+
     prismaMock.user.findUnique.mockResolvedValue(userMockData)
     const user = new Users(prismaMock.user)
 
@@ -134,7 +134,7 @@ test('should update a users name and password ', async () => {
     prismaMock.user.update.mockResolvedValue(userMock)
     const user = new Users(prismaMock.user)
 
-    await expect(user.update({name:"Joao2", password:'12'},userMock.id)).resolves.toEqual(userMock)
+    await expect(user.update({ name: "Joao2", password: '12' }, userMock.id)).resolves.toEqual(userMock)
     expect(updateMock).toHaveBeenCalled();
 
 })
@@ -154,7 +154,7 @@ test('should fail if user updates email that another user uses', async () => {
     prismaMock.user.findFirst.mockResolvedValue(userMock)
     const user = new Users(prismaMock.user)
 
-    await expect(user.update({email: "joao@fkmail.com",},userMock.id)).rejects.toEqual(
+    await expect(user.update({ email: "joao@fkmail.com", }, userMock.id)).rejects.toEqual(
         new BadRequestException('Email already in use')
     )
     expect(updateMock).toHaveBeenCalled();
