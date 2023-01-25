@@ -5,15 +5,11 @@ on:
      - main
     paths:
       - 'back-end/**'
-    paths-ignore:
-      - 'docs/**'
   push:
     branches:
      - main
     paths:
       - 'back-end/**'
-    paths-ignore:
-      - 'docs/**'
 
 jobs:
   test-back-end:

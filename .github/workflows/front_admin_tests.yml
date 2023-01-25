@@ -1,23 +1,19 @@
-name: Build test front-end
+name: Build test front-admin
 on:
   pull_request:
     branches:
      - main
     paths:
-      - 'front-end/**'
-    paths-ignore:
-      - 'docs/**'
+      - 'front-admin/**'
   push:
     branches:
      - main
     paths:
-      - 'front-end/**'
-    paths-ignore:
-      - 'docs/**'
+      - 'front-admin/**'
 
 jobs:
-  test-front-end:
-    name: run tests front-end
+  test-front-admin:
+    name: run tests front-admin
     runs-on: ubuntu-latest
 
     steps:
@@ -28,9 +24,9 @@ jobs:
         node-version: 18.x
 
     - name: Npm Install
-      working-directory: ./front-end
+      working-directory: ./front-admin
       run: npm install
 
     - name: Testing
-      working-directory: ./front-end
+      working-directory: ./front-admin
       run: npm run test
