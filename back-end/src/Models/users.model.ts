@@ -54,6 +54,17 @@ export class Users {
         });
     }
 
+    async findByExistingEmail(userData: UpdateUserDto, userId: string): Promise<UpdateUserDto | null> {
+        return this.prismaUser.findFirst({
+            where: {
+                email: userData.email,
+                id: {
+                    not: userId
+                }
+            }
+        });
+    }
+
     async create(userData: CreateUserDto): Promise<UpdateUserDto> {
         const { password, name: nameComplete, email, birthDate, roleId } = userData;
 
@@ -81,7 +92,7 @@ export class Users {
     }
 
 
-    async update (data: UpdateUserDto, userId: string) {
+    async update(data: UpdateUserDto, userId: string) {
 
         const updatedUser = this.prismaUser.update({
             data,

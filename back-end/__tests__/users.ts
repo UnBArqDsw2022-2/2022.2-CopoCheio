@@ -6,6 +6,7 @@ import { Roles } from '../src/Models/roles.model'
 
 import { prismaMock } from '../prisma/singleton'
 import { BadRequestException } from '../src/Middlewares/httpExceptions'
+import UsersService from '../src/Services/users.service';
 
 const roleMockData = [
     {
@@ -24,8 +25,8 @@ const createMock = jest.spyOn(Users.prototype, 'create')
 const findByEmailMock = jest.spyOn(Users.prototype, 'findByEmail')
 const findByIdMock = jest.spyOn(Users.prototype, 'findById')
 const updateMock = jest.spyOn(Users.prototype, 'update')
-const saltMock = jest.spyOn(bcrypt, 'genSalt').mockImplementation((rounds,callback)=>'salt')
-const hashMock = jest.spyOn(bcrypt, 'hash').mockImplementation((s,salt,callback=undefined)=>'123456salt')
+const saltMock = jest.spyOn(bcrypt, 'genSalt').mockImplementation((rounds, callback) => 'salt')
+const hashMock = jest.spyOn(bcrypt, 'hash').mockImplementation((s, salt, callback = undefined) => '123456salt')
 
 test('should find user by id', async () => {
     const userMockData = {
@@ -38,7 +39,7 @@ test('should find user by id', async () => {
         roleId: "9c0b623a-aca6-4caa-8d8e-bee8af4fa1ab",
         active: true
     }
-    
+
     prismaMock.user.findUnique.mockResolvedValue(userMockData)
     const user = new Users(prismaMock.user)
 
@@ -66,7 +67,7 @@ test('should find user by email', async () => {
         roleId: "9c0b623a-aca6-4caa-8d8e-bee8af4fa1ab",
         active: true
     }
-  
+
     prismaMock.user.findUnique.mockResolvedValue(userMockData)
     const user = new Users(prismaMock.user)
 
@@ -121,7 +122,7 @@ test('should create new user ', async () => {
         password: "123456",
         birthDate: moment("2001-01-04T03:21:09.000Z").toDate(),
 
-    }    
+    }
 
     const createdUserMock = {
         id: "9c0b623a-aca6-4caa-8d8e-bee8af4fa1ab",
@@ -135,8 +136,9 @@ test('should create new user ', async () => {
     }
 
     prismaMock.user.create.mockResolvedValue(createdUserMock)
-    const user = new Users(prismaMock.user)
-    await expect(user.create(createData)).resolves.toEqual(createdUserMock)
+    const usersService = new UsersService();
+
+    await expect(usersService.create(createData)).resolves.toEqual(createdUserMock)
     expect(createMock).toHaveBeenCalled();
     expect(saltMock).toHaveBeenCalled();
     expect(hashMock).toHaveBeenCalled();
@@ -155,8 +157,9 @@ test('should update a users name and password ', async () => {
     }
 
     prismaMock.user.update.mockResolvedValue(userMock)
-    const user = new Users(prismaMock.user)
-    await expect(user.update({name:"Joao2", password:'123456'},userMock.id)).resolves.toEqual(userMock)
+    const usersService = new UsersService();
+
+    await expect(usersService.update({ name: "Joao2", password: '123456' }, userMock.id)).resolves.toEqual(userMock)
     expect(updateMock).toHaveBeenCalled();
     expect(saltMock).toHaveBeenCalled();
     expect(hashMock).toHaveBeenCalled();
@@ -176,11 +179,9 @@ test('should fail if user updates email that another user uses', async () => {
     }
 
     prismaMock.user.findFirst.mockResolvedValue(userMock)
-    const user = new Users(prismaMock.user)
+    const usersService = new UsersService();
 
-    await expect(user.update({email: "joao@fkmail.com",},userMock.id)).rejects.toEqual(
+    await expect(usersService.update({ email: "joao@fkmail.com", }, userMock.id)).rejects.toEqual(
         new BadRequestException('Email already in use')
     )
-    expect(updateMock).toHaveBeenCalled();
-
 })
