@@ -7,6 +7,7 @@ declare module 'styled-components' {
         success: string,
         denied: string,
         black: string,
+        loading: string,
         white: string,
         alternative_white: string,
         grey: string
@@ -14,6 +15,6 @@ declare module 'styled-components' {
             title: string,
             text: string,
             subtitle: string,
-          }
+        }
     }
 }

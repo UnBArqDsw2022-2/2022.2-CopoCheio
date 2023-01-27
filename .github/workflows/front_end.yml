@@ -1,0 +1,51 @@
+name: Build test front-end
+on:
+  pull_request:
+    branches:
+     - main
+    paths:
+      - 'front-end/**'
+  push:
+    branches:
+     - main
+    paths:
+      - 'front-end/**'
+
+jobs:
+  build-front-end:
+    name: Build front-end
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18.x
+
+    - name: Npm Install
+      working-directory: ./front-end
+      run: npm install
+
+    - name: Building
+      working-directory: ./front-end
+      run: npm run build
+
+  test-front-end:
+    name: run tests front-end
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18.x
+
+    - name: Npm Install
+      working-directory: ./front-end
+      run: npm install
+
+    - name: Testing
+      working-directory: ./front-end
+      run: npm run test

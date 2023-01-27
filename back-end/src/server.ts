@@ -21,8 +21,8 @@ const route = Router();
 app.use(cors());
 app.use(express.json());
 
-route.get('/', (req: Request, res: Response) => {  
-  res.json({ message: 'hello world with Typescript' })  
+route.get('/', (req: Request, res: Response) => {
+  res.json({ message: 'hello world with Typescript' })
 })
 
 app.use('/session', SessionRoutes);
