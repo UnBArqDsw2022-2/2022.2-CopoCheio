@@ -34,7 +34,6 @@ const GenericStringInput = styled.input<GenericStringInputInterface>`
 const GenericInputField = styled.div`
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
     width: 100%;
     align-items: flex-start;
 `
@@ -52,7 +51,7 @@ const StringInput = ({
 }: StringInputInterface) => {
     return (
         <GenericInputField>
-            <Text color='grey' size='1em'>{placeholder}</Text>
+            {placeholder && <Text color='grey' size='1em'>{placeholder}</Text>}
             <GenericStringInput
                 data-testid='email-input'
                 type={type || 'text'}
@@ -62,9 +61,8 @@ const StringInput = ({
                 onChange={onChange}
                 value={value}
                 fontSize={fontSize}
-            >
-            </GenericStringInput>
-            <Text color='red' size='14px' margin='4px 0px'>{inputError}</Text>
+            />
+            {inputError && <Text color='red' size='14px' margin='4px 0px'>{inputError}</Text>}
         </GenericInputField >
     )
 }

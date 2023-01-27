@@ -12,6 +12,7 @@ interface DropdownProps {
 
 
 export const Container = styled.button`
+  max-height: 60px;
   border: 1px solid;
   border-radius: 8px;
   padding: 1rem;
@@ -45,7 +46,7 @@ export const Dropdown = ({ label, icon, options }: DropdownProps) => {
       </LabelContainer>
 
       <Icon
-        icon={icon}
+        icon={'flag'}
         size={'24px'}
         marginLeft={''}
         marginRight={'8px'}

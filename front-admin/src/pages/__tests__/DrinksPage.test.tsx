@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { DrinkPage } from "../DrinkPage";
+import DrinksPage from "../DrinksPage";
 
 describe("#DrinkPage", () => {
     test("initial test expected to fail", () => {
