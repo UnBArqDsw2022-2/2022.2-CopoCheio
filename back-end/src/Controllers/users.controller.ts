@@ -4,9 +4,11 @@ import prisma from '../prismaConection';
 import { Users } from '../Models/users.model';
 
 import { JwtAuthMiddleware } from '../Middlewares/auth';
+import UsersService from '../Services/users.service';
 
 const router = Router();
-const users = new Users(prisma.user)
+const users = new Users(prisma.user);
+const usersService = new UsersService();
 
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -30,7 +32,7 @@ router.get('/:id', JwtAuthMiddleware, async (req: Request, res: Response, next: 
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userData = req.body;
-        const user = await users.create(userData);
+        const user = await usersService.create(userData);
         res.status(201).send(user)
     } catch (error) {
         next(error)
@@ -41,9 +43,10 @@ router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userId = req.params.id
         const userData = req.body
-        const updatedUser = await users.update(userData, userId)
+        const updatedUser = await usersService.update(userData, userId)
         res.status(201).send(updatedUser)
     } catch (error) {
+        console.log(error)
         next(error)
     }
 })

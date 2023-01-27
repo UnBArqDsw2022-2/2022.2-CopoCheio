@@ -4,8 +4,8 @@ import express from 'express';
 import cors from 'cors';
 
 //Middleware
-import { HttpExceptionHandler } from './HttpExceptions/httpExceptions';
-import { retryConnectionHandler } from './dbExceptions/dbExceptionsHandler';
+import { HttpExceptionHandler } from './Middlewares/httpExceptions';
+import { retryConnectionHandler, prismaErrorsHandler } from './Middlewares/dbExceptionsHandler';
 import { failSafeHandler } from './Middlewares/failSafeHandler';
 // Routes
 import UserRoutes from './Controllers/users.controller';
@@ -31,6 +31,7 @@ app.use('/user', UserRoutes);
 
 app.use(route)
 app.use(HttpExceptionHandler)
+app.use(prismaErrorsHandler)
 app.use(retryConnectionHandler)
 app.use(failSafeHandler)
 

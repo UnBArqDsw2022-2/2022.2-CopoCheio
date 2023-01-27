@@ -6,10 +6,14 @@ export const HttpExceptionHandler = (
     res: Response,
     next: NextFunction
 ) => {
-    const status = error.statusCode || 400
 
-    res.header("Content-Type", 'application/json')
-    res.status(status).send({ error: error.message })
+    if (error instanceof HttpException) {
+        const status = error.statusCode || 400
+        res.header("Content-Type", 'application/json')
+        res.status(status).send({ error: error.message })
+    }
+
+    next(error)
 }
 
 export class HttpException extends Error {

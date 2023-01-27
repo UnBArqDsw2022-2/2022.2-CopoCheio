@@ -1,18 +1,18 @@
 
-import authConfig from '../Config/auth';
-import { BadRequestException } from '../HttpExceptions/httpExceptions';
 import moment from "moment";
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
+import { BadRequestException } from '../Middlewares/httpExceptions';
 import { Roles } from './roles.model';
-import prisma from '../prismaConection';
+import Prisma from '../prismaConection';
+import isEmail from 'isemail';
 
 import { CreateUserDto } from '../Dto/create-user.dto';
 import { UpdateUserDto } from '../Dto/update-user.dto';
 
 export class Users {
-    constructor(private readonly prismaUser: PrismaClient['user']) { }
+    constructor(private readonly prismaUser: typeof Prisma['user']) { }
 
     async all(): Promise<UpdateUserDto[]> {
         return this.prismaUser.findMany({
@@ -22,7 +22,7 @@ export class Users {
                 birthDate: true,
                 id: true
             }
-        })
+        });
     }
 
     async findById(userId: string): Promise<UpdateUserDto | null> {
@@ -36,7 +36,7 @@ export class Users {
                 birthDate: true,
                 id: true
             }
-        })
+        });
     }
 
     async findByEmail(userEmail: string, showPassord: boolean = false): Promise<UpdateUserDto | null> {
@@ -51,28 +51,22 @@ export class Users {
                 id: true,
                 password: showPassord
             }
-        })
+        });
+    }
+
+    async findByExistingEmail(userData: UpdateUserDto, userId: string): Promise<UpdateUserDto | null> {
+        return this.prismaUser.findFirst({
+            where: {
+                email: userData.email,
+                id: {
+                    not: userId
+                }
+            }
+        });
     }
 
     async create(userData: CreateUserDto): Promise<UpdateUserDto> {
-        const { password, name: nameComplete, email, birthDate, isAdmin } = userData;
-
-        const alreadyExists = await this.findByEmail(email);
-        if (alreadyExists) {
-            if (alreadyExists.active === false) {
-                const updated = this.update({ ...alreadyExists, active: true }, alreadyExists.id!);
-                return updated;
-            }
-            throw new BadRequestException('Email already registered')
-        }
-
-        const roles = new Roles(prisma.role)
-        const allRoles = await roles.all()
-        if (allRoles.length === 0) {
-            throw new BadRequestException("Can't create user, no roles available")
-        }
-
-        const role = allRoles.find(i => (isAdmin ? 'Admin' : 'Customer') === i.name)
+        const { password, name: nameComplete, email, birthDate, roleId } = userData;
 
         const user = this.prismaUser.create({
             data: {
@@ -83,7 +77,7 @@ export class Users {
                 birthDate: moment(birthDate).format(),
                 role: {
                     connect: {
-                        id: role!.id
+                        id: roleId
                     }
                 }
             },
@@ -93,39 +87,30 @@ export class Users {
                 birthDate: true,
                 id: true
             }
-        })
+        });
         return user;
     }
 
-    async update(userData: UpdateUserDto, userId: string) {
-        if (userData.email) {
-            const anotherUser = await this.prismaUser.findFirst({
-                where: {
-                    email: userData.email,
-                    id: {
-                        not: userId
-                    }
-                }
-            })
 
-            if (anotherUser) {
-                throw new BadRequestException('Email already in use')
-            }
-        }
-
-        let data = userData;
-
-        if (userData.password) {
-            data.password = await bcrypt.hash(userData.password, await bcrypt.genSalt());
-        }
+    async update(data: UpdateUserDto, userId: string) {
 
         const updatedUser = this.prismaUser.update({
             data,
             where: {
                 id: userId
+            },
+            select: {
+                id: true,
+                email: true,
+                nameComplete: true,
+                birthDate: true,
+                createdDate: true,
+                active: true,
+                roleId: true
             }
-        })
+        });
 
         return updatedUser;
     }
+
 }
