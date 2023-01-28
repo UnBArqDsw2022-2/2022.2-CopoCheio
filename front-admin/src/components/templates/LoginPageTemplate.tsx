@@ -22,10 +22,8 @@ const LoginPageTemplate = () => {
         if (!userService.user) {
             try {
                 const user = await userService.getUserData();
-                console.log('erro')
                 if (user?.id) navigate('/home');
             } catch (error) {
-                console.log(error)
                 navigate('/login');
             }
         }
