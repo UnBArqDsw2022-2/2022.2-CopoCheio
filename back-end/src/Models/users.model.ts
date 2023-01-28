@@ -49,7 +49,12 @@ export class Users {
                 email: true,
                 birthDate: true,
                 id: true,
-                password: showPassord
+                password: showPassord,
+                role: {
+                    select: {
+                        name: true
+                    }
+                }
             }
         });
     }
