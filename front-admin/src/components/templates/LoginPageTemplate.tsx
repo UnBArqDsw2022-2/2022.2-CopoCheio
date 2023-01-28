@@ -19,11 +19,15 @@ const LoginPageTemplate = () => {
     const navigate = useNavigate();
 
     async function isSigned() {
-        try {
-            const user = await userService.getUserData();
-            if (user?.id) navigate('/home');
-        } catch (error) {
-            navigate('/login');
+        if (!userService.user) {
+            try {
+                const user = await userService.getUserData();
+                console.log('erro')
+                if (user?.id) navigate('/home');
+            } catch (error) {
+                console.log(error)
+                navigate('/login');
+            }
         }
     }
 
