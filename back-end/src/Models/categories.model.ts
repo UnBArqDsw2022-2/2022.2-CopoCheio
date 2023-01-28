@@ -1,5 +1,7 @@
-import Prisma from '../prismaConection';
 import { Category } from '@prisma/client'
+
+import Prisma from '../prismaConection';
+
 import { CreateCategoryDto } from '../Dto/create-category.dto';
 
 export class Categories {

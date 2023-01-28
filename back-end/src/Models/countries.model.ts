@@ -1,5 +1,7 @@
-import Prisma from '../prismaConection';
 import { Country } from '@prisma/client'
+
+import Prisma from '../prismaConection';
+
 import { CreateCountryDto } from '../Dto/create-country.dto';
 
 export class Countries {
