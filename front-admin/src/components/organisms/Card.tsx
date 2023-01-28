@@ -107,7 +107,7 @@ const Card = ({
             )}
             
             
-            {(cardType=='user' && hover)&&(
+            {(cardType ==='user' && hover)&&(
                 <>
                 <CardTextContainer>
                     <Text 

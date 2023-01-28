@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ModalText from "./ModalText";
-import DrinksModalTitle from "./DrinksModalTitle";
+import TitleWithIcon from "./TitleWithIcon";
 import { colors } from "../../styles/colors";
 import Image from "../atoms/Image";
 import IconText from "../atoms/IconText";
@@ -100,7 +100,7 @@ const DrinksModalBody = ({
             return (
                 <BodyContainer>
                     <TextSide>
-                        <DrinksModalTitle title={title} userName={userName} userImage={userImage} />
+                        <TitleWithIcon title={title} label={userName} image={userImage} />
                         <ModalText title='Ingredientes' text={ingredients} />
                         <ModalText title='Modo de preparo' text={guide} />
                     </TextSide>

@@ -53,7 +53,8 @@ const DrinksModal = ({
         bodyHeight='80%'
         footerHeight='15%'
         modalHeader={<CloseButton onClick={toggle} />}
-        modalBody={<DrinksModalBody
+        modalBody={
+        <DrinksModalBody
             type={type}
             title={title}
             userImage={userImage}
