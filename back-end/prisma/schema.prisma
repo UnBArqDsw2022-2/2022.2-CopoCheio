@@ -69,9 +69,9 @@ model Drink {
 }
 
 model CountriesOnDrinks {
-  drink      Drink    @relation(fields: [drinkId], references: [id])
+  drink      Drink    @relation(fields: [drinkId], references: [id], onDelete: Cascade)
   drinkId    String
-  country    Country  @relation(fields: [countryId], references: [id])
+  country    Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
   countryId  String
   assignedAt DateTime @default(now())
 
@@ -79,9 +79,9 @@ model CountriesOnDrinks {
 }
 
 model CategoriesOnDrinks {
-  drink      Drink    @relation(fields: [drinkId], references: [id])
+  drink      Drink    @relation(fields: [drinkId], references: [id], onDelete: Cascade)
   drinkId    String
-  category   Category @relation(fields: [categoryId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId String
   assignedAt DateTime @default(now())
 
