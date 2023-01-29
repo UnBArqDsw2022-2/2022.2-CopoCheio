@@ -1,9 +1,11 @@
+import { Difficulty } from "@prisma/client";
+import { Decimal } from "@prisma/client/runtime";
 export class CreateDrinkDto {
     name: string;
 
     picture: string;
 
-    time: number;
+    time: Decimal;
 
     preparation: string;
 
@@ -11,7 +13,7 @@ export class CreateDrinkDto {
 
     isAlcoholic: boolean;
 
-    difficulty: string;
+    difficulty: Difficulty;
     
     country?: Array<string>;
     
