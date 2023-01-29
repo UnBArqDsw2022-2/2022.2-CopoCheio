@@ -29,7 +29,7 @@ class ApiRequestService {
             const response = err.response as any;
 
             if (response) {
-                return response;
+                throw response;
             } else {
                 throw new AxiosError("Não foi possível conectar-se ao servidor!");
             }
@@ -46,7 +46,7 @@ class ApiRequestService {
             const response = err.response as any;
 
             if (response) {
-                return response;
+                throw response;
             } else {
                 throw new AxiosError("Não foi possível conectar-se ao servidor!");
             }

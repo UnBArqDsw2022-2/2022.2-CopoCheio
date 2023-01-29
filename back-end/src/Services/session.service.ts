@@ -3,7 +3,7 @@ import { is } from 'superstruct';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-import { BadRequestException } from '../HttpExceptions/httpExceptions';
+import { BadRequestException } from '../Middlewares/httpExceptions';
 import { LoginDto, LoginDtoType } from '../Dto/login.dto';
 import { Users } from '../Models/users.model';
 import authConfig from '../Config/auth';

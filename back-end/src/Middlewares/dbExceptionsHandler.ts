@@ -32,6 +32,41 @@ export const retryConnectionHandler = (
         process.exit(1)
     }
 
-    next();
+    next(error);
 }
 
+export const prismaErrorsHandler = (
+    error: Prisma.PrismaClientKnownRequestError,
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        const code = error.code
+        const targetList = error.meta?.target as Array<string> || []
+        let errorMessage = prismaGeneralErrorMessages[code]
+
+        targetList.forEach((value, index) => {            
+            errorMessage = errorMessage.replace(`:target0`, value)
+        });
+
+        res.header("Content-Type", 'application/json')
+        res.status(400).send({
+            prismaError: code,
+            error: errorMessage
+        })
+    }
+    next(error);
+}
+
+interface errorMap {
+    [code: string]: string
+}
+
+export const prismaGeneralErrorMessages: errorMap = {
+    P1008: "Não tivemos resposta dentro de :target0",
+    P2000: "Dado grande demais para gravar na ':target0'",
+    P2002: "Esse valor do ':target0' já existe no banco e não pode ser repetido",
+    P2005: "O valor ':target0' não pode ser atribuido a :target1",
+    P2011: "':target0' não pode ser nulo"
+}

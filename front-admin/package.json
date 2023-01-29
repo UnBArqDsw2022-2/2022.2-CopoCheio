@@ -50,7 +50,11 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.26",
-    "plop": "^3.1.1"
+    "@types/styled-components": "^5.1.26"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   }
 }

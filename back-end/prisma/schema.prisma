@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -11,17 +12,15 @@ datasource db {
 }
 
 model Country {
-  id      String  @id @default(uuid())
-  name    String  @unique
-  Drink   Drink?  @relation(fields: [drinkId], references: [id])
-  drinkId String?
+  id     String              @id @default(uuid())
+  name   String              @unique
+  Drinks CountriesOnDrinks[]
 }
 
 model Category {
-  id      String  @id @default(uuid())
-  name    String  @unique
-  Drink   Drink?  @relation(fields: [drinkId], references: [id])
-  drinkId String?
+  id     String               @id @default(uuid())
+  name   String               @unique
+  Drinks CategoriesOnDrinks[]
 }
 
 model Role {
@@ -52,22 +51,42 @@ enum Difficulty {
 }
 
 model Drink {
-  id          String        @id @default(uuid())
+  id          String               @id @default(uuid())
   name        String
   time        Decimal
   preparation String
   ingredients String[]
-  createdDate DateTime      @default(now())
-  likes       Int           @default(0)
+  createdDate DateTime             @default(now())
+  likes       Int                  @default(0)
   isAlcoholic Boolean
   isVerfied   Boolean
   difficulty  Difficulty
-  country     Country[]
-  category    Category[]
-  createdBy   User          @relation(fields: [userId], references: [id])
+  countries   CountriesOnDrinks[]
+  categories  CategoriesOnDrinks[]
+  createdBy   User                 @relation(fields: [userId], references: [id])
   userId      String
   Favorite    Favorite[]
   Denuciation Denuciation[]
+}
+
+model CountriesOnDrinks {
+  drink      Drink    @relation(fields: [drinkId], references: [id], onDelete: Cascade)
+  drinkId    String
+  country    Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  countryId  String
+  assignedAt DateTime @default(now())
+
+  @@id([drinkId, countryId])
+}
+
+model CategoriesOnDrinks {
+  drink      Drink    @relation(fields: [drinkId], references: [id], onDelete: Cascade)
+  drinkId    String
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId String
+  assignedAt DateTime @default(now())
+
+  @@id([drinkId, categoryId])
 }
 
 model Favorite {
