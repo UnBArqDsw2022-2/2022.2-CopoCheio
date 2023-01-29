@@ -25,26 +25,27 @@ export class Drinks {
         return this.prismaDrink.findMany({
             where:{
                 name:{
-                    contains: searchParams.name
+                    contains: searchParams.name,
+                    mode: 'insensitive'
                 },
-                categories:{
-                    some:{
-                        category:{
-                            id:{
-                                in: searchParams.categories
-                            }
-                        }
-                    }
+            },
+            include:{
+                categories:true,
+                countries:true,
+                createdBy:true
+            },
+            skip: searchParams.page! * searchParams.quantity!,
+            take: searchParams.quantity!
+        })
+    }
+
+    async countByParams(searchParams:searchParamsDrink) {
+        return this.prismaDrink.count({
+            where:{
+                name:{
+                    contains: searchParams.name,
+                    mode: 'insensitive'
                 },
-                countries:{
-                    some:{
-                        country:{
-                            id:{
-                                in: searchParams.countries
-                            }
-                        }
-                    }
-                }
             }
         })
     }
@@ -55,7 +56,11 @@ export class Drinks {
             data: {
                 ...createData,
                 isVerfied: false,
-                userId
+                createdBy:{
+                    connect:{
+                        id: userId
+                    }
+                } 
             }
         });
     }
