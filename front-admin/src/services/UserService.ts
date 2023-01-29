@@ -1,5 +1,6 @@
 import ApiRequest from "./ApiRequestService";
 import User from "../models/UserModel";
+import ApiResponse from "../models/ApiResponseModel";
 
 
 class UserService extends ApiRequest {
@@ -36,36 +37,31 @@ class UserService extends ApiRequest {
 
     try {
       const userId = sessionStorage.getItem('userId');
-
       const response = await this.getRequest({ endPoint: `user/${userId}` });
-
       const user = User.factoryUser(response.data);
 
       this.user = user;
       return user;
     } catch (error) {
-      const err = error as any;
-      throw err["data"]["error"];
+      const apiResponse = ApiResponse.factoryApiResponse(error as any);
+      throw apiResponse.error;
     }
   }
 
   loginUser = async (email: string, password: string) => {
-
     try {
       const body = {
         "email": email,
         "password": password
       };
-
       const response = await this.postRequest({ endPoint: 'session/login', body: body })
-
       const token = response.data['token'];
       const userId = response.data['id'];
 
       this._setUserToken(token, userId);
     } catch (error) {
-      const err = error as any;
-      throw err["response"]["data"]["error"];
+      const apiResponse = ApiResponse.factoryApiResponse(error as any);
+      throw apiResponse.error;
     }
   }
 
