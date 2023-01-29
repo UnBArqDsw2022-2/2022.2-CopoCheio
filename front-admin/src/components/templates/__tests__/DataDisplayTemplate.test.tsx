@@ -11,9 +11,9 @@ describe('#DataDisplayTemplate', () => {
     expect(headerTitle).toBeVisible();
     const logout = screen.getByText('Sair');
     expect(logout).toBeVisible();
-    const userList = screen.getByText('Categorias');
-    expect(userList).toBeVisible();
-    const drinkList = screen.getByText('Filtrar');
-    expect(drinkList).toBeVisible();
+    const categoryDropdown = screen.getByText('Categorias');
+    expect(categoryDropdown).toBeVisible();
+    const filterDropdown = screen.getByText('Filtrar');
+    expect(filterDropdown).toBeVisible();
   });
 });

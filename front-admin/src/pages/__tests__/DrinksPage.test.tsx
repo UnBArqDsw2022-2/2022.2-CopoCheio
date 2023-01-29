@@ -1,9 +1,19 @@
-import { render, screen } from "@testing-library/react";
-import DrinksPage from "../DrinksPage";
+import { screen, render } from '@testing-library/react';
+import DrinksPage from '../DrinksPage';
 
-describe("#DrinkPage", () => {
-    test("initial test expected to fail", () => {
+jest.mock('react-router-dom');
 
-        expect(1 + 2).toBe(4);
-    });
+describe('#DrinksPage', () => {
+  test('render component correctly', () => {
+    render(<DrinksPage />);
+
+    const headerTitle = screen.getByText('Copo Cheio Admin');
+    expect(headerTitle).toBeVisible();
+    const logout = screen.getByText('Sair');
+    expect(logout).toBeVisible();
+    const categoryDropdown = screen.getByText('Categorias');
+    expect(categoryDropdown).toBeVisible();
+    const filterDropdown = screen.getByText('Filtrar');
+    expect(filterDropdown).toBeVisible();
+  });
 });
