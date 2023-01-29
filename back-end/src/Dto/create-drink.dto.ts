@@ -15,7 +15,7 @@ export class CreateDrinkDto {
 
     difficulty: Difficulty;
     
-    country?: Array<string>;
+    countries?: Array<string>;
     
-    category?: Array<string>;
+    categories?: Array<string>;
 }
