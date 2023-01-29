@@ -53,6 +53,7 @@ enum Difficulty {
 model Drink {
   id          String               @id @default(uuid())
   name        String
+  picture     String
   time        Decimal
   preparation String
   ingredients String[]
