@@ -11,6 +11,8 @@ import { failSafeHandler } from './Middlewares/failSafeHandler';
 import UserRoutes from './Controllers/users.controller';
 import RolesRoutes from './Controllers/roles.controller';
 import SessionRoutes from './Controllers/session.controller';
+import CategoryRoutes from './Controllers/categories.controller';
+import CountryRoutes from './Controllers/countries.controller';
 
 dotenv.config()
 
@@ -28,6 +30,8 @@ route.get('/', (req: Request, res: Response) => {
 app.use('/session', SessionRoutes);
 app.use('/roles', RolesRoutes);
 app.use('/user', UserRoutes);
+app.use('/category', CategoryRoutes);
+app.use('/country', CountryRoutes);
 
 app.use(route)
 app.use(HttpExceptionHandler)
