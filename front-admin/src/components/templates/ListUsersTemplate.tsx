@@ -4,7 +4,8 @@ import User from "../../models/UserModel";
 import Card from "../organisms/Card";
 
 const ListUserTemplateStyle = styled.div`
-    display:flex;
+    display: flex;
+    width: 100%;
 `;
 
 const user = new User('Paulo', 'ph.hr.001@gmail.com');
@@ -16,12 +17,17 @@ const ListUserTemplate = () => {
     return (
         <ListUserTemplateStyle>
             {listUserByRequest.map(function (user: User) {
-                return <Card
-                    cardTitle={user.email ?? ''}
-                    cardType="user"
-                    height="291px"
-                    width="227px"
-                />
+                return (
+                    <>
+                        <Card
+                            cardTitle={user.email!}
+                            cardType="user"
+                            height="291px"
+                            width="227px"
+                        />
+                        <div style={{ width: "56px" }}></div>
+                    </>
+                );
             })
             }
         </ListUserTemplateStyle>
