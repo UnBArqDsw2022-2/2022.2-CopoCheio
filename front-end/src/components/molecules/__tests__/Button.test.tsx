@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ThemeProvider } from "styled-components";
 import { colors } from "../../../styles/colors";
-import Button from "../../molecules/Button";
+import Button from "../Button";
 
 const customRender = (onClick: VoidFunction, variant?: any) => render(
     <ThemeProvider theme={colors}>
