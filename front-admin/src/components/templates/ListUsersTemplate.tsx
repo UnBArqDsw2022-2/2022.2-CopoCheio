@@ -22,8 +22,14 @@ const ListUserTemplate = () => {
                         <Card
                             cardTitle={user.email!}
                             cardType="user"
+                            userIndicationQuantity={3}
                             height="291px"
                             width="227px"
+                            backgroundImage="https://viciados.net/wp-content/uploads/2022/11/Naruto-Shippuden-Boruto-2023.webp"
+                            userBlock={false}
+                            onBlockUser={()=>{}}
+                            onDrinkRecommendation={()=>{}}
+                            onUnlockUser={()=>{}}
                         />
                         <div style={{ width: "56px" }}></div>
                     </>

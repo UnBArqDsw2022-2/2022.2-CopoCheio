@@ -18,7 +18,7 @@ interface CardInterface {
     backgroundImage?: string;
     height?: string;
     width?: string;
-    cardType: string;
+    cardType: "drink"|"user";
     userName?: string;
     userBlock?: boolean;
     userIndicationQuantity?: number;
