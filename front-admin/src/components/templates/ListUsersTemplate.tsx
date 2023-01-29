@@ -4,6 +4,7 @@ import User from "../../models/UserModel";
 import Card from "../organisms/Card";
 import Text from "../atoms/Text";
 import {createPortal} from "react-dom";
+import UserManagementModal from "../organisms/UserManagementModal";
 
 const ListUserTemplateStyle = styled.div`
     display: flex;
@@ -13,7 +14,6 @@ const ListUserTemplateStyle = styled.div`
 const user = new User('Paulo', 'ph.hr.001@gmail.com');
 
 const listUserByRequest = [user, user, user, user];
-
 
 const ModalWrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
@@ -27,17 +27,16 @@ const ModalWrapper = styled.div`
   justify-content: center;
 `;
 
-// Create function called showActionModal that receives a User and a string to open a modal
-
-
 const ListUserTemplate = () => {
 
-    const ActionModal = (userId: string, action: string) => {
+    const ActionModal = (userEmail: string, action: string) => {
         console.log(action);
         return (
             <ModalWrapper>
-                <Text>Modal Content</Text>
-                <Text>{userId}</Text>
+                <UserManagementModal
+                    userEmail={userEmail}
+                    action={action}
+                />
             </ModalWrapper>
         );
     };
