@@ -1,9 +1,7 @@
-
-
 import { Category } from '@prisma/client'
 
 import Prisma from "../prismaConection";
-import { Categories as CategoryModel } from "../Models/categories.model";
+import { Categories as CategoryModel } from "../models/categories.model";
 import { BadRequestException } from "../Middlewares/httpExceptions";
 
 import { CreateCategoryDto } from '../Dto/create-category.dto';
@@ -28,5 +26,4 @@ export default class CategoriesService {
     async delete(categoryId: string): Promise<Category> {
         return this.category.delete(categoryId)
     }
-
 }

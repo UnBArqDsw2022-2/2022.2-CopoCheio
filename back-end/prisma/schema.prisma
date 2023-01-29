@@ -99,12 +99,13 @@ model Favorite {
 }
 
 model Denuciation {
-  id           String  @id @default(uuid())
-  title        String
-  comment      String
-  isView       Boolean
-  isViewByUser User    @relation(fields: [userId], references: [id])
-  userId       String
-  drink        Drink   @relation(fields: [drinkId], references: [id])
-  drinkId      String
+  id          String   @id @default(uuid())
+  title       String
+  comment     String
+  isView      Boolean
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  drink       Drink    @relation(fields: [drinkId], references: [id])
+  drinkId     String
+  createdDate DateTime @default(now())
 }
