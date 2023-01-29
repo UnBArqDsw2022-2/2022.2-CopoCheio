@@ -26,15 +26,58 @@ const GenericUserManagementModal = styled.div`
     border-radius: 8px;
     width: clamp(300px, 30vw, 600px);
     height: clamp(200px, 30vh, 328px);
-    padding: 3.5vw;
+    padding: 64px;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14);
     max-width: 540px;
+
 `
 
 const ButtonWrapper = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-around;
+    padding: 16px;
+`
+
+const WarningWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-left: 4px solid #8CE563;
+    border-radius: 8px;
+    background-color: rgba(140, 229, 99, 0.1);
+    padding: 16px;
+    flex-wrap: wrap;
+
+    & > span {
+        padding: 4px;
+        flex: 1;
+        flex-basis: 100%;
+        flex-shrink: 0;
+        text-align: left;
+    }
+
+    & > span:first-child {
+        flex: 0;
+        flex-basis: 1%;
+        justify-self: start;
+        align-self: center;
+        
+    }
+
+    & > span:nth-child(2) {
+        align-self: center;
+        flex: 0;
+        flex-basis: 40%;
+        justify-self: start;
+        text-align: left;
+    }
+
+    & > span:last-child {
+        padding-left: 26px;
+    }
+
+    
 `
 
 const pass = () => {
@@ -50,8 +93,15 @@ const UserManagementModal = ({
         <GenericUserManagementModal
             data-testid='user-modal-container'
         >
-            <Text color={colors.black} size='16px' weight='bold'>Liberar Usuário?</Text>
+            <Text color={colors.black} size='16px' weight='bold'>Restringir Usuário?</Text>
             <Text color={colors.black} size='14px'>Tem certeza que deseja restringir esse usuário?</Text>
+
+            <WarningWrapper>
+                <Icon icon='❤' size='16px' color='#8CE563' />
+                <Text color={colors.black} size='10px' weight='bold'>Fique tranquilo!</Text>
+                <Text color={colors.black} size='10px'>Nada está perdido, caso tenha feito besteira você poderá desfazer essa ação.</Text>
+            </WarningWrapper>
+
             <ButtonWrapper>
                 <MainButton onClick={() => {setShowModal();}} type='cancel'>Cancelar</MainButton>
                 <MainButton onClick={pass} type='decline'>
