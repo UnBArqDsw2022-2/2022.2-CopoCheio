@@ -92,7 +92,7 @@ const Card = ({
             borderColor={(cardType === 'user' && userBlock) ? (
                 colors.denied
             ) : (
-                colors.primary
+                colors.dark_primary
             )}
             hover={hover}
             onMouseEnter={() => setHover(true)}

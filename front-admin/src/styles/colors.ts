@@ -9,6 +9,7 @@ export const pallete = {
   alternative_white: '#fefefe',
   grey: '#999',
   loading: '#E1D7C6',
+  dark_primary: '#DAB783'
 };
 
 export const colors = {
