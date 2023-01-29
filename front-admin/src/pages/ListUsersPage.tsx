@@ -1,8 +1,7 @@
+import ListUserTemplate from "../components/templates/ListUsersTemplate";
 
 const ListUserPage = () => (
-    <>
-        Hello World
-    </>
+    <ListUserTemplate />
 );
 
 export default ListUserPage;
