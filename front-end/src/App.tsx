@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import { colors } from './styles/colors';
 import GlobalStyle from './globalStyles';
-import Text from './components/atoms/Text';
+import Button from './components/molecules/Button';
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <>
       <ThemeProvider theme={colors}>
         <GlobalStyle />
-        <Text color='gold'>criar conta</Text>
+        <Button onClick={() => { }} variant='secondary'>criar conta</Button>
       </ThemeProvider>
     </>
   );
