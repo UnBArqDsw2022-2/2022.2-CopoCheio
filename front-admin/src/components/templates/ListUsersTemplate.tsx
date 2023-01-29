@@ -29,13 +29,14 @@ const ModalWrapper = styled.div`
 
 const ListUserTemplate = () => {
 
-    const ActionModal = (userEmail: string, action: string) => {
+        const ActionModal = (userEmail: string, action: string, setShowModal: any) => {
         console.log(action);
         return (
             <ModalWrapper>
                 <UserManagementModal
                     userEmail={userEmail}
                     action={action}
+                    setShowModal={setShowModal}
                 />
             </ModalWrapper>
         );
@@ -57,7 +58,7 @@ const ListUserTemplate = () => {
                             height="291px"
                             width="227px"
                             onBlockUser={ () => {
-                                setModalContent(ActionModal(user.email!, 'block'));
+                                setModalContent(ActionModal(user.email!, 'block', setShowModal));
                                 setShowModal(true);
                             }}
                         />

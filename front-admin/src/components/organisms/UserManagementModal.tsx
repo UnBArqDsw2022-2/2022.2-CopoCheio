@@ -5,11 +5,13 @@ import LinkTag from '../atoms/LinkTag';
 import LoginForm from '../molecules/LoginForm';
 import Image from '../atoms/Image';
 import MainButton from "../atoms/MainButton";
+import Icon from "../atoms/Icon/Icon";
 
 
 interface UserManagementModalInterface {
     userEmail: string;
     action: string;
+    setShowModal: any;
 }
 
 const GenericUserManagementModal = styled.div`
@@ -41,7 +43,8 @@ const pass = () => {
 
 const UserManagementModal = ({
     userEmail,
-    action
+    action,
+    setShowModal
 }: UserManagementModalInterface ) => {
     return (
         <GenericUserManagementModal
@@ -50,7 +53,7 @@ const UserManagementModal = ({
             <Text color={colors.black} size='16px' weight='bold'>Liberar Usuário?</Text>
             <Text color={colors.black} size='14px'>Tem certeza que deseja restringir esse usuário?</Text>
             <ButtonWrapper>
-                <MainButton onClick={pass} type='cancel'>Cancelar</MainButton>
+                <MainButton onClick={() => {setShowModal();}} type='cancel'>Cancelar</MainButton>
                 <MainButton onClick={pass} type='decline'>
                     Restringir Usuário
                 </MainButton>
