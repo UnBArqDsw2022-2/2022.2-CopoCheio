@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 import AttributesList from '../molecules/AttributesList';
 import CardContainer from '../molecules/CardContainer';

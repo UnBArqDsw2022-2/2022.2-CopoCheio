@@ -1,41 +1,44 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import User from "../../models/UserModel";
-import Card from "../organisms/Card";
+import MainButton from "../atoms/MainButton";
+import SizedBox from "../atoms/SizedBox";
+import ListUsers from "../organisms/ListUsers";
 
 const ListUserTemplateStyle = styled.div`
     display: flex;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px;
 `;
 
-const user = new User('Paulo', 'ph.hr.001@gmail.com');
-
-const listUserByRequest = [user, user, user, user];
-
 const ListUserTemplate = () => {
+    const user = new User('Paulo', 'ph.hr.001@gmail.com');
+    const [listUserByRequest, setListUserByRequest] = useState<Array<User>>([]);
+
+    const showMoreUsers = () => {
+        for (let index = 0; index < 16; index++) {
+            listUserByRequest.push(user);
+        }
+
+        setListUserByRequest([...listUserByRequest]);
+    }
+
     useEffect(() => { }, []);
+
     return (
         <ListUserTemplateStyle>
-            {listUserByRequest.map(function (user: User) {
-                return (
-                    <>
-                        <Card
-                            cardTitle={user.email!}
-                            cardType="user"
-                            userIndicationQuantity={3}
-                            height="291px"
-                            width="227px"
-                            backgroundImage="https://viciados.net/wp-content/uploads/2022/11/Naruto-Shippuden-Boruto-2023.webp"
-                            userBlock={false}
-                            onBlockUser={()=>{}}
-                            onDrinkRecommendation={()=>{}}
-                            onUnlockUser={()=>{}}
-                        />
-                        <div style={{ width: "56px" }}></div>
-                    </>
-                );
-            })
+            {listUserByRequest.length !== 0
+                ? <ListUsers listUsers={listUserByRequest} />
+                : null
             }
+
+            <SizedBox height="56px" />
+            <MainButton
+                children="Carregar mais"
+                onClick={showMoreUsers}
+            />
         </ListUserTemplateStyle>
     )
 }
