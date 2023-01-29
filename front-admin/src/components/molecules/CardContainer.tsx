@@ -53,7 +53,7 @@ const GenericCardContainer = styled.div<GenericCardContainerInterface>`
                 `
             case 'hover':
                 return css`
-                    height: calc(${height} - 17.2px);
+                    height: calc(${height} - 6px);
                     width: calc(${width} - 24px);
                     background: ${colors.black}E6;
                     padding:12px;

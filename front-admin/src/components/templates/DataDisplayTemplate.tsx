@@ -3,11 +3,10 @@ import styled from 'styled-components';
 import Header from '../organisms/Header';
 import StringInput from '../molecules/StringInput';
 import { Dropdown } from '../molecules/Dropdown';
-import GenericContainer from "../atoms/GenericContainer";
-
+import { useEffect, useState } from 'react';
 
 interface DataDisplayTemplateProps {
-
+  type: 'drink' | 'user'
 }
 
 const PageContainer = styled.section`
@@ -69,47 +68,63 @@ export const DataContainer = styled.div`
 `;
 
 
-const cardData = {
-  id: "32e4d468-7703-41c5-b8ec-007614167a37",
-  name: "Drink teste",
-  time: 15.50,
-  preparation: 'oasdoaknsdoaksdnasd',
-  ingredients: ['1 alcool', 'margarida', 'Apenas um test'],
-  createdDate: "2023-01-04T03:21:09+0000",
-  likes: 5,
-  isAlcoholic: true,
-  isVerfied: false,
-  difficulty: "Easy",
-  country: [
-    {
-      id: "32e4d468-7703-41c5-b8ec-007614167a37",
-      nome: "drinkstão"
-    }
-  ],
-  category: [
-    {
-      id: "32e4d468-7703-41c5-b8ec-007614167a37",
-      name: "Categoria 1"
-    }
-  ]
-}
-
-const renderCards = () => {
-  return Array.from({ length: 10 }, (_, i) => i).map(() => (
-    <CardContainer />
-  ))
-}
 
 const DataDisplayTemplate = ({ }: DataDisplayTemplateProps) => {
+  const [data, setData] = useState<any[]>([]);
+  const [nameQuery, setNameQuery] = useState<string>('');
+  const [categories, setCategories] = useState([]);
+  const [categoryQuery, setCategoryQuery] = useState<string>('');
+
+  useEffect(() => {
+    // getCategories
+    // getDrinks or getUsers
+  }, []);
+
+  useEffect(() => {
+    console.log(categoryQuery); // replace with back end req
+  }, [categoryQuery]);
+
+  const renderCards = () => {
+    return data.map((item) => (
+      <Card
+        key={item.id}
+        cardTitle={item.name}
+        cardType={'drink'}
+        height='291px'
+        drinkTime={item.time.toString()}
+        drinkDifficulty={item.difficulty}
+        drinkLocation={item.country[0].nome}
+        drinkCategories={item.category[0].name}
+      />
+    ))
+  }
+
   return (
     <PageContainer>
       <Header />
 
       <Container>
         <ControlsContainer>
-          <Dropdown label={'Categorias'} icon={'block'} options={[]} />
-          <StringInput height='58px' borderRadius='8px' />
-          <Dropdown label={'Filtrar'} icon={'block'} options={[]} />
+          <Dropdown
+            label={'Categorias'}
+            icon={'segment'}
+            options={categories}
+            onSelect={(category) => setCategoryQuery(category)}
+          />
+          <StringInput
+            value={nameQuery}
+            onChange={(event) => setNameQuery(event.target.value)}
+            height='58px'
+            borderRadius='8px'
+            hasSearchButton
+            onSearch={() => { }} // replace with back end req
+          />
+          <Dropdown
+            label={'Filtrar'}
+            icon={'filter_list'}
+            options={[]}
+            onSelect={(option) => { }}
+          />
         </ControlsContainer>
 
         <DataContainer>

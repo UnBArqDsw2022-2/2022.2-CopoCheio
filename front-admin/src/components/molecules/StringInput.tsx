@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Icon from '../atoms/Icon/Icon';
-import { IconsTypes } from '../atoms/Icon/IconTypes';
+import MainButton from '../atoms/MainButton';
 import Text from '../atoms/Text';
 
 interface StringInputInterface {
@@ -13,7 +13,8 @@ interface StringInputInterface {
     onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
     value?: string;
     inputError?: string
-    icon?: IconsTypes
+    hasSearchButton?: boolean,
+    onSearch?: VoidFunction
 }
 
 interface GenericStringInputInterface extends Omit<StringInputInterface, "placeholder"> {
@@ -72,17 +73,25 @@ const StringInput = ({
     value,
     fontSize,
     inputError,
-    icon
+    hasSearchButton,
+    onSearch
 }: StringInputInterface) => {
     return (
         <GenericInputContainer width={width}>
             {placeholder && <Text color='grey' size='1em'>{placeholder}</Text>}
             <GenericInputField borderRadius={borderRadius}>
-                {icon &&
-                    <Icon
-                        icon={icon}
-                        size={'24px'}
-                        marginRight={'8px'}
+                {hasSearchButton &&
+                    <MainButton
+                        leftElement={
+                            <Icon
+                                icon={'search'}
+                                size={'24px'}
+                                marginRight={'8px'}
+                            />
+                        }
+                        onClick={onSearch ? onSearch : () => { }}
+                        children={''}
+                        type='no-background'
                     />
                 }
 

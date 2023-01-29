@@ -1,7 +1,7 @@
 import DataDisplayTemplate from "../components/templates/DataDisplayTemplate";
 
 const DrinksPage = () => (
- <DataDisplayTemplate />
+    <DataDisplayTemplate type="drink" />
 );
 
 export default DrinksPage;
