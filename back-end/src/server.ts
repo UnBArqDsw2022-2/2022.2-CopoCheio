@@ -13,6 +13,7 @@ import RolesRoutes from './Controllers/roles.controller';
 import SessionRoutes from './Controllers/session.controller';
 import CategoryRoutes from './Controllers/categories.controller';
 import CountryRoutes from './Controllers/countries.controller';
+import DrinkRoutes from './Controllers/drinks.controller';
 
 dotenv.config()
 
@@ -26,12 +27,13 @@ app.use(express.json());
 route.get('/', (req: Request, res: Response) => {
   res.json({ message: 'hello world with Typescript' })
 })
-
+ 
 app.use('/session', SessionRoutes);
 app.use('/roles', RolesRoutes);
 app.use('/user', UserRoutes);
 app.use('/category', CategoryRoutes);
 app.use('/country', CountryRoutes);
+app.use('/drink', DrinkRoutes);
 
 app.use(route)
 app.use(HttpExceptionHandler)
