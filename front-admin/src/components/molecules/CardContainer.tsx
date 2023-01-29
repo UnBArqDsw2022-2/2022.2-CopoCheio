@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import React,{ ReactNode } from 'react';
+import { ReactNode } from 'react';
 import {colors} from '../../styles/colors';
 
 
@@ -43,6 +43,7 @@ const GenericCardContainer = styled.div<GenericCardContainerInterface>`
                         width: ${width};
                         background-image: url(${backgroundImage});
                         background-size: cover;
+                        background-position:center;
                     `
             case 'main':
                 return css`
@@ -53,8 +54,8 @@ const GenericCardContainer = styled.div<GenericCardContainerInterface>`
                 `
             case 'hover':
                 return css`
-                    height: calc(${height} - 6px);
-                    width: calc(${width} - 24px);
+                    height: ${height};
+                    width: ${width};
                     background: ${colors.black}E6;
                     padding:12px;
                     padding-bottom:0px;
