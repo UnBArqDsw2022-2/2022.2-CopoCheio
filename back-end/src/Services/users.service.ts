@@ -4,17 +4,45 @@ import moment from "moment";
 import Prisma from "../prismaConection";
 
 import { Roles } from '../Models/roles.model';
-import { UpdateUserDto } from "../Dto/update-user.dto";
 import { BadRequestException } from "../Middlewares/httpExceptions";
 import { Users as UserModel } from "../Models/users.model";
+
+import { UpdateUserDto } from "../Dto/update-user.dto";
 import { CreateUserDto } from '../Dto/create-user.dto';
-import { stdout } from 'process';
+import { searchParamsUser } from '../Dto/search-params-user.dto';
 
 
 export default class UsersService {
     user: UserModel
+    private readonly roles = ['Admin','Customer']
     constructor() {
         this.user = new UserModel(Prisma.user);
+    }
+    
+    async findByParams(searchParams: searchParamsUser, userId?: string) {        
+        if (!userId) delete searchParams.show;
+
+        if (searchParams && searchParams.show !== undefined) {
+           const user = await this.user.findById(userId!,true)           
+           if (!user || user.role.name !== 'Admin') {
+            delete searchParams.show;
+           }           
+           const validRole = this.roles.find(role => role===searchParams.show)
+           if (validRole === undefined) {
+            throw new BadRequestException('Param show must be \'Admin\' or \'Customer\'');
+           }
+        }
+
+        if (!searchParams.page || searchParams.page <= 0) {
+            searchParams.page = 1;
+        }
+        searchParams.page!--;
+
+        if (!searchParams.quantity || searchParams.quantity <= 0) {
+            searchParams.quantity = 50;
+        }
+
+        return this.user.findByParams(searchParams)
     }
 
     async create(userData: CreateUserDto): Promise<UpdateUserDto> {
