@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import Text from '../atoms/Text';
 
 interface ButtonInterface {
     variant?: 'primary' | 'secondary',
@@ -45,7 +46,7 @@ const Button = ({ variant, children, onClick }: ButtonInterface) => {
             onClick={onClick}
             variant={variant || 'primary'}
         >
-            {children.toUpperCase()}
+            <Text cta>{children.toUpperCase()}</Text>
         </GenericButton>
     )
 }
