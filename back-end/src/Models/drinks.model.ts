@@ -58,11 +58,6 @@ export class Drinks {
                     contains: searchParams.name,
                     mode: 'insensitive'
                 },
-                Favorite: {
-                    some: {
-                        userId
-                    }
-                }
             }
         })
     }
