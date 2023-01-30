@@ -1,4 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
 
 import prisma from '../prismaConection';
 import { Users } from '../Models/users.model';
@@ -13,7 +14,19 @@ const usersService = new UsersService();
 
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const allUsers = await users.all()
+        let userId = undefined
+        const authHeader = req.headers.authorization;
+        if (authHeader) {
+            const [token] = authHeader.split(' ');
+            try {   
+                const decoded = jwt.verify(token, process.env.JWT_SECRET ?? 'secret') as any;
+                userId = decoded.id;
+            } catch (error) {        
+                // do nothing
+            }
+        }
+        const searchParams = req.query;       
+        const allUsers = await usersService.findByParams(searchParams,userId)
         res.status(200).send(allUsers)
     } catch (error) {
         next(error)
@@ -23,8 +36,8 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
 router.get('/:id', JwtAuthMiddleware, AuthRoleCheckMiddware(["Admin", "Customer"]), async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userId = req.params.id
-        const allUsers = await users.findById(userId)
-        res.status(200).send(allUsers)
+        const user = await users.findById(userId)        
+        res.status(200).send(user)
     } catch (error) {
         next(error)
     }

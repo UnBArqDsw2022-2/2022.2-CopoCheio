@@ -1,15 +1,12 @@
 
 import moment from "moment";
-import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
-import { BadRequestException } from '../Middlewares/httpExceptions';
-import { Roles } from './roles.model';
 import Prisma from '../prismaConection';
-import isEmail from 'isemail';
 
 import { CreateUserDto } from '../Dto/create-user.dto';
 import { UpdateUserDto } from '../Dto/update-user.dto';
+import { searchParamsUser } from "../Dto/search-params-user.dto";
 
 export class Users {
     constructor(private readonly prismaUser: typeof Prisma['user']) { }
@@ -20,12 +17,33 @@ export class Users {
                 nameComplete: true,
                 email: true,
                 birthDate: true,
+                role:true,
                 id: true
             }
         });
     }
 
-    async findById(userId: string): Promise<UpdateUserDto | null> {
+    async findByParams(searchParams: searchParamsUser): Promise<UpdateUserDto[]> {
+        return this.prismaUser.findMany({
+            where: {
+                role:{
+                    name:{
+                        contains:searchParams.show,
+                        mode:'insensitive'
+                    }
+                }
+            },
+            select: {
+                nameComplete: true,
+                email: true,
+                birthDate: true,
+                role: searchParams?.showRole || false,
+                id: true
+            }
+        });
+    }
+
+    async findById(userId: string, showRole: boolean = false) {
         return this.prismaUser.findUnique({
             where: {
                 id: userId
@@ -34,6 +52,7 @@ export class Users {
                 nameComplete: true,
                 email: true,
                 birthDate: true,
+                role: showRole,
                 id: true
             }
         });
