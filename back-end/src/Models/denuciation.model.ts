@@ -40,16 +40,16 @@ export class Denuciations {
           }
          }
       });
-
+      
       return denuciation;
   }
 
   async findAll(): Promise<UpdateDenuciationDto[]> {
-    return this.prismaDenuciation.findMany();
+    return await this.prismaDenuciation.findMany();
   }
 
   async findOne(id: string): Promise<UpdateDenuciationDto | null> {
-    return this.prismaDenuciation.findUnique({
+    return await this.prismaDenuciation.findUnique({
       where: {
         id: id
       }
@@ -74,7 +74,7 @@ export class Denuciations {
   }
 
   async delete(id: string): Promise<void> {
-    this.prismaDenuciation.delete({
+    await this.prismaDenuciation.delete({
       where: {
         id
       }

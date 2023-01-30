@@ -21,6 +21,9 @@ export default class DenuciationsService {
   }
 
   static async delete(id: string): Promise<void> {
+    const denuciationExists = await denuciation.findOne(id);
+    if (!denuciationExists)
+      throw new NotFoundRequestException('Denuciation not found');
     await denuciation.delete(id);
   }
 

@@ -6,34 +6,37 @@ export class Favorites {
   constructor(private readonly prismaFavorite: PrismaClient['favorite']) { }
 
   async create(data: FavoriteDto): Promise<Favorite> {
-    const { userId, drinId } = data;
+    const { userId, drinkId } = data;
     
-    const favorite = this.prismaFavorite.create({
+    const favorite = await this.prismaFavorite.create({
       data: {
         userId: userId!,
-        drinkId: drinId,
+        drinkId: drinkId,
       }
     });
     return favorite;
   }
 
   async findByUserIdAndDrinkId(data: FavoriteDto): Promise<Favorite | null> {
-    return this.prismaFavorite.findUnique({
+    return await this.prismaFavorite.findUnique({
       where: {
         userId_drinkId: {
           userId: data.userId!,
-          drinkId: data.drinId
+          drinkId: data.drinkId
         }
       }
     });
   }
 
   async delete(data: FavoriteDto): Promise<void> {
-    this.prismaFavorite.delete({
+    console.log(data)
+    data.drinkId = 'fd542d06-78fb-407f-bca4-6d7416e46c31';
+    data.userId = '72c8b16f-2e7d-4beb-baff-f88fbea8654c';
+    await this.prismaFavorite.delete({
       where: {
         userId_drinkId: {
-          userId: data.userId!,
-          drinkId: data.drinId
+          drinkId: data.drinkId,
+          userId: data.userId
         }
       }
     })
