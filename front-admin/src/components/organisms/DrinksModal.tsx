@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { GenericModal } from "../molecules/GenericModal";
 import CloseButton from "../atoms/CloseButton";
 import DrinksModalBody from "../molecules/DrinksModalBody";
@@ -11,26 +12,18 @@ interface DrinksModalInterface {
     isShown: boolean;
     toggle: VoidFunction;
     drinkInfoObject: {
-        userName?: string,
+        title: string;
+        userName: string,
         userImage?: string,
         image?: string,
-        time?: number,
-        dificulty?: string,
-        base?: string,
-        country?: string,
-        guideObject?: {
-            label: string,
-            setGuide: React.ChangeEventHandler<HTMLInputElement> | undefined
-        },
-        ingredientsObject?: {
-            label: string,
-            setIngredients: React.ChangeEventHandler<HTMLInputElement> | undefined
-        };
-        titleObject?: {
-            label: string,
-            setTitle: React.ChangeEventHandler<HTMLInputElement> | undefined
-        }
-    }
+        time: number,
+        dificulty: string,
+        base: string[],
+        country: string,
+        guide: string
+        ingredients: string;
+    };
+    setDrinkInfoObject: Dispatch<SetStateAction<{ title: string; userName: string; time: number; base: string[]; dificulty: string; country: string; ingredients: string; guide: string; }>>;
     leftButtonClick: VoidFunction;
     rightButtonClick: VoidFunction;
     aditionalButtonClick?: VoidFunction;
@@ -38,6 +31,7 @@ interface DrinksModalInterface {
 
 const DrinksModal = ({
     modalType,
+    setDrinkInfoObject,
     isShown,
     toggle,
     drinkInfoObject,
@@ -65,6 +59,7 @@ const DrinksModal = ({
             modalBody={
                 <DrinksModalBody
                     drinkInfoObject={drinkInfoObject}
+                    setDrinkInfoObject={setDrinkInfoObject}
                 />
             }
             modalFooter={<DrinksModalFooter

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import styled from "styled-components";
 import ModalText from "./ModalText";
 import TitleWithIcon from "./TitleWithIcon";
@@ -8,29 +8,23 @@ import IconText from "../atoms/IconText";
 import Icon from "../atoms/Icon/Icon";
 import TextInput from "../atoms/TextInput";
 import GenericTextArea from "../atoms/GenericTextArea";
+import DropDown from "./DropDown";
+import Text from "../atoms/Text";
 
 interface DrinksModalBodyInterface {
     drinkInfoObject: {
-        userName?: string,
+        title: string,
+        userName: string,
         userImage?: string,
         image?: string,
-        time?: number,
-        dificulty?: string,
-        base?: string,
-        country?: string,
-        guideObject?: {
-            label: string,
-            setGuide: React.ChangeEventHandler<HTMLInputElement> | undefined
-        },
-        ingredientsObject?: {
-            label: string,
-            setIngredients: React.ChangeEventHandler<HTMLInputElement> | undefined
-        },
-        titleObject?: {
-            label: string,
-            setTitle: React.ChangeEventHandler<HTMLInputElement> | undefined,
-        },
-    }
+        time: number,
+        dificulty: string,
+        base: string[],
+        country: string,
+        guide: string
+        ingredients: string
+    };
+    setDrinkInfoObject: Dispatch<SetStateAction<{ title: string; userName: string; time: number; base: string[]; dificulty: string; country: string; ingredients: string; guide: string; }>>;
 }
 
 const BodyContainer = styled.div`
@@ -79,6 +73,7 @@ const IconRow = styled.div`
 `;
 
 const LeftIcon = styled.div`
+    position: relative;
     height: fit-content;
     width: 30%;
 `;
@@ -87,27 +82,110 @@ const RightIcon = styled.div`
     width: 70%;
 `;
 
+const TimeInputContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: ${({ theme }) => theme.grey};
+`;
+
+const TimeInput = styled.input`
+    outline: none;
+    border: none;
+    width: 20px;
+    padding: 0;
+    font-size: 16px;
+    color: ${({ theme }) => theme.grey};
+`;
+
+const CountryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-height: 130px;
+  overflow-y: auto;
+`;
+
 const DrinksModalBody = ({
     drinkInfoObject,
+    setDrinkInfoObject
 }: DrinksModalBodyInterface) => {
     const [onClickInput, setOnClickInput] = useState('');
-    const resetSetOnClickInput = (e: any) => {e.key === 'Enter' && setOnClickInput('')};
+    const resetSetOnClickInput = (e: any) => { e.key === 'Enter' && setOnClickInput('') };
+
+    const handleSetOnClickInput = (value: string) => {
+        if (value !== onClickInput)
+            setOnClickInput(value);
+        else 
+            setOnClickInput('');
+    }
+
+    const handleDificulty = (value: string) => {
+        setDrinkInfoObject({
+            ...drinkInfoObject,
+            dificulty: value
+        });
+        setOnClickInput('');
+    };
+
+    const handleCountry = (value: string) => {
+        setDrinkInfoObject({
+            ...drinkInfoObject,
+            country: value
+        });
+        setOnClickInput('');
+    }
+    
+    const handleAlcohols = (value: string) => {
+        const alcoholArray = drinkInfoObject.base;
+        const arrayIndex = alcoholArray.indexOf(value);
+        if(value === alcoholArray[arrayIndex])
+            alcoholArray.splice(arrayIndex, 1);
+        else if(alcoholArray.length < 3)
+            alcoholArray.push(value)
+
+        setDrinkInfoObject({
+            ...drinkInfoObject,
+            base: alcoholArray
+        });
+        setOnClickInput('');
+    }
+
+    const mockCountry = [
+        'Russia',
+        'Brazil',
+        'USA',
+        'Argentina',
+        'Japan',
+        'China',
+        'South Korea'
+    ];
+    
+    const mockAlcohols = [
+        'Vodka',
+        'Gin',
+        'Tequila',
+        'Cachaça',
+        'Sake'
+    ];
+
     return (
         <BodyContainer>
             <TextSide>
-                {onClickInput === 'title' ? <div onKeyDown={resetSetOnClickInput}><GenericTextArea value={drinkInfoObject.titleObject?.label} type='input' placeHolder={drinkInfoObject.titleObject?.label} onChange={drinkInfoObject.titleObject?.setTitle} fontSize='16px' weight='bold' /></div> : <div onClick={() => setOnClickInput('title')}><TitleWithIcon title={drinkInfoObject.titleObject?.label} label={drinkInfoObject.userName} image={drinkInfoObject.userImage} /></div>}
+                {onClickInput === 'title' ? <div onKeyDown={resetSetOnClickInput}><GenericTextArea value={drinkInfoObject.title} type='input' placeHolder={drinkInfoObject.title} onChange={e => setDrinkInfoObject({ ...drinkInfoObject, title: e.target.value })} fontSize='16px' weight='bold' /></div> : <div onClick={() => handleSetOnClickInput('title')}><TitleWithIcon title={drinkInfoObject.title} label={drinkInfoObject.userName} image={drinkInfoObject.userImage} /></div>}
                 {
                     onClickInput === 'ingredients' ?
                         <div onKeyDown={resetSetOnClickInput}>
-                            <TextInput value={drinkInfoObject.ingredientsObject?.label} onChange={drinkInfoObject.ingredientsObject?.setIngredients} width='100%' height='110px' title='Ingredientes' size='16px' textSize='12px' />
+                            <TextInput value={drinkInfoObject.ingredients} onChange={e => setDrinkInfoObject({ ...drinkInfoObject, ingredients: e.target.value })} width='100%' height='110px' title='Ingredientes' size='16px' textSize='12px' />
                         </div> :
-                        <div onClick={() => setOnClickInput('ingredients')}><ModalText title='Ingredientes' text={drinkInfoObject.ingredientsObject?.label} /></div>
+                        <div onClick={() => handleSetOnClickInput('ingredients')}><ModalText title='Ingredientes' text={drinkInfoObject.ingredients} /></div>
                 }
                 {
                     onClickInput === 'guide' ?
-                        <div onKeyDown={resetSetOnClickInput}><TextInput value={drinkInfoObject.guideObject?.label} onChange={drinkInfoObject.guideObject?.setGuide} placeHolder={drinkInfoObject.guideObject?.label} width='100%' height='180px' title='Modo de preparo' size='16px' textSize='12px' /></div>
+                        <div onKeyDown={resetSetOnClickInput}><TextInput value={drinkInfoObject.guide} onChange={e => setDrinkInfoObject({ ...drinkInfoObject, guide: e.target.value })} placeHolder={drinkInfoObject.guide} width='100%' height='180px' title='Modo de preparo' size='16px' textSize='12px' /></div>
                         :
-                        <div onClick={() => setOnClickInput('guide')}><ModalText title='Modo de preparo' text={drinkInfoObject.guideObject?.label}/></div>
+                        <div onClick={() => handleSetOnClickInput('guide')}><ModalText title='Modo de preparo' text={drinkInfoObject.guide} /></div>
                 }
             </TextSide>
             <CardSide>
@@ -117,19 +195,57 @@ const DrinksModalBody = ({
                         No image
                     </BlankImage>}
                 <IconRow>
-                    <LeftIcon>
+                    <LeftIcon onClick={() => handleSetOnClickInput('time')}>
                         <IconText iconColor={colors.primary} iconLeft='schedule' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={`${drinkInfoObject.time} min`} />
+                        {
+                            onClickInput === 'time' && <DropDown element={
+                                <TimeInputContainer>
+                                    <TimeInput maxLength={2} value={drinkInfoObject.time} onChange={e => setDrinkInfoObject({ ...drinkInfoObject, time: Number(e.target.value) })} onKeyDown={resetSetOnClickInput} /> min
+                                </TimeInputContainer>
+                            } />
+                        }
                     </LeftIcon>
                     <RightIcon>
-                        <IconText iconColor={colors.primary} iconLeft='sports_bar' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={drinkInfoObject.base} />
+                        <IconText onClick={() => handleSetOnClickInput('alcohols')} iconColor={colors.primary} iconLeft='sports_bar' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={drinkInfoObject.base.join(', ')} />
+                        {
+                            onClickInput === 'alcohols' && <DropDown element={
+                                <CountryContainer>
+                                    {
+                                        mockAlcohols.map((alcohol, index) => (
+                                            <Text onClick={() => handleAlcohols(alcohol)} margin={index !== 0 ? "8px 0 0 0" : ''} weight="regular" size="14px" color={colors.grey} >{alcohol}</Text>
+                                        ))
+                                    }
+                                </CountryContainer>
+                            } />
+                        }
                     </RightIcon>
                 </IconRow>
                 <IconRow>
-                    <LeftIcon>
+                    <LeftIcon onClick={() => handleSetOnClickInput('dificulty')}>
                         <IconText iconColor={colors.primary} iconLeft='school' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={drinkInfoObject.dificulty} />
+                        {
+                            onClickInput === 'dificulty' && <DropDown element={
+                                <>
+                                    <Text onClick={() => handleDificulty('Facil')} weight="regular" size="14px" color={colors.grey} >Facil</Text>
+                                    <Text onClick={() => handleDificulty('Médio')} margin="8px 0 0 0" weight="regular" size="14px" color={colors.grey} >Médio</Text>
+                                    <Text onClick={() => handleDificulty('Díficil')} margin="8px 0 0 0" weight="regular" size="14px" color={colors.grey} >Dificil</Text>
+                                </>
+                            } />
+                        }
                     </LeftIcon>
-                    <RightIcon>
+                    <RightIcon onClick={() => handleSetOnClickInput('country')}>
                         <IconText iconColor={colors.primary} iconLeft='flag' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={drinkInfoObject.country} />
+                        {
+                            onClickInput === 'country' && <DropDown element={
+                                <CountryContainer>
+                                    {
+                                        mockCountry.map((country, index) => (
+                                            <Text onClick={() => handleCountry(country)} margin={index !== 0 ? "8px 0 0 0" : ''} weight="regular" size="14px" color={colors.grey} >{country}</Text>
+                                        ))
+                                    }
+                                </CountryContainer>
+                            } />
+                        }
                     </RightIcon>
                 </IconRow>
             </CardSide>
