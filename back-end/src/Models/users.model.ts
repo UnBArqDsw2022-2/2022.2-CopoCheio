@@ -78,7 +78,14 @@ export class Users {
             where: {
                 email: userData.email,
                 id: {
-                    not: userId
+                    not: userId,
+                }
+            },
+            select: {
+                role: {
+                    select: {
+                        name: true
+                    }
                 }
             }
         });

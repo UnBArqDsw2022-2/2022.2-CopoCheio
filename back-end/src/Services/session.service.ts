@@ -28,7 +28,7 @@ export default class SessionService {
             throw new BadRequestException("Email or Password does not match");
         }
 
-        const tokenUser = jwt.sign({ id: user.id! }, authConfig.secret!, {
+        const tokenUser = jwt.sign({ id: user.id!, role: user }, authConfig.secret!, {
             expiresIn: authConfig.expiresIn
         });
 
