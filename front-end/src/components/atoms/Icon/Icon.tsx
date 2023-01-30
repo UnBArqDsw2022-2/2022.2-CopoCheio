@@ -7,6 +7,7 @@ interface IconStyleInterface {
   marginLeft?: string;
   marginRight?: string;
   rotate?: boolean;
+  filled?: boolean
 }
 
 interface IconInterface extends IconStyleInterface {
@@ -14,8 +15,9 @@ interface IconInterface extends IconStyleInterface {
 }
 
 const IconStyle = styled.span<IconStyleInterface>`
-  font-family: 'Material Icons';
+  font-family: ${({ filled }) => filled ? 'Material Icons' : 'Material Icons Outlined'};
   font-size: ${({ size }) => size || '14px'};
+  font-weight: 300;
   color: ${({ color }) => color};
   margin-left: ${({ marginLeft }) => marginLeft};
   margin-right: ${({ marginRight }) => marginRight};
@@ -28,7 +30,8 @@ const Icon = ({
   marginLeft,
   marginRight,
   color,
-  rotate
+  rotate,
+  filled
 }: IconInterface) => (
   <IconStyle
     data-testid='icon test'
@@ -37,6 +40,7 @@ const Icon = ({
     marginRight={marginRight}
     color={color}
     rotate={rotate}
+    filled={filled}
   >
     {icon}
   </IconStyle>
