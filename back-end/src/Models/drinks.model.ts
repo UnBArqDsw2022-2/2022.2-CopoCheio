@@ -10,13 +10,25 @@ export class Drinks {
     constructor(
         private readonly prismaDrink: typeof Prisma['drink'],
         private readonly prismaCategoriesOnDrinks: typeof Prisma['categoriesOnDrinks'],
-        private readonly prismaCountriesOnDrinks: typeof Prisma['countriesOnDrinks']
+        private readonly prismaCountriesOnDrinks: typeof Prisma['countriesOnDrinks'],
         ) { }
 
     async findById(drinkId: string): Promise<Drink | null> {
         return this.prismaDrink.findUnique({
             where: {
                 id: drinkId
+            }
+        });
+    }
+
+    async findAllFavorites(userId: string) {
+        return await this.prismaDrink.findMany({
+            where:{
+                Favorite: {
+                    some: {
+                        userId
+                    }
+                }
             }
         });
     }
@@ -39,13 +51,18 @@ export class Drinks {
         })
     }
 
-    async countByParams(searchParams:searchParamsDrink) {
+    async countFavoritesByParams(searchParams:searchParamsDrink, userId: string) {
         return this.prismaDrink.count({
             where:{
                 name:{
                     contains: searchParams.name,
                     mode: 'insensitive'
                 },
+                Favorite: {
+                    some: {
+                        userId
+                    }
+                }
             }
         })
     }

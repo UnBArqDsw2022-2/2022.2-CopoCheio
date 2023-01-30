@@ -106,7 +106,7 @@ model Denuciation {
   isView      Boolean
   user        User     @relation(fields: [userId], references: [id])
   userId      String
-  drink       Drink    @relation(fields: [drinkId], references: [id])
+  drink       Drink    @relation(fields: [drinkId], references: [id], onDelete: Cascade)
   drinkId     String
   createdDate DateTime @default(now())
 }

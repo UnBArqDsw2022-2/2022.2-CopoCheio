@@ -14,8 +14,6 @@ export default class FavoritesService {
       throw new BadRequestException('Parameters invalid');
 
     const alreadyExists = await favorite.findByUserIdAndDrinkId(favoriteData);
-    console.log('aqui')
-    console.log(alreadyExists)
     if (alreadyExists)
       await favorite.delete(favoriteData);
     else 
