@@ -15,16 +15,13 @@ interface DropdownInterface {
 }
 
 
-export const Container = styled.button`
+export const Container = styled.div`
   width: 100%;
   border: none;
   background-color: transparent;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 3rem;
-  position: relative;
   color: ${({ theme }) => theme.secondary};
 `;
 
@@ -43,11 +40,8 @@ const Dropdown = ({ label, icon, options, onSelect }: DropdownInterface) => {
     }
 
     return (
-        <BoxContainer>
-            <Container
-                data-testid='dropdown'
-                onClick={() => setOpen(!open)}
-            >
+        <BoxContainer onClick={() => setOpen(!open)}>
+            <Container>
                 <LabelContainer>
                     <Icon
                         icon={icon}
@@ -59,7 +53,7 @@ const Dropdown = ({ label, icon, options, onSelect }: DropdownInterface) => {
 
                 <Icon
                     icon={'expand_more'}
-                    size={'40px'}
+                    size={'24px'}
                     rotate={open}
                 />
 

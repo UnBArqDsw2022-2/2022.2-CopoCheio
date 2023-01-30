@@ -70,6 +70,7 @@ const Header = ({ }) => {
                     <Options
                         options={Object.keys(navigationOptions)}
                         onSelect={handleSelect}
+                        distance="-13rem"
                     />
                 }
             </OptionsContainer>

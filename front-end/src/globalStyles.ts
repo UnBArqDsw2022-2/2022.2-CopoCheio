@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background-color: ${({ theme }) => theme.white};
+    background-color: ${({ theme }) => theme.primary};
   }
 `;
 
