@@ -16,7 +16,7 @@ export const OptionsContainer = styled.div`
   background-color: ${({ theme }) => theme.alternative_white};
   gap: 1px;
   width: 100%;
-  max-height: 11rem;
+  max-height: 13rem;
   display: flex;
   flex-direction: column;
   align-items: center;
