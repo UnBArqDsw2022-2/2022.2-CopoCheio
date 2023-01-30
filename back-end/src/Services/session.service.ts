@@ -6,9 +6,11 @@ import jwt from 'jsonwebtoken';
 import { BadRequestException } from '../Middlewares/httpExceptions';
 import { LoginDto, LoginDtoType } from '../Dto/login.dto';
 import { Users } from '../Models/users.model';
+import { Roles } from '../Models/roles.model';
 import authConfig from '../Config/auth';
 
 const users = new Users(prisma.user);
+const roles = new Roles(prisma.role);
 
 export default class SessionService {
 
@@ -28,13 +30,17 @@ export default class SessionService {
             throw new BadRequestException("Email or Password does not match");
         }
 
-        const tokenUser = jwt.sign({ id: user.id! }, authConfig.secret!, {
+        let role = null;
+        if (user.roleId)
+            role = await roles.findOne(user.roleId);
+
+        const tokenUser = jwt.sign({ id: user.id!, role }, authConfig.secret!, {
             expiresIn: authConfig.expiresIn
         });
 
         return {
             token: tokenUser,
-            id: user.id,
+            id: user.id
         }
     }
 
