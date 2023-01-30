@@ -17,15 +17,15 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
         const authHeader = req.headers.authorization;
         if (authHeader) {
             const [token] = authHeader.split(' ');
-            try {   
+            try {
                 const decoded = jwt.verify(token, process.env.JWT_SECRET ?? 'secret') as any;
                 userId = decoded.id;
-            } catch (error) {        
+            } catch (error) {
                 // do nothing
             }
         }
-        const searchParams = req.query;       
-        const allUsers = await usersService.findByParams(searchParams,userId)
+        const searchParams = req.query;
+        const allUsers = await usersService.findByParams(searchParams, userId)
         res.status(200).send(allUsers)
     } catch (error) {
         next(error)
@@ -35,7 +35,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
 router.get('/:id', JwtAuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userId = req.params.id
-        const user = await users.findById(userId)        
+        const user = await users.findById(userId)
         res.status(200).send(user)
     } catch (error) {
         next(error)
@@ -59,7 +59,6 @@ router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
         const updatedUser = await usersService.update(userData, userId)
         res.status(201).send(updatedUser)
     } catch (error) {
-        console.log(error)
         next(error)
     }
 })

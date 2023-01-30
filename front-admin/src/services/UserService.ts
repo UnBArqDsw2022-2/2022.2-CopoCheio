@@ -48,6 +48,22 @@ class UserService extends ApiRequest {
     }
   }
 
+  getAllCustomers = async () => {
+    try {
+      const response = await this.getRequest({ endPoint: `user`, params: `show=Customer` });
+      let usersCutomers = [];
+
+      for (let customer of Array.from(response.data['users'])) {
+        usersCutomers.push(User.factoryUser(customer));
+      }
+
+      return { 'count': response.data['count'], 'users': usersCutomers };
+    } catch (error) {
+      const apiResponse = ApiResponse.factoryApiResponse(error as any);
+      throw apiResponse.error;
+    }
+  }
+
   loginUser = async (email: string, password: string) => {
     try {
       const body = {
