@@ -105,8 +105,21 @@ const UserManagementModal = ({
         <GenericUserManagementModal
             data-testid='user-modal-container'
         >
-            <Text color={colors.black} size='16px' weight='bold'>Restringir Usuário?</Text>
-            <Text color={colors.black} size='14px'>Tem certeza que deseja restringir esse usuário?</Text>
+            
+            {(action=='block') ? (
+                <>   
+                    <Text color={colors.black} size='16px' weight='bold'>Restringir Usuário?</Text>
+                    <Text color={colors.black} size='14px'>Tem certeza que deseja restringir esse usuário?</Text>
+                </>
+            ): <></>}
+
+            {(action=='unlock') ? (
+                <>   
+                    <Text color={colors.black} size='16px' weight='bold'>Liberar Usuário?</Text>
+                    <Text color={colors.black} size='14px'>Tem certeza que deseja liberar esse usuário?</Text>
+                </>
+            ): <></>}
+            
 
             <WarningWrapper>
                 <Icon icon='❤' size='16px' color='#8CE563' />
@@ -116,9 +129,23 @@ const UserManagementModal = ({
 
             <ButtonWrapper>
                 <MainButton onClick={() => {setShowModal();}} type='cancel' fontSize='14px'>Cancelar</MainButton>
-                <MainButton onClick={pass} type='decline' fontSize='14px' rightElement={(<Icon icon='block'></Icon>)}>
-                    Restringir Usuário
-                </MainButton>
+
+                {(action=='block') ? (
+                    <>   
+                        <MainButton onClick={pass} type='decline' fontSize='14px' rightElement={(<Icon icon='block'></Icon>)}>
+                            Restringir Usuário
+                        </MainButton>
+                    </>
+                ): <></>}
+
+                {(action=='unlock') ? (
+                    <>   
+                        <MainButton onClick={pass} type='confirm' fontSize='14px' rightElement={(<Icon icon='lock_open'></Icon>)}>
+                            Liberar Usuário
+                        </MainButton>
+                    </>
+                ): <></>}
+
             </ButtonWrapper>
         </GenericUserManagementModal>
     )

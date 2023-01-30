@@ -58,7 +58,7 @@ const ListUserTemplate = () => {
                             height="291px"
                             width="227px"
                             onBlockUser={ () => {
-                                setModalContent(ActionModal(user.email!, 'block', setShowModal));
+                                setModalContent(ActionModal(user.email!, 'unlock', setShowModal));
                                 setShowModal(true);
                             }}
                         />
