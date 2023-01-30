@@ -6,6 +6,7 @@ import LoginForm from '../molecules/LoginForm';
 import Image from '../atoms/Image';
 import MainButton from "../atoms/MainButton";
 import Icon from "../atoms/Icon/Icon";
+import IconText from '../atoms/IconText';
 
 
 interface UserManagementModalInterface {
@@ -37,6 +38,17 @@ const ButtonWrapper = styled.div`
     width: 100%;
     justify-content: space-around;
     padding: 16px;
+
+    & > button:first-child {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    & > button:last-child span {
+        padding-left: 16px !important;
+        justify-content: space-around;
+    }
+
 `
 
 const WarningWrapper = styled.div`
@@ -98,13 +110,13 @@ const UserManagementModal = ({
 
             <WarningWrapper>
                 <Icon icon='❤' size='16px' color='#8CE563' />
-                <Text color={colors.black} size='10px' weight='bold'>Fique tranquilo!</Text>
-                <Text color={colors.black} size='10px'>Nada está perdido, caso tenha feito besteira você poderá desfazer essa ação.</Text>
+                <Text color={colors.black} size='12px' weight='bold'>Fique tranquilo!</Text>
+                <Text color={colors.black} size='12px'>Nada está perdido, caso tenha feito besteira você poderá desfazer essa ação.</Text>
             </WarningWrapper>
 
             <ButtonWrapper>
-                <MainButton onClick={() => {setShowModal();}} type='cancel'>Cancelar</MainButton>
-                <MainButton onClick={pass} type='decline'>
+                <MainButton onClick={() => {setShowModal();}} type='cancel' fontSize='14px'>Cancelar</MainButton>
+                <MainButton onClick={pass} type='decline' fontSize='14px' rightElement={(<Icon icon='block'></Icon>)}>
                     Restringir Usuário
                 </MainButton>
             </ButtonWrapper>
