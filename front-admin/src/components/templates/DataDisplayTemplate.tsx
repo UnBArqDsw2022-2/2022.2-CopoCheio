@@ -4,9 +4,11 @@ import Header from '../organisms/Header';
 import StringInput from '../molecules/StringInput';
 import { Dropdown } from '../molecules/Dropdown';
 import { useEffect, useState } from 'react';
+import Drink from '../../models/DrinkModel';
+import DrinkService from '../../services/DrinkService';
 
 interface DataDisplayTemplateProps {
-  type: 'drink' | 'user'
+  type: 'drink' | 'user',
 }
 
 const PageContainer = styled.section`
@@ -69,15 +71,26 @@ export const DataContainer = styled.div`
 
 
 
-const DataDisplayTemplate = ({ }: DataDisplayTemplateProps) => {
+const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
   const [data, setData] = useState<any[]>([]);
   const [nameQuery, setNameQuery] = useState<string>('');
   const [categories, setCategories] = useState([]);
   const [categoryQuery, setCategoryQuery] = useState<string>('');
 
+  const drinksService=DrinkService.getInstance();
+  
+
+  const getDrinksHandle=async ()=>{
+      const drinks=await drinksService.getDrinks();
+      setData(drinks);
+  }
+
   useEffect(() => {
     // getCategories
     // getDrinks or getUsers
+
+    if(type==="drink")
+      getDrinksHandle();
   }, []);
 
   useEffect(() => {
@@ -85,16 +98,18 @@ const DataDisplayTemplate = ({ }: DataDisplayTemplateProps) => {
   }, [categoryQuery]);
 
   const renderCards = () => {
-    return data.map((item) => (
+    return data && data.map((item) => (
       <Card
         key={item.id}
         cardTitle={item.name}
         cardType={'drink'}
         height='291px'
-        drinkTime={item.time.toString()}
+        width='227px'
+        backgroundImage={item.picture}
+        drinkTime={item.time.toString()+" min"}
         drinkDifficulty={item.difficulty}
-        drinkLocation={item.country[0].nome}
-        drinkCategories={item.category[0].name}
+        drinkLocation={"Não definido"||item.country[0] }
+        drinkCategories={"Não definido"||item.category[0]}
       />
     ))
   }

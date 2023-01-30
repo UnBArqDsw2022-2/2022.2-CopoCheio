@@ -6,14 +6,14 @@ import ApiResponse from "../models/ApiResponseModel";
 class UserService extends ApiRequest {
   private _user?: User;
 
-  private static intance: UserService;
+  private static instance: UserService;
 
   static getInstance(): UserService {
-    if (!UserService.intance) {
-      UserService.intance = new UserService();
+    if (!UserService.instance) {
+      UserService.instance = new UserService();
     }
 
-    return UserService.intance;
+    return UserService.instance;
   }
 
   public get user() {
