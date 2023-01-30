@@ -1,6 +1,6 @@
 import Prisma from '../prismaConection';
 
-import { Denuciations } from '../models/denuciation.model';
+import { Denuciations } from '../Models/denuciation.model';
 import { CreateDenuciationDto } from '../Dto/create-denuciation.dto';
 import { UpdateDenuciationDto } from '../Dto/update-denuciation';
 import { NotFoundRequestException } from '../Middlewares/httpExceptions';
