@@ -26,6 +26,15 @@ router.get('/:id', JwtAuthMiddleware, async (req: Request, res: Response, next: 
     }
 })
 
+router.get('/random', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const drink = await drinkService.findRandom(req.params);
+        res.status(200).send(drink);
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.post('/', JwtAuthMiddleware,async (req: Request, res: Response, next: NextFunction) => {
     try {
         const drinkData = req.body;
