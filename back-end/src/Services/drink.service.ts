@@ -47,19 +47,19 @@ export default class DrinksService {
     async create(userId: string, drinkData: CreateDrinkDto): Promise<UpdateDrinkDto> {
         let { categories, countries, ...createData } = drinkData
         if (!drinkData || !createData) {
-            throw new BadRequestException('can\'t create a drink without information')
+            throw new BadRequestException('Para criar bebida precisa de informações')
         }
         if (!createData.name || createData.name.length === 0) {
-            throw new BadRequestException('can\'t create a drink without a name')
+            throw new BadRequestException('A bebida precisa de um nome')
         }
         if (!createData.ingredients || !Array.isArray(createData.ingredients) || createData.ingredients.length < 1) {
-            throw new BadRequestException('can\'t create a drink without a list of ingredients')
+            throw new BadRequestException('A bebida precisa de uma lista de ingredientes')
         }
         if (!createData.preparation || createData.preparation.length <= 4) {
-            throw new BadRequestException('can\'t create a drink without a proper preparation method')
+            throw new BadRequestException('A bebida precisa de um método de preparação')
         }
         if (!createData.time || createData.time as unknown as number < 1) {
-            throw new BadRequestException('can\'t create a drink without time to prepare it')
+            throw new BadRequestException('A bebida precisa de um tempo de preparo')
         }
         let validIngredients = []
         for (const ingredient of createData.ingredients) {
@@ -69,7 +69,7 @@ export default class DrinksService {
         }
 
         if (validIngredients.length === 0) {
-            throw new BadRequestException('ingredients must be a list of strings');
+            throw new BadRequestException('Ingredientes precisam ser uma lista de palavras');
         }
 
         createData.ingredients = validIngredients;
@@ -78,7 +78,7 @@ export default class DrinksService {
 
         const validDifficulty = this.possibleDifficulties.find((difficulty) => difficulty === createData.difficulty)
         if (validDifficulty === undefined) {
-            throw new BadRequestException('difficulty mus be \'EASY\' \'MEDIUM\' \'HARD\'')
+            throw new BadRequestException('Dificuldade precisa ser \'EASY\' \'MEDIUM\' ou \'HARD\'')
         }
         const drink = await this.drink.create(userId, createData)
 
@@ -97,17 +97,17 @@ export default class DrinksService {
         let { categories, countries, ...updateData } = drinkData
 
         if (updateData.name && updateData.name.length === 0) {
-            throw new BadRequestException('can\'t create a drink without a name')
+            throw new BadRequestException('A bebida precisa de um nome')
         }
         if (updateData.preparation && updateData.preparation.length <= 4) {
-            throw new BadRequestException('can\'t create a drink without a proper preparation method')
+            throw new BadRequestException('A bebida precisa de um método de preparação')
         }
         if (updateData.time && updateData.time as unknown as number < 1) {
-            throw new BadRequestException('can\'t create a drink without time to prepare it')
+            throw new BadRequestException('A bebida precisa de um tempo de preparo')
         }
         if (updateData.ingredients) {
             if (!Array.isArray(updateData.ingredients) || updateData.ingredients.length < 1) {
-                throw new BadRequestException('can\'t create a drink without a list of ingredients')
+                throw new BadRequestException('A bebida precisa de uma lista de ingredientes')
             }
             let validIngredients = []
             for (const ingredient of updateData.ingredients) {
@@ -117,7 +117,7 @@ export default class DrinksService {
             }
 
             if (validIngredients.length === 0) {
-                throw new BadRequestException('ingredients must be a list of strings');
+                throw new BadRequestException('Ingredientes precisam ser uma lista de palavras');
             }
 
             updateData.ingredients = validIngredients;
@@ -133,7 +133,7 @@ export default class DrinksService {
         if (updateData.difficulty) {
             const validDifficulty = this.possibleDifficulties.find((difficulty) => difficulty === updateData.difficulty)
             if (validDifficulty === undefined) {
-                throw new BadRequestException('difficulty mus be \'EASY\' \'MEDIUM\' \'HARD\'')
+                throw new BadRequestException('Dificuldade precisa ser \'EASY\' \'MEDIUM\' ou \'HARD\'')
             }
         }
 

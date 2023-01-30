@@ -22,12 +22,12 @@ export default class SessionService {
         const user = await users.findByEmail(login.email, true);
 
         if (!user) {
-            throw new BadRequestException("User not Found");
+            throw new BadRequestException("Usuário não encontrado");
         }
 
         const isSame = await SessionService.checkPassword(login.password, user.password!);
         if (!isSame) {
-            throw new BadRequestException("Email or Password does not match");
+            throw new BadRequestException("Email ou senha invalidos");
         }
 
         let role = null;

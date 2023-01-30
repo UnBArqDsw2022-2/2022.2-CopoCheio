@@ -16,7 +16,7 @@ export default class CountriesService {
 
     async create(categoryData: CreateCountryDto): Promise<Country> {
         if(!categoryData || !categoryData.name || categoryData.name.length === 0){
-            throw new BadRequestException('Country must gave a name');
+            throw new BadRequestException('Paises tem que ter um nome');
         }
         return this.country.create(categoryData);
     }

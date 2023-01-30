@@ -14,7 +14,7 @@ export default class CategoriesService {
 
     async create(categoryData: CreateCategoryDto): Promise<Category> {
         if(!categoryData || !categoryData.name || categoryData.name.length === 0){
-            throw new BadRequestException('Category must gave a name');
+            throw new BadRequestException('Categoria tem que ter um nome');
         }
         return this.category.create(categoryData);
     }
