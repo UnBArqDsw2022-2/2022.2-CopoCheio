@@ -7,7 +7,7 @@ interface BoxContainerInterface {
 const Container = styled.div`
     flex-grow: 1;
     width: 100%;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     border: ${({ theme }) => `2px solid ${theme.secondary}`};
     border-radius: 0.5rem;
     font-size: 1rem;

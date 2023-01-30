@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import BoxContainer from '../atoms/BoxContainer';
 import IconButton from '../molecules/IconButton';
 
 interface TextInputInterface {
@@ -29,6 +30,7 @@ const GenericInputContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    padding: 0.5rem 0;
     gap: 0.5rem;
 `
 
@@ -41,18 +43,20 @@ const TextInput = ({
     onSearch
 }: TextInputInterface) => {
     return (
-        <GenericInputContainer>
-            <GenericTextInput
-                data-testid='email-input'
-                type={type || 'text'}
-                onChange={onChange}
-                value={value}
-                placeholder={placeholder}
-            />
-            {hasSearchButton &&
-                <IconButton icon={'search'} onClick={onSearch ? onSearch : () => { }} />
-            }
-        </GenericInputContainer >
+        <BoxContainer>
+            <GenericInputContainer>
+                <GenericTextInput
+                    data-testid='email-input'
+                    type={type || 'text'}
+                    onChange={onChange}
+                    value={value}
+                    placeholder={placeholder}
+                />
+                {hasSearchButton &&
+                    <IconButton icon={'search'} onClick={onSearch ? onSearch : () => { }} />
+                }
+            </GenericInputContainer >
+        </BoxContainer>
     )
 }
 
