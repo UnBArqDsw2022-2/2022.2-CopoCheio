@@ -6,6 +6,7 @@ import { Dropdown } from '../molecules/Dropdown';
 import { useEffect, useState } from 'react';
 import Drink from '../../models/DrinkModel';
 import DrinkService from '../../services/DrinkService';
+import CategoryService from '../../services/CategoryService';
 
 interface DataDisplayTemplateProps {
   type: 'drink' | 'user',
@@ -74,10 +75,11 @@ export const DataContainer = styled.div`
 const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
   const [data, setData] = useState<any[]>([]);
   const [nameQuery, setNameQuery] = useState<string>('');
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<any[]>([]);
   const [categoryQuery, setCategoryQuery] = useState<string>('');
 
   const drinksService=DrinkService.getInstance();
+  const categoriesService=CategoryService.getInstance();
   
 
   const getDrinksHandle=async ()=>{
@@ -85,12 +87,19 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
       setData(drinks);
   }
 
+  const getCategoryHandle=async ()=>{
+      const categories=await categoriesService.getCategories();
+      setCategories(categories)
+  }
+
   useEffect(() => {
     // getCategories
     // getDrinks or getUsers
 
-    if(type==="drink")
+    if(type==="drink"){
       getDrinksHandle();
+      getCategoryHandle();
+    }
   }, []);
 
   useEffect(() => {
@@ -120,12 +129,14 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
 
       <Container>
         <ControlsContainer>
-          <Dropdown
-            label={'Categorias'}
-            icon={'segment'}
-            options={categories}
-            onSelect={(category) => setCategoryQuery(category)}
-          />
+          {(type==="drink")&&(
+            <Dropdown
+              label={'Categorias'}
+              icon={'segment'}
+              options={categories}
+              onSelect={(category) => setCategoryQuery(category)}
+            />
+          )}
           <StringInput
             value={nameQuery}
             onChange={(event) => setNameQuery(event.target.value)}
@@ -134,12 +145,14 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
             hasSearchButton
             onSearch={() => { }} // replace with back end req
           />
-          <Dropdown
-            label={'Filtrar'}
-            icon={'filter_list'}
-            options={[]}
-            onSelect={(option) => { }}
-          />
+          {(type==="drink")&&(
+            <Dropdown
+              label={'Filtrar'}
+              icon={'filter_list'}
+              options={[]}
+              onSelect={(option) => { }}
+            />
+          )}
         </ControlsContainer>
 
         <DataContainer>

@@ -41,7 +41,7 @@ const GenericCardContainer = styled.div<GenericCardContainerInterface>`
                         margin:0px;
                         height: calc(${height} - 5.2px);
                         width: ${width};
-                        background-image: url(${backgroundImage});
+                        background-image: url(data:${backgroundImage});
                         background-size: cover;
                         background-position:center;
                     `

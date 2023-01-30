@@ -54,6 +54,5 @@ class DrinkService extends ApiRequest {
 
 }
 
-const drinkService = DrinkService.getInstance();
 
 export default DrinkService;
