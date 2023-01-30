@@ -16,6 +16,16 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     }
 })
 
+router.get('/favorites', JwtAuthMiddleware,async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const userId = req.id;
+        const allDrinks = await drinkService.findFavorites(userId);
+        res.status(200).send(allDrinks);
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.get('/:id', JwtAuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userId = req.params.id
@@ -46,7 +56,6 @@ router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
         const updatedUser = await drinkService.update(drinkId,drinkData, userId)
         res.status(201).send(updatedUser)
     } catch (error) {
-        console.log(error)
         next(error)
     }
 })

@@ -20,6 +20,11 @@ export default class DrinksService {
         this.categoriesService = new CategoriesService();
         this.countriesService = new CountriesService();
     }
+
+    async findFavorites(userId: string) {
+        return await this.drink.findAllFavorites(userId);
+    }
+
     async findByParams(searchParams: searchParamsDrink) {
         const { page, quantity, name } = searchParams
         if (!page || page <= 0) {
@@ -195,5 +200,4 @@ export default class DrinksService {
         }
         return Promise.all(promisesList)
     }
-
 }

@@ -1,5 +1,3 @@
-
-
 import { Category } from '@prisma/client'
 
 import Prisma from "../prismaConection";
@@ -28,5 +26,4 @@ export default class CategoriesService {
     async delete(categoryId: string): Promise<Category> {
         return this.category.delete(categoryId)
     }
-
 }
