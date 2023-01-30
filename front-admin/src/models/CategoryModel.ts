@@ -1,5 +1,3 @@
-import moment from "moment";
-
 class Category {
     id?: string;
     name?: string;

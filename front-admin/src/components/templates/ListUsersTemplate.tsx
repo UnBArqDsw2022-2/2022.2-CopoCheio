@@ -38,6 +38,7 @@ const ListUserTemplate = () => {
     useEffect(() => {
         if (listUsersData.length === 0 && isLoading === false) {
             console.log('requesting two times');
+            
             showMoreUsers();
         }
     }, []);

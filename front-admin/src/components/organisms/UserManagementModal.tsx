@@ -1,12 +1,8 @@
 import { colors } from '../../styles/colors';
 import styled from 'styled-components';
 import Text from '../atoms/Text';
-import LinkTag from '../atoms/LinkTag';
-import LoginForm from '../molecules/LoginForm';
-import Image from '../atoms/Image';
 import MainButton from "../atoms/MainButton";
 import Icon from "../atoms/Icon/Icon";
-import IconText from '../atoms/IconText';
 
 
 interface UserManagementModalInterface {
@@ -106,14 +102,14 @@ const UserManagementModal = ({
             data-testid='user-modal-container'
         >
             
-            {(action=='block') ? (
+            {(action==='block') ? (
                 <>   
                     <Text color={colors.black} size='16px' weight='bold'>Restringir Usuário?</Text>
                     <Text color={colors.black} size='14px'>Tem certeza que deseja restringir esse usuário?</Text>
                 </>
             ): <></>}
 
-            {(action=='unlock') ? (
+            {(action==='unlock') ? (
                 <>   
                     <Text color={colors.black} size='16px' weight='bold'>Liberar Usuário?</Text>
                     <Text color={colors.black} size='14px'>Tem certeza que deseja liberar esse usuário?</Text>
@@ -130,7 +126,7 @@ const UserManagementModal = ({
             <ButtonWrapper>
                 <MainButton onClick={() => {setShowModal();}} type='cancel' fontSize='14px'>Cancelar</MainButton>
 
-                {(action=='block') ? (
+                {(action==='block') ? (
                     <>   
                         <MainButton onClick={pass} type='decline' fontSize='14px' rightElement={(<Icon icon='block'></Icon>)}>
                             Restringir Usuário
@@ -138,7 +134,7 @@ const UserManagementModal = ({
                     </>
                 ): <></>}
 
-                {(action=='unlock') ? (
+                {(action==='unlock') ? (
                     <>   
                         <MainButton onClick={pass} type='confirm' fontSize='14px' rightElement={(<Icon icon='lock_open'></Icon>)}>
                             Liberar Usuário
