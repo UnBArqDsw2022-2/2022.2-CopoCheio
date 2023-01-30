@@ -3,14 +3,16 @@ import styled from 'styled-components';
 
 interface OptionsInterface {
     options: any[];
-    onSelect: (value: string) => void
+    onSelect: (value: string) => void,
+    distance?: string
 }
 
+interface OptionsContainerInterface extends Omit<OptionsInterface, "options" | "onSelect"> { }
 
-export const OptionsContainer = styled.div`
+export const OptionsContainer = styled.div<OptionsContainerInterface>`
   position: absolute;
   left: 0;
-  top: 64px;
+  bottom: ${({distance})=> distance || '-10.5rem'};
   border-radius: 8px;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25);
   background-color: ${({ theme }) => theme.alternative_white};
@@ -44,7 +46,7 @@ export const Option = styled.button`
 `;
 
 
-const Options = ({ options, onSelect }: OptionsInterface) => {
+const Options = ({ options, onSelect, distance }: OptionsInterface) => {
 
     const renderOptions = () => {
         return options.map((option) => (
@@ -55,7 +57,7 @@ const Options = ({ options, onSelect }: OptionsInterface) => {
     }
 
     return (
-        <OptionsContainer>
+        <OptionsContainer distance={distance}>
             {renderOptions()}
         </OptionsContainer>
     );

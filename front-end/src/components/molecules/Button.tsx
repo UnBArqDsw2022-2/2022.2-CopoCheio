@@ -15,7 +15,7 @@ const GenericButton = styled.button<GenericButtonInterface>`
     align-items: center;
     text-align: center;
     width: 100%;
-    padding: 16px;
+    padding: 1rem;
     border-radius: 999px;
     border: none;
     cursor: pointer;
@@ -46,7 +46,7 @@ const Button = ({ variant, children, onClick }: ButtonInterface) => {
             onClick={onClick}
             variant={variant || 'primary'}
         >
-            <Text cta>{children.toUpperCase()}</Text>
+            <Text cta weight='semibold'>{children.toUpperCase()}</Text>
         </GenericButton>
     )
 }

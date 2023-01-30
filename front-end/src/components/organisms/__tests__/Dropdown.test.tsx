@@ -27,7 +27,7 @@ describe("#Dropdown", () => {
 
     test("on click opens options", () => {
         customRender(() => { });
-        const dropdown = screen.getByTestId("dropdown");
+        const dropdown = screen.getByTestId("box container");
         userEvent.click(dropdown);
 
         const firstOption = screen.getByText("1");
