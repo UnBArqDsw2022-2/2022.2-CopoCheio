@@ -1,7 +1,7 @@
-import ListUserTemplate from "../components/templates/ListUsersTemplate";
+import DataDisplayTemplate from "../components/templates/DataDisplayTemplate";
 
-const ListUserPage = () => (
-    <ListUserTemplate />
-);
-
+const ListUserPage = () => {
+    return(<DataDisplayTemplate type="user" />)
+ };
+ 
 export default ListUserPage;

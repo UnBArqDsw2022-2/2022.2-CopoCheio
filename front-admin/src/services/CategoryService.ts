@@ -61,6 +61,7 @@ class CategoryService extends ApiRequest {
   }
 
 }
+const categoriesService=CategoryService.getInstance();
 
 
-export default CategoryService;
+export default categoriesService;

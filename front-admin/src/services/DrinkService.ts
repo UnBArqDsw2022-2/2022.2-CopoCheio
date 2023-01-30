@@ -45,7 +45,7 @@ class DrinkService extends ApiRequest {
         drinks.push(Drink.factoryDrink(drink));
       }
 
-      return drinks;
+      return { 'count': response.data['count'], 'drinks': drinks };
     } catch (error) {
       const apiResponse = ApiResponse.factoryApiResponse(error as any);
       throw apiResponse.error;
@@ -55,4 +55,7 @@ class DrinkService extends ApiRequest {
 }
 
 
-export default DrinkService;
+
+const drinksService=DrinkService.getInstance();
+
+export default drinksService;

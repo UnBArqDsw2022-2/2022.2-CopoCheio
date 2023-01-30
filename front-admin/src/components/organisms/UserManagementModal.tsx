@@ -21,11 +21,10 @@ const GenericUserManagementModal = styled.div`
     text-align: center;
     background-color: ${({ theme }) => theme.alternative_white};
     border-radius: 8px;
-    width: clamp(300px, 30vw, 600px);
-    height: clamp(200px, 30vh, 328px);
     padding: 64px;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14);
-    max-width: 540px;
+    width: 548px;
+    height: 328px;
 
 `
 
