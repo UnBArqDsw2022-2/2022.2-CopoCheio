@@ -15,5 +15,6 @@ export type IconsTypes  = ReactNode &
 'segment' |
 'favorite' |
 'add' |
-'report';
+'report' |
+'reorder';
 
