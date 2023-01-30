@@ -8,7 +8,10 @@ const Router = createBrowserRouter([
     }, {
         path: '/login',
         element: <LoginPage></LoginPage>
-    },
+    }, {
+        path: '/cadastro',
+        element: <h1>Hello, world!</h1>
+    }
 ])
 
 export default Router;
