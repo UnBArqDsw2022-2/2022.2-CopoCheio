@@ -27,7 +27,7 @@ const GenericStringInput = styled.input<GenericStringInputInterface>`
     font-size: 1em;
     line-height: 1.5;
     color: ${({ theme }) => theme.secondary};
-    background-color: ${({ theme }) => theme.primary} !important;
+    background-color: ${({ theme }) => theme.alternative_primary} !important;
     background-clip: padding-box;
     font-family: Work Sans !important;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;

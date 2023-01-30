@@ -7,7 +7,7 @@ import Dropdown from '../organisms/Dropdown';
 import MainButton from '../atoms/MainButton';
 import StringInput from '../molecules/StringInput';
 
-interface DrinkCarouselInterface {
+interface SearchBarInterface {
     title: string,
 }
 
@@ -54,7 +54,7 @@ const ParametersWrapper = styled.div`
 
 const SeachBar = ({
     title
-}: DrinkCarouselInterface) => {
+}: SearchBarInterface) => {
 
     return (
         <Container>

@@ -59,7 +59,7 @@ const GenericButton = styled.button<GenericButtonInterface>`
                 `
             case 'filter':
                 return css`
-                    background-color: ${({ theme }) => theme.primary};
+                    background-color: ${({ theme }) => theme.alternative_primary};
                     color: ${({ theme }) => theme.secondary};
                     border: 1px solid ${({ theme }) => theme.secondary};
                     border-radius: 8px;
