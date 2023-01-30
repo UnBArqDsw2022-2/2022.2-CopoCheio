@@ -182,6 +182,6 @@ test('should fail if user updates email that another user uses', async () => {
     const usersService = new UsersService();
 
     await expect(usersService.update({ email: "joao@fkmail.com", }, userMock.id)).rejects.toEqual(
-        new BadRequestException('Email already in use')
+        new BadRequestException('Email já registrado')
     )
 })

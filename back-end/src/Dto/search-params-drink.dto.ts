@@ -5,11 +5,13 @@ import { SearchParams } from "./search-params.dta";
 export class searchParamsDrink extends PartialType(SearchParams){
     name?: string;
 
-    categories?: string[];
+    categories?: Array<string>;
 
-    countries?: string[];
+    countries?:  Array<string>;
 
     isAlcoholic?: boolean;
 
     difficulty?: Difficulty;
+
+    userId?: string;
 }
