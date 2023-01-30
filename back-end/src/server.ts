@@ -29,7 +29,7 @@ route.get('/', (req: Request, res: Response) => {
 })
  
 app.use('/session', SessionRoutes);
-app.use('/roles', RolesRoutes);
+app.use('/roles', RolesRoutes, );
 app.use('/user', UserRoutes);
 app.use('/category', CategoryRoutes);
 app.use('/country', CountryRoutes);
