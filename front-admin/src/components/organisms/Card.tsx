@@ -126,7 +126,7 @@ const Card = ({
                             ? (<>
                                 <IconButton
                                     type='default'
-                                    onClick={(onBlockUser) && (() => { onBlockUser() })}
+                                    onClick={(onUnlockUser) && (() => { onUnlockUser() })}
                                     icon={'lock_open'}
                                     iconColor={colors.success}
                                     fontSize="32px"
@@ -142,7 +142,7 @@ const Card = ({
                             : (<>
                                 <IconButton
                                     type='default'
-                                    onClick={(onUnlockUser) && (() => { onUnlockUser() })}
+                                    onClick={(onBlockUser) && (() => { onBlockUser() })}
                                     icon={'block'}
                                     iconColor={colors.denied}
                                     fontSize="32px"

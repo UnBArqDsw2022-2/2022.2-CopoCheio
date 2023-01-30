@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import styled from "styled-components";
 import User from "../../models/UserModel";
 import MainButton from "../atoms/MainButton";
@@ -12,6 +12,8 @@ const ListUserTemplateStyle = styled.div`
     flex-direction: column;
     margin-bottom: 40px;
 `;
+
+const user = new User('Paulo', 'ph.hr.001@gmail.com');
 
 const ListUserTemplate = () => {
     const user = new User('Paulo', 'ph.hr.001@gmail.com');
