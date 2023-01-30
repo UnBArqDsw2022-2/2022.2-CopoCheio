@@ -22,4 +22,16 @@ export class Roles {
             }
         })
     }
+
+    async findOne(id: string): Promise<Role | null>  {
+        return await this.prismaRole.findUnique({
+            where: {
+                id
+            },
+            select: {
+                id: true,
+                name: true
+            }
+        });
+    }
 }

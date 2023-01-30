@@ -5,6 +5,7 @@ import prisma from '../prismaConection';
 import { Users } from '../Models/users.model';
 
 import { JwtAuthMiddleware } from '../Middlewares/auth';
+import { AuthRoleCheckMiddware } from '../Middlewares/authRoleCheck';
 import UsersService from '../Services/users.service';
 
 const router = Router();
@@ -32,7 +33,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     }
 })
 
-router.get('/:id', JwtAuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:id', JwtAuthMiddleware, AuthRoleCheckMiddware(["Admin", "Customer"]), async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userId = req.params.id
         const user = await users.findById(userId)
@@ -63,7 +64,7 @@ router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
     }
 })
 
-router.delete('/:id', JwtAuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+router.delete('/:id', JwtAuthMiddleware, AuthRoleCheckMiddware(["Admin"]), async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userId = req.params.id
         await users.update({ active: false }, userId)
