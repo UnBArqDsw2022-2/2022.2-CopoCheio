@@ -216,14 +216,14 @@ const DrinksModalBody = ({
                 {onClickInput === 'title' ? <div onKeyDown={resetSetOnClickInput}><GenericTextArea value={drinkInfoObject.title} type='input' placeHolder={drinkInfoObject.title} onChange={e => setDrinkInfoObject({ ...drinkInfoObject, title: e.target.value })} fontSize='16px' weight='bold' /></div> : <div onClick={() => handleSetOnClickInput('title')}><TitleWithIcon title={drinkInfoObject.title} label={drinkInfoObject.userName} image={drinkInfoObject.userImage} /></div>}
                 {
                     onClickInput === 'ingredients' ?
-                        <div onKeyDown={resetSetOnClickInput}>
+                        <div style={{marginTop: '16px'}} onKeyDown={resetSetOnClickInput}>
                             <TextInput value={drinkInfoObject.ingredients} onChange={e => setDrinkInfoObject({ ...drinkInfoObject, ingredients: e.target.value })} width='100%' height='110px' title='Ingredientes' size='16px' textSize='12px' />
                         </div> :
                         <div onClick={() => handleSetOnClickInput('ingredients')}><ModalText title='Ingredientes' text={drinkInfoObject.ingredients} /></div>
                 }
                 {
                     onClickInput === 'guide' ?
-                        <div onKeyDown={resetSetOnClickInput}><TextInput value={drinkInfoObject.guide} onChange={e => setDrinkInfoObject({ ...drinkInfoObject, guide: e.target.value })} placeHolder={drinkInfoObject.guide} width='100%' height='180px' title='Modo de preparo' size='16px' textSize='12px' /></div>
+                        <div style={{marginTop: '16px'}} onKeyDown={resetSetOnClickInput}><TextInput value={drinkInfoObject.guide} onChange={e => setDrinkInfoObject({ ...drinkInfoObject, guide: e.target.value })} placeHolder={drinkInfoObject.guide} width='100%' height='180px' title='Modo de preparo' size='16px' textSize='12px' /></div>
                         :
                         <div onClick={() => handleSetOnClickInput('guide')}><ModalText title='Modo de preparo' text={drinkInfoObject.guide} /></div>
                 }

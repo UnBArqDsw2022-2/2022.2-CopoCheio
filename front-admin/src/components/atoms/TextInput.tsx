@@ -12,13 +12,15 @@ interface TextInputInterface {
     value?: string;
     onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
     textSize: string;
+    margin?: string;
 }
 
-const TextInputContainer = styled.div<Pick<TextInputInterface, 'width' | 'height'>>`
+const TextInputContainer = styled.div<Pick<TextInputInterface, 'width' | 'height' | 'margin'>>`
     display: flex;
     flex-flow: column;
     height: ${props => props.height || 'auto'};
     width: ${props => props.width || 'auto'};
+    margin: ${props => props.margin};
 `;
 
 const TextInput = ({
@@ -29,9 +31,10 @@ const TextInput = ({
     placeHolder,
     value,
     onChange,
-    textSize
+    textSize,
+    margin
 }: TextInputInterface) => (
-    <TextInputContainer width={width} height={height}>
+    <TextInputContainer margin={margin} width={width} height={height}>
         <Text
             size={size}
             weight={'bold'}

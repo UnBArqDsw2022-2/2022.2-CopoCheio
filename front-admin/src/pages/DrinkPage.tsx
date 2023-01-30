@@ -23,7 +23,7 @@ const DrinkPage = () => {
                 toggle();
             }}>Create Modal</button>
             <DrinksModal
-                modalType="recomendationDrinkModal"
+                modalType="genericDrinkModal"
                 isShown={isShown}
                 toggle={toggle}
                 drinkInfoObject={drinkMockObject}
