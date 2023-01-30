@@ -51,7 +51,7 @@ export class Drinks {
         })
     }
 
-    async countFavoritesByParams(searchParams:searchParamsDrink, userId: string) {
+    async countByParams(searchParams:searchParamsDrink) {
         return this.prismaDrink.count({
             where:{
                 name:{
