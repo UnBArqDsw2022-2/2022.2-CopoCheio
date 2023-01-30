@@ -5,14 +5,16 @@ import { IconsTypes } from '../atoms/Icon/IconTypes';
 interface ButtonInterface {
     icon: IconsTypes,
     onClick: VoidFunction,
+    size?: string,
+    hasBackground?: boolean,
     selected?: boolean,
-    selectedColor?: string,
-    unselectedColor?: string
+    selectedColor?: 'white' | 'secondary',
+    unselectedColor?: 'white' | 'secondary'
 }
 
-interface GenericButtonInterface extends Omit<ButtonInterface, "onClick" | "icon"> { }
+interface IconButtonInterface extends Omit<ButtonInterface, "onClick" | "icon"> { }
 
-const GenericButton = styled.button<GenericButtonInterface>`
+const Button = styled.button<IconButtonInterface>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,32 +24,48 @@ const GenericButton = styled.button<GenericButtonInterface>`
     cursor: pointer;
     color: ${({ theme }) => theme.secondary};
 
-    ${({ selected, selectedColor, unselectedColor }) => {
-        if (selected && selectedColor) {
+    ${({ hasBackground, selected, selectedColor, unselectedColor }) => {
+        if (hasBackground) {
             return css`
-                color: ${({ theme }) => theme.secondary};
+                color: ${({ theme }) => theme.primary};
+                background-color: ${({ theme }) => theme.secondary};
+                padding: 1rem;
+                border-radius: 999px;
+            `
+        } else {
+            if (selected && selectedColor) return css`
+                color: ${({ theme }) => theme[selectedColor]};
+            `
+            else if (unselectedColor) return css`
+                color: ${({ theme }) => theme[unselectedColor]};
             `
         }
-        else if(unselectedColor) return css`
-                color: ${({ theme }) => theme.secondary};
-            `
     }};
 `
 
-const IconButton = ({ icon, onClick, selected, selectedColor, unselectedColor }: ButtonInterface) => {
+const IconButton = ({
+    icon,
+    onClick,
+    size,
+    hasBackground,
+    selected,
+    selectedColor,
+    unselectedColor
+}: ButtonInterface) => {
     return (
-        <GenericButton
+        <Button
             data-testid='icon button'
             onClick={onClick}
+            hasBackground={hasBackground}
             selectedColor={selectedColor}
             unselectedColor={unselectedColor}
             selected={selected}
         >
             <Icon
                 icon={icon}
-                size={'24px'}
+                size={size || '24px'}
             />
-        </GenericButton>
+        </Button>
     )
 }
 
