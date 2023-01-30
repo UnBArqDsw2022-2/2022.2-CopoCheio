@@ -4,8 +4,6 @@ import Header from '../organisms/Header';
 import StringInput from '../molecules/StringInput';
 import { Dropdown } from '../molecules/Dropdown';
 import { useEffect, useState } from 'react';
-import drinksService from '../../services/DrinkService';
-import categoriesService from '../../services/CategoryService';
 import userService from '../../services/UserService';
 import { useNavigate } from 'react-router-dom';
 import MainButton from '../atoms/MainButton';
@@ -13,7 +11,12 @@ import {createPortal} from "react-dom";
 import UserManagementModal from "../organisms/UserManagementModal";
 
 interface DataDisplayTemplateProps {
-  type: 'drink' | 'user',
+  type: 'drink' | 'user';
+  data: any[];
+  maxCount: number;
+  isLoading?: boolean;
+  categories:string[];
+  showMore: VoidFunction;
 }
 
 const PageContainer = styled.section`
@@ -89,7 +92,7 @@ const ModalWrapper = styled.div`
 
 
 
-const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
+const DataDisplayTemplate = ({type,data,maxCount=0,isLoading,categories=[],showMore}: DataDisplayTemplateProps) => {
   const navigate = useNavigate();
 
   async function isSigned() {
@@ -104,7 +107,6 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
   };
 
   const ActionModal = (userEmail: string, action: string, setShowModal: any) => {
-      console.log(action);
       return (
           <ModalWrapper>
               <UserManagementModal
@@ -120,71 +122,15 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
   const [modalContent, setModalContent] = useState<React.ReactElement | null>(null);
 
 
-  let maxCount = 0;
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  const [data, setData] = useState<any[]>([]);
   const [nameQuery, setNameQuery] = useState<string>('');
-  const [categories, setCategories] = useState<any[]>([]);
   const [categoryQuery, setCategoryQuery] = useState<string>('Categorias');
 
 
-  const showMoreUsers = async () => {
-      try {
-          setIsLoading(true);
-          const response = await userService.getAllCustomers();
-          const listUsers = data.concat(response.users);
-          maxCount = response.count;
-          setData([...listUsers]);
-          setIsLoading(false);
-      } catch (error) {
-          setIsLoading(false);
-      }
-  }
 
-  const showMoreDrinks = async () => {
-      try {
-          setIsLoading(true);
-          const response = await drinksService.getDrinks();
-          const listDrinks = data.concat(response.drinks);
-          maxCount = response.count;
-          setData([...listDrinks]);
-          setIsLoading(false);
-      } catch (error) {
-          setIsLoading(false);
-      }
-  }
   
-  const getUserHandle=async ()=>{
-    const users=await userService.getAllCustomers();
-    setData(users.users);
-    setIsLoading(false);
-  }
-
-  const getDrinksHandle=async ()=>{
-      const drinks=await drinksService.getDrinks();
-      setData(drinks.drinks);
-      setIsLoading(false);
-  }
-
-  const getCategoryHandle=async ()=>{
-      const categories=await categoriesService.getCategories();
-      setCategories(categories)
-      setIsLoading(false);
-  }
 
   useEffect(() => {
     isSigned();
-
-    if(type==="drink"){
-      // eslint-disable-next-line
-      getDrinksHandle();
-      // eslint-disable-next-line
-      getCategoryHandle();
-    }
-    else if(type==="user"){
-      getUserHandle();
-    }
   });
 
   //useEffect(() => {
@@ -208,7 +154,6 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
         />
       ))}
     else{
-      console.log(data);
       return data && data.map((item) => (
         <Card
             cardTitle={item.name}
@@ -278,8 +223,7 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
                 onClick={(e) => {
                     e.preventDefault();
                     if (data.length < maxCount) {
-                        (type==='user' && showMoreUsers());
-                        (type==='drink' && showMoreDrinks());
+                        (showMore());
                     }
                 }}
                 type={isLoading ? "loading" : "primary"}
