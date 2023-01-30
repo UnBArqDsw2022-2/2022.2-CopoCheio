@@ -50,11 +50,7 @@ export class Users {
                 birthDate: true,
                 id: true,
                 password: showPassord,
-                role: {
-                    select: {
-                        name: true
-                    }
-                }
+                roleId: true,
             }
         });
     }

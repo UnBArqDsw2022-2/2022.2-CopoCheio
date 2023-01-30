@@ -10,6 +10,7 @@ import { Roles } from '../Models/roles.model';
 import authConfig from '../Config/auth';
 
 const users = new Users(prisma.user);
+const roles = new Roles(prisma.role);
 
 export default class SessionService {
 
@@ -29,7 +30,9 @@ export default class SessionService {
             throw new BadRequestException("Email or Password does not match");
         }
 
-        const tokenUser = jwt.sign({ id: user.id!, role: user.role?.name }, authConfig.secret!, {
+        const role = await roles.findOne(user.roleId);
+
+        const tokenUser = jwt.sign({ id: user.id!, role: role.name }, authConfig.secret!, {
             expiresIn: authConfig.expiresIn
         });
 
