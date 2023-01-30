@@ -4,7 +4,6 @@ import User from "../../models/UserModel";
 import userService from "../../services/UserService";
 import MainButton from "../atoms/MainButton";
 import SizedBox from "../atoms/SizedBox";
-import SpinnerLoading from "../atoms/SpinnerLoading";
 import ListUsers from "../organisms/ListUsers";
 
 
@@ -41,7 +40,7 @@ const ListUserTemplate = () => {
             
             showMoreUsers();
         }
-    }, []);
+    });
 
     return (
         <ListUserTemplateStyle>

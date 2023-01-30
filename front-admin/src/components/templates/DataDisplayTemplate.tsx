@@ -101,7 +101,7 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
       // eslint-disable-next-line
       getCategoryHandle();
     }
-  }, []);
+  });
 
   useEffect(() => {
     console.log(categoryQuery); // replace with back end req
