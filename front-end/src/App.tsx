@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled, { ThemeProvider } from 'styled-components';
+import { colors } from './styles/colors';
+import GlobalStyle from './globalStyles';
+import TextInput from './components/organisms/TextInput';
+import BoxContainer from './components/atoms/BoxContainer';
+import Icon from './components/atoms/Icon/Icon';
+import Text from './components/atoms/Text';
+import Dropdown from './components/organisms/Dropdown';
+import DataDisplayTemplate from './components/templates/DataDisplay';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeProvider theme={colors}>
+        <GlobalStyle />
+        <DataDisplayTemplate>
+          oi
+        </DataDisplayTemplate>
+      </ThemeProvider>
+    </>
   );
 }
 
