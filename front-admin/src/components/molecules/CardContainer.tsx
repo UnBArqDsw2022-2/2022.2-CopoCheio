@@ -2,16 +2,15 @@ import styled, { css } from 'styled-components';
 import { ReactNode } from 'react';
 import {colors} from '../../styles/colors';
 
-
 interface CardContainerInterface {
     width?: string;
     height?: string;
     borderRadius?: string;
-    hover?:boolean;
+    hover?: boolean;
     borderColor?: string;
     containerType?: string;
     backgroundImage?: string;
-    children:ReactNode;
+    children: ReactNode;
     onMouseEnter?: VoidFunction;
     onMouseLeave?: VoidFunction;
 }
@@ -27,17 +26,17 @@ const GenericCardContainer = styled.div<GenericCardContainerInterface>`
     border-radius: ${({ borderRadius }) => borderRadius || '16px'};
     outline: none;
     border: none;
-    ${({ height,width,borderColor,backgroundImage, typeDefinition }) => {
-        switch (typeDefinition){
+    ${({ height, width, borderColor, backgroundImage, typeDefinition }) => {
+        switch (typeDefinition) {
             case 'background':
-                    return css`
+                return css`
                         height: ${height};
                         width: ${width};
                         background-color:  ${borderColor};
                         box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14);
                     `
             case 'image':
-                    return css`
+                return css`
                         margin:0px;
                         height: calc(${height} - 5.2px);
                         width: ${width};

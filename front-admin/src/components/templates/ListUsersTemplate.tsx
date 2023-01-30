@@ -1,41 +1,63 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import User from "../../models/UserModel";
-import Card from "../organisms/Card";
+import userService from "../../services/UserService";
+import MainButton from "../atoms/MainButton";
+import SizedBox from "../atoms/SizedBox";
+import SpinnerLoading from "../atoms/SpinnerLoading";
+import ListUsers from "../organisms/ListUsers";
+
 
 const ListUserTemplateStyle = styled.div`
     display: flex;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px;
 `;
 
-const user = new User('Paulo', 'ph.hr.001@gmail.com');
-
-const listUserByRequest = [user, user, user, user];
 
 const ListUserTemplate = () => {
-    useEffect(() => { }, []);
+    let maxCount = 0;
+    const [listUsersData, setlistUsersData] = useState<Array<User>>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const showMoreUsers = async () => {
+        try {
+            setIsLoading(true);
+            const response = await userService.getAllCustomers();
+            const listUsers = listUsersData.concat(response.users);
+            maxCount = response.count;
+            setlistUsersData([...listUsers]);
+            setIsLoading(false);
+        } catch (error) {
+            setIsLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        if (listUsersData.length === 0 && isLoading === false) {
+            console.log('requesting two times');
+            showMoreUsers();
+        }
+    }, []);
+
     return (
         <ListUserTemplateStyle>
-            {listUserByRequest.map(function (user: User) {
-                return (
-                    <>
-                        <Card
-                            cardTitle={user.email!}
-                            cardType="user"
-                            userIndicationQuantity={3}
-                            height="291px"
-                            width="227px"
-                            backgroundImage="https://viciados.net/wp-content/uploads/2022/11/Naruto-Shippuden-Boruto-2023.webp"
-                            userBlock={false}
-                            onBlockUser={()=>{}}
-                            onDrinkRecommendation={()=>{}}
-                            onUnlockUser={()=>{}}
-                        />
-                        <div style={{ width: "56px" }}></div>
-                    </>
-                );
-            })
-            }
+            <ListUsers listUsers={listUsersData} />
+            <SizedBox height="56px" />
+            <MainButton
+                width="160px"
+                height="80px"
+                children="Carregar mais"
+                onClick={(e) => {
+                    e.preventDefault();
+                    if (listUsersData.length < maxCount) {
+                        showMoreUsers();
+                    }
+                }}
+                type={isLoading ? "loading" : "primary"}
+            />
         </ListUserTemplateStyle>
     )
 }

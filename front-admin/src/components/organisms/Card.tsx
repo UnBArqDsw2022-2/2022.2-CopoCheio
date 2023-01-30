@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 import AttributesList from '../molecules/AttributesList';
 import CardContainer from '../molecules/CardContainer';
@@ -18,7 +18,7 @@ interface CardInterface {
     backgroundImage?: string;
     height?: string;
     width?: string;
-    cardType: "drink"|"user";
+    cardType: "drink" | "user";
     userName?: string;
     userBlock?: boolean;
     userIndicationQuantity?: number;
@@ -126,7 +126,7 @@ const Card = ({
                             ? (<>
                                 <IconButton
                                     type='default'
-                                    onClick={(onBlockUser) && (() => { onBlockUser() })}
+                                    onClick={(onUnlockUser) && (() => { onUnlockUser() })}
                                     icon={'lock_open'}
                                     iconColor={colors.success}
                                     fontSize="32px"
@@ -142,7 +142,7 @@ const Card = ({
                             : (<>
                                 <IconButton
                                     type='default'
-                                    onClick={(onUnlockUser) && (() => { onUnlockUser() })}
+                                    onClick={(onBlockUser) && (() => { onBlockUser() })}
                                     icon={'block'}
                                     iconColor={colors.denied}
                                     fontSize="32px"
