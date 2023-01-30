@@ -7,6 +7,8 @@ import { IconsTypes } from '../atoms/Icon/IconTypes';
 interface LabelInterface {
     text: string;
     icon: IconsTypes;
+    fontSize?: '16px' | '18px';
+    fontColor?: 'white' | 'gold';
 }
 
 
@@ -19,7 +21,7 @@ export const Container = styled.div`
   color: ${({ theme }) => theme.secondary};
 `;
 
-const Label = ({ text, icon }: LabelInterface) => {
+const Label = ({ text, icon, fontSize, fontColor }: LabelInterface) => {
 
     return (
         <Container>
@@ -29,9 +31,9 @@ const Label = ({ text, icon }: LabelInterface) => {
             />
 
             <Text
-                size='18px'
+                size={fontSize || '18px'}
                 weight='medium'
-                color='gold'
+                color={fontColor || 'gold'}
             >
                 {text}
             </Text>
