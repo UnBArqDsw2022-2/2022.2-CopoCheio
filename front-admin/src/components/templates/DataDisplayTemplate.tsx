@@ -4,7 +4,6 @@ import Header from '../organisms/Header';
 import StringInput from '../molecules/StringInput';
 import { Dropdown } from '../molecules/Dropdown';
 import { useEffect, useState } from 'react';
-import Drink from '../../models/DrinkModel';
 import DrinkService from '../../services/DrinkService';
 import CategoryService from '../../services/CategoryService';
 
@@ -18,7 +17,7 @@ const PageContainer = styled.section`
   height: 100vh;
   flex-direction: column;
   align-items: center;
-  gap: 6.25rem;
+  gap: 99px;
 `;
 
 export const Container = styled.div`
@@ -27,10 +26,10 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  gap: 4.5rem;
+  gap: 76px;
 
   @media (max-width: 450px) {
-    padding: 0 1.5rem;
+    padding: 0 21px;
   }
 `;
 
@@ -61,11 +60,11 @@ export const CardContainer = styled.div`
 export const DataContainer = styled.div`
   max-width: 80%;
   display: grid;
-  gap: 4rem;
+  gap: 56px;
   grid-template-columns: repeat(auto-fit, minmax(227px, 227px));
 
   @media (max-width: 450px) {
-    padding: 0 1.5rem;
+    padding: 0 21px;
     width: 100%;
   }
 `;
@@ -76,7 +75,7 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
   const [data, setData] = useState<any[]>([]);
   const [nameQuery, setNameQuery] = useState<string>('');
   const [categories, setCategories] = useState<any[]>([]);
-  const [categoryQuery, setCategoryQuery] = useState<string>('');
+  const [categoryQuery, setCategoryQuery] = useState<string>('Categorias');
 
   const drinksService=DrinkService.getInstance();
   const categoriesService=CategoryService.getInstance();
@@ -97,7 +96,9 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
     // getDrinks or getUsers
 
     if(type==="drink"){
+      // eslint-disable-next-line
       getDrinksHandle();
+      // eslint-disable-next-line
       getCategoryHandle();
     }
   }, []);
@@ -117,8 +118,8 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
         backgroundImage={item.picture}
         drinkTime={item.time.toString()+" min"}
         drinkDifficulty={item.difficulty}
-        drinkLocation={"Não definido"||item.country[0] }
-        drinkCategories={"Não definido"||item.category[0]}
+        drinkLocation={(item.country!==undefined?item.country.join(","):"Não definido")}
+        drinkCategories={(item.category!==undefined?item.category.join(","):"Não definido")}
       />
     ))
   }
@@ -131,9 +132,10 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
         <ControlsContainer>
           {(type==="drink")&&(
             <Dropdown
-              label={'Categorias'}
+              label={categoryQuery}
               icon={'segment'}
               options={categories}
+              width='238px'
               onSelect={(category) => setCategoryQuery(category)}
             />
           )}
@@ -141,6 +143,7 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
             value={nameQuery}
             onChange={(event) => setNameQuery(event.target.value)}
             height='58px'
+            width='499px'
             borderRadius='8px'
             hasSearchButton
             onSearch={() => { }} // replace with back end req

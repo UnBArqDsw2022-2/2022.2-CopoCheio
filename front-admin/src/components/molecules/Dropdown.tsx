@@ -9,11 +9,16 @@ interface DropdownProps {
   label: string;
   icon: IconsTypes;
   options: any[];
+  width?:string;
   onSelect: (value: string) => void
 }
 
+interface GenericContainerWidth {
+  width?: string;
+}
 
-export const Container = styled.button`
+
+export const Container = styled.button<GenericContainerWidth>`
   max-height: 60px;
   border: 1px solid #ced4da;
   border-radius: 8px;
@@ -25,6 +30,8 @@ export const Container = styled.button`
   justify-content: space-between;
   gap: 3rem;
   position: relative;
+  min-width:${({width})=>width};
+  max-width:${({width})=>width};
 `;
 
 export const LabelContainer = styled.div`
@@ -66,7 +73,7 @@ export const Option = styled.button`
 `;
 
 
-export const Dropdown = ({ label, icon, options, onSelect }: DropdownProps) => {
+export const Dropdown = ({ label, icon, options,width, onSelect }: DropdownProps) => {
   const [open, setOpen] = useState(false);
 
   const handleSelect = (option: string) => {
@@ -83,7 +90,7 @@ export const Dropdown = ({ label, icon, options, onSelect }: DropdownProps) => {
   }
 
   return (
-    <Container onClick={() => setOpen(!open)}>
+    <Container width={width} onClick={() => setOpen(!open)}>
       <LabelContainer>
         <Icon
           icon={icon}
