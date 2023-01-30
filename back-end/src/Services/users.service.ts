@@ -83,7 +83,7 @@ export default class UsersService {
         }
 
         const role = allRoles.find(i => (isAdmin ? 'Admin' : 'Customer') === i.name);
-        userData.roleId = role?.id
+        userData.roleId = role?.id || '';
 
         const user = this.user.create(userData)
         return user;
