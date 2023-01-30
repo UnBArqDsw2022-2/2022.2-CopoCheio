@@ -144,4 +144,55 @@ export class Drinks {
             }
         })
     }
+
+    async findRandomDrink(searchParams: searchParamsDrink) : Promise<Drink | null> {
+        const category = searchParams?.categories;
+        const country = searchParams?.countries;
+        const difficulty = searchParams?.difficulty;
+
+        const count = await this.prismaDrink.count();
+
+        const min = Math.ceil(0);
+        const max = Math.floor(count - 1);
+        const skip = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        return this.prismaDrink.findFirst({
+            where: {
+                categories: {
+                    every: {
+                        category: {
+                            id: {
+                                in: category
+                            }
+                        }
+                    }
+                },
+                countries: {
+                    every: {
+                        country: {
+                            id: {
+                                in: country
+                            }
+                        }
+                    }
+                },
+                difficulty: difficulty,
+                isVerfied: true
+            },
+            include: {
+                categories: {
+                    include: {
+                        category: true
+                    }
+                },
+                countries: {
+                    include: {
+                        country: true
+                    }
+                }
+            },
+            skip: skip
+        });
+
+    }
 }
