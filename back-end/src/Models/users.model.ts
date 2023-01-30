@@ -17,7 +17,7 @@ export class Users {
                 nameComplete: true,
                 email: true,
                 birthDate: true,
-                role:true,
+                role: true,
                 id: true
             }
         });
@@ -26,10 +26,10 @@ export class Users {
     async findByParams(searchParams: searchParamsUser): Promise<UpdateUserDto[]> {
         return this.prismaUser.findMany({
             where: {
-                role:{
-                    name:{
-                        contains:searchParams.show,
-                        mode:'insensitive'
+                role: {
+                    name: {
+                        contains: searchParams.show,
+                        mode: 'insensitive'
                     }
                 }
             },
@@ -132,4 +132,16 @@ export class Users {
         return updatedUser;
     }
 
+    async count(searchParams: searchParamsUser) {
+        return this.prismaUser.count({
+            where: {
+                role: {
+                    name: {
+                        contains: searchParams.show,
+                        mode: 'insensitive'
+                    }
+                }
+            },
+        })
+    }
 }

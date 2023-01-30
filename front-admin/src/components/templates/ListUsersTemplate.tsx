@@ -1,9 +1,12 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import User from "../../models/UserModel";
+import userService from "../../services/UserService";
 import MainButton from "../atoms/MainButton";
 import SizedBox from "../atoms/SizedBox";
+import SpinnerLoading from "../atoms/SpinnerLoading";
 import ListUsers from "../organisms/ListUsers";
+
 
 const ListUserTemplateStyle = styled.div`
     display: flex;
@@ -13,33 +16,47 @@ const ListUserTemplateStyle = styled.div`
     margin-bottom: 40px;
 `;
 
-const user = new User('Paulo', 'ph.hr.001@gmail.com');
 
 const ListUserTemplate = () => {
-    const user = new User('Paulo', 'ph.hr.001@gmail.com');
-    const [listUserByRequest, setListUserByRequest] = useState<Array<User>>([]);
+    let maxCount = 0;
+    const [listUsersData, setlistUsersData] = useState<Array<User>>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const showMoreUsers = () => {
-        for (let index = 0; index < 16; index++) {
-            listUserByRequest.push(user);
+    const showMoreUsers = async () => {
+        try {
+            setIsLoading(true);
+            const response = await userService.getAllCustomers();
+            const listUsers = listUsersData.concat(response.users);
+            maxCount = response.count;
+            setlistUsersData([...listUsers]);
+            setIsLoading(false);
+        } catch (error) {
+            setIsLoading(false);
         }
-
-        setListUserByRequest([...listUserByRequest]);
     }
 
-    useEffect(() => { }, []);
+    useEffect(() => {
+        if (listUsersData.length === 0 && isLoading === false) {
+            console.log('requesting two times');
+            showMoreUsers();
+        }
+    }, []);
 
     return (
         <ListUserTemplateStyle>
-            {listUserByRequest.length !== 0
-                ? <ListUsers listUsers={listUserByRequest} />
-                : null
-            }
-
+            <ListUsers listUsers={listUsersData} />
             <SizedBox height="56px" />
             <MainButton
+                width="160px"
+                height="80px"
                 children="Carregar mais"
-                onClick={showMoreUsers}
+                onClick={(e) => {
+                    e.preventDefault();
+                    if (listUsersData.length < maxCount) {
+                        showMoreUsers();
+                    }
+                }}
+                type={isLoading ? "loading" : "primary"}
             />
         </ListUserTemplateStyle>
     )
