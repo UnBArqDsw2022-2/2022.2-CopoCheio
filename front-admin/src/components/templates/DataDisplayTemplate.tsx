@@ -121,7 +121,7 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
 
 
   let maxCount = 0;
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const [data, setData] = useState<any[]>([]);
   const [nameQuery, setNameQuery] = useState<string>('');
@@ -174,7 +174,6 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
   }
 
   useEffect(() => {
-    setIsLoading(true);
     isSigned();
 
     if(type==="drink"){
