@@ -16,20 +16,20 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     }
 })
 
-router.get('/:id', JwtAuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+router.get('/random', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const userId = req.params.id
-        const allUsers = await drinkService.findByParams({})
-        res.status(200).send(allUsers)
+        const drink = await drinkService.findRandom(req.params);
+        res.status(200).send(drink);
     } catch (error) {
         next(error)
     }
 })
 
-router.get('/random', async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:id', JwtAuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const drink = await drinkService.findRandom(req.params);
-        res.status(200).send(drink);
+        const userId = req.params.id
+        const allUsers = await drinkService.findByParams({})
+        res.status(200).send(allUsers)
     } catch (error) {
         next(error)
     }
