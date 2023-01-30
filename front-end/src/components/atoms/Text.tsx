@@ -7,9 +7,15 @@ interface StyledTextInterface {
   cta?: boolean;
 }
 
+const fontWeights = {
+  regular: 400,
+  medium: 500,
+  semibold: 600
+}
+
 const Text = styled.span<StyledTextInterface>`
 font-size: ${({ cta, size }) => cta ? '16px' : size || '18px'};
-font-weight: ${({ weight }) => weight === 'semibold' ? '600' : weight};
+font-weight: ${({ weight }) => weight ? fontWeights[weight] : fontWeights.regular};
 color: ${({ cta, theme, color }) => !cta ? (color === 'gold' ? theme.secondary : theme.white) : ''};
 font-family: ${({ cta }) => cta ? 'Work Sans, sans-serif' : ''};
 `
