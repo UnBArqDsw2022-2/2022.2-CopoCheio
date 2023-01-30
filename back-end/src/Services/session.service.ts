@@ -30,9 +30,11 @@ export default class SessionService {
             throw new BadRequestException("Email or Password does not match");
         }
 
-        const role = await roles.findOne(user!.roleId);
+        let role = null;
+        if (user.roleId)
+            role = await roles.findOne(user.roleId);
 
-        const tokenUser = jwt.sign({ id: user.id!, role: role!.name }, authConfig.secret!, {
+        const tokenUser = jwt.sign({ id: user.id!, role }, authConfig.secret!, {
             expiresIn: authConfig.expiresIn
         });
 

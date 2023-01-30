@@ -9,5 +9,5 @@ export class CreateUserDto {
 
     isAdmin?: boolean;
 
-    roleId?: string;
+    roleId: string;
 }
