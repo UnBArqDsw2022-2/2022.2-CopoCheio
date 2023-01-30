@@ -32,7 +32,7 @@ export default class SessionService {
 
         const role = await roles.findOne(user.roleId);
 
-        const tokenUser = jwt.sign({ id: user.id!, role: role.name }, authConfig.secret!, {
+        const tokenUser = jwt.sign({ id: user.id!, role: role?.name }, authConfig.secret!, {
             expiresIn: authConfig.expiresIn
         });
 
