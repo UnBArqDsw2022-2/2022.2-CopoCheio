@@ -1,7 +1,7 @@
 
 import Prisma from "../prismaConection";
 
-import { Favorites } from "../models/favorite.model";
+import { Favorites } from "../Models/favorite.model";
 import { FavoriteDto } from "../Dto/favorite.dto";
 import { BadRequestException } from "../Middlewares/httpExceptions";
 
