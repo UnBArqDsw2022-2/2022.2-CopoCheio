@@ -3,8 +3,10 @@ import Text from './Text';
 import { ReactElement } from 'react';
 import SpinnerLoading from './SpinnerLoading';
 
+export type buttonTypes = 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background' | 'loading';
+
 interface MainButtonInterface {
-    type?: 'primary' | 'confirm' | 'decline' | 'cancel' | 'no-background' | 'loading';
+    type?: buttonTypes;
     width?: string;
     height?: string;
     borderRadius?: string;

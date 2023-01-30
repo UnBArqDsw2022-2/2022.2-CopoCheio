@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import ModalText from "./ModalText";
 import TitleWithIcon from "./TitleWithIcon";
@@ -9,20 +10,27 @@ import TextInput from "../atoms/TextInput";
 import GenericTextArea from "../atoms/GenericTextArea";
 
 interface DrinksModalBodyInterface {
-    type: 'confirm' | 'create';
-    title?: string;
-    titleOnChange?: VoidFunction;
-    userName?: string;
-    userImage?: string;
-    ingredients?: string;
-    ingredientsOnChange?: VoidFunction;
-    guide?: string;
-    guideOnChange?: VoidFunction;
-    image?: string;
-    time?: number;
-    dificulty?: string;
-    base?: string;
-    country?: string;
+    drinkInfoObject: {
+        userName?: string,
+        userImage?: string,
+        image?: string,
+        time?: number,
+        dificulty?: string,
+        base?: string,
+        country?: string,
+        guideObject?: {
+            label: string,
+            setGuide: React.ChangeEventHandler<HTMLInputElement> | undefined
+        },
+        ingredientsObject?: {
+            label: string,
+            setIngredients: React.ChangeEventHandler<HTMLInputElement> | undefined
+        },
+        titleObject?: {
+            label: string,
+            setTitle: React.ChangeEventHandler<HTMLInputElement> | undefined,
+        },
+    }
 }
 
 const BodyContainer = styled.div`
@@ -80,73 +88,53 @@ const RightIcon = styled.div`
 `;
 
 const DrinksModalBody = ({
-    type,
-    title,
-    userName,
-    userImage,
-    ingredients,
-    guide,
-    image,
-    time,
-    dificulty,
-    base,
-    country,
-    ingredientsOnChange,
-    guideOnChange,
-    titleOnChange
+    drinkInfoObject,
 }: DrinksModalBodyInterface) => {
-    switch (type) {
-        case 'confirm':
-            return (
-                <BodyContainer>
-                    <TextSide>
-                        <TitleWithIcon title={title} label={userName} image={userImage} />
-                        <ModalText title='Ingredientes' text={ingredients} />
-                        <ModalText title='Modo de preparo' text={guide} />
-                    </TextSide>
-                    <CardSide>
-                        {image ? <Image src={userImage} height={'40%'} width={'100%'} borderRadius={'8px'} marginRight='4px' /> :
-                            <BlankImage>
-                                <Icon size='50px' icon='sports_bar' color={colors.white} />
-                                No image
-                            </BlankImage>}
-                        <IconRow>
-                            <LeftIcon>
-                                <IconText iconColor={colors.primary} iconLeft='schedule' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={`${time} min`} />
-                            </LeftIcon>
-                            <RightIcon>
-                                <IconText iconColor={colors.primary} iconLeft='sports_bar' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={base} />
-                            </RightIcon>
-                        </IconRow>
-                        <IconRow>
-                            <LeftIcon>
-                                <IconText iconColor={colors.primary} iconLeft='school' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={dificulty} />
-                            </LeftIcon>
-                            <RightIcon>
-                                <IconText iconColor={colors.primary} iconLeft='flag' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={country} />
-                            </RightIcon>
-                        </IconRow>
-                    </CardSide>
-                </BodyContainer>
-            );
-        case 'create':
-            return (
-                <BodyContainer>
-                    <TextSide>
-                        <GenericTextArea type='input' value={title} onChange={titleOnChange} fontSize='16px' weight='bold' />
-                        <TextInput value={ingredients} onChange={ingredientsOnChange} width='100%' height='40%' title='Ingredientes' size='16px' textSize='12px' />
-                        <TextInput value={guide} onChange={guideOnChange} width='100%' height='60%' title='Modo de preparo' size='16px' textSize='12px' />
-                    </TextSide>
-                    <CardSide>
-                        {image ? <Image src={userImage} height={'40%'} width={'100%'} borderRadius={'8px'} marginRight='4px' /> :
-                            <BlankImage>
-                                <Icon size='50px' icon='sports_bar' color={colors.white} />
-                                No image
-                            </BlankImage>}
-                    </CardSide>
-                </BodyContainer>
-            )
-    }
+    const [onClickInput, setOnClickInput] = useState('');
+    const resetSetOnClickInput = (e: any) => {e.key === 'Enter' && setOnClickInput('')};
+    return (
+        <BodyContainer>
+            <TextSide>
+                {onClickInput === 'title' ? <div onKeyDown={resetSetOnClickInput}><GenericTextArea value={drinkInfoObject.titleObject?.label} type='input' placeHolder={drinkInfoObject.titleObject?.label} onChange={drinkInfoObject.titleObject?.setTitle} fontSize='16px' weight='bold' /></div> : <div onClick={() => setOnClickInput('title')}><TitleWithIcon title={drinkInfoObject.titleObject?.label} label={drinkInfoObject.userName} image={drinkInfoObject.userImage} /></div>}
+                {
+                    onClickInput === 'ingredients' ?
+                        <div onKeyDown={resetSetOnClickInput}>
+                            <TextInput value={drinkInfoObject.ingredientsObject?.label} onChange={drinkInfoObject.ingredientsObject?.setIngredients} width='100%' height='110px' title='Ingredientes' size='16px' textSize='12px' />
+                        </div> :
+                        <div onClick={() => setOnClickInput('ingredients')}><ModalText title='Ingredientes' text={drinkInfoObject.ingredientsObject?.label} /></div>
+                }
+                {
+                    onClickInput === 'guide' ?
+                        <div onKeyDown={resetSetOnClickInput}><TextInput value={drinkInfoObject.guideObject?.label} onChange={drinkInfoObject.guideObject?.setGuide} placeHolder={drinkInfoObject.guideObject?.label} width='100%' height='180px' title='Modo de preparo' size='16px' textSize='12px' /></div>
+                        :
+                        <div onClick={() => setOnClickInput('guide')}><ModalText title='Modo de preparo' text={drinkInfoObject.guideObject?.label}/></div>
+                }
+            </TextSide>
+            <CardSide>
+                {drinkInfoObject.image ? <Image src={drinkInfoObject.userImage} height={'40%'} width={'100%'} borderRadius={'8px'} marginRight='4px' /> :
+                    <BlankImage>
+                        <Icon size='50px' icon='sports_bar' color={colors.white} />
+                        No image
+                    </BlankImage>}
+                <IconRow>
+                    <LeftIcon>
+                        <IconText iconColor={colors.primary} iconLeft='schedule' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={`${drinkInfoObject.time} min`} />
+                    </LeftIcon>
+                    <RightIcon>
+                        <IconText iconColor={colors.primary} iconLeft='sports_bar' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={drinkInfoObject.base} />
+                    </RightIcon>
+                </IconRow>
+                <IconRow>
+                    <LeftIcon>
+                        <IconText iconColor={colors.primary} iconLeft='school' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={drinkInfoObject.dificulty} />
+                    </LeftIcon>
+                    <RightIcon>
+                        <IconText iconColor={colors.primary} iconLeft='flag' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={drinkInfoObject.country} />
+                    </RightIcon>
+                </IconRow>
+            </CardSide>
+        </BodyContainer>
+    );
 }
 
 export default DrinksModalBody;

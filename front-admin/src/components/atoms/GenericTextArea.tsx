@@ -8,9 +8,9 @@ interface GenericTextAreaInterface {
     height?: string;
     placeHolder?: string;
     value?: string;
-    fontSize: string;
+    fontSize: string | undefined;
     weight?: 'regular' | 'bold' | 'semi-bold';
-    onChange?: VoidFunction;
+    onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 const TextAreaComponent = styled.textarea<Pick<GenericTextAreaInterface, 'width' | 'height' | 'fontSize'>>`

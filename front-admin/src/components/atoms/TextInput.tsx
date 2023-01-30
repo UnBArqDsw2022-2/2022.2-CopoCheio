@@ -10,7 +10,7 @@ interface TextInputInterface {
     height?: string;
     placeHolder?: string;
     value?: string;
-    onChange?: VoidFunction;
+    onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
     textSize: string;
 }
 

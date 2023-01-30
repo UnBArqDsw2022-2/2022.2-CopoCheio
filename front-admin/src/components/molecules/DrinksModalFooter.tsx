@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import IconText from "../atoms/IconText";
-import MainButton from "../atoms/MainButton";
+import MainButton, { buttonTypes } from "../atoms/MainButton";
 import { colors } from "../../styles/colors";
 
 interface DrinksModalFooterInterface {
-    type: 'confirm' | 'create';
-    leftButtonClick?: VoidFunction;
+    leftButtonObject?: {
+        type: buttonTypes,
+        label: string,
+        onClick: VoidFunction
+    };
+    aditionalButtonClick?: VoidFunction;
     rightButtonClick?: VoidFunction;
-    adtionalButtonClick?: VoidFunction;
 }
 
 const FooterContainer = styled.div`
@@ -34,65 +37,37 @@ const FooterSmallBox = styled.div`
 `;
 
 const DrinksModalFooter = ({
-    type,
-    leftButtonClick,
+    leftButtonObject,
     rightButtonClick,
-    adtionalButtonClick
-}: DrinksModalFooterInterface) => {
-    switch (type) {
-        case 'confirm':
-            return (
-                <FooterContainer>
-                    <FooterSmallBox />
-                    <FooterBigBox>
-                        <MainButton
-                            type='cancel'
-                            width='45%'
-                            onClick={leftButtonClick}
-                            children={'Cancelar'}
-                            height='50%'
-                            fontSize='14px'
-                        />
-                        <MainButton
-                            type='confirm'
-                            width='45%'
-                            onClick={rightButtonClick}
-                            children={'Confirmar'}
-                            height='50%'
-                            fontSize='14px'
-                        />
-                    </FooterBigBox>
-                    <FooterSmallBox>
-                        <IconText iconColor={colors.denied} iconLeft='delete' iconSize='24px' fontColor={colors.grey} fontSize='16px' children={'Deletar'} onClick={adtionalButtonClick} />
-                    </FooterSmallBox>
-                </FooterContainer>
-            )
-        case 'create':
-            return (
-                <FooterContainer>
-                    <FooterSmallBox />
-                    <FooterBigBox>
-                        <MainButton
-                            type='decline'
-                            width='45%'
-                            onClick={leftButtonClick}
-                            children={'Recusar bebida'}
-                            height='50%'
-                            fontSize='14px'
-                        />
-                        <MainButton
-                            type='confirm'
-                            width='45%'
-                            onClick={rightButtonClick}
-                            children={'Adicionar bebida'}
-                            height='50%'
-                            fontSize='14px'
-                        />
-                    </FooterBigBox>
-                    <FooterSmallBox />
-                </FooterContainer>
-            )
-    }
-}
+    aditionalButtonClick
+}: DrinksModalFooterInterface) => (
+    <FooterContainer>
+        <FooterSmallBox />
+        <FooterBigBox>
+            <MainButton
+                type={leftButtonObject?.type}
+                width='45%'
+                onClick={leftButtonObject?.onClick}
+                children={leftButtonObject?.label}
+                height='50%'
+                fontSize='14px'
+            />
+            <MainButton
+                type='confirm'
+                width='45%'
+                onClick={rightButtonClick}
+                children='Confirmar'
+                height='50%'
+                fontSize='14px'
+            />
+        </FooterBigBox>
+        {
+            aditionalButtonClick &&
+            <FooterSmallBox>
+                <IconText iconColor={colors.denied} iconLeft='delete' iconSize='24px' fontColor={colors.grey} fontSize='16px' children={'Deletar'} onClick={aditionalButtonClick} />
+            </FooterSmallBox>
+        }
+    </FooterContainer>
+)
 
 export default DrinksModalFooter;
