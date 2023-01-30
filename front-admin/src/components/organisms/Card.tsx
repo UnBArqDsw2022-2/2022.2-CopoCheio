@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 import AttributesList from '../molecules/AttributesList';
 import CardContainer from '../molecules/CardContainer';
@@ -18,7 +18,7 @@ interface CardInterface {
     backgroundImage?: string;
     height?: string;
     width?: string;
-    cardType: string;
+    cardType: "drink"|"user";
     userName?: string;
     userBlock?: boolean;
     userIndicationQuantity?: number;
@@ -92,7 +92,7 @@ const Card = ({
             borderColor={(cardType === 'user' && userBlock) ? (
                 colors.denied
             ) : (
-                colors.primary
+                colors.dark_primary
             )}
             hover={hover}
             onMouseEnter={() => setHover(true)}
