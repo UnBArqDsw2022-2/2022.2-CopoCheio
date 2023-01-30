@@ -60,7 +60,6 @@ router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
         const updatedUser = await usersService.update(userData, userId)
         res.status(201).send(updatedUser)
     } catch (error) {
-        console.log(error)
         next(error)
     }
 })
