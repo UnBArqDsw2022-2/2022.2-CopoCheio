@@ -186,7 +186,7 @@ const DataDisplayTemplate = ({type}: DataDisplayTemplateProps) => {
     else if(type==="user"){
       getUserHandle();
     }
-  },[]);
+  });
 
   //useEffect(() => {
     //console.log(categoryQuery); // replace with back end req
