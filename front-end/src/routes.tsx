@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
+import RegisterDrink from "./pages/RegisterDrink";
 
 const Router = createBrowserRouter([
     {
@@ -11,6 +12,9 @@ const Router = createBrowserRouter([
     }, {
         path: '/cadastro',
         element: <h1>Hello, world!</h1>
+    }, {
+        path: '/criar-drink',
+        element: <RegisterDrink></RegisterDrink>
     }
 ])
 
