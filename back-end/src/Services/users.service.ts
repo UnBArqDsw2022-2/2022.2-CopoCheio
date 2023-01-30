@@ -29,7 +29,7 @@ export default class UsersService {
             }
             const validRole = this.roles.find(role => role === searchParams.show)
             if (validRole === undefined) {
-                throw new BadRequestException('Param show must be \'Admin\' or \'Customer\'');
+                throw new BadRequestException('Parametro show tem que ser \'Admin\' ou \'Customer\'');
             }
         }
 
@@ -54,36 +54,36 @@ export default class UsersService {
                 const updated = this.update({ ...alreadyExists, active: true }, alreadyExists.id!);
                 return updated;
             }
-            throw new BadRequestException('Email already registered');
+            throw new BadRequestException('Email já registrado');
         }
 
         const roles = new Roles(Prisma.role);
         const allRoles = await roles.all();
         if (allRoles.length === 0) {
-            throw new BadRequestException("Can't create user, no roles available");
+            throw new BadRequestException("Não é possivel criar usuário, cargos não disponiveis");
         }
 
         if (userData.name.length < 4) {
-            throw new BadRequestException("Full name must longer than 4 characters");
+            throw new BadRequestException("Nome inteiro tem que ter no mínimo 4 caracteres");
         }
 
         if (userData.password.length < 6) {
-            throw new BadRequestException("Password must be longer than 6 characters");
+            throw new BadRequestException("Senha tem que ter no mínimo 6 caracteres");
         }
 
         if (!isEmail.validate(userData.email)) {
-            throw new BadRequestException("Email is not valid");
+            throw new BadRequestException("Email não é válido");
         }
 
         const currentDateMoment = moment();
         const birthDateMoment = moment(userData.birthDate);
         const dateDiff = currentDateMoment.diff(birthDateMoment, 'years');
         if (dateDiff < 18 || dateDiff > 100) {
-            throw new BadRequestException('User must be between 18 and 100 years old');
+            throw new BadRequestException('Usuário tem que ter entre 18 e 100 anos de idade');
         }
 
         const role = allRoles.find(i => (isAdmin ? 'Admin' : 'Customer') === i.name);
-        userData.roleId = role?.id
+        userData.roleId = role?.id || '';
 
         const user = this.user.create(userData)
         return user;
@@ -93,7 +93,7 @@ export default class UsersService {
     async update(userData: UpdateUserDto, userId: string) {
 
         if (JSON.stringify(userData) === '{}') {
-            throw new BadRequestException('No data provided for update');
+            throw new BadRequestException('Não foi passado dados para fazer o update');
         }
 
         if (userData.email) {
@@ -101,20 +101,20 @@ export default class UsersService {
 
 
             if (!isEmail.validate(userData.email)) {
-                throw new BadRequestException("Email is not valid");
+                throw new BadRequestException("Email inválido");
             }
 
             if (anotherUser) {
-                throw new BadRequestException('Email already in use')
+                throw new BadRequestException('Email já registrado')
             }
         }
 
         if (userData.name && userData.name.length < 4) {
-            throw new BadRequestException("Full name must longer than 4 characters");
+            throw new BadRequestException("Nome inteiro tem que ter no mínimo 4 caracteres");
         }
 
         if (userData.password && userData.password.length < 6) {
-            throw new BadRequestException("Password must be longer than 6 characters");
+            throw new BadRequestException("Senha tem que ter no mínimo 6 caracteres");
         }
 
         if (userData.birthDate) {
@@ -122,7 +122,7 @@ export default class UsersService {
             const birthDateMoment = moment(userData.birthDate);
             const dateDiff = currentDateMoment.diff(birthDateMoment, 'years');
             if (dateDiff < 18 || dateDiff > 100) {
-                throw new BadRequestException('User must be between 18 and 100 years old');
+                throw new BadRequestException('Usuário tem que ter entre 18 e 100 anos de idade');
             }
         }
 

@@ -5,7 +5,7 @@ class Singleton {
 
     public static getInstance(): PrismaClient {
         if (!Singleton.instance) {
-            Singleton.instance = new PrismaClient();
+            Singleton.instance = new PrismaClient({ log: ['query', 'info', 'warn', 'error']});
         }
 
         return Singleton.instance;

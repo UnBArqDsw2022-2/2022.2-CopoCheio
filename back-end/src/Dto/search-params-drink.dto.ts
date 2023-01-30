@@ -12,4 +12,6 @@ export class searchParamsDrink extends PartialType(SearchParams){
     isAlcoholic?: boolean;
 
     difficulty?: Difficulty;
+
+    userId?: string;
 }
