@@ -3,7 +3,8 @@ export const pallete = {
   primary: '#191C24',
   alternative_primary: '#272F38',
   secondary: '#DAB783',
-  white: '#fff'
+  white: '#fff',
+  alternative_white: '#595F66'
 };
 
 export const colors = {

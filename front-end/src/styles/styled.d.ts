@@ -6,6 +6,7 @@ declare module 'styled-components' {
         alternative_primary: string,
         secondary: string,
         white: string,
+        alternative_white: string,
         atoms: {
             title: string,
             text: string,

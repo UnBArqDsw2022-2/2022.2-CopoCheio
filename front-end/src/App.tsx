@@ -3,6 +3,7 @@ import { colors } from './styles/colors';
 import GlobalStyle from './globalStyles';
 import TextInput from './components/organisms/TextInput';
 import BoxContainer from './components/atoms/BoxContainer';
+import Dropdown from './components/organisms/Dropdown';
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     <>
       <ThemeProvider theme={colors}>
         <GlobalStyle />
-        <TextInput placeholder='Nome' />
+        <Dropdown label={'Categorias'} icon={'block'} options={[1,2,3]} onSelect={()=>{}} />
       </ThemeProvider>
     </>
   );
