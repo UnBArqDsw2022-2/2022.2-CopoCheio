@@ -1,9 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import { colors } from './styles/colors';
 import GlobalStyle from './globalStyles';
-import TextInput from './components/organisms/TextInput';
-import BoxContainer from './components/atoms/BoxContainer';
-import Dropdown from './components/organisms/Dropdown';
+import IconButton from './components/molecules/IconButton';
 
 
 function App() {
@@ -11,7 +9,7 @@ function App() {
     <>
       <ThemeProvider theme={colors}>
         <GlobalStyle />
-        <Dropdown label={'Categorias'} icon={'block'} options={[1,2,3]} onSelect={()=>{}} />
+        <IconButton icon={'add'} onClick={()=>{}} />
       </ThemeProvider>
     </>
   );
