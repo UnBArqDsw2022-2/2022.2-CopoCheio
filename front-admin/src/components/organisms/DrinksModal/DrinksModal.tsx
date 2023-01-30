@@ -1,9 +1,9 @@
-import { Dispatch, SetStateAction } from "react";
-import { GenericModal } from "../molecules/GenericModal";
-import CloseButton from "../atoms/CloseButton";
-import DrinksModalBody from "../molecules/DrinksModalBody";
-import DrinksModalFooter from "../molecules/DrinksModalFooter";
-import { buttonTypes } from "../atoms/MainButton";
+import { GenericModal } from "../../molecules/GenericModal";
+import CloseButton from "../../atoms/CloseButton";
+import DrinksModalBody from "./components/DrinksModalBody";
+import DrinksModalFooter from "./components/DrinksModalFooter";
+import { buttonTypes } from "../../atoms/MainButton";
+import { useState } from "react";
 
 type ModalTypes = 'genericDrinkModal' | 'recomendationDrinkModal';
 
@@ -23,27 +23,21 @@ interface DrinksModalInterface {
         guide: string
         ingredients: string;
     };
-    setDrinkInfoObject: Dispatch<SetStateAction<{ title: string; userName: string; time: number; base: string[]; dificulty: string; country: string; ingredients: string; guide: string; }>>;
-    leftButtonClick: VoidFunction;
-    rightButtonClick: VoidFunction;
     aditionalButtonClick?: VoidFunction;
 }
 
 const DrinksModal = ({
     modalType,
-    setDrinkInfoObject,
     isShown,
     toggle,
     drinkInfoObject,
-    leftButtonClick,
-    rightButtonClick,
     aditionalButtonClick
 }: DrinksModalInterface) => {
-
+    const [drinkInfo, setDrinkInfo] = useState(drinkInfoObject);
     const leftButtonObject = {
         type: modalType === 'genericDrinkModal' ? 'cancel' : 'decline' as buttonTypes,
         label: modalType === 'genericDrinkModal' ? 'Cancelar' : 'Recusar bebida',
-        onClick: leftButtonClick
+        onClick: () => console.log('Left Button Click')
     }
 
     return (
@@ -58,13 +52,13 @@ const DrinksModal = ({
             modalHeader={<CloseButton onClick={toggle} />}
             modalBody={
                 <DrinksModalBody
-                    drinkInfoObject={drinkInfoObject}
-                    setDrinkInfoObject={setDrinkInfoObject}
+                    drinkInfoObject={drinkInfo}
+                    setDrinkInfoObject={setDrinkInfo}
                 />
             }
             modalFooter={<DrinksModalFooter
                 leftButtonObject={leftButtonObject}
-                rightButtonClick={rightButtonClick}
+                rightButtonClick={() => console.log('Left Button Click')}
                 aditionalButtonClick={aditionalButtonClick}
             />}
         />

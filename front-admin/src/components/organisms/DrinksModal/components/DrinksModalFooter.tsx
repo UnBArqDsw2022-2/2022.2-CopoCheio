@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import IconText from "../atoms/IconText";
-import MainButton, { buttonTypes } from "../atoms/MainButton";
-import { colors } from "../../styles/colors";
+import IconText from "../../../atoms/IconText";
+import MainButton, { buttonTypes } from "../../../atoms/MainButton";
+import { colors } from "../../../../styles/colors";
 
 interface DrinksModalFooterInterface {
     leftButtonObject?: {

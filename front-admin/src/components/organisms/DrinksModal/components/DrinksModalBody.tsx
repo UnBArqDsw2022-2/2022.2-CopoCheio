@@ -1,15 +1,15 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import styled from "styled-components";
-import ModalText from "./ModalText";
-import TitleWithIcon from "./TitleWithIcon";
-import { colors } from "../../styles/colors";
-import Image from "../atoms/Image";
-import IconText from "../atoms/IconText";
-import Icon from "../atoms/Icon/Icon";
-import TextInput from "../atoms/TextInput";
-import GenericTextArea from "../atoms/GenericTextArea";
+import ModalText from "../../../molecules/ModalText";
+import TitleWithIcon from "../../../molecules/TitleWithIcon";
+import { colors } from "../../../../styles/colors";
+import Image from "../../../atoms/Image";
+import IconText from "../../../atoms/IconText";
+import Icon from "../../../atoms/Icon/Icon";
+import TextInput from "../../../atoms/TextInput";
+import GenericTextArea from "../../../atoms/GenericTextArea";
 import DropDown from "./DropDown";
-import Text from "../atoms/Text";
+import Text from "../../../atoms/Text";
 
 interface DrinksModalBodyInterface {
     drinkInfoObject: {
@@ -107,6 +107,39 @@ const CountryContainer = styled.div`
   overflow-y: auto;
 `;
 
+const AlcoholDropDownContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+`;
+
+const AlcoholTextIconContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+`;
+
+const AlcoholListContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    max-height: 120px;
+    overflow-y: auto;
+    ::-webkit-scrollbar {
+        display: none;
+    }
+`;
+
+const AddAlcoholButton = styled.button`
+    display: flex;
+    margin-top: 8px;
+    align-items: center;
+    border: none;
+    outline: none;
+    color: ${({ theme }) => theme.black};
+    background: none;
+`;
+
 const DrinksModalBody = ({
     drinkInfoObject,
     setDrinkInfoObject
@@ -117,7 +150,7 @@ const DrinksModalBody = ({
     const handleSetOnClickInput = (value: string) => {
         if (value !== onClickInput)
             setOnClickInput(value);
-        else 
+        else
             setOnClickInput('');
     }
 
@@ -136,20 +169,27 @@ const DrinksModalBody = ({
         });
         setOnClickInput('');
     }
-    
+
     const handleAlcohols = (value: string) => {
         const alcoholArray = drinkInfoObject.base;
         const arrayIndex = alcoholArray.indexOf(value);
-        if(value === alcoholArray[arrayIndex])
+        if (value === alcoholArray[arrayIndex] && alcoholArray.length > 1)
             alcoholArray.splice(arrayIndex, 1);
-        else if(alcoholArray.length < 3)
+        else if (value !== alcoholArray[arrayIndex] && alcoholArray.length < 3)
             alcoholArray.push(value)
 
         setDrinkInfoObject({
             ...drinkInfoObject,
             base: alcoholArray
         });
-        setOnClickInput('');
+    }
+
+    const verifyAlcoholIsChecked = (value: string) => {
+        const alcoholArray = drinkInfoObject.base;
+        const arrayIndex = alcoholArray.indexOf(value);
+        if (value === alcoholArray[arrayIndex])
+            return true
+        return false
     }
 
     const mockCountry = [
@@ -161,7 +201,7 @@ const DrinksModalBody = ({
         'China',
         'South Korea'
     ];
-    
+
     const mockAlcohols = [
         'Vodka',
         'Gin',
@@ -209,13 +249,23 @@ const DrinksModalBody = ({
                         <IconText onClick={() => handleSetOnClickInput('alcohols')} iconColor={colors.primary} iconLeft='sports_bar' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={drinkInfoObject.base.join(', ')} />
                         {
                             onClickInput === 'alcohols' && <DropDown element={
-                                <CountryContainer>
-                                    {
-                                        mockAlcohols.map((alcohol, index) => (
-                                            <Text onClick={() => handleAlcohols(alcohol)} margin={index !== 0 ? "8px 0 0 0" : ''} weight="regular" size="14px" color={colors.grey} >{alcohol}</Text>
-                                        ))
-                                    }
-                                </CountryContainer>
+                                <AlcoholDropDownContainer>
+                                    <AlcoholListContainer>
+                                        {
+                                            mockAlcohols.map((alcohol, index) => (
+                                                <AlcoholTextIconContainer onClick={() => handleAlcohols(alcohol)}>
+                                                    <Text margin={index !== 0 ? "8px 0 0 0" : ''} weight="regular" size="14px" color={colors.grey} >{alcohol}</Text>
+                                                    <>
+                                                    {
+                                                       verifyAlcoholIsChecked(alcohol) && <Text margin={index !== 0 ? "8px 0 0 0" : ''} weight="regular" size="14px" color={colors.grey} >*</Text>
+                                                    }
+                                                    </>
+                                                </AlcoholTextIconContainer>
+                                            ))
+                                        }
+                                    </AlcoholListContainer>
+                                    <AddAlcoholButton onClick={() => setOnClickInput('')}>Adicionar destilado +</AddAlcoholButton>
+                                </AlcoholDropDownContainer>
                             } />
                         }
                     </RightIcon>

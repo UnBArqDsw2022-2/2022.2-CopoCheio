@@ -10,7 +10,7 @@ const DropDownContainer = styled.section`
   justify-content: flex-start;
   padding: 8px 16px;
   height: fit-content;
-  max-height: 160px;
+  max-height: 180px;
   width: fit-content;
   min-width: 130px;
   max-width: 200px;
