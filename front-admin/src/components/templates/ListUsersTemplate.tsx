@@ -1,9 +1,6 @@
 import {useEffect, useState} from "react";
 import styled from "styled-components";
 import User from "../../models/UserModel";
-import Card from "../organisms/Card";
-import Text from "../atoms/Text";
-import {createPortal} from "react-dom";
 import MainButton from "../atoms/MainButton";
 import SizedBox from "../atoms/SizedBox";
 import ListUsers from "../organisms/ListUsers";
@@ -17,8 +14,6 @@ const ListUserTemplateStyle = styled.div`
 `;
 
 const user = new User('Paulo', 'ph.hr.001@gmail.com');
-
-const listUserByRequest = [user, user, user, user];
 
 const ListUserTemplate = () => {
     const user = new User('Paulo', 'ph.hr.001@gmail.com');

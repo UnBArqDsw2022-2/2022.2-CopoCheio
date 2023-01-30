@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import IconText from '../atoms/IconText';
 import {colors} from '../../styles/colors';
 
