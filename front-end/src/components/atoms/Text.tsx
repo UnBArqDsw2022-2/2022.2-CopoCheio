@@ -3,7 +3,7 @@ import styled from "styled-components";
 interface StyledTextInterface {
   weight?: 'regular' | 'medium' | 'semibold';
   color?: 'gold' | 'white';
-  size?: '14px' | '16px' | '18px' | '24px' | '32px';
+  size?: '14px' | '16px' | '18px' | '24px' | '32px' | '40px';
   cta?: boolean;
 }
 
