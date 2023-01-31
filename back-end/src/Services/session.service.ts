@@ -33,7 +33,7 @@ export default class SessionService {
             throw new BadRequestException("Email ou senha invalidos");
         }
 
-        const tokenUser = jwt.sign({ id: user.id!, role }, authConfig.secret!, {
+        const tokenUser = jwt.sign({ id: user.id!, role: role!.name }, authConfig.secret!, {
             expiresIn: authConfig.expiresIn
         });
 

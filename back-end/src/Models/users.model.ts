@@ -44,7 +44,7 @@ export class Users {
     }
 
     async findById(userId: string, showRole: boolean = false) {
-        return this.prismaUser.findUnique({
+        return await this.prismaUser.findUnique({
             where: {
                 id: userId
             },
