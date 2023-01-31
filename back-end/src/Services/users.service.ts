@@ -19,6 +19,11 @@ export default class UsersService {
         this.user = new UserModel(Prisma.user);
     }
 
+    async findById(id: string): Promise<UpdateUserDto | null> {
+        const user = this.user.findById(id, true);
+        return user;
+    }
+
     async findByParams(searchParams: searchParamsUser, userId?: string) {
         if (!userId) delete searchParams.show;
 

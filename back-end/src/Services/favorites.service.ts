@@ -1,4 +1,3 @@
-
 import Prisma from "../prismaConection";
 
 import { Favorites } from "../Models/favorite.model";
