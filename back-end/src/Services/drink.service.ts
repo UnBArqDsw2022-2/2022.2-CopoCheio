@@ -107,8 +107,8 @@ export default class DrinksService {
         let { categories, countries, ...updateData } = drinkData
 
         const user = await this.usersService.findById(userId);
-        const roleResult = await this.role.findOne(user.roleId);
-        if (roleResult.name === 'Customer') {
+        const roleResult = await this.role.findOne(user!.roleId);
+        if (roleResult!.name === 'Customer') {
             updateData.isVerfied = undefined;
         }
 
