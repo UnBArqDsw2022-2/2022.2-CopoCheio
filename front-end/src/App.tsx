@@ -18,8 +18,9 @@ function App() {
         <ThemeProvider theme={colors}>
           <GlobalStyle />
           <DataDisplayTemplate>
+            <RouterProvider router={Router} />
           </DataDisplayTemplate>
-          <RouterProvider router={Router} />
+
         </ThemeProvider>
       </> :
       <>
