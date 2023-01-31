@@ -102,8 +102,6 @@ export class Drinks {
         return updatedUser;
     }
 
-    async approved(drink: string, drink)
-
     async addCategory(drinkId: string, categoryId: string): Promise<CategoriesOnDrinks> {
         return this.prismaCategoriesOnDrinks.create({
             data:{
