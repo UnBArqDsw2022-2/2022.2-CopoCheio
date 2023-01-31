@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import userService from "../services/UserService";
 
 const Container = styled.div`
     display: flex;
@@ -89,8 +90,9 @@ const LoginPage = () => {
 
     const navigate = useNavigate();
 
-    const login = () => {
-        console.log(userName + ' ' + password);
+    const login = async () => {
+        await userService.loginUser(userName, password);
+        navigate('/home');
     }
 
     return (
