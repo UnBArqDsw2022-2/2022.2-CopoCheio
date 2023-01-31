@@ -8,20 +8,26 @@ import Text from './components/atoms/Text';
 import Dropdown from './components/organisms/Dropdown';
 import DataDisplayTemplate from './components/templates/DataDisplay';
 import { RouterProvider } from 'react-router-dom';
-import Router from './routes';
+import { Router, NoAuthRouter } from './routes';
 
 
 function App() {
   return (
-    <>
-      <ThemeProvider theme={colors}>
-        <GlobalStyle />
-        <DataDisplayTemplate>
+    sessionStorage.getItem('userToken') ?
+      <>
+        <ThemeProvider theme={colors}>
+          <GlobalStyle />
+          <DataDisplayTemplate>
+          </DataDisplayTemplate>
           <RouterProvider router={Router} />
-        </DataDisplayTemplate>
-      </ThemeProvider>
-    </>
-  );
+        </ThemeProvider>
+      </> :
+      <>
+        <ThemeProvider theme={colors}>
+          <GlobalStyle />
+          <RouterProvider router={NoAuthRouter} />
+        </ThemeProvider>
+      </>);
 }
 
 export default App;

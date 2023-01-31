@@ -2,7 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterDrink from "./pages/RegisterDrink";
 
-const Router = createBrowserRouter([
+export const NoAuthRouter = createBrowserRouter([
     {
         path: '*',
         element: <Navigate to='/login' replace />
@@ -12,10 +12,18 @@ const Router = createBrowserRouter([
     }, {
         path: '/cadastro',
         element: <h1>Hello, world!</h1>
+    },
+])
+
+export const Router = createBrowserRouter([
+    {
+        path: '*',
+        element: <Navigate to='/home' replace />
     }, {
         path: '/criar-drink',
         element: <RegisterDrink></RegisterDrink>
+    }, {
+        path: '/home',
+        element: <h1>Hello, world!</h1>
     }
 ])
-
-export default Router;

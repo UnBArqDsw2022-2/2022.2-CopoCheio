@@ -20,6 +20,7 @@ const FormContainer =styled.div`
     background-color: white;
 `
 
+
 const RegisterDrink = () => {
 
     const [drinkName, setDrinkName] = useState<string>('');
