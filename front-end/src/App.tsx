@@ -7,6 +7,7 @@ import Icon from './components/atoms/Icon/Icon';
 import Text from './components/atoms/Text';
 import Dropdown from './components/organisms/Dropdown';
 import DataDisplayTemplate from './components/templates/DataDisplay';
+import SignUpPage from './pages/SignUpPage';
 
 
 function App() {
@@ -14,9 +15,7 @@ function App() {
     <>
       <ThemeProvider theme={colors}>
         <GlobalStyle />
-        <DataDisplayTemplate>
-          oi
-        </DataDisplayTemplate>
+        <SignUpPage />
       </ThemeProvider>
     </>
   );
