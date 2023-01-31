@@ -200,4 +200,9 @@ export default class DrinksService {
         }
         return Promise.all(promisesList)
     }
+
+
+    async findRandom(search: searchParamsDrink) {
+        return this.drink.findRandomDrink(search);
+    }
 }
