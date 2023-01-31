@@ -33,7 +33,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     }
 })
 
-router.get('/:id', JwtAuthMiddleware, AuthRoleCheckMiddware(["Admin", "Customer"]), async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:id', JwtAuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userId = req.params.id
         const user = await users.findById(userId)        
