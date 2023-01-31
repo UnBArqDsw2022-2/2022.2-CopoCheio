@@ -1,7 +1,3 @@
-# RepositorioTemplate
-Esse repositório é para ser utilizado pelos grupos como um template inicial, da home page do Projeto.
-As seções do Template NÃO DEVEM SER OMITIDAS, sendo TODAS RELEVANTES.
-Demais diretrizes sobre a organização da wiki constam no Moodle Aprender 3.
 # Copo Cheio
 
 **Código da Disciplina**: FGA0208<br>
@@ -26,28 +22,9 @@ Demais diretrizes sobre a organização da wiki constam no Moodle Aprender 3.
 ## Sobre 
 Site de receitas de drinks, misturas de bebidas.
 
-## Screenshots Primeira Entrega <<FOCO: DSW(Base)>>
-Adicione 2 ou mais screenshots do projeto em termos de artefatos da Primeira Entrega.
-
-## Screenshots Segunda Entrega <<FOCO: DSW(Modelagem)>>
-Adicione 2 ou mais screenshots do projeto em termos de artefatos da Segunda Entrega.
-
-## Screenshots Terceira Entrega <<FOCO: DSW(Padrões de Projeto)>>
-Adicione 2 ou mais screenshots do projeto em termos de artefatos da Terceira Entrega.
-
-## Screenshots Quarta Entrega (FINAL) <<FOCOS: Arquitetura & Reutilização de Software & PROJETO FINAL>>
-Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
-
 ## Descritivo dos Principais Aspectos Técnicos 
 **Principal(is) Metodologia(s) Adotada(s)**: <br>OpenUp(Processos e roles) + XP(Cerimonias)</br>
 **Principais Linguagens Utilizadas e/ou Pretendidas**: JavaScript<br>
 **Principais Tecnologias Utilizadas e/ou Pretendidas**: ReactJS + Node.js + Express  <br>
 **Principal(is) Estilo(s) Arquitetural(is) Adotado(s)**: Client-server<br>
 
-## O Projeto está rodando?
-( ) SIM
-( ) NÃO
-Se SIM, insira um manual (ou um script) para auxiliar ainda mais os interessados em consultar o projeto.
-
-## Informações Complementares 
-Quaisquer outras informações sobre seu projeto podem ser descritas nessa seção.
