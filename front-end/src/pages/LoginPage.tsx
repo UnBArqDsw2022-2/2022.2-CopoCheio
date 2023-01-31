@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { classicNameResolver } from "typescript";
 import userService from "../services/UserService";
 
 const Container = styled.div`
