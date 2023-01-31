@@ -32,7 +32,7 @@ export const OptionsContainer = styled.div`
   position: relative;
 `;
 
-const Header = ({ }) => {
+const Header = () => {
     const [open, setOpen] = useState(false);
 
     const navigationOptions = {
