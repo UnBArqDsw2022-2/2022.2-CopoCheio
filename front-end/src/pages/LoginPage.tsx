@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { classicNameResolver } from "typescript";
 import userService from "../services/UserService";
 
 const Container = styled.div`
@@ -34,7 +35,7 @@ const Header = styled.h1`
 `;
 
 const InputField = styled.input`
-    width: 97%;
+    width: 100%;
     border-width: 2px;
     border-color: #DAB783;
     border-radius: 8px;
@@ -90,9 +91,12 @@ const LoginPage = () => {
 
     const navigate = useNavigate();
 
-    const login = async () => {
-        await userService.loginUser(userName, password);
-        navigate('/home');
+    const login = () => {
+        userService.loginUser(userName, password).then(
+            (user) => {
+                navigate('/home');
+            }
+        );
     }
 
     return (
@@ -102,7 +106,10 @@ const LoginPage = () => {
                 <Header>CopoCheio</Header>
                 <InputField placeholder="Nome de usuário" value={userName} onChange={(e) => { setUserName(e.target.value) }} />
                 <InputField placeholder="Senha" value={password} type='password' onChange={(e) => { setPassword(e.target.value) }} />
-                <LoginButton onClick={login}>Login</LoginButton>
+                <LoginButton onClick={(e) => {
+                    e.preventDefault();
+                    login();
+                }}>Login</LoginButton>
                 <RegisterButton onClick={() => { navigate('/cadastro') }}>Cadastrar</RegisterButton>
             </LoginContainer>
         </Container>
