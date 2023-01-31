@@ -13,10 +13,23 @@ export class Drinks {
         private readonly prismaCountriesOnDrinks: typeof Prisma['countriesOnDrinks'],
         ) { }
 
-    async findById(drinkId: string): Promise<Drink | null> {
+    async findById(drinkId: string): Promise<UpdateDrinkDto | null> {
         return this.prismaDrink.findUnique({
             where: {
                 id: drinkId
+            },
+            select: {
+                id: true,
+                name: true,
+                picture: true,
+                time: true,
+                preparation: true,
+                ingredients: true,
+                createdDate: true,
+                likes: true,
+                isAlcoholic: true,
+                difficulty: true,
+                userId: true
             }
         });
     }
