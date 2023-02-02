@@ -18,11 +18,13 @@ const HomePageTemplate = () => {
   const navigate = useNavigate();
 
   async function isSigned() {
-    try {
-      const user = await userService.getUserData();
-      if (!user?.id) navigate('/login');
-    } catch (error) {
-      navigate('/login');
+    if (!userService.user) {
+      try {
+        const user = await userService.getUserData();
+        if (!user?.id) navigate('/login');
+      } catch (error) {
+        navigate('/login');
+      }
     }
   };
 
