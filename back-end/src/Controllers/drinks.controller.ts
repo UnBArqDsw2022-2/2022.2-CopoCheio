@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 
 import { JwtAuthMiddleware } from '../Middlewares/auth';
+import { AuthRoleCheckMiddware } from '../Middlewares/authRoleCheck';
 import DrinkService from '../Services/drink.service';
 
 const router = Router();
@@ -16,6 +17,15 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     }
 })
 
+router.get('/random', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const drink = await drinkService.findRandom(req.params);
+        res.status(200).send(drink);
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.get('/favorites', JwtAuthMiddleware,async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userId = req.id;
@@ -26,11 +36,11 @@ router.get('/favorites', JwtAuthMiddleware,async (req: Request, res: Response, n
     }
 })
 
-router.get('/:id', JwtAuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const userId = req.params.id
-        const allUsers = await drinkService.findByParams({})
-        res.status(200).send(allUsers)
+        const drinkId = req.params.id;
+        const drink = await drinkService.findById(drinkId);
+        res.status(200).send(drink);
     } catch (error) {
         next(error)
     }
@@ -47,7 +57,7 @@ router.post('/', JwtAuthMiddleware,async (req: Request, res: Response, next: Nex
     }
 })
 
-router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
+router.put('/:id',JwtAuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
     try {
         const drinkId = req.params.id
         const userId = req.id

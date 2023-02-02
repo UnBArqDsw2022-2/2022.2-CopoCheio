@@ -3,8 +3,10 @@ import Prisma from "../prismaConection";
 
 import { BadRequestException } from "../Middlewares/httpExceptions";
 import { Drinks as DrinkModel } from "../Models/drinks.model";
+import { Roles as RolesModel } from "../Models/roles.model";
 import CategoriesService from "./categories.service";
 import CountriesService from "./countries.service";
+import UsersService from "./users.service";
 
 import { UpdateDrinkDto } from "../Dto/update-drink.dto";
 import { CreateDrinkDto } from '../Dto/create-drink.dto';
@@ -12,13 +14,21 @@ import { searchParamsDrink } from "../Dto/search-params-drink.dto";
 
 export default class DrinksService {
     private readonly drink: DrinkModel
+    private readonly role: RolesModel
     private readonly categoriesService: CategoriesService
     private readonly countriesService: CountriesService
+    private readonly usersService: UsersService
     readonly possibleDifficulties: string[] = ['EASY', 'MEDIUM', 'HARD']
     constructor() {
         this.drink = new DrinkModel(Prisma.drink, Prisma.categoriesOnDrinks, Prisma.countriesOnDrinks);
+        this.role = new RolesModel(Prisma.role);
         this.categoriesService = new CategoriesService();
         this.countriesService = new CountriesService();
+        this.usersService = new UsersService();
+    }
+
+    async findById(id: string) {
+        return await this.drink.findById(id);
     }
 
     async findFavorites(userId: string) {
@@ -95,6 +105,12 @@ export default class DrinksService {
 
     async update(drinkId: string, drinkData: UpdateDrinkDto, userId: string) {
         let { categories, countries, ...updateData } = drinkData
+
+        const user = await this.usersService.findById(userId);
+        const roleResult = await this.role.findOne(user!.roleId);
+        if (roleResult!.name === 'Customer') {
+            updateData.isVerfied = undefined;
+        }
 
         if (updateData.name && updateData.name.length === 0) {
             throw new BadRequestException('A bebida precisa de um nome')
@@ -199,5 +215,10 @@ export default class DrinksService {
             promisesList.push(this.drink.removeCategory(drinkId, relationId))
         }
         return Promise.all(promisesList)
+    }
+
+
+    async findRandom(search: searchParamsDrink) {
+        return this.drink.findRandomDrink(search);
     }
 }
