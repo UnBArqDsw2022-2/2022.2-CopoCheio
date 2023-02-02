@@ -36,7 +36,7 @@ export const Container = styled.div`
   justify-content: start;
   gap: 76px;
   padding-bottom: 80px;
-
+  overflow-y: auto;
 
   @media (max-width: 450px) {
     padding: 0 21px;
@@ -215,7 +215,6 @@ const DataDisplayTemplate = ({ type, data, maxCount = 0, isLoading, categories =
         {(data.length < maxCount || isLoading) && (
           <MainButton
             width="160px"
-            height="80px"
             children="Carregar mais"
             onClick={(e) => {
               e.preventDefault();
