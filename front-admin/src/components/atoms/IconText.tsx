@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Icon from './Icon/Icon';
 import { IconsTypes } from './Icon/IconTypes';
 import Text from './Text';
@@ -40,11 +40,11 @@ const IconText = ({
             onClick={onClick}
         >
             {iconLeft && (
-                <Icon  size={iconSize} icon={iconLeft} color={iconColor} marginRight="4px"/>
+                <Icon size={iconSize} icon={iconLeft} color={iconColor} marginRight="4px" />
             )}
             <Text weight={weight} color={fontColor} size={fontSize}>{children}</Text>
             {iconRight && (
-                <Icon  size={iconSize} icon={iconRight} color={iconColor} marginLeft="4px"/>
+                <Icon size={iconSize} icon={iconRight} color={iconColor} marginLeft="4px" />
             )}
 
         </IconTextContainer>

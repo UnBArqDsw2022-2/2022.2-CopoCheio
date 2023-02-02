@@ -56,11 +56,11 @@ const GenericTextArea = ({
     return (
         <>
             {
-                type == 'text-area' &&
+                type === 'text-area' &&
                 <TextAreaComponent value={value} onChange={onChange} placeholder={placeHolder} width={width} height={height} fontSize={fontSize} />
             }
             {
-                type == 'input' &&
+                type === 'input' &&
                 <InputComponent value={value} onChange={onChange} placeholder={placeHolder} width={width} height={height} weight={weight} fontSize={fontSize} />
             }
         </>
