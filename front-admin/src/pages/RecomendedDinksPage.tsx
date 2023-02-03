@@ -26,7 +26,7 @@ const RecomendedDrinksPage = () => {
     }
 
     const getDrinksHandle = async () => {
-        const drinks = await drinksService.getDrinks();
+        const drinks = await drinksService.getDrinks(false);
         setData(drinks.drinks);
         setIsLoading(false);
     }

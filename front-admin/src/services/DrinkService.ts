@@ -30,10 +30,14 @@ class DrinkService extends ApiRequest {
   }
 
 
-  getDrinks = async () => {
+  getDrinks = async (showVerified: boolean | undefined = undefined) => {
 
     try {
-      const response = await this.getRequest({ endPoint: 'drink' });
+      let params = '';
+      if (showVerified !== undefined) {
+        params += `showVerified=${showVerified}`;
+      }
+      const response = await this.getRequest({ endPoint: 'drink', params: params });
 
       let drinks = [];
 
