@@ -7,3 +7,5 @@
 settings/
 */package-lock.json
 Makefile
+*lock*
+*/*lock*

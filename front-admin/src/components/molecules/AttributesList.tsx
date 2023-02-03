@@ -4,7 +4,7 @@ import {colors} from '../../styles/colors';
 
 
 interface AttributesListInterface {
-    time?: string;
+    time?: number;
     difficulty?: string;
     location?: string;
     categories?: string;
@@ -17,8 +17,6 @@ const AttributesListContainer = styled.div`
   cursor:default;
   row-gap:4px;
 `
-
-
 
 const AttributesList = ({
     time,
@@ -36,7 +34,7 @@ const AttributesList = ({
                 fontSize='16px'
                 weight='regular'
             >
-                {time}
+                {`${time} min`}
             </IconText>
             <IconText 
                 iconColor={colors.primary}

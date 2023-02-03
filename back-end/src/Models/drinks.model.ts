@@ -46,13 +46,19 @@ export class Drinks {
         });
     }
 
-    async findByParams(searchParams: searchParamsDrink) {
+    async findByParams(searchParams: searchParamsDrink) {        
         return this.prismaDrink.findMany({
             where: {
                 name: {
                     contains: searchParams.name,
                     mode: 'insensitive'
                 },
+                isVerfied:  {
+                    equals: searchParams?.showVerified as boolean
+                },
+                isAlcoholic: {
+                    equals: searchParams?.isAlcoholic as boolean
+                }
             },
             include: {
                 categories: true,
@@ -71,7 +77,13 @@ export class Drinks {
                     contains: searchParams.name,
                     mode: 'insensitive'
                 },
-            }
+                isVerfied:  {
+                    equals: searchParams?.showVerified as boolean
+                },
+                isAlcoholic: {
+                    equals: searchParams?.isAlcoholic as boolean
+                }
+            },
         })
     }
 
@@ -91,7 +103,7 @@ export class Drinks {
     }
 
     async update(drinkId: string, drinkData: UpdateDrinkDto) {
-        const { categories, countries, ...updateData } = drinkData;
+        const { categories, countries, ...updateData } = drinkData;        
         const updatedUser = this.prismaDrink.update({
             data: updateData,
             where: {
