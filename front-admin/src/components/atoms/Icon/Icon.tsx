@@ -6,6 +6,7 @@ interface IconStyleInterface {
   color?: string;
   marginLeft?: string;
   marginRight?: string;
+  rotate?: boolean;
 }
 
 interface IconInterface extends IconStyleInterface {
@@ -18,6 +19,7 @@ const IconStyle = styled.span<IconStyleInterface>`
   color: ${({ color }) => color};
   margin-left: ${({ marginLeft }) => marginLeft};
   margin-right: ${({ marginRight }) => marginRight};
+  rotate: ${({ rotate }) => rotate ? '180deg' : ''};
 `
 
 const Icon = ({
@@ -25,7 +27,8 @@ const Icon = ({
   size,
   marginLeft,
   marginRight,
-  color
+  color,
+  rotate
 }: IconInterface) => (
   <IconStyle
     data-testid='icon test'
@@ -33,6 +36,7 @@ const Icon = ({
     marginLeft={marginLeft}
     marginRight={marginRight}
     color={color}
+    rotate={rotate}
   >
     {icon}
   </IconStyle>

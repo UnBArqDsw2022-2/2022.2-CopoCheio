@@ -9,7 +9,7 @@ const HeaderContainer = styled.section`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 70px;
+  min-height: 70px;
   border-bottom: 1px solid ${({ theme }) => theme.grey};
   background-color: ${({ theme }) => theme.alternative_white};
   padding: 0 48px;
