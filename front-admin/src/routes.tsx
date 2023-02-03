@@ -3,7 +3,6 @@ import DrinksPage from "./pages/DrinksPage";
 import HomePage from "./pages/HomePage";
 import ListUsersPage from "./pages/ListUsersPage";
 import LoginPage from "./pages/LoginPage";
-import DrinkPage from "./pages/DrinkPage";
 
 const Router = createBrowserRouter([
     {

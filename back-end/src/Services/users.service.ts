@@ -1,8 +1,8 @@
 import isEmail from 'isemail';
 import bcrypt from 'bcryptjs';
 import moment from "moment";
-import Prisma from "../prismaConection";
 
+import Prisma from "../prismaConection";
 import { Roles } from '../Models/roles.model';
 import { BadRequestException } from "../Middlewares/httpExceptions";
 import { Users as UserModel } from "../Models/users.model";
@@ -29,12 +29,13 @@ export default class UsersService {
 
         if (searchParams && searchParams.show !== undefined) {
             const user = await this.user.findById(userId!, true)
-            if (!user || user.role.name !== 'Admin') {
+            if (user && user.role.name === 'Admin') {
+                const validRole = this.roles.find(role => role === searchParams.show)
+                if (validRole === undefined) {
+                    throw new BadRequestException('Parametro show tem que ser \'Admin\' ou \'Customer\'');
+                }
+            } else {
                 delete searchParams.show;
-            }
-            const validRole = this.roles.find(role => role === searchParams.show)
-            if (validRole === undefined) {
-                throw new BadRequestException('Parametro show tem que ser \'Admin\' ou \'Customer\'');
             }
         }
 
