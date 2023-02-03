@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from 'styled-components';
+import { colors } from './styles/colors';
+import GlobalStyle from './globalStyles';
+import DataDisplayTemplate from './components/templates/DataDisplay';
+import { RouterProvider } from 'react-router-dom';
+import { Router, NoAuthRouter } from './routes';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    sessionStorage.getItem('userToken') ?
+      <>
+        <ThemeProvider theme={colors}>
+          <GlobalStyle />
+          <DataDisplayTemplate>
+            <RouterProvider router={Router} />
+          </DataDisplayTemplate>
+
+        </ThemeProvider>
+      </> :
+      <>
+        <ThemeProvider theme={colors}>
+          <GlobalStyle />
+          <RouterProvider router={NoAuthRouter} />
+        </ThemeProvider>
+      </>);
 }
 
 export default App;
