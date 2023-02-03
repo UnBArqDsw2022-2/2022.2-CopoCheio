@@ -48,7 +48,11 @@ export default class DrinksService {
             if (!user || user.role!.name !== 'Admin') {
                 searchParams.showVerified = true;
             }
-        } 
+        }
+
+        if (searchParams && searchParams.isAlcoholic !== undefined) {
+            searchParams.isAlcoholic = searchParams.isAlcoholic === 'false'
+        }
         
         if (!page || page <= 0) {
             searchParams.page = 1;
