@@ -4,7 +4,7 @@ import categoriesService from "../services/CategoryService";
 import drinksService from "../services/DrinkService";
 
 
-const DrinksPage = () => {
+const RecomendedDrinksPage = () => {
     let maxCount = 0;
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -26,7 +26,7 @@ const DrinksPage = () => {
     }
 
     const getDrinksHandle = async () => {
-        const drinks = await drinksService.getDrinks();
+        const drinks = await drinksService.getDrinks(false);
         setData(drinks.drinks);
         setIsLoading(false);
     }
@@ -42,7 +42,7 @@ const DrinksPage = () => {
         getCategoryHandle();
     }, [])
 
-    return (<DataDisplayTemplate data={data} type="drink" categories={categories} maxCount={maxCount} isLoading={isLoading} showMore={showMoreDrinks} modalType='genericDrinkModal' onSearch={() => { }} setNameQuery={() => { }} />)
+    return (<DataDisplayTemplate data={data} type="drink" categories={categories} maxCount={maxCount} isLoading={isLoading} showMore={showMoreDrinks} modalType='recomendationDrinkModal' onSearch={() => { }} setNameQuery={() => { }} />)
 };
 
-export default DrinksPage;
+export default RecomendedDrinksPage;
