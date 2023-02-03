@@ -1,5 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import DrinksPage from "./pages/DrinksPage";
 import HomePage from "./pages/HomePage";
+import ListUsersPage from "./pages/ListUsersPage";
 import LoginPage from "./pages/LoginPage";
 import DrinkPage from "./pages/DrinkPage";
 
@@ -14,12 +16,12 @@ const Router = createBrowserRouter([
         path: '/login',
         element: <LoginPage />
     }, {
-        path: '/userList',
-        element: <div>Hello World</div>
+        path: '/drinklist',
+        element: <DrinksPage />
     }, {
-        path: '/drinkList',
-        element: <DrinkPage />
+        path: '/userList',
+        element: <ListUsersPage />
     },
-])
+]);
 
 export default Router;

@@ -22,8 +22,6 @@ const IconTextContainer = styled.span`
   align-items:center;
 `
 
-
-
 const IconText = ({
     children,
     onClick,
