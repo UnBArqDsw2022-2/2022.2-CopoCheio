@@ -35,8 +35,21 @@ export default class DrinksService {
         return await this.drink.findAllFavorites(userId);
     }
 
-    async findByParams(searchParams: searchParamsDrink) {
-        const { page, quantity, name } = searchParams
+    async findByParams(searchParams: searchParamsDrink, userId: string | undefined) {
+        const { page, quantity} = searchParams
+        
+        if(!userId) {
+            searchParams.showVerified = true;
+        }
+
+        if (userId && searchParams && searchParams.showVerified !== undefined) {
+            const user = await this.usersService.findById(userId!)
+            searchParams.showVerified = searchParams.showVerified === 'true'
+            if (!user || user.role!.name !== 'Admin') {
+                searchParams.showVerified = true;
+            }
+        } 
+        
         if (!page || page <= 0) {
             searchParams.page = 1;
         }
@@ -105,9 +118,9 @@ export default class DrinksService {
 
     async update(drinkId: string, drinkData: UpdateDrinkDto, userId: string) {
         let { categories, countries, ...updateData } = drinkData
-
+        
         const user = await this.usersService.findById(userId);
-        const roleResult = await this.role.findOne(user!.roleId);
+        const roleResult = await this.role.findOne(user!.role!.id);
         if (roleResult!.name === 'Customer') {
             updateData.isVerfied = undefined;
         }
@@ -161,7 +174,7 @@ export default class DrinksService {
         if (countries && countries.length > 0) {
             this.handleRelations(drinkId, this.countriesService, countries)
         }
-
+        
         const upDateddrink = await this.drink.update(drinkId, updateData)
 
         return upDateddrink;
