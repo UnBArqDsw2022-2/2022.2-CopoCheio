@@ -77,7 +77,13 @@ export class Drinks {
                     contains: searchParams.name,
                     mode: 'insensitive'
                 },
-            }
+                isVerfied:  {
+                    equals: searchParams?.showVerified as boolean
+                },
+                isAlcoholic: {
+                    equals: searchParams?.isAlcoholic as boolean
+                }
+            },
         })
     }
 
