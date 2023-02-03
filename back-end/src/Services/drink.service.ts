@@ -238,4 +238,12 @@ export default class DrinksService {
     async findRandom(search: searchParamsDrink) {
         return this.drink.findRandomDrink(search);
     }
+
+    async deleteById(drinkId: string) {
+        try {       
+            await this.drink.delete(drinkId)
+        } catch (error) {
+            // do nothing
+        }
+    }
 }
