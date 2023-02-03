@@ -47,6 +47,7 @@ export default class UsersService {
         if (!searchParams.quantity || searchParams.quantity <= 0) {
             searchParams.quantity = 50;
         }
+
         const count = await this.user.count(searchParams);
         const usersList = await this.user.findByParams(searchParams);
 
