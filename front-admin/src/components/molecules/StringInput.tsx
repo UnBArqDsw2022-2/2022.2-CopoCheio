@@ -76,10 +76,12 @@ const StringInput = ({
     hasSearchButton,
     onSearch
 }: StringInputInterface) => {
+    const onEnter = (event: any) => { if (event.key === 'Enter' && onSearch) onSearch() }
+
     return (
         <GenericInputContainer width={width}>
             {placeholder && <Text color='grey' size='1em'>{placeholder}</Text>}
-            <GenericInputField borderRadius={borderRadius}>
+            <GenericInputField borderRadius={borderRadius} onKeyDown={onEnter}>
                 {hasSearchButton &&
                     <MainButton
                         leftElement={

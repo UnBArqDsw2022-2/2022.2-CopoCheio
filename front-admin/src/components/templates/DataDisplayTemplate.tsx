@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import Header from '../organisms/Header';
 import StringInput from '../molecules/StringInput';
 import { Dropdown } from '../molecules/Dropdown';
-import { useEffect, useState } from 'react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
 import userService from '../../services/UserService';
 import { useNavigate } from 'react-router-dom';
 import MainButton from '../atoms/MainButton';
 import { createPortal } from "react-dom";
 import UserManagementModal from "../organisms/UserManagementModal";
+import SearchBar from '../molecules/SearchBar';
 
 interface DataDisplayTemplateProps {
   type: 'drink' | 'user';
@@ -18,6 +19,9 @@ interface DataDisplayTemplateProps {
   isLoading?: boolean;
   categories: string[];
   showMore: VoidFunction;
+  onSearch: VoidFunction;
+  nameQuery?: string;
+  setNameQuery: ChangeEventHandler<HTMLInputElement>;
 }
 
 const PageContainer = styled.section`
@@ -93,7 +97,7 @@ const ModalWrapper = styled.div`
   justify-content: center;
 `;
 
-const DataDisplayTemplate = ({ type, data, maxCount = 0, isLoading, categories = [], showMore }: DataDisplayTemplateProps) => {
+const DataDisplayTemplate = ({ type, data, maxCount = 0, isLoading, categories = [], showMore, onSearch, nameQuery, setNameQuery }: DataDisplayTemplateProps) => {
   const navigate = useNavigate();
 
   async function isSigned() {
@@ -121,21 +125,21 @@ const DataDisplayTemplate = ({ type, data, maxCount = 0, isLoading, categories =
 
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactElement | null>(null);
-
-
-  const [nameQuery, setNameQuery] = useState<string>('');
   const [categoryQuery, setCategoryQuery] = useState<string>('Categorias');
 
   useEffect(() => {
     isSigned();
   }, []);
 
-  //useEffect(() => {
-  //console.log(categoryQuery); // replace with back end req
-  //}, [categoryQuery]);
-
   const renderCards = () => {
-    if (type === 'drink') {
+    if (isLoading === true && maxCount === 0) {
+      return (<MainButton
+        width="160px"
+        onClick={() => { }}
+        type={isLoading ? "loading" : "primary"}
+      />)
+    }
+    else if (type === 'drink') {
       return data && data.map((item) => (
         <Card
           key={item.id}
@@ -190,14 +194,10 @@ const DataDisplayTemplate = ({ type, data, maxCount = 0, isLoading, categories =
               onSelect={(category) => setCategoryQuery(category)}
             />
           )}
-          <StringInput
+          <SearchBar
+            onSearch={() => onSearch()}
             value={nameQuery}
-            onChange={(event) => setNameQuery(event.target.value)}
-            height='58px'
-            width='499px'
-            borderRadius='8px'
-            hasSearchButton
-            onSearch={() => { }} // replace with back end req
+            setValue={setNameQuery}
           />
           {(type === "drink") && (
             <Dropdown
@@ -213,7 +213,7 @@ const DataDisplayTemplate = ({ type, data, maxCount = 0, isLoading, categories =
           {renderCards()}
         </DataContainer>
 
-        {(data.length < maxCount || isLoading) && (
+        {(data.length < maxCount) && (
           <MainButton
             width="160px"
             children="Carregar mais"
