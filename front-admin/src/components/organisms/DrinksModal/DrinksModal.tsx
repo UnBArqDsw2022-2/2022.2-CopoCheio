@@ -9,7 +9,7 @@ import { useState } from "react";
 type ModalTypes = 'genericDrinkModal' | 'recomendationDrinkModal';
 
 interface DrinksModalInterface {
-    modalType: ModalTypes
+    modalType?: ModalTypes
     isShown: boolean;
     toggle: VoidFunction;
     drinkInfoObject: {
@@ -36,11 +36,18 @@ const DrinksModal = ({
     aditionalButtonClick
 }: DrinksModalInterface) => {
     const [drinkInfo, setDrinkInfo] = useState(drinkInfoObject);
+
+    const deleteDrink = async () => {
+        await DrinksService.deleteDrink(drinkInfoObject.id);
+        toggle();
+    }
+
     const leftButtonObject = {
         type: modalType === 'genericDrinkModal' ? 'cancel' : 'decline' as buttonTypes,
         label: modalType === 'genericDrinkModal' ? 'Cancelar' : 'Recusar bebida',
-        onClick: modalType === 'genericDrinkModal' ? toggle : () => console.log()
+        onClick: modalType === 'genericDrinkModal' ? toggle : deleteDrink
     }
+
     const rightButtonClick = async () => {
         try {
             if (modalType === 'genericDrinkModal') {
@@ -52,6 +59,18 @@ const DrinksModal = ({
                     ingredients: [drinkInfo.ingredients.trim()],
                     difficulty: drinkInfo.dificulty,
                     countries: [drinkInfo.country]
+                }
+                await DrinksService.updateDrink(drinkInfo.id as string, body);
+            } else {
+                const body = {
+                    name: drinkInfo.title.trim(),
+                    picture: drinkInfo.image,
+                    time: drinkInfo.time,
+                    preparation: drinkInfo.guide.trim(),
+                    ingredients: [drinkInfo.ingredients.trim()],
+                    difficulty: drinkInfo.dificulty,
+                    countries: [drinkInfo.country],
+                    isVerfied: true
                 }
                 await DrinksService.updateDrink(drinkInfo.id as string, body);
             }

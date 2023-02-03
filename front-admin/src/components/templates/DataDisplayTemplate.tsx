@@ -21,6 +21,7 @@ interface DataDisplayTemplateProps {
   onSearch: VoidFunction;
   nameQuery?: string;
   setNameQuery: ChangeEventHandler<HTMLInputElement>;
+  modalType?: 'genericDrinkModal' | 'recomendationDrinkModal';
 }
 
 const PageContainer = styled.section`
@@ -96,7 +97,7 @@ const ModalWrapper = styled.div`
   justify-content: center;
 `;
 
-const DataDisplayTemplate = ({ type, data, maxCount = 0, isLoading, categories = [], showMore, onSearch, nameQuery, setNameQuery }: DataDisplayTemplateProps) => {
+const DataDisplayTemplate = ({ type, data, maxCount = 0, isLoading, categories = [], showMore, modalType, onSearch, nameQuery, setNameQuery }: DataDisplayTemplateProps) => {
   const navigate = useNavigate();
 
   async function isSigned() {
@@ -155,6 +156,7 @@ const DataDisplayTemplate = ({ type, data, maxCount = 0, isLoading, categories =
           userName={item.createdBy.nameComplete || 'Usuário não identificado'}
           drinkPreparation={item.preparation}
           drinkIngredients={item.ingredients}
+          modalType={modalType}
         />
       ))
     }

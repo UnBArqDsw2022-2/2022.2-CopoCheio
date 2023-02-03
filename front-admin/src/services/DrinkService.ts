@@ -54,12 +54,23 @@ class DrinkService extends ApiRequest {
 
   updateDrink = async (id: string, body: any) => {
     try {
-      const response = await this.putRequest({endPoint: `drink/${id}`, body});
+      const response = await this.putRequest({ endPoint: `drink/${id}`, body });
       return response;
     } catch (error) {
       console.log(error);
       const apiResponse = ApiResponse.factoryApiResponse(error as any);
-      throw apiResponse.error;    
+      throw apiResponse.error;
+    }
+  }
+
+  deleteDrink = async (id: string) => {
+    try {
+      const response = await this.deleteRequest({ endPoint: `drink/${id}` });
+      return response;
+    } catch (error) {
+      console.log(error);
+      const apiResponse = ApiResponse.factoryApiResponse(error as any);
+      throw apiResponse.error;
     }
   }
 }
