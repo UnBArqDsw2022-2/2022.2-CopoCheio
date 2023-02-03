@@ -3,6 +3,7 @@ import DrinksPage from "./pages/DrinksPage";
 import HomePage from "./pages/HomePage";
 import ListUsersPage from "./pages/ListUsersPage";
 import LoginPage from "./pages/LoginPage";
+import RecomendedDrinksPage from "./pages/RecomendedDinksPage";
 
 const Router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const Router = createBrowserRouter([
     }, {
         path: '/userList',
         element: <ListUsersPage />
+    },
+    {
+        path: '/recommendeddrinks',
+        element: <RecomendedDrinksPage />
     },
 ]);
 
