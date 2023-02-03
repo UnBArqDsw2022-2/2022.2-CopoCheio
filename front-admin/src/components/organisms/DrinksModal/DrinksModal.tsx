@@ -1,3 +1,4 @@
+import DrinksService from "../../../services/DrinkService";
 import { GenericModal } from "../../molecules/GenericModal";
 import CloseButton from "../../atoms/CloseButton";
 import DrinksModalBody from "./components/DrinksModalBody";
@@ -12,14 +13,15 @@ interface DrinksModalInterface {
     isShown: boolean;
     toggle: VoidFunction;
     drinkInfoObject: {
+        id: string;
         title: string;
         userName: string,
         userImage?: string,
         image?: string,
-        time: number,
-        dificulty: string,
+        time?: number,
+        dificulty?: string | null,
         base: string[],
-        country: string,
+        country?: string,
         guide: string
         ingredients: string;
     };
@@ -37,9 +39,27 @@ const DrinksModal = ({
     const leftButtonObject = {
         type: modalType === 'genericDrinkModal' ? 'cancel' : 'decline' as buttonTypes,
         label: modalType === 'genericDrinkModal' ? 'Cancelar' : 'Recusar bebida',
-        onClick: () => console.log('Left Button Click')
+        onClick: modalType === 'genericDrinkModal' ? toggle : () => console.log()
     }
-
+    const rightButtonClick = async () => {
+        try {
+            if (modalType === 'genericDrinkModal') {
+                const body = {
+                    name: drinkInfo.title.trim(),
+                    picture: drinkInfo.image,
+                    time: drinkInfo.time,
+                    preparation: drinkInfo.guide.trim(),
+                    ingredients: [drinkInfo.ingredients.trim()],
+                    difficulty: drinkInfo.dificulty,
+                    countries: [drinkInfo.country]
+                }
+                await DrinksService.updateDrink(drinkInfo.id as string, body);
+            }
+            window.location.reload();
+        } catch (error) {
+            window.alert('Ocorreu um erro na edição do modal');
+        }
+    }
     return (
         <GenericModal
             isShown={isShown}
@@ -58,7 +78,7 @@ const DrinksModal = ({
             }
             modalFooter={<DrinksModalFooter
                 leftButtonObject={leftButtonObject}
-                rightButtonClick={() => console.log('Left Button Click')}
+                rightButtonClick={rightButtonClick}
                 aditionalButtonClick={aditionalButtonClick}
             />}
         />
