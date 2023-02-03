@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Card from '../organisms/Card';
 import styled from 'styled-components';
 import Header from '../organisms/Header';
