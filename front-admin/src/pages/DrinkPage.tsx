@@ -22,12 +22,12 @@ const DrinkPage = () => {
             <button onClick={() => {
                 toggle();
             }}>Create Modal</button>
-            <DrinksModal
+            {/* <DrinksModal
                 modalType="genericDrinkModal"
                 isShown={isShown}
                 toggle={toggle}
                 drinkInfoObject={drinkMockObject}
-            />
+            /> */}
         </div>
     );
 };

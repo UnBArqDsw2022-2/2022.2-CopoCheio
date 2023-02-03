@@ -48,6 +48,13 @@ class DrinkService extends ApiRequest {
     }
   }
 
+  updateDrink = async (id: string, body: any) => {
+    try {
+      await this.putRequest({endPoint: `drink/${id}`, body});
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 

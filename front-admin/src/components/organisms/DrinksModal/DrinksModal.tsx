@@ -1,3 +1,4 @@
+import DrinksService from "../../../services/DrinkService";
 import { GenericModal } from "../../molecules/GenericModal";
 import CloseButton from "../../atoms/CloseButton";
 import DrinksModalBody from "./components/DrinksModalBody";
@@ -16,10 +17,10 @@ interface DrinksModalInterface {
         userName: string,
         userImage?: string,
         image?: string,
-        time: number,
-        dificulty: string,
+        time?: number,
+        dificulty?: string | null,
         base: string[],
-        country: string,
+        country?: string,
         guide: string
         ingredients: string;
     };
@@ -37,9 +38,28 @@ const DrinksModal = ({
     const leftButtonObject = {
         type: modalType === 'genericDrinkModal' ? 'cancel' : 'decline' as buttonTypes,
         label: modalType === 'genericDrinkModal' ? 'Cancelar' : 'Recusar bebida',
-        onClick: () => console.log('Left Button Click')
+        onClick: modalType === 'genericDrinkModal' ? toggle : () => console.log()
     }
-
+    const rightButtonClick = () => {
+        try {
+            if(modalType === 'genericDrinkModal') {
+                const body = {
+                    name: drinkInfoObject.title,
+                    picture: drinkInfoObject.image,
+                    time: drinkInfoObject.time,
+                    preparation: drinkInfoObject.guide,
+                    ingredients: ['Naruto'],
+                    difficulty: 'HARD',
+                    countries: ['USA']
+                }
+                DrinksService.updateDrink('01ac7cb3-37ec-4ddc-acb1-f9202331391c' as string, body);
+            }
+        } catch (error) {
+            console.log('DEU RUIM');
+            console.log(error);
+        }
+        console.log('Chamou')
+    }
     return (
         <GenericModal
             isShown={isShown}
@@ -58,7 +78,7 @@ const DrinksModal = ({
             }
             modalFooter={<DrinksModalFooter
                 leftButtonObject={leftButtonObject}
-                rightButtonClick={() => console.log('Left Button Click')}
+                rightButtonClick={rightButtonClick}
                 aditionalButtonClick={aditionalButtonClick}
             />}
         />

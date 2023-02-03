@@ -130,10 +130,6 @@ const DataDisplayTemplate = ({ type, data, maxCount = 0, isLoading, categories =
     isSigned();
   }, []);
 
-  //useEffect(() => {
-  //console.log(categoryQuery); // replace with back end req
-  //}, [categoryQuery]);
-
   const renderCards = () => {
     if (type === 'drink') {
       return data && data.map((item) => (
@@ -144,16 +140,18 @@ const DataDisplayTemplate = ({ type, data, maxCount = 0, isLoading, categories =
           height='291px'
           width='227px'
           backgroundImage={item.picture}
-          drinkTime={item.time.toString() + " min"}
+          drinkTime={item.time}
           drinkDifficulty={item.difficulty}
           drinkLocation={(item.country !== undefined ? item.country.join(",") : "Não definido")}
           drinkCategories={(item.category !== undefined ? item.category.join(",") : "Não definido")}
+          userName={''}
         />
       ))
     }
     else {
       return data && data.map((item) => (
         <Card
+          userName=''
           cardTitle={item.name}
           cardType="user"
           userIndicationQuantity={3}
@@ -164,13 +162,12 @@ const DataDisplayTemplate = ({ type, data, maxCount = 0, isLoading, categories =
           onBlockUser={() => {
             setModalContent(ActionModal(item.email!, 'block', setShowModal));
             setShowModal(true);
-          }}
-          onDrinkRecommendation={() => { }}
+          } }
+          onDrinkRecommendation={() => { } }
           onUnlockUser={() => {
             setModalContent(ActionModal(item.email!, 'unlock', setShowModal));
             setShowModal(true);
-          }}
-        />
+          } } />
       ))
     }
   }
