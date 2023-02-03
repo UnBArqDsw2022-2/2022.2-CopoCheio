@@ -24,6 +24,7 @@ export class Users {
     }
 
     async findByParams(searchParams: searchParamsUser): Promise<UpdateUserDto[]> {
+
         return this.prismaUser.findMany({
             where: {
                 role: {
@@ -31,7 +32,15 @@ export class Users {
                         contains: searchParams.show,
                         mode: 'insensitive'
                     }
-                }
+                },
+                nameComplete: {
+                    contains: searchParams?.name,
+                    mode: 'insensitive'
+                },
+                email: {
+                    contains: searchParams?.email,
+                    mode: 'insensitive'
+                },
             },
             select: {
                 nameComplete: true,
