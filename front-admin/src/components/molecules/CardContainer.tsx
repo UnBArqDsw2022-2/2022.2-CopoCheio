@@ -13,6 +13,7 @@ interface CardContainerInterface {
     children: ReactNode;
     onMouseEnter?: VoidFunction;
     onMouseLeave?: VoidFunction;
+    onClick?: VoidFunction;
 }
 
 interface GenericCardContainerInterface extends Omit<CardContainerInterface, "children"> {
@@ -26,6 +27,9 @@ const GenericCardContainer = styled.div<GenericCardContainerInterface>`
     border-radius: ${({ borderRadius }) => borderRadius || '16px'};
     outline: none;
     border: none;
+    :hover{
+        cursor: pointer;
+    }
     ${({ height, width, borderColor, backgroundImage, typeDefinition }) => {
         switch (typeDefinition) {
             case 'background':
@@ -73,6 +77,7 @@ const CardContainer = ({
     children,
     onMouseEnter,
     onMouseLeave,
+    onClick
 }: CardContainerInterface) => {
     return (
         <GenericCardContainer
@@ -84,6 +89,7 @@ const CardContainer = ({
             borderColor={borderColor}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
+            onClick={onClick}
         >
 
             <GenericCardContainer
