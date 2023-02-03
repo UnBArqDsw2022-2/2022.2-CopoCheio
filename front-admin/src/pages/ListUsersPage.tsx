@@ -20,7 +20,7 @@ const ListUserPage = () => {
             setIsLoading(true);
             const response = await userService.getAllCustomers(page, quantity, searchName);
 
-            if (searchName && searchName.length != 0) {
+            if (searchName && searchName.length !== 0) {
                 const listUsers = response.users;
                 setUsers(listUsers);
             } else {
@@ -47,7 +47,7 @@ const ListUserPage = () => {
             isLoading={isLoading}
             setNameQuery={(e) => {
                 setNameQuery(e.target.value)
-                if (e.target.value.length == 0) {
+                if (e.target.value.length === 0) {
                     setUsers([]);
                     getUsers(page, quantity, undefined);
                 }

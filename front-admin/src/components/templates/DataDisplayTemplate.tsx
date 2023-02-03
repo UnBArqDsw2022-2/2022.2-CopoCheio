@@ -2,7 +2,6 @@
 import Card from '../organisms/Card';
 import styled from 'styled-components';
 import Header from '../organisms/Header';
-import StringInput from '../molecules/StringInput';
 import { Dropdown } from '../molecules/Dropdown';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 import userService from '../../services/UserService';

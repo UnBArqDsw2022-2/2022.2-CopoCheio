@@ -92,7 +92,3 @@ class UserService extends ApiRequest {
 const userService = UserService.getInstance();
 
 export default userService;
-function delay(arg0: number) {
-  throw new Error("Function not implemented.");
-}
-
