@@ -9,6 +9,7 @@ interface StyledTextInterface {
 }
 
 const Text = styled.span<StyledTextInterface>`
+width: fit-content;
 font-size: ${({ size }) => size || '18px'};
 font-weight: ${({ weight }) => weight === 'semibold' ? '600' : weight};
 color: ${({ color }) => color};
