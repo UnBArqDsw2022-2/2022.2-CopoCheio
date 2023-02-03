@@ -12,6 +12,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
         let userId = undefined
         const searchParams = req.query
+        console.log('<><><><><>', searchParams);
         const authHeader = req.headers.authorization;
         if (authHeader) {
             const [token] = authHeader.split(' ');
