@@ -39,7 +39,9 @@ export class Users {
                 birthDate: true,
                 role: searchParams?.showRole || false,
                 id: true
-            }
+            },
+            skip: Number(searchParams.page! * searchParams.quantity!),
+            take: Number(searchParams.quantity!)
         });
     }
 

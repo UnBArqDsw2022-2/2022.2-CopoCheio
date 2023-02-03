@@ -4,7 +4,7 @@ import ApiResponse from "../models/ApiResponseModel";
 
 
 class DrinkService extends ApiRequest {
-  private _drinks?: Drink[]=[];
+  private _drinks?: Drink[] = [];
   private token?: string | null;
   private userId?: string | null;
 
@@ -29,19 +29,15 @@ class DrinkService extends ApiRequest {
       this._drinks = drink;
   }
 
-  private _getUserToken = () => {
-    this.token=sessionStorage.getItem('userToken');
-    this.userId=sessionStorage.getItem('userId');
-  }
 
-  getDrinks=async ()=>{
+  getDrinks = async () => {
 
     try {
-      const response = await this.getRequest({ endPoint: 'drink'});
+      const response = await this.getRequest({ endPoint: 'drink' });
 
-      let drinks=[];
+      let drinks = [];
 
-      for(let drink of Array.from(response.data['drinks'])){
+      for (let drink of Array.from(response.data['drinks'])) {
         drinks.push(Drink.factoryDrink(drink));
       }
 
@@ -56,6 +52,6 @@ class DrinkService extends ApiRequest {
 
 
 
-const drinksService=DrinkService.getInstance();
+const drinksService = DrinkService.getInstance();
 
 export default drinksService;

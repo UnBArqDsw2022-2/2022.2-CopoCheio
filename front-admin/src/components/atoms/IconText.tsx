@@ -22,8 +22,6 @@ const IconTextContainer = styled.span`
   align-items:center;
 `
 
-
-
 const IconText = ({
     children,
     onClick,
@@ -40,11 +38,11 @@ const IconText = ({
             onClick={onClick}
         >
             {iconLeft && (
-                <Icon  size={iconSize} icon={iconLeft} color={iconColor} marginRight="4px"/>
+                <Icon size={iconSize} icon={iconLeft} color={iconColor} marginRight="4px" />
             )}
             <Text weight={weight} color={fontColor} size={fontSize}>{children}</Text>
             {iconRight && (
-                <Icon  size={iconSize} icon={iconRight} color={iconColor} marginLeft="4px"/>
+                <Icon size={iconSize} icon={iconRight} color={iconColor} marginLeft="4px" />
             )}
 
         </IconTextContainer>

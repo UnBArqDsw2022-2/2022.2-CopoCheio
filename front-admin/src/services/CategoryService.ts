@@ -4,7 +4,7 @@ import Category from "../models/CategoryModel";
 
 
 class CategoryService extends ApiRequest {
-  private _categories?: Category[]=[];
+  private _categories?: Category[] = [];
   private _categoriesName?: (string | undefined)[];
   private token?: string | null;
   private userId?: string | null;
@@ -32,26 +32,21 @@ class CategoryService extends ApiRequest {
       this._categories = category;
   }
 
-  private _getUserToken = () => {
-    this.token=sessionStorage.getItem('userToken');
-    this.userId=sessionStorage.getItem('userId');
-  }
-
-  getCategories=async ()=>{
+  getCategories = async () => {
 
     try {
-      const response = await this.getRequest({ endPoint: 'category'});
+      const response = await this.getRequest({ endPoint: 'category' });
 
-      let categories=[];
-      let categoriesName=[];
+      let categories = [];
+      let categoriesName = [];
 
-      for(let category of Array.from(response.data)){
+      for (let category of Array.from(response.data)) {
         categories.push(Category.factoryCategory(category));
         categoriesName.push(Category.factoryCategory(category).name);
       }
 
-      this._categories=categories;
-      this._categoriesName=categoriesName;
+      this._categories = categories;
+      this._categoriesName = categoriesName;
 
       return categoriesName;
     } catch (error) {
@@ -61,7 +56,7 @@ class CategoryService extends ApiRequest {
   }
 
 }
-const categoriesService=CategoryService.getInstance();
+const categoriesService = CategoryService.getInstance();
 
 
 export default categoriesService;

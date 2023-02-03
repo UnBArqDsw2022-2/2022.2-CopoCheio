@@ -1,38 +1,47 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import DataDisplayTemplate from "../components/templates/DataDisplayTemplate";
+import User from "../models/UserModel";
 import userService from "../services/UserService";
 
+let page: number = 1;
+let quantity: number = 50;
+let maxCount: number = 0;
+
 const ListUserPage = () => {
-    let maxCount = 0;
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-  
-    const [data, setData] = useState<any[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [data, setData] = useState<Array<User>>([]);
 
-
-    const showMoreUsers = async () => {
+    const showMoreUsers = async (page: number, quantity: number) => {
         try {
             setIsLoading(true);
-            const response = await userService.getAllCustomers();
+            const response = await userService.getAllCustomers(page, quantity);
             const listUsers = data.concat(response.users);
             maxCount = response.count;
-            setData([...listUsers]);
+            setData(listUsers);
             setIsLoading(false);
         } catch (error) {
             setIsLoading(false);
         }
     }
 
-    const getUserHandle=async ()=>{
-      const users=await userService.getAllCustomers();
-      setData(users.users);
-      setIsLoading(false);
-    }
+    useEffect(() => {
+        showMoreUsers(page, quantity);
+    }, [])
 
-   useEffect(()=>{
-    getUserHandle();
-   })
 
-    return(<DataDisplayTemplate data={data} type="user" isLoading={isLoading} maxCount={maxCount} categories={[]} showMore={showMoreUsers}/>)
- };
- 
+    return (
+        <DataDisplayTemplate
+            data={data}
+            type="user"
+            isLoading={isLoading}
+            maxCount={maxCount}
+            categories={[]}
+            showMore={() => {
+                page += 1;
+                showMoreUsers(page, quantity);
+            }}
+        />)
+};
+
 export default ListUserPage;

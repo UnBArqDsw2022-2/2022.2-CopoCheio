@@ -3,6 +3,7 @@ import { RouterProvider } from 'react-router-dom';
 import { colors } from './styles/colors';
 import GlobalStyle from './globalStyles';
 import Router from './routes';
+import './App.css';
 
 
 function App() {

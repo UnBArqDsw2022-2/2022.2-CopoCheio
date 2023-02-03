@@ -48,9 +48,9 @@ class UserService extends ApiRequest {
     }
   }
 
-  getAllCustomers = async () => {
+  getAllCustomers = async (page: number, quantity: number) => {
     try {
-      const response = await this.getRequest({ endPoint: `user`, params: `show=Customer` });
+      const response = await this.getRequest({ endPoint: `user`, params: `show=Customer&page=${page}&quantity=${quantity}` });
       let usersCutomers = [];
 
       for (let customer of Array.from(response.data['users'])) {

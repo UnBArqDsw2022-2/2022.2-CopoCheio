@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Card from '../organisms/Card';
 import styled from 'styled-components';
 import Header from '../organisms/Header';
@@ -7,7 +8,7 @@ import { useEffect, useState } from 'react';
 import userService from '../../services/UserService';
 import { useNavigate } from 'react-router-dom';
 import MainButton from '../atoms/MainButton';
-import {createPortal} from "react-dom";
+import { createPortal } from "react-dom";
 import UserManagementModal from "../organisms/UserManagementModal";
 
 interface DataDisplayTemplateProps {
@@ -15,7 +16,7 @@ interface DataDisplayTemplateProps {
   data: any[];
   maxCount: number;
   isLoading?: boolean;
-  categories:string[];
+  categories: string[];
   showMore: VoidFunction;
 }
 
@@ -35,6 +36,8 @@ export const Container = styled.div`
   align-items: center;
   justify-content: start;
   gap: 76px;
+  padding-bottom: 80px;
+  overflow-y: auto;
 
   @media (max-width: 450px) {
     padding: 0 21px;
@@ -90,9 +93,7 @@ const ModalWrapper = styled.div`
   justify-content: center;
 `;
 
-
-
-const DataDisplayTemplate = ({type,data,maxCount=0,isLoading,categories=[],showMore}: DataDisplayTemplateProps) => {
+const DataDisplayTemplate = ({ type, data, maxCount = 0, isLoading, categories = [], showMore }: DataDisplayTemplateProps) => {
   const navigate = useNavigate();
 
   async function isSigned() {
@@ -107,15 +108,15 @@ const DataDisplayTemplate = ({type,data,maxCount=0,isLoading,categories=[],showM
   };
 
   const ActionModal = (userEmail: string, action: string, setShowModal: any) => {
-      return (
-          <ModalWrapper>
-              <UserManagementModal
-                  userEmail={userEmail}
-                  action={action}
-                  setShowModal={setShowModal}
-              />
-          </ModalWrapper>
-      );
+    return (
+      <ModalWrapper>
+        <UserManagementModal
+          userEmail={userEmail}
+          action={action}
+          setShowModal={setShowModal}
+        />
+      </ModalWrapper>
+    );
   };
 
   const [showModal, setShowModal] = useState(false);
@@ -125,20 +126,16 @@ const DataDisplayTemplate = ({type,data,maxCount=0,isLoading,categories=[],showM
   const [nameQuery, setNameQuery] = useState<string>('');
   const [categoryQuery, setCategoryQuery] = useState<string>('Categorias');
 
-
-
-  
-
   useEffect(() => {
     isSigned();
-  });
+  }, []);
 
   //useEffect(() => {
-    //console.log(categoryQuery); // replace with back end req
+  //console.log(categoryQuery); // replace with back end req
   //}, [categoryQuery]);
 
   const renderCards = () => {
-    if(type==='drink'){
+    if (type === 'drink') {
       return data && data.map((item) => (
         <Card
           key={item.id}
@@ -147,35 +144,35 @@ const DataDisplayTemplate = ({type,data,maxCount=0,isLoading,categories=[],showM
           height='291px'
           width='227px'
           backgroundImage={item.picture}
-          drinkTime={item.time.toString()+" min"}
+          drinkTime={item.time.toString() + " min"}
           drinkDifficulty={item.difficulty}
-          drinkLocation={(item.country!==undefined?item.country.join(","):"Não definido")}
-          drinkCategories={(item.category!==undefined?item.category.join(","):"Não definido")}
+          drinkLocation={(item.country !== undefined ? item.country.join(",") : "Não definido")}
+          drinkCategories={(item.category !== undefined ? item.category.join(",") : "Não definido")}
         />
-      ))}
-    else{
-      return data && data.map((item) => (
-        <Card
-            cardTitle={item.name}
-            cardType="user"
-            userIndicationQuantity={3}
-            height="291px"
-            width="227px"
-            backgroundImage={item.picture}
-            userBlock={false}
-            onBlockUser={ () => {
-                setModalContent(ActionModal(item.email!, 'block', setShowModal));
-                setShowModal(true);
-            } }
-            onDrinkRecommendation={() => { }}
-            onUnlockUser={ () => {
-                setModalContent(ActionModal(item.email!, 'unlock', setShowModal));
-                setShowModal(true);
-            } }
-            />
       ))
     }
-
+    else {
+      return data && data.map((item) => (
+        <Card
+          cardTitle={item.name}
+          cardType="user"
+          userIndicationQuantity={3}
+          height="291px"
+          width="227px"
+          backgroundImage={item.picture}
+          userBlock={false}
+          onBlockUser={() => {
+            setModalContent(ActionModal(item.email!, 'block', setShowModal));
+            setShowModal(true);
+          }}
+          onDrinkRecommendation={() => { }}
+          onUnlockUser={() => {
+            setModalContent(ActionModal(item.email!, 'unlock', setShowModal));
+            setShowModal(true);
+          }}
+        />
+      ))
+    }
   }
 
   return (
@@ -184,7 +181,7 @@ const DataDisplayTemplate = ({type,data,maxCount=0,isLoading,categories=[],showM
 
       <Container>
         <ControlsContainer>
-          {(type==="drink")&&(
+          {(type === "drink") && (
             <Dropdown
               label={categoryQuery}
               icon={'segment'}
@@ -202,7 +199,7 @@ const DataDisplayTemplate = ({type,data,maxCount=0,isLoading,categories=[],showM
             hasSearchButton
             onSearch={() => { }} // replace with back end req
           />
-          {(type==="drink")&&(
+          {(type === "drink") && (
             <Dropdown
               label={'Filtrar'}
               icon={'filter_list'}
@@ -216,22 +213,25 @@ const DataDisplayTemplate = ({type,data,maxCount=0,isLoading,categories=[],showM
           {renderCards()}
         </DataContainer>
 
-        {(data.length < maxCount || isLoading)&&(<MainButton
-                width="160px"
-                height="80px"
-                children="Carregar mais"
-                onClick={(e) => {
-                    e.preventDefault();
-                    if (data.length < maxCount) {
-                        (showMore());
-                    }
-                }}
-                type={isLoading ? "loading" : "primary"}
-        />)}
+        {(data.length < maxCount || isLoading) && (
+          <MainButton
+            width="160px"
+            children="Carregar mais"
+            onClick={(e) => {
+              e.preventDefault();
+              if (data.length < maxCount) {
+                (showMore());
+              }
+            }}
+            type={isLoading ? "loading" : "primary"}
+          />)}
       </Container>
 
+
       {showModal && createPortal(modalContent, document.body)}
+
     </PageContainer >
+
   );
 };
 
