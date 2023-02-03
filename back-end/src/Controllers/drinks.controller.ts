@@ -86,8 +86,9 @@ router.put('/:id',JwtAuthMiddleware, async (req: Request, res: Response, next: N
 
 router.delete('/:id', JwtAuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const userId = req.params.id
-        res.status(204)
+        const drinkId = req.params.id
+        await drinkService.deleteById(drinkId)
+        res.status(204).send()
     } catch (error) {
         next(error)
     }

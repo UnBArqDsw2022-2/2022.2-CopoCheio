@@ -5,7 +5,4 @@
 .editorconfig
 .vscode*
 settings/
-*/package-lock.json
 Makefile
-*lock*
-*/*lock*
