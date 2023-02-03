@@ -42,7 +42,7 @@ const RecomendedDrinksPage = () => {
         getCategoryHandle();
     }, [])
 
-    return (<DataDisplayTemplate data={data} type="drink" categories={categories} maxCount={maxCount} isLoading={isLoading} showMore={showMoreDrinks} modalType='recomendationDrinkModal' />)
+    return (<DataDisplayTemplate data={data} type="drink" categories={categories} maxCount={maxCount} isLoading={isLoading} showMore={showMoreDrinks} modalType='recomendationDrinkModal' onSearch={() => { }} setNameQuery={() => { }} />)
 };
 
 export default RecomendedDrinksPage;

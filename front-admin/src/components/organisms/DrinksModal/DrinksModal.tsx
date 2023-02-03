@@ -40,6 +40,7 @@ const DrinksModal = ({
     const deleteDrink = async () => {
         await DrinksService.deleteDrink(drinkInfoObject.id);
         toggle();
+        window.location.reload();
     }
 
     const leftButtonObject = {
