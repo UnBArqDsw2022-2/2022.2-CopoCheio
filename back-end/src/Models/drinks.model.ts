@@ -11,7 +11,7 @@ export class Drinks {
         private readonly prismaDrink: typeof Prisma['drink'],
         private readonly prismaCategoriesOnDrinks: typeof Prisma['categoriesOnDrinks'],
         private readonly prismaCountriesOnDrinks: typeof Prisma['countriesOnDrinks'],
-        ) { }
+    ) { }
 
     async findById(drinkId: string): Promise<UpdateDrinkDto | null> {
         return this.prismaDrink.findUnique({
@@ -36,7 +36,7 @@ export class Drinks {
 
     async findAllFavorites(userId: string) {
         return await this.prismaDrink.findMany({
-            where:{
+            where: {
                 Favorite: {
                     some: {
                         userId
@@ -46,28 +46,28 @@ export class Drinks {
         });
     }
 
-    async findByParams(searchParams:searchParamsDrink) {
+    async findByParams(searchParams: searchParamsDrink) {
         return this.prismaDrink.findMany({
-            where:{
-                name:{
+            where: {
+                name: {
                     contains: searchParams.name,
                     mode: 'insensitive'
                 },
             },
-            include:{
-                categories:true,
-                countries:true,
-                createdBy:true
+            include: {
+                categories: true,
+                countries: true,
+                createdBy: true
             },
-            skip: searchParams.page! * searchParams.quantity!,
-            take: searchParams.quantity!
+            skip: Number(searchParams.page! * searchParams.quantity!),
+            take: Number(searchParams.quantity!)
         })
     }
 
-    async countByParams(searchParams:searchParamsDrink) {
+    async countByParams(searchParams: searchParamsDrink) {
         return this.prismaDrink.count({
-            where:{
-                name:{
+            where: {
+                name: {
                     contains: searchParams.name,
                     mode: 'insensitive'
                 },
@@ -75,25 +75,25 @@ export class Drinks {
         })
     }
 
-    async create(userId: string,drinkData: CreateDrinkDto): Promise<UpdateDrinkDto> {
-        const { categories, countries, ...createData} = drinkData;
+    async create(userId: string, drinkData: CreateDrinkDto): Promise<UpdateDrinkDto> {
+        const { categories, countries, ...createData } = drinkData;
         return this.prismaDrink.create({
             data: {
                 ...createData,
                 isVerfied: false,
-                createdBy:{
-                    connect:{
+                createdBy: {
+                    connect: {
                         id: userId
                     }
-                } 
+                }
             }
         });
     }
 
     async update(drinkId: string, drinkData: UpdateDrinkDto) {
-        const { categories, countries, ...updateData} = drinkData;
+        const { categories, countries, ...updateData } = drinkData;
         const updatedUser = this.prismaDrink.update({
-            data:updateData,
+            data: updateData,
             where: {
                 id: drinkId
             }
@@ -104,15 +104,15 @@ export class Drinks {
 
     async addCategory(drinkId: string, categoryId: string): Promise<CategoriesOnDrinks> {
         return this.prismaCategoriesOnDrinks.create({
-            data:{
-                category:{
-                    connect:{
+            data: {
+                category: {
+                    connect: {
                         id: categoryId
                     }
                 },
-                drink:{
-                    connect:{
-                        id:drinkId
+                drink: {
+                    connect: {
+                        id: drinkId
                     }
                 }
             }
@@ -121,15 +121,15 @@ export class Drinks {
 
     async addCountry(drinkId: string, countryId: string): Promise<CountriesOnDrinks> {
         return this.prismaCountriesOnDrinks.create({
-            data:{
-                country:{
-                    connect:{
+            data: {
+                country: {
+                    connect: {
                         id: countryId
                     }
                 },
-                drink:{
-                    connect:{
-                        id:drinkId
+                drink: {
+                    connect: {
+                        id: drinkId
                     }
                 }
             }
@@ -138,8 +138,8 @@ export class Drinks {
 
     async removeCategory(drinkId: string, categoryId: string): Promise<CategoriesOnDrinks> {
         return this.prismaCategoriesOnDrinks.delete({
-            where:{
-                drinkId_categoryId:{
+            where: {
+                drinkId_categoryId: {
                     categoryId,
                     drinkId
                 }
@@ -149,8 +149,8 @@ export class Drinks {
 
     async removeCountry(drinkId: string, countryId: string): Promise<CountriesOnDrinks> {
         return this.prismaCountriesOnDrinks.delete({
-            where:{
-                drinkId_countryId:{
+            where: {
+                drinkId_countryId: {
                     countryId,
                     drinkId
                 }
@@ -158,7 +158,7 @@ export class Drinks {
         })
     }
 
-    async findRandomDrink(searchParams: searchParamsDrink) : Promise<Drink | null> {
+    async findRandomDrink(searchParams: searchParamsDrink): Promise<Drink | null> {
         const category = searchParams?.categories;
         const country = searchParams?.countries;
         const difficulty = searchParams?.difficulty;
