@@ -39,7 +39,7 @@ class ApiRequestService {
     async postRequest({ endPoint, params, body }: { endPoint: string, params?: string, body?: any }) {
         try {
             const url = this.createUrl(endPoint, params);
-            const response = axios.post(url, body, { headers: headers });
+            const response = await axios.post(url, body, { headers: headers });
             return response;
         } catch (error) {
             const err = error as AxiosError;
@@ -56,7 +56,7 @@ class ApiRequestService {
     async putRequest({ endPoint, params, body }: { endPoint: string, params?: string, body?: any }) {
         try {
             const url = this.createUrl(endPoint, params);
-            const response = axios.put(url, body, { headers: headers });
+            const response = await axios.put(url, body, { headers: headers });
             return response;
         } catch (error) {
             const err = error as AxiosError;
@@ -73,7 +73,7 @@ class ApiRequestService {
     async deleteRequest({ endPoint, params }: { endPoint: string, params?: string }) {
         try {
             const url = this.createUrl(endPoint, params);
-            const response = axios.delete(url, { headers: headers });
+            const response = await axios.delete(url, { headers: headers });
             return response;
         } catch (error) {
             const err = error as AxiosError;
