@@ -21,7 +21,7 @@ const ModalText = ({
 }: ModalTextInterface) => (
     <ModalTextContainer>
         <Text
-            size='16px'
+            size='20px'
             weight='bold'
             color={colors.grey}>
             {title}

@@ -13,6 +13,7 @@ interface DrinksModalInterface {
     isShown: boolean;
     toggle: VoidFunction;
     drinkInfoObject: {
+        id: string;
         title: string;
         userName: string,
         userImage?: string,
@@ -40,25 +41,24 @@ const DrinksModal = ({
         label: modalType === 'genericDrinkModal' ? 'Cancelar' : 'Recusar bebida',
         onClick: modalType === 'genericDrinkModal' ? toggle : () => console.log()
     }
-    const rightButtonClick = () => {
+    const rightButtonClick = async () => {
         try {
-            if(modalType === 'genericDrinkModal') {
+            if (modalType === 'genericDrinkModal') {
                 const body = {
-                    name: drinkInfoObject.title,
-                    picture: drinkInfoObject.image,
-                    time: drinkInfoObject.time,
-                    preparation: drinkInfoObject.guide,
-                    ingredients: ['Naruto'],
-                    difficulty: 'HARD',
-                    countries: ['USA']
+                    name: drinkInfo.title.trim(),
+                    picture: drinkInfo.image,
+                    time: drinkInfo.time,
+                    preparation: drinkInfo.guide.trim(),
+                    ingredients: [drinkInfo.ingredients.trim()],
+                    difficulty: drinkInfo.dificulty,
+                    countries: [drinkInfo.country]
                 }
-                DrinksService.updateDrink('01ac7cb3-37ec-4ddc-acb1-f9202331391c' as string, body);
+                await DrinksService.updateDrink(drinkInfo.id as string, body);
             }
+            window.location.reload();
         } catch (error) {
-            console.log('DEU RUIM');
-            console.log(error);
+            window.alert('Ocorreu um erro na edição do modal');
         }
-        console.log('Chamou')
     }
     return (
         <GenericModal

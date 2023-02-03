@@ -13,6 +13,7 @@ import Text from "../../../atoms/Text";
 
 interface DrinksModalBodyInterface {
     drinkInfoObject: {
+        id: string;
         title: string,
         userName: string,
         userImage?: string,
@@ -24,7 +25,7 @@ interface DrinksModalBodyInterface {
         guide: string
         ingredients: string
     };
-    setDrinkInfoObject: Dispatch<SetStateAction<{ title: string; userName: string; time?: number; base: string[]; dificulty?: string | null; country?: string; ingredients: string; guide: string; }>>;
+    setDrinkInfoObject: Dispatch<SetStateAction<{ id: string; title: string; userName: string; time?: number; base: string[]; dificulty?: string | null; country?: string; ingredients: string; guide: string; }>>;
 }
 
 const BodyContainer = styled.div`
@@ -75,11 +76,10 @@ const IconRow = styled.div`
 const LeftIcon = styled.div`
     position: relative;
     height: fit-content;
-    width: 30%;
 `;
 const RightIcon = styled.div`
     height: fit-content;
-    width: 70%;
+    margin-left: 32px;
 `;
 
 const TimeInputContainer = styled.div`
@@ -210,6 +210,12 @@ const DrinksModalBody = ({
         'Sake'
     ];
 
+    const dificulty: { EASY: string; MEDIUM: string; HARD: string; } = {
+        EASY: 'Fácil',
+        MEDIUM: 'Médio',
+        HARD: 'Difícil'
+    };
+
     return (
         <BodyContainer>
             <TextSide>
@@ -229,7 +235,7 @@ const DrinksModalBody = ({
                 }
             </TextSide>
             <CardSide>
-                {drinkInfoObject.image ? <Image src={drinkInfoObject.image} height={'40%'} width={'100%'} borderRadius={'8px'} marginRight='4px' /> :
+                {drinkInfoObject.image ? <Image src={drinkInfoObject.image} height={'200px'} width={'100%'} borderRadius={'8px'} marginRight='4px' /> :
                     <BlankImage>
                         <Icon size='50px' icon='sports_bar' color={colors.white} />
                         No image
@@ -272,13 +278,13 @@ const DrinksModalBody = ({
                 </IconRow>
                 <IconRow>
                     <LeftIcon onClick={() => handleSetOnClickInput('dificulty')}>
-                        <IconText iconColor={colors.primary} iconLeft='school' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={drinkInfoObject.dificulty || undefined} />
+                        <IconText iconColor={colors.primary} iconLeft='school' iconSize='18px' fontColor={colors.grey} fontSize='16px' children={dificulty[drinkInfoObject.dificulty as keyof { EASY: string; MEDIUM: string; HARD: string; }] || undefined} />
                         {
                             onClickInput === 'dificulty' && <DropDown element={
                                 <>
-                                    <Text onClick={() => handleDificulty('Facil')} weight="regular" size="14px" color={colors.grey} >Facil</Text>
-                                    <Text onClick={() => handleDificulty('Médio')} margin="8px 0 0 0" weight="regular" size="14px" color={colors.grey} >Médio</Text>
-                                    <Text onClick={() => handleDificulty('Díficil')} margin="8px 0 0 0" weight="regular" size="14px" color={colors.grey} >Difícil</Text>
+                                    <Text onClick={() => handleDificulty('EASY')} weight="regular" size="14px" color={colors.grey} >Facil</Text>
+                                    <Text onClick={() => handleDificulty('MEDIUM')} margin="8px 0 0 0" weight="regular" size="14px" color={colors.grey} >Médio</Text>
+                                    <Text onClick={() => handleDificulty('HARD')} margin="8px 0 0 0" weight="regular" size="14px" color={colors.grey} >Difícil</Text>
                                 </>
                             } />
                         }

@@ -28,6 +28,9 @@ interface CardInterface {
     drinkLocation?: string;
     drinkCategories?: string;
     userProfile?: string;
+    drinkId: string;
+    drinkPreparation: string;
+    drinkIngredients: string;
 }
 
 const CardTextContainer = styled.span`
@@ -64,6 +67,7 @@ const UserProfileContainer = styled.span`
 `
 
 const Card = ({
+    drinkId,
     onExpand,
     cardTitle,
     backgroundImage,
@@ -81,26 +85,25 @@ const Card = ({
     drinkLocation,
     drinkCategories,
     userProfile,
+    drinkPreparation,
+    drinkIngredients
 }: CardInterface) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [hover, setHover] = useState(false);
 
-    const dificulty: { EASY: string; MEDIUM: string; HARD: string; } = {
-        EASY: 'Fácil',
-        MEDIUM: 'Médio',
-        HARD: 'Difícil'
-    };
+
 
     const infoObject = {
+        id: drinkId,
         title: cardTitle,
         userName: userName,
         image: backgroundImage,
         time: drinkTime,
-        dificulty: drinkDifficulty ? dificulty[drinkDifficulty as keyof { EASY: string; MEDIUM: string; HARD: string; }] : null,
+        dificulty: drinkDifficulty,
         base: ['Vodka'],
         country: drinkLocation ? drinkLocation[0] : 'Sem pais de origem',
-        guide: 'dajsndkjqw',
-        ingredients: 'danjdwkqjjn'
+        guide: drinkPreparation,
+        ingredients: drinkIngredients[0]
     }
 
     return (
