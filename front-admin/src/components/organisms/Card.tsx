@@ -7,6 +7,7 @@ import CardTitle from '../molecules/CardTitle';
 import IconButton from '../molecules/IconButtons';
 import ImageText from '../atoms/ImageText';
 import Text from '../atoms/Text';
+import DrinksModal from './DrinksModal/DrinksModal';
 
 
 interface CardInterface {
@@ -15,18 +16,21 @@ interface CardInterface {
     onDrinkRecommendation?: VoidFunction;
     onUnlockUser?: VoidFunction;
     cardTitle: string;
-    backgroundImage?: string;
-    height?: string;
-    width?: string;
+    backgroundImage: string;
+    height: string;
+    width: string;
     cardType: "drink" | "user";
-    userName?: string;
+    userName: string;
     userBlock?: boolean;
     userIndicationQuantity?: number;
-    drinkTime?: string;
+    drinkTime?: number;
     drinkDifficulty?: string;
     drinkLocation?: string;
     drinkCategories?: string;
     userProfile?: string;
+    drinkId: string;
+    drinkPreparation: string;
+    drinkIngredients: string;
 }
 
 const CardTextContainer = styled.span`
@@ -63,6 +67,7 @@ const UserProfileContainer = styled.span`
 `
 
 const Card = ({
+    drinkId,
     onExpand,
     cardTitle,
     backgroundImage,
@@ -80,102 +85,131 @@ const Card = ({
     drinkLocation,
     drinkCategories,
     userProfile,
+    drinkPreparation,
+    drinkIngredients
 }: CardInterface) => {
-
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const [hover, setHover] = useState(false);
 
+
+
+    const infoObject = {
+        id: drinkId,
+        title: cardTitle,
+        userName: userName,
+        image: backgroundImage,
+        time: drinkTime,
+        dificulty: drinkDifficulty,
+        base: ['Vodka'],
+        country: drinkLocation ? drinkLocation[0] : 'Sem pais de origem',
+        guide: drinkPreparation,
+        ingredients: drinkIngredients[0]
+    }
+
     return (
-        <CardContainer
-            height={height}
-            width={width}
-            backgroundImage={backgroundImage}
-            borderColor={(cardType === 'user' && userBlock) ? (
-                colors.denied
-            ) : (
-                colors.dark_primary
-            )}
-            hover={hover}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-        >
-            {(onExpand && hover) ? (
-                <CardTitle onClick={onExpand}>{cardTitle}</CardTitle>
-            ) : (
-                <CardTitle>{cardTitle}</CardTitle>
-            )}
+        <>
+            <CardContainer
+                height={height}
+                width={width}
+                backgroundImage={backgroundImage}
+                borderColor={(cardType === 'user' && userBlock) ? (
+                    colors.denied
+                ) : (
+                    colors.primary
+                )}
+                hover={hover}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+                onClick={() => setModalIsOpen(true)}
+            >
+                {(onExpand && hover) ? (
+                    <CardTitle onClick={onExpand}>{cardTitle}</CardTitle>
+                ) : (
+                    <CardTitle>{cardTitle}</CardTitle>
+                )}
 
 
-            {(cardType === 'user' && hover) && (
-                <>
-                    <CardTextContainer>
-                        <Text
-                            weight='regular'
-                            size='12px'
-                            color={colors.alternative_white}
-                            style={{
-                                textAlign: 'center'
-                            }}
-                        >
+                {(cardType === 'user' && hover) && (
+                    <>
+                        <CardTextContainer>
+                            <Text
+                                weight='regular'
+                                size='12px'
+                                color={colors.alternative_white}
+                                style={{
+                                    textAlign: 'center'
+                                }}
+                            >
+                                {(userBlock)
+                                    ? (<>Esse usuário se encontra <br /><Text weight='semibold' size='12px' color={colors.denied}> restringido</Text></>)
+                                    : (<>Esse usuário recomendou<Text weight='semibold' size='12px' color={colors.primary}> {userIndicationQuantity} receitas </Text>de bebida no total.</>)}
+                            </Text>
+                        </CardTextContainer>
+                        <CardButtonsContainer>
                             {(userBlock)
-                                ? (<>Esse usuário se encontra <br /><Text weight='semibold' size='12px' color={colors.denied}> restringido</Text></>)
-                                : (<>Esse usuário recomendou<Text weight='semibold' size='12px' color={colors.primary}> {userIndicationQuantity} receitas </Text>de bebida no total.</>)}
-                        </Text>
-                    </CardTextContainer>
-                    <CardButtonsContainer>
-                        {(userBlock)
-                            ? (<>
-                                <IconButton
-                                    type='default'
-                                    onClick={(onUnlockUser) && (() => { onUnlockUser() })}
-                                    icon={'lock_open'}
-                                    iconColor={colors.success}
-                                    fontSize="32px"
-                                />
-                                <IconButton
-                                    type='default'
-                                    onClick={(onDrinkRecommendation) && (() => { onDrinkRecommendation() })}
-                                    icon={'sports_bar'}
-                                    iconColor={colors.grey}
-                                    fontSize="32px"
-                                />
-                            </>)
-                            : (<>
-                                <IconButton
-                                    type='default'
-                                    onClick={(onBlockUser) && (() => { onBlockUser() })}
-                                    icon={'block'}
-                                    iconColor={colors.denied}
-                                    fontSize="32px"
-                                />
-                                <IconButton
-                                    type='default'
-                                    onClick={(onDrinkRecommendation) && (() => { onDrinkRecommendation() })}
-                                    icon={'sports_bar'}
-                                    iconColor={colors.primary}
-                                    fontSize="32px"
-                                />
-                            </>)}
-                    </CardButtonsContainer>
-                </>
-            )}
+                                ? (<>
+                                    <IconButton
+                                        type='default'
+                                        onClick={(onUnlockUser) && (() => { onUnlockUser() })}
+                                        icon={'lock_open'}
+                                        iconColor={colors.success}
+                                        fontSize="32px"
+                                    />
+                                    <IconButton
+                                        type='default'
+                                        onClick={(onDrinkRecommendation) && (() => { onDrinkRecommendation() })}
+                                        icon={'sports_bar'}
+                                        iconColor={colors.grey}
+                                        fontSize="32px"
+                                    />
+                                </>)
+                                : (<>
+                                    <IconButton
+                                        type='default'
+                                        onClick={(onBlockUser) && (() => { onBlockUser() })}
+                                        icon={'block'}
+                                        iconColor={colors.denied}
+                                        fontSize="32px"
+                                    />
+                                    <IconButton
+                                        type='default'
+                                        onClick={(onDrinkRecommendation) && (() => { onDrinkRecommendation() })}
+                                        icon={'sports_bar'}
+                                        iconColor={colors.primary}
+                                        fontSize="32px"
+                                    />
+                                </>)}
+                        </CardButtonsContainer>
+                    </>
+                )}
 
-            {(cardType === 'drink' && hover) && (
-                <CardListContainer>
-                    <AttributesList
-                        time={drinkTime}
-                        difficulty={drinkDifficulty}
-                        location={drinkLocation}
-                        categories={drinkCategories}
-                    />
-                </CardListContainer>
-            )}
+                {(cardType === 'drink' && hover) && (
+                    <CardListContainer>
+                        <AttributesList
+                            time={drinkTime}
+                            difficulty={drinkDifficulty}
+                            location={drinkLocation ? drinkLocation[0] : 'Sem pais de origem'}
+                            categories={drinkCategories}
+                        />
+                    </CardListContainer>
+                )}
 
-            {(cardType === 'drink' && !hover) && (
-                <UserProfileContainer>
-                    <ImageText imageSize="20px" fontSize='10px' fontColor={colors.alternative_white} imageLeft={userProfile}>{userName}</ImageText>
-                </UserProfileContainer>
-            )}
-        </CardContainer>
+                {(cardType === 'drink' && !hover) && (
+                    <UserProfileContainer>
+                        <ImageText imageSize="20px" fontSize='10px' fontColor={colors.alternative_white} imageLeft={userProfile}>{userName}</ImageText>
+                    </UserProfileContainer>
+                )}
+            </CardContainer>
+            {
+                cardType === 'drink' &&
+                <DrinksModal
+                    isShown={modalIsOpen}
+                    modalType="genericDrinkModal"
+                    drinkInfoObject={infoObject}
+                    toggle={() => setModalIsOpen(false)}
+                />
+            }
+        </>
     )
 }
 

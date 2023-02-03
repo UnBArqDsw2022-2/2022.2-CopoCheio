@@ -1,4 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
 
 import { JwtAuthMiddleware } from '../Middlewares/auth';
 import { AuthRoleCheckMiddware } from '../Middlewares/authRoleCheck';
@@ -9,8 +10,20 @@ const drinkService = new DrinkService();
 
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
+        let userId = undefined
         const searchParams = req.query
-        const allDrinks = await drinkService.findByParams(searchParams)
+        const authHeader = req.headers.authorization;
+        if (authHeader) {
+            const [token] = authHeader.split(' ');
+            try {
+                const decoded = jwt.verify(token, process.env.JWT_SECRET ?? 'secret') as any;
+                userId = decoded.id;
+            } catch (error) {
+                // do nothing
+            }
+        }
+
+        const allDrinks = await drinkService.findByParams(searchParams,userId)
         res.status(200).send(allDrinks)
     } catch (error) {
         next(error)
@@ -59,6 +72,7 @@ router.post('/', JwtAuthMiddleware,async (req: Request, res: Response, next: Nex
 
 router.put('/:id',JwtAuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
     try {
+        
         const drinkId = req.params.id
         const userId = req.id
 
