@@ -1,8 +1,8 @@
 import isEmail from 'isemail';
 import bcrypt from 'bcryptjs';
 import moment from "moment";
-import Prisma from "../prismaConection";
 
+import Prisma from "../prismaConection";
 import { Roles } from '../Models/roles.model';
 import { BadRequestException } from "../Middlewares/httpExceptions";
 import { Users as UserModel } from "../Models/users.model";

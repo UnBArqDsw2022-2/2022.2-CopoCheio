@@ -114,8 +114,8 @@ export class Users {
     }
 
 
-    async update(data: UpdateUserDto, userId: string) {
-
+    async update(updateData: UpdateUserDto, userId: string) {
+        const {role, ...data} = updateData;
         const updatedUser = this.prismaUser.update({
             data,
             where: {
