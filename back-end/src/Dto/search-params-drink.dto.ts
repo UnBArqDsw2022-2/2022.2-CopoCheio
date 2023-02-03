@@ -9,7 +9,7 @@ export class searchParamsDrink extends PartialType(SearchParams){
 
     countries?:  Array<string>;
 
-    isAlcoholic?: boolean;
+    isAlcoholic?: string | boolean;
 
     difficulty?: Difficulty;
 

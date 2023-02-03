@@ -48,7 +48,11 @@ export default class DrinksService {
             if (!user || user.role!.name !== 'Admin') {
                 searchParams.showVerified = true;
             }
-        } 
+        }
+
+        if (searchParams && searchParams.isAlcoholic !== undefined) {
+            searchParams.isAlcoholic = searchParams.isAlcoholic === 'false'
+        }
         
         if (!page || page <= 0) {
             searchParams.page = 1;
@@ -122,7 +126,7 @@ export default class DrinksService {
         const user = await this.usersService.findById(userId);
         const roleResult = await this.role.findOne(user!.role!.id);
         if (roleResult!.name === 'Customer') {
-            updateData.isVerfied = undefined;
+            updateData.isVerified = undefined;
         }
 
         if (updateData.name && updateData.name.length === 0) {
