@@ -31,6 +31,7 @@ interface CardInterface {
     drinkId: string;
     drinkPreparation: string;
     drinkIngredients: string;
+    modalType?: 'genericDrinkModal' | 'recomendationDrinkModal';
 }
 
 const CardTextContainer = styled.span`
@@ -86,7 +87,8 @@ const Card = ({
     drinkCategories,
     userProfile,
     drinkPreparation,
-    drinkIngredients
+    drinkIngredients,
+    modalType
 }: CardInterface) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [hover, setHover] = useState(false);
@@ -204,7 +206,7 @@ const Card = ({
                 cardType === 'drink' &&
                 <DrinksModal
                     isShown={modalIsOpen}
-                    modalType="genericDrinkModal"
+                    modalType={modalType}
                     drinkInfoObject={infoObject}
                     toggle={() => setModalIsOpen(false)}
                 />

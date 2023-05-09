@@ -68,7 +68,7 @@ class Drink {
         "createdDate": this.createdDate,
         "likes": this.likes,
         "isAlcoholic": this.isAlcoholic,
-        "isVerfied": this.isVerified,
+        "isVerified": this.isVerified,
         "difficulty": this.difficulty,
         "userId": this.userId,
         "categories": this.categories,

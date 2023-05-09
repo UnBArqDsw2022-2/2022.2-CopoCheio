@@ -220,4 +220,12 @@ export class Drinks {
         });
 
     }
+
+    async delete(drinkId: string) {
+        await this.prismaDrink.delete({
+            where: {
+                id: drinkId               
+            }
+        })        
+    }
 }
